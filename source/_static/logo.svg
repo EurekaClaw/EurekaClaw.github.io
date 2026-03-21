@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="160" height="48">
+  <!-- Claw symbol -->
+  <g transform="translate(8, 8)" fill="none" stroke="#0072b2" stroke-width="2.5" stroke-linecap="round">
+    <!-- Body -->
+    <ellipse cx="22" cy="24" rx="14" ry="18" fill="#e8f4fd" stroke="#0072b2"/>
+    <!-- Left claw -->
+    <path d="M 10 30 Q 2 35 4 42 Q 6 48 12 44" fill="#cce4f6" stroke="#0072b2"/>
+    <!-- Middle claw -->
+    <path d="M 18 38 Q 16 46 20 50 Q 24 54 26 48" fill="#cce4f6" stroke="#0072b2"/>
+    <!-- Right claw -->
+    <path d="M 30 34 Q 38 38 38 46 Q 37 52 31 48" fill="#cce4f6" stroke="#0072b2"/>
+    <!-- Eye -->
+    <circle cx="26" cy="18" r="3" fill="#0072b2"/>
+    <circle cx="27" cy="17" r="1" fill="white"/>
+    <!-- Antenna -->
+    <path d="M 26 6 Q 30 2 34 4" stroke="#0072b2" stroke-width="2"/>
+    <circle cx="34" cy="4" r="2" fill="#0072b2"/>
+  </g>
+  <!-- Text -->
+  <text x="52" y="38" font-family="'Segoe UI', system-ui, sans-serif" font-size="22" font-weight="700" fill="#0072b2">
+    EurekaClaw
+  </text>
+</svg>

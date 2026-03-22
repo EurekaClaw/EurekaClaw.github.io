@@ -8,7 +8,6 @@
 CONTEXT_COMPRESS_AFTER_TURNS=4
 AUTO_VERIFY_CONFIDENCE=0.80
 STAGNATION_WINDOW=2
-EXPERIMENT_MODE=false
 MAX_TOKENS_PROVER=2048
 MAX_TOKENS_AGENT=4096
 ```
@@ -19,7 +18,6 @@ MAX_TOKENS_AGENT=4096
 CONTEXT_COMPRESS_AFTER_TURNS=6
 AUTO_VERIFY_CONFIDENCE=0.85
 STAGNATION_WINDOW=3
-EXPERIMENT_MODE=auto
 ```
 
 ### Maximum Thoroughness (For Final Results)
@@ -28,7 +26,6 @@ EXPERIMENT_MODE=auto
 CONTEXT_COMPRESS_AFTER_TURNS=0   # no compression
 AUTO_VERIFY_CONFIDENCE=0.99      # almost always do full peer review
 STAGNATION_WINDOW=5
-EXPERIMENT_MODE=true
 MAX_TOKENS_PROVER=4096
 MAX_TOKENS_AGENT=8192
 ```
@@ -44,8 +41,8 @@ MAX_TOKENS_AGENT=8192
 **`STAGNATION_WINDOW`**
 : If the same lemma fails N consecutive times with a similar error, the loop forces a conjecture refinement instead of retrying. Prevents wasted calls on an unresolvable proof path.
 
-**`EXPERIMENT_MODE`**
-: Whether to run numerical experiments. `auto` skips purely structural theorems (existence proofs, NP-hardness). Set to `false` for pure-math work.
+**`EXPERIMENT_MODE`** *(future work)*
+: Numerical experiment execution is not yet safely sandboxed. Keep this set to `false`. See the [Agents reference](../reference/agents.md#experimentagent-under-development) for details.
 
 **`THEORY_MAX_ITERATIONS`**
 : Maximum proof loop iterations. Increase for very hard theorems; decrease for faster (but potentially incomplete) results.

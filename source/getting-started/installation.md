@@ -34,8 +34,11 @@ EurekaClaw works without any of these — it skips the associated step if a tool
 |---|---|---|
 | **pdflatex** + bibtex | Compile `paper.tex` → `paper.pdf` | TeX Live / MacTeX |
 | **Lean4** | Formal proof verification | [leanprover.github.io](https://leanprover.github.io) |
-| **Docker** | Sandboxed code execution | [docker.com](https://www.docker.com) |
 | **clawhub** | Install skills from ClawHub registry | `pip install clawhub` |
+
+```{note}
+**Docker / sandboxed code execution** is listed as an optional tool but is **future work** — the experiment runner and `execute_python` tool are not yet safely sandboxed for general use. Keep `EXPERIMENT_MODE=false` until a future release adds proper sandbox support.
+```
 
 ## Install Seed Skills
 

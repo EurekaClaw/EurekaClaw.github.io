@@ -140,11 +140,15 @@ Or on failure:
 
 ---
 
-### `execute_python`
+### `execute_python` *(under development)*
+
+```{warning}
+Safe sandboxed code execution is **future work**. Without Docker properly configured, this tool runs LLM-generated Python directly in a host subprocess with no filesystem or network isolation. Do not enable `EXPERIMENT_MODE` until a future release adds proper sandbox support.
+```
 
 **File:** `eurekaclaw/tools/code_exec.py`
 
-**Purpose:** Execute Python code in a sandboxed subprocess for numerical experiments and sanity checks.
+**Purpose:** Execute Python code for numerical experiments and sanity checks.
 
 **Inputs:**
 
@@ -162,7 +166,7 @@ Or on error:
 {"error": "exception message"}
 ```
 
-**Sandbox:** Subprocess with 30-second timeout. Set `USE_DOCKER_SANDBOX=true` to run in Docker instead. Package installation uses `uv pip` (falls back to `pip`).
+**Sandbox:** Subprocess with 30-second timeout. Set `USE_DOCKER_SANDBOX=true` to run in a Docker container (`python:3.11-slim`, 512 MB RAM, network disabled) instead of the host. If Docker is unavailable, falls back silently to host subprocess. Package installation uses `uv pip` (falls back to `pip`).
 
 ---
 

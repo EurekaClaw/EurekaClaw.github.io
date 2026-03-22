@@ -569,32 +569,65 @@
 </section>
 <section id="quick-reference">
 <h2>Quick Reference<a class="headerlink" href="#quick-reference" title="Link to this heading">#</a></h2>
-<dl class="simple myst">
-<dt><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_AGENT</span></code></dt><dd><p>Default budget for generic agent calls. Used by stages that do not pass a more specific token limit.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_PROVER</span></code></dt><dd><p>Budget for generating lemma proofs in the theory prover.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_PLANNER</span></code></dt><dd><p>General planning budget. Kept for planner-style calls and compatibility, but it is not the main limit for the current theorem architecture.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_ARCHITECT</span></code></dt><dd><p>Budget for <code class="docutils literal notranslate"><span class="pre">ProofArchitect</span></code> in the <code class="docutils literal notranslate"><span class="pre">default</span></code> theory pipeline.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_DECOMPOSER</span></code></dt><dd><p>Budget for decomposition-style stages such as legacy decomposer logic and <code class="docutils literal notranslate"><span class="pre">KeyLemmaExtractor</span></code>.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_ASSEMBLER</span></code></dt><dd><p>Budget for <code class="docutils literal notranslate"><span class="pre">Assembler</span></code>, which writes the full assembled proof narrative from lemmas, citations, and skeleton information.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_FORMALIZER</span></code></dt><dd><p>Shared budget for formalizer/refiner-style calls. Also used by several theory helper stages such as <code class="docutils literal notranslate"><span class="pre">PaperReader</span></code>, <code class="docutils literal notranslate"><span class="pre">Refiner</span></code>, <code class="docutils literal notranslate"><span class="pre">CounterexampleSearcher</span></code>, and <code class="docutils literal notranslate"><span class="pre">ResourceAnalyst</span></code>.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_CRYSTALLIZER</span></code></dt><dd><p>Budget for <code class="docutils literal notranslate"><span class="pre">TheoremCrystallizer</span></code>, which extracts the final theorem statement from the assembled proof.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_ANALYST</span></code></dt><dd><p>Budget for analysis stages in the <code class="docutils literal notranslate"><span class="pre">memory_guided</span></code> pipeline, including <code class="docutils literal notranslate"><span class="pre">MemoryGuidedAnalyzer</span></code>, <code class="docutils literal notranslate"><span class="pre">TemplateSelector</span></code>, and <code class="docutils literal notranslate"><span class="pre">ProofSkeletonBuilder</span></code>.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_SKETCH</span></code></dt><dd><p>Budget for <code class="docutils literal notranslate"><span class="pre">SketchGenerator</span></code>.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_VERIFIER</span></code></dt><dd><p>Budget for verification and consistency-checking calls.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_COMPRESS</span></code></dt><dd><p>Budget for context compression summaries inside the generic agent loop.</p>
-</dd>
-</dl>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Used by</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_AGENT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">8192</span></code></p></td>
+<td><p>Generic agent loops (SurveyAgent, WriterAgent, fallback paths)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_PROVER</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4096</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Prover</span></code> — lemma proof generation</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_PLANNER</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4096</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DivergentConvergentPlanner</span></code> (diverge phase); converge uses half</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_ARCHITECT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3072</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ProofArchitect</span></code> in the <code class="docutils literal notranslate"><span class="pre">default</span></code> pipeline</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_DECOMPOSER</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4096</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">KeyLemmaExtractor</span></code> and legacy decomposer stages</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_ASSEMBLER</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">6144</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Assembler</span></code> — full proof narrative</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_FORMALIZER</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4096</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Formalizer</span></code>, <code class="docutils literal notranslate"><span class="pre">Refiner</span></code>, <code class="docutils literal notranslate"><span class="pre">CounterexampleSearcher</span></code>, <code class="docutils literal notranslate"><span class="pre">ResourceAnalyst</span></code>, <code class="docutils literal notranslate"><span class="pre">PaperReader</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_CRYSTALLIZER</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4096</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TheoremCrystallizer</span></code> — final theorem statement</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_ANALYST</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1536</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MemoryGuidedAnalyzer</span></code>, <code class="docutils literal notranslate"><span class="pre">TemplateSelector</span></code>, <code class="docutils literal notranslate"><span class="pre">ProofSkeletonBuilder</span></code> (<code class="docutils literal notranslate"><span class="pre">memory_guided</span></code> pipeline)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_SKETCH</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1024</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SketchGenerator</span></code> — Lean4/Coq sketch</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_VERIFIER</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2048</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Verifier</span></code> and peer-review calls</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_COMPRESS</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">512</span></code></p></td>
+<td><p>Context compression summaries (fast model)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
 <section id="which-pipeline-uses-what">
 <h2>Which Pipeline Uses What<a class="headerlink" href="#which-pipeline-uses-what" title="Link to this heading">#</a></h2>
@@ -615,12 +648,12 @@
 </ul>
 <p>Relevant code:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/proof_pipelines/default_proof_pipeline.yaml">default_proof_pipeline.yaml</a></p></li>
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/proof_architect.py">proof_architect.py</a></p></li>
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/prover.py">prover.py</a></p></li>
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/assembler.py">assembler.py</a></p></li>
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/theorem_crystallizer.py">theorem_crystallizer.py</a></p></li>
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/verifier.py">verifier.py</a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/proof_pipelines/default_proof_pipeline.yaml"><span class="xref myst">default_proof_pipeline.yaml</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/proof_architect.py"><span class="xref myst">proof_architect.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/prover.py"><span class="xref myst">prover.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/assembler.py"><span class="xref myst">assembler.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/theorem_crystallizer.py"><span class="xref myst">theorem_crystallizer.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/verifier.py"><span class="xref myst">verifier.py</span></a></p></li>
 </ul>
 <p>If the <code class="docutils literal notranslate"><span class="pre">default</span></code> pipeline is struggling, the most useful knobs are usually:</p>
 <ol class="arabic simple">
@@ -644,13 +677,13 @@
 </ul>
 <p>Relevant code:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/proof_pipelines/memory_guided_proof_pipeline.yaml">memory_guided_proof_pipeline.yaml</a></p></li>
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/analysis_stages.py">analysis_stages.py</a></p></li>
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/key_lemma_extractor.py">key_lemma_extractor.py</a></p></li>
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/prover.py">prover.py</a></p></li>
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/assembler.py">assembler.py</a></p></li>
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/theorem_crystallizer.py">theorem_crystallizer.py</a></p></li>
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/verifier.py">verifier.py</a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/proof_pipelines/memory_guided_proof_pipeline.yaml"><span class="xref myst">memory_guided_proof_pipeline.yaml</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/analysis_stages.py"><span class="xref myst">analysis_stages.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/key_lemma_extractor.py"><span class="xref myst">key_lemma_extractor.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/prover.py"><span class="xref myst">prover.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/assembler.py"><span class="xref myst">assembler.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/theorem_crystallizer.py"><span class="xref myst">theorem_crystallizer.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/verifier.py"><span class="xref myst">verifier.py</span></a></p></li>
 </ul>
 <p>If the <code class="docutils literal notranslate"><span class="pre">memory_guided</span></code> pipeline is struggling, the most useful knobs are usually:</p>
 <ol class="arabic simple">
@@ -675,9 +708,9 @@
 </ul>
 <p>Relevant code:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/base.py">base.py</a></p></li>
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/survey/agent.py">agent.py</a></p></li>
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/writer/agent.py">agent.py</a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/base.py"><span class="xref myst">base.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/survey/agent.py"><span class="xref myst">agent.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/writer/agent.py"><span class="xref myst">agent.py</span></a></p></li>
 </ul>
 <p>Raise this when:</p>
 <ul class="simple">
@@ -690,7 +723,7 @@
 <p>Used for theorem-proof generation at the lemma level.</p>
 <p>Relevant code:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/prover.py">prover.py</a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/prover.py"><span class="xref myst">prover.py</span></a></p></li>
 </ul>
 <p>Raise this when:</p>
 <ul class="simple">
@@ -703,7 +736,7 @@
 <p>Used by <code class="docutils literal notranslate"><span class="pre">ProofArchitect</span></code> in the <code class="docutils literal notranslate"><span class="pre">default</span></code> pipeline.</p>
 <p>Relevant code:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/proof_architect.py">proof_architect.py</a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/proof_architect.py"><span class="xref myst">proof_architect.py</span></a></p></li>
 </ul>
 <p>Raise this when:</p>
 <ul class="simple">
@@ -716,7 +749,7 @@
 <p>Used by <code class="docutils literal notranslate"><span class="pre">MemoryGuidedAnalyzer</span></code>, <code class="docutils literal notranslate"><span class="pre">TemplateSelector</span></code>, and <code class="docutils literal notranslate"><span class="pre">ProofSkeletonBuilder</span></code> in the <code class="docutils literal notranslate"><span class="pre">memory_guided</span></code> pipeline.</p>
 <p>Relevant code:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/analysis_stages.py">analysis_stages.py</a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/analysis_stages.py"><span class="xref myst">analysis_stages.py</span></a></p></li>
 </ul>
 <p>Raise this when:</p>
 <ul class="simple">
@@ -730,8 +763,8 @@
 <p>Used by decomposition-style stages, including <code class="docutils literal notranslate"><span class="pre">KeyLemmaExtractor</span></code>.</p>
 <p>Relevant code:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/key_lemma_extractor.py">key_lemma_extractor.py</a></p></li>
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/decomposer.py">decomposer.py</a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/key_lemma_extractor.py"><span class="xref myst">key_lemma_extractor.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/decomposer.py"><span class="xref myst">decomposer.py</span></a></p></li>
 </ul>
 <p>Raise this when:</p>
 <ul class="simple">
@@ -744,7 +777,7 @@
 <p>Used to produce <code class="docutils literal notranslate"><span class="pre">state.assembled_proof</span></code>.</p>
 <p>Relevant code:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/assembler.py">assembler.py</a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/assembler.py"><span class="xref myst">assembler.py</span></a></p></li>
 </ul>
 <p>Raise this when:</p>
 <ul class="simple">
@@ -758,7 +791,7 @@
 <p>Used to produce <code class="docutils literal notranslate"><span class="pre">state.formal_statement</span></code>.</p>
 <p>Relevant code:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/theorem_crystallizer.py">theorem_crystallizer.py</a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/theorem_crystallizer.py"><span class="xref myst">theorem_crystallizer.py</span></a></p></li>
 </ul>
 <p>Raise this when:</p>
 <ul class="simple">
@@ -776,8 +809,8 @@
 </ul>
 <p>Relevant code:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/verifier.py">verifier.py</a></p></li>
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/consistency_checker.py">consistency_checker.py</a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/verifier.py"><span class="xref myst">verifier.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/consistency_checker.py"><span class="xref myst">consistency_checker.py</span></a></p></li>
 </ul>
 <p>Raise this when:</p>
 <ul class="simple">
@@ -797,11 +830,11 @@
 </ul>
 <p>Relevant code:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/formalizer.py">formalizer.py</a></p></li>
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/refiner.py">refiner.py</a></p></li>
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/counterexample.py">counterexample.py</a></p></li>
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/resource_analyst.py">resource_analyst.py</a></p></li>
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/agents/theory/paper_reader.py">paper_reader.py</a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/formalizer.py"><span class="xref myst">formalizer.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/refiner.py"><span class="xref myst">refiner.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/counterexample.py"><span class="xref myst">counterexample.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/resource_analyst.py"><span class="xref myst">resource_analyst.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/paper_reader.py"><span class="xref myst">paper_reader.py</span></a></p></li>
 </ul>
 <p>Raise this when:</p>
 <ul class="simple">
@@ -884,9 +917,9 @@
 </ul>
 <p>If you add new <code class="docutils literal notranslate"><span class="pre">max_tokens_*</span></code> fields in the backend later, remember to update:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/ui/server.py">server.py</a></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">frontend/index.html</span></code></p></li>
-<li><p><a class="reference external" href="https://github.com/EurekaClaw/EurekaClaw_dev_zero/blob/main/eurekaclaw/ui/static/index.html">index.html</a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/ui/server.py"><span class="xref myst">server.py</span></a></p></li>
+<li><p><a class="reference internal" href="#frontend/index.html"><span class="xref myst">frontend/index.html</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/ui/static/index.html"><span class="xref myst">index.html</span></a></p></li>
 </ul>
 </section>
 </section>

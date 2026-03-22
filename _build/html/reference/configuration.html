@@ -566,19 +566,23 @@
 <td><p><code class="docutils literal notranslate"><span class="pre">api_key</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">api_key</span></code> or <code class="docutils literal notranslate"><span class="pre">oauth</span></code> (ccproxy)</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CCPROXY_PORT</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ANTHROPIC_BASE_URL</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></p></td>
+<td><p>Override base URL for the Anthropic client (e.g. for proxies or test servers)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CCPROXY_PORT</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">8000</span></code></p></td>
 <td><p>Port for ccproxy server</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">OPENAI_COMPAT_BASE_URL</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">OPENAI_COMPAT_BASE_URL</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></p></td>
 <td><p>Base URL for OpenAI-compatible endpoint (OpenRouter / local vLLM)</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">OPENAI_COMPAT_API_KEY</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">OPENAI_COMPAT_API_KEY</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></p></td>
 <td><p>API key for OpenAI-compatible endpoint</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">OPENAI_COMPAT_MODEL</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">OPENAI_COMPAT_MODEL</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></p></td>
 <td><p>Model name for OpenAI-compatible endpoint</p></td>
 </tr>
@@ -703,12 +707,17 @@
 <td><p><code class="docutils literal notranslate"><span class="pre">auto</span></code>, <code class="docutils literal notranslate"><span class="pre">human</span></code>, <code class="docutils literal notranslate"><span class="pre">none</span></code></p></td>
 <td><p>Stage gate behavior</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">OUTPUT_FORMAT</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">THEORY_PIPELINE</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">default</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">default</span></code>, <code class="docutils literal notranslate"><span class="pre">memory_guided</span></code></p></td>
+<td><p>Which theory proof pipeline to use</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">OUTPUT_FORMAT</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">latex</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">latex</span></code>, <code class="docutils literal notranslate"><span class="pre">markdown</span></code></p></td>
 <td><p>Paper output format</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">EXPERIMENT_MODE</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">EXPERIMENT_MODE</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">auto</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">auto</span></code>, <code class="docutils literal notranslate"><span class="pre">true</span></code>, <code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
 <td><p>Experiment stage: auto-detect / force run / force skip</p></td>
@@ -737,9 +746,17 @@
 <td><p><code class="docutils literal notranslate"><span class="pre">10</span></code></p></td>
 <td><p>Max proof iterations in LemmaDeveloper loop</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">AUTO_VERIFY_CONFIDENCE</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">0.85</span></code></p></td>
-<td><p>Auto-accept proofs with confidence ≥ this threshold</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">THEORY_REVIEW_MAX_RETRIES</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
+<td><p>Max retries when human reviewer flags a proof step</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">AUTO_VERIFY_CONFIDENCE</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.95</span></code></p></td>
+<td><p>Auto-accept proofs with confidence ≥ this threshold (skips LLM Verifier call)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">VERIFIER_PASS_CONFIDENCE</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.90</span></code></p></td>
+<td><p>Confidence threshold for the LLM Verifier to mark a lemma as passing</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">STAGNATION_WINDOW</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
@@ -794,36 +811,36 @@
 <td><p>Research direction planning (diverge); converge uses half</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_DECOMPOSER</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">2048</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4096</span></code></p></td>
 <td><p>Lemma decomposition (LemmaDecomposer, KeyLemmaExtractor)</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_ASSEMBLER</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">4096</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">6144</span></code></p></td>
 <td><p>Proof assembly narrative (Assembler)</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_CRYSTALLIZER</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">2500</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4096</span></code></p></td>
 <td><p>Final theorem statement extraction (TheoremCrystallizer)</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_ARCHITECT</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">3000</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3072</span></code></p></td>
 <td><p>Proof plan generation (ProofArchitect)</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_ANALYST</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">1600</span></code></p></td>
-<td><p>Analysis stages (AnalysisStages)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1536</span></code></p></td>
+<td><p>Analysis stages (MemoryGuidedAnalyzer, TemplateSelector, ProofSkeletonBuilder)</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_SKETCH</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">600</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1024</span></code></p></td>
 <td><p>Lean4/Coq sketch generation (SketchGenerator)</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_FORMALIZER</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">2048</span></code></p></td>
-<td><p>Formalization, Refiner, CounterexampleSearcher, ResourceAnalyst</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4096</span></code></p></td>
+<td><p>Formalization, Refiner, CounterexampleSearcher, ResourceAnalyst, PaperReader</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_VERIFIER</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">1024</span></code></p></td>
-<td><p>Proof verification (Verifier)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2048</span></code></p></td>
+<td><p>Proof verification (Verifier) and peer review</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_COMPRESS</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">512</span></code></p></td>
@@ -833,6 +850,32 @@
 </table>
 </div>
 <p>All 12 values are adjustable from the Settings tab in the web UI.</p>
+</section>
+<section id="paper-reader">
+<h2>Paper Reader<a class="headerlink" href="#paper-reader" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PAPER_READER_USE_PDF</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+<td><p>Download and extract from full PDF in addition to abstract</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PAPER_READER_ABSTRACT_PAPERS</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">10</span></code></p></td>
+<td><p>Max papers to extract from abstract</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PAPER_READER_PDF_PAPERS</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
+<td><p>Max papers to extract from full PDF</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
 <section id="turn-limits">
 <h2>Turn Limits<a class="headerlink" href="#turn-limits" title="Link to this heading">#</a></h2>
@@ -1015,6 +1058,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proof-theory">Proof &amp; Theory</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#context-compression">Context &amp; Compression</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#token-limits-per-call-type">Token Limits (per call type)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paper-reader">Paper Reader</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#turn-limits">Turn Limits</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#search-retrieval">Search &amp; Retrieval</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retry-resilience">Retry &amp; Resilience</a></li>

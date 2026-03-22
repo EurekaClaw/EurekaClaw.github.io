@@ -616,7 +616,8 @@
 <p><strong>Role:</strong> <code class="docutils literal notranslate"><span class="pre">IDEATION</span></code>
 <strong>File:</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/agents/ideation/agent.py</span></code>
 <strong>Max Turns:</strong> 3</p>
-<p><strong>Purpose:</strong> Generate initial research hypotheses. Works with the <code class="docutils literal notranslate"><span class="pre">DivergentConvergentPlanner</span></code> to produce 5 directions, then converge on the most promising one.</p>
+<p><strong>Purpose:</strong> Generate 5 novel research hypotheses from survey findings. Each direction is scored on <code class="docutils literal notranslate"><span class="pre">novelty_score</span></code>, <code class="docutils literal notranslate"><span class="pre">feasibility_score</span></code>, and <code class="docutils literal notranslate"><span class="pre">impact_score</span></code> (mapped internally to the <code class="docutils literal notranslate"><span class="pre">ResearchDirection</span></code> fields <code class="docutils literal notranslate"><span class="pre">novelty_score</span></code>, <code class="docutils literal notranslate"><span class="pre">soundness_score</span></code>, <code class="docutils literal notranslate"><span class="pre">transformative_score</span></code>).</p>
+<p>Direction <em>selection</em> does <strong>not</strong> happen inside IdeationAgent. After IdeationAgent writes <code class="docutils literal notranslate"><span class="pre">ResearchBrief.directions</span></code>, the orchestrator’s <code class="docutils literal notranslate"><span class="pre">direction_selection_gate</span></code> task invokes <code class="docutils literal notranslate"><span class="pre">DivergentConvergentPlanner.converge()</span></code> to pick the highest-scoring direction and set <code class="docutils literal notranslate"><span class="pre">ResearchBrief.selected_direction</span></code>.</p>
 <p><strong>Inputs (from KnowledgeBus):</strong></p>
 <ul class="simple">
 <li><p>Survey findings (<code class="docutils literal notranslate"><span class="pre">ResearchBrief</span></code>)</p></li>
@@ -624,8 +625,7 @@
 </ul>
 <p><strong>Outputs:</strong></p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">ResearchBrief.directions</span></code> — 5 <code class="docutils literal notranslate"><span class="pre">ResearchDirection</span></code> objects with scores</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ResearchBrief.selected_direction</span></code> — the highest-scoring direction after convergence</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ResearchBrief.directions</span></code> — 5 <code class="docutils literal notranslate"><span class="pre">ResearchDirection</span></code> objects with composite scores</p></li>
 </ul>
 </section>
 <hr class="docutils" />
@@ -707,9 +707,33 @@
 </pre></div>
 </div>
 <p><strong>Provenance system:</strong> Each lemma in the proof plan is annotated as <code class="docutils literal notranslate"><span class="pre">known</span></code> (directly citable), <code class="docutils literal notranslate"><span class="pre">adapted</span></code> (needs modification), or <code class="docutils literal notranslate"><span class="pre">new</span></code> (must be fully proved). Only <code class="docutils literal notranslate"><span class="pre">adapted</span></code> and <code class="docutils literal notranslate"><span class="pre">new</span></code> lemmas enter the proof loop.</p>
-<p><strong>Auto-verify:</strong> Proofs with confidence ≥ <code class="docutils literal notranslate"><span class="pre">AUTO_VERIFY_CONFIDENCE</span></code> (default 0.85) are accepted without an LLM verifier call.</p>
+<p><strong>Auto-verify:</strong> Proofs with confidence ≥ <code class="docutils literal notranslate"><span class="pre">AUTO_VERIFY_CONFIDENCE</span></code> (default 0.95) are accepted without an LLM verifier call. The LLM Verifier itself uses a separate pass threshold <code class="docutils literal notranslate"><span class="pre">VERIFIER_PASS_CONFIDENCE</span></code> (default 0.90).</p>
 <p><strong>ProofArchitect retry policy:</strong> If the full provenance-annotated plan fails (e.g. the LLM returns a field as <code class="docutils literal notranslate"><span class="pre">null</span></code>), the architect retries with a simplified 3-lemma prompt (foundational → central bound → main result). Only if both attempts fail does it fall back to a single <code class="docutils literal notranslate"><span class="pre">main_result</span></code> goal.</p>
-<p><strong>Outer iteration loop:</strong> After the Assembler runs, <code class="docutils literal notranslate"><span class="pre">TheoremCrystallizer</span></code> + <code class="docutils literal notranslate"><span class="pre">ConsistencyChecker</span></code> iterate up to <code class="docutils literal notranslate"><span class="pre">theory_max_iterations</span></code> times. If the consistency check fails due to <strong>uncited lemmas</strong> (the assembled proof does not reference a proved lemma by its <code class="docutils literal notranslate"><span class="pre">[lemma_id]</span></code>), the <code class="docutils literal notranslate"><span class="pre">Assembler</span></code> is re-run as well — not just the Crystallizer. Other failures only trigger re-crystallization.</p>
+<p><strong>Outer iteration loop:</strong> After the Assembler runs, <code class="docutils literal notranslate"><span class="pre">TheoremCrystallizer</span></code> + <code class="docutils literal notranslate"><span class="pre">ConsistencyChecker</span></code> iterate up to <code class="docutils literal notranslate"><span class="pre">theory_max_iterations</span></code> times. The <code class="docutils literal notranslate"><span class="pre">ConsistencyChecker</span></code> classifies every failure into one of three severity levels, and the retry path is chosen accordingly:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Severity</p></th>
+<th class="head"><p>Meaning</p></th>
+<th class="head"><p>Retry path</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uncited</span></code></p></td>
+<td><p>Proof logic is sound but proved lemmas are not cited in the assembled text</p></td>
+<td><p>Re-run <code class="docutils literal notranslate"><span class="pre">TheoremCrystallizer</span></code> inline, then immediately mark proof as <code class="docutils literal notranslate"><span class="pre">proved</span></code> and exit the outer loop — <strong>no second ConsistencyChecker pass</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">major</span></code></p></td>
+<td><p>A specific lemma is incorrect or the logical link between two lemmas is broken</p></td>
+<td><p>Re-run <code class="docutils literal notranslate"><span class="pre">LemmaDeveloper</span> <span class="pre">→</span> <span class="pre">Assembler</span> <span class="pre">→</span> <span class="pre">TheoremCrystallizer</span> <span class="pre">→</span> <span class="pre">ConsistencyChecker</span></code> (one attempt). If this also fails, escalate to <code class="docutils literal notranslate"><span class="pre">all_wrong</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">all_wrong</span></code></p></td>
+<td><p>Fundamental proof breakdown — wrong approach or multiple incorrect lemmas</p></td>
+<td><p>Re-run from <code class="docutils literal notranslate"><span class="pre">ProofArchitect</span></code> (new proof plan) through the full pipeline</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>If the LLM does not return a severity field, it is inferred heuristically: failures with only <code class="docutils literal notranslate"><span class="pre">uncited_lemmas</span></code> and no <code class="docutils literal notranslate"><span class="pre">issues</span></code> are classified as <code class="docutils literal notranslate"><span class="pre">uncited</span></code>; all others as <code class="docutils literal notranslate"><span class="pre">major</span></code>.</p>
 <p><strong>Citation convention:</strong> The Assembler is instructed to cite every proved lemma by its identifier in square brackets, e.g. <code class="docutils literal notranslate"><span class="pre">By</span> <span class="pre">[arm_pull_count_bound],</span> <span class="pre">...</span></code>. The ConsistencyChecker verifies that all proved lemma IDs appear in the assembled proof and flags any that are missing.</p>
 <p><strong>Knowledge Graph writes:</strong> Lemma nodes and dependency edges are written to the Tier 3 KG whenever lemmas are proved, regardless of whether the final consistency check passes. This preserves the lemma-level graph even when the theorem statement crystallization fails.</p>
 </section>

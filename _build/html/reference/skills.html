@@ -547,7 +547,8 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>eurekaclaw/skills/
 ├── registry.py      SkillRegistry (load + store skills)
 ├── injector.py      SkillInjector (retrieve + format for prompts)
-└── seed_skills/     Bundled starter skills (Markdown files)
+├── install.py       SkillInstaller (install seed skills or skills from ClawHub)
+└── evolver.py       SkillEvolver (distill skills from proceeded session)
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -639,9 +640,13 @@ Use Hoeffding for sub-Gaussian rewards, Bernstein when variance is known...
 <p><strong>File:</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/skills/injector.py</span></code></p>
 <p>Retrieves the most relevant skills for a task and formats them for injection into agent system prompts.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SkillInjector</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">registry</span><span class="p">:</span> <span class="n">SkillRegistry</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="n">registry</span><span class="p">:</span> <span class="n">SkillRegistry</span><span class="p">,</span>
+        <span class="n">selected_skills</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </pre></div>
 </div>
+<p><code class="docutils literal notranslate"><span class="pre">selected_skills</span></code> — optional list of skill names to <strong>pin</strong>. Pinned skills are always included at the front of the top-k result, before any usage-sorted optional skills. If a pinned skill name is not found in the registry, a warning is logged and it is silently skipped.</p>
 <section id="id1">
 <h3>Retrieval<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">top_k</span><span class="p">(</span>
@@ -661,17 +666,23 @@ Use Hoeffding for sub-Gaussian rewards, Bernstein when variance is known...
 </thead>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tag</span></code></p></td>
-<td><p>Filter by matching <code class="docutils literal notranslate"><span class="pre">agent_roles</span></code> and <code class="docutils literal notranslate"><span class="pre">pipeline_stages</span></code>, sort by <code class="docutils literal notranslate"><span class="pre">usage_count</span></code></p></td>
+<td><p>Filter by matching <code class="docutils literal notranslate"><span class="pre">agent_roles</span></code> and <code class="docutils literal notranslate"><span class="pre">pipeline_stages</span></code>; pinned skills first, then optional sorted by <code class="docutils literal notranslate"><span class="pre">usage_count</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">semantic</span></code></p></td>
 <td><p>Embedding-based similarity using <code class="docutils literal notranslate"><span class="pre">sentence-transformers</span></code> (if installed)</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hybrid</span></code></p></td>
-<td><p>Tag filter first, then text similarity ranking</p></td>
+<td><p>Tag filter (3×k candidates), then text similarity ranking</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<p><strong>Pinned-skill priority:</strong> When <code class="docutils literal notranslate"><span class="pre">selected_skills</span></code> is non-empty, the <code class="docutils literal notranslate"><span class="pre">tag</span></code> (and by extension <code class="docutils literal notranslate"><span class="pre">hybrid</span></code>) retrieval splits candidates into:</p>
+<ol class="arabic simple">
+<li><p><strong>Must-have</strong> — skills in both <code class="docutils literal notranslate"><span class="pre">selected_skills</span></code> and the role/stage set → always placed first</p></li>
+<li><p><strong>Optional</strong> — remaining candidates → sorted by <code class="docutils literal notranslate"><span class="pre">usage_count</span></code> descending</p></li>
+</ol>
+<p>The combined list is then truncated to <code class="docutils literal notranslate"><span class="pre">k</span></code>.</p>
 </section>
 <section id="formatting">
 <h3>Formatting<a class="headerlink" href="#formatting" title="Link to this heading">#</a></h3>

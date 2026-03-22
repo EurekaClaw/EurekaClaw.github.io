@@ -56,15 +56,16 @@ All agents inherit from `eurekaclaw/agents/base.py`:
 **File:** `eurekaclaw/agents/ideation/agent.py`
 **Max Turns:** 3
 
-**Purpose:** Generate initial research hypotheses. Works with the `DivergentConvergentPlanner` to produce 5 directions, then converge on the most promising one.
+**Purpose:** Generate 5 novel research hypotheses from survey findings. Each direction is scored on `novelty_score`, `feasibility_score`, and `impact_score` (mapped internally to the `ResearchDirection` fields `novelty_score`, `soundness_score`, `transformative_score`).
+
+Direction *selection* does **not** happen inside IdeationAgent. After IdeationAgent writes `ResearchBrief.directions`, the orchestrator's `direction_selection_gate` task invokes `DivergentConvergentPlanner.converge()` to pick the highest-scoring direction and set `ResearchBrief.selected_direction`.
 
 **Inputs (from KnowledgeBus):**
 - Survey findings (`ResearchBrief`)
 - `Bibliography`
 
 **Outputs:**
-- `ResearchBrief.directions` — 5 `ResearchDirection` objects with scores
-- `ResearchBrief.selected_direction` — the highest-scoring direction after convergence
+- `ResearchBrief.directions` — 5 `ResearchDirection` objects with composite scores
 
 ---
 
@@ -111,11 +112,19 @@ for each open_goal:
 
 **Provenance system:** Each lemma in the proof plan is annotated as `known` (directly citable), `adapted` (needs modification), or `new` (must be fully proved). Only `adapted` and `new` lemmas enter the proof loop.
 
-**Auto-verify:** Proofs with confidence ≥ `AUTO_VERIFY_CONFIDENCE` (default 0.85) are accepted without an LLM verifier call.
+**Auto-verify:** Proofs with confidence ≥ `AUTO_VERIFY_CONFIDENCE` (default 0.95) are accepted without an LLM verifier call. The LLM Verifier itself uses a separate pass threshold `VERIFIER_PASS_CONFIDENCE` (default 0.90).
 
 **ProofArchitect retry policy:** If the full provenance-annotated plan fails (e.g. the LLM returns a field as `null`), the architect retries with a simplified 3-lemma prompt (foundational → central bound → main result). Only if both attempts fail does it fall back to a single `main_result` goal.
 
-**Outer iteration loop:** After the Assembler runs, `TheoremCrystallizer` + `ConsistencyChecker` iterate up to `theory_max_iterations` times. If the consistency check fails due to **uncited lemmas** (the assembled proof does not reference a proved lemma by its `[lemma_id]`), the `Assembler` is re-run as well — not just the Crystallizer. Other failures only trigger re-crystallization.
+**Outer iteration loop:** After the Assembler runs, `TheoremCrystallizer` + `ConsistencyChecker` iterate up to `theory_max_iterations` times. The `ConsistencyChecker` classifies every failure into one of three severity levels, and the retry path is chosen accordingly:
+
+| Severity | Meaning | Retry path |
+|---|---|---|
+| `uncited` | Proof logic is sound but proved lemmas are not cited in the assembled text | Re-run `TheoremCrystallizer` inline, then immediately mark proof as `proved` and exit the outer loop — **no second ConsistencyChecker pass** |
+| `major` | A specific lemma is incorrect or the logical link between two lemmas is broken | Re-run `LemmaDeveloper → Assembler → TheoremCrystallizer → ConsistencyChecker` (one attempt). If this also fails, escalate to `all_wrong` |
+| `all_wrong` | Fundamental proof breakdown — wrong approach or multiple incorrect lemmas | Re-run from `ProofArchitect` (new proof plan) through the full pipeline |
+
+If the LLM does not return a severity field, it is inferred heuristically: failures with only `uncited_lemmas` and no `issues` are classified as `uncited`; all others as `major`.
 
 **Citation convention:** The Assembler is instructed to cite every proved lemma by its identifier in square brackets, e.g. `By [arm_pull_count_bound], ...`. The ConsistencyChecker verifies that all proved lemma IDs appear in the assembled proof and flags any that are missing.
 

@@ -102,7 +102,7 @@ Use Ollama, vLLM, or any OpenAI-compatible endpoint — data stays private.
 Distills proof strategies into skills after every session, improving over time.
 :::
 
-:::{grid-item-card} 🧪 Experiment Runner
+:::{grid-item-card} 🧪 Experiment Runner *(under development)*
 Numerically validates theoretical bounds; flags low-confidence lemmas.
 :::
 
@@ -171,3 +171,18 @@ reference/domains
 
 changelog/index
 ```
+
+---
+
+## Acknowledgements
+
+EurekaClaw builds on ideas and inspiration from the broader AI-for-science community. We thank the authors of the following projects:
+
+- [MetaClaw](https://github.com/aiming-lab/MetaClaw) — multi-agent research orchestration
+- [EvoScientist](https://github.com/EvoScientist/EvoScientist) — evolutionary hypothesis generation
+- [AI-Researcher](https://github.com/hkuds/ai-researcher) — automated research pipeline
+- [Awesome AI for Science](https://github.com/ai-boost/awesome-ai-for-science) — curated resource list
+- [Dr. Claw](https://github.com/OpenLAIR/dr-claw) — open research agent framework
+- [OpenClaw](https://github.com/openclaw/openclaw) — open-source research claw
+- [ClawTeam](https://github.com/HKUDS/ClawTeam) — collaborative research agents
+- [ScienceClaw](https://github.com/beita6969/ScienceClaw) — science-focused research agent

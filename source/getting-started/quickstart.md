@@ -4,11 +4,17 @@ Five minutes from zero to a generated paper.
 
 ## 1. Install
 
-**macOS / Linux** (recommended)
+**macOS / Linux**
 
 ```bash
 curl -fsSL https://eurekaclaw.ai/install.sh | bash
 eurekaclaw onboard            # interactive setup wizard (creates .env)
+```
+
+**Windows** *(under development — not fully supported yet)*
+
+```powershell
+powershell -c "irm https://eurekaclaw.ai/install_win.ps1 | iex"
 ```
 
 **Manual install (all platforms)**

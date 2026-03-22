@@ -1,9 +1,9 @@
 # Installation
 
-**Supported platforms:** macOS, Linux
+**Supported platforms:** macOS, Linux, Windows *(Windows under active development)*
 
 ```{note}
-Windows support is **under development**. Native Windows installation is not fully supported yet. In the meantime, Windows users should install [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install) (Ubuntu) and follow the instructions below inside the WSL terminal.
+Native Windows support is under active development. A Windows installer is available (see below) but not yet fully supported. If you run into issues, install [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install) (Ubuntu) and follow the macOS/Linux instructions inside the WSL terminal.
 ```
 
 ## Installer Script (Recommended)

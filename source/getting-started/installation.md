@@ -1,17 +1,35 @@
 # Installation
 
-**Requirements:** Python ≥ 3.11 · **Supported platforms:** macOS, Linux
+**Supported platforms:** macOS, Linux
 
 ```{note}
 Windows support is **under development**. Native Windows installation is not fully supported yet. In the meantime, Windows users should install [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install) (Ubuntu) and follow the instructions below inside the WSL terminal.
 ```
 
-## From Source (Recommended)
+## Installer Script (Recommended)
+
+**macOS / Linux**
+
+```bash
+curl -fsSL https://eurekaclaw.ai/install.sh | bash
+```
+
+**Windows** *(under development — not fully supported yet)*
+
+```powershell
+powershell -c "irm https://eurekaclaw.ai/install_win.ps1 | iex"
+```
+
+The macOS/Linux installer clones the repo, creates a virtual environment, installs EurekaClaw, and adds the `eurekaclaw` command to your PATH. Run `eurekaclaw onboard` afterwards to configure your API key and settings.
+
+## Manual Install
+
+**Requirements:** Python ≥ 3.11, Node.js ≥ 20, Git
 
 ```bash
 git clone https://github.com/EurekaClaw/EurekaClaw
 cd EurekaClaw
-pip install -e "."
+make install                  # pip install -e "." + npm install (frontend)
 ```
 
 ## With Optional Extras

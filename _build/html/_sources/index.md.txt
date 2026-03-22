@@ -95,7 +95,7 @@ Draft camera-ready LaTeX papers with theorem environments and citations.
 :::
 
 :::{grid-item-card} 🖥️ Runs Locally
-Use Ollama, vLLM, or any OpenAI-compatible endpoint — data stays private.
+Compatible with Every Major Model API — Privacy by Design.
 :::
 
 :::{grid-item-card} 🧠 Continual Learning

@@ -1,8 +1,20 @@
 # Browser UI
 
-Launch the local web interface:
+## Launching the UI
+
+### One-line commands
 
 ```bash
+# Production — build frontend, open browser, serve on :8080
+make open
+
+# Production — build frontend, serve on :8080 (no browser)
+make start
+
+# Development — hot-reload Vite on :5173 + Python backend on :7860
+make dev
+
+# Or via the CLI directly (serves the last build)
 eurekaclaw ui --open-browser
 ```
 
@@ -12,16 +24,90 @@ With a custom host/port:
 eurekaclaw ui --host 0.0.0.0 --port 8080 --open-browser
 ```
 
-## Panels
+### How it works
 
-| Panel | Description |
+| Mode | Frontend | Backend | URL |
+|---|---|---|---|
+| **Production** (`make start`) | Pre-built bundle in `eurekaclaw/ui/static/` | Python server + API on same port | `http://localhost:8080` |
+| **Dev** (`make dev`) | Vite dev server with HMR | Python API on `:7860`; Vite proxies `/api/*` | `http://localhost:5173` |
+
+### Frontend build (when you change React code)
+
+```bash
+make build       # tsc + vite build → eurekaclaw/ui/static/
+make typecheck   # type-check only, no output
+```
+
+---
+
+## Views
+
+### Workspace
+
+The main view when a session is selected. Contains:
+
+- **Agent track** (left) — one card per pipeline stage (Survey · Ideation · Theory · Validation · Writing). Click any card to open the Agent Drawer with stage-specific details.
+- **Tabs** (right):
+
+| Tab | Content |
 |---|---|
-| **Run** | Enter conjecture/domain, configure options, start a session |
-| **Live progress** | Real-time stage cards and log stream |
-| **Results viewer** | Browse the generated paper, theory state, and experiment results |
-| **Settings** | Edit all `.env` variables including 12 token-limit sliders |
-| **Skills** | Browse and manage the skill bank |
+| **Live** | Real-time stage cards, log stream, thinking animation while running |
+| **Proof** | Theorem block, lemma chain with confidence badges, counterexample warnings |
+| **Paper** | PDF download, Generate PDF, LaTeX source viewer with copy button |
+| **Logs** | Full raw log output |
 
-## Token Limit Sliders
+### Skills
 
-The Settings tab exposes all 12 `MAX_TOKENS_*` variables as sliders. Changes are written directly to your `.env` file and take effect on the next run. See [Token Limits](../reference/token-limits.md) for what each slider controls.
+Browse, install, and delete skills. Left panel shows seed skills; right panel is the ClawHub external install panel. Each skill card shows usage count and success rate.
+
+### Config
+
+Edit all `.env` variables in the browser, including 12 `MAX_TOKENS_*` sliders. Changes are written directly to your `.env` file and take effect on the next run. See [Token Limits](../reference/token-limits.md) for what each slider controls.
+
+### Onboarding
+
+The interactive setup wizard (shown on first launch). Guides through model selection, API key setup, optional tools, and skills installation. Can be re-opened at any time via the Guide button in the bottom-right corner.
+
+---
+
+## Session Controls
+
+### Pause / Resume
+
+While a session is running, a **Pause proof** button appears. EurekaClaw stops gracefully at the next lemma boundary and writes a checkpoint to `~/.eurekaclaw/sessions/<session_id>/checkpoint.json`.
+
+When paused, you can optionally type feedback before resuming:
+
+```
+📐 Guide the proof before resuming
+
+Lemma chips: [concentration_bound] [main_result] ...
+Textarea: "Use Bernstein instead of Hoeffding for lemma 2"
+```
+
+Feedback is injected directly into the next theory attempt.
+
+### Session list status indicators
+
+| Status | Visual |
+|---|---|
+| Running | Blue `RUNNING` tag |
+| Pausing | Amber `PAUSING…` tag (pulsing) |
+| Paused | Amber `PAUSED` tag |
+| Resuming | Green `RESUMING…` tag (pulsing) |
+| Completed | Green `FINISHED` tag |
+| Failed | Red `FAILED` tag |
+
+Failed sessions show a **Restart** button that carries the original query to a new run.
+
+---
+
+## Gate Overlays
+
+When `--gate auto` or `--gate human` is set, the UI shows full-screen gate modals at pipeline decision points:
+
+| Gate | When it appears | What you can do |
+|---|---|---|
+| **Survey** | If 0 papers found | Add extra context or search terms |
+| **Direction** | After ideation generates 5 directions | Select a direction or let the system choose |
+| **Theory Review** | After theory completes | Approve, flag concerns, pick specific lemmas to revisit |

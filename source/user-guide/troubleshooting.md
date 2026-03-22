@@ -1,5 +1,19 @@
 # Troubleshooting
 
+## `No skills available` / Proof Fails Immediately
+
+**Cause:** The initial skill set has not been installed. This happens when `eurekaclaw install-skills` was skipped during setup.
+
+**Fix:**
+
+```bash
+eurekaclaw install-skills
+```
+
+This downloads the built-in seed skills (proof strategies, domain heuristics, lemma templates) required for the pipeline to run. Re-run it any time you want to reset skills to the defaults.
+
+---
+
 ## `paper.pdf` Not Generated
 
 **Cause:** `pdflatex` not installed or not in `PATH`.

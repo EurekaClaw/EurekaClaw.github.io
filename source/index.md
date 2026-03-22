@@ -57,6 +57,13 @@ Every command, option, and exit code for the `eurekaclaw` command-line tool.
 Pipeline stages, agent design, data flow, LaTeX compilation, and the theory inner loop.
 :::
 
+:::{grid-item-card} 🌐 Browser UI
+:link: user-guide/browser-ui
+:link-type: doc
+
+Launch the visual interface — live agent track, pause/resume, gate overlays, skills manager, and config sliders.
+:::
+
 ::::
 
 ---
@@ -95,7 +102,7 @@ Draft camera-ready LaTeX papers with theorem environments and citations.
 :::
 
 :::{grid-item-card} 🖥️ Runs Locally
-Use Ollama, vLLM, or any OpenAI-compatible endpoint — data stays private.
+Compatible with Every Major Model API — Privacy by Design.
 :::
 
 :::{grid-item-card} 🧠 Continual Learning
@@ -116,13 +123,24 @@ Visual interface with live progress, settings sliders, and results viewer.
 
 ## Installation
 
+**macOS / Linux** (recommended)
+
+```bash
+curl -fsSL https://eurekaclaw.ai/install.sh | bash
+eurekaclaw onboard            # interactive setup wizard
+```
+
+**Manual install (all platforms)**
+
 ```bash
 git clone https://github.com/EurekaClaw/EurekaClaw
 cd EurekaClaw
-pip install -e "."
+make install                  # pip install -e "." + npm install (frontend)
 cp .env.example .env          # add ANTHROPIC_API_KEY
+```
 
-eurekaclaw install-skills     # install built-in proof skills (once)
+```bash
+eurekaclaw install-skills     # install built-in proof skills (required, once)
 eurekaclaw prove "The sample complexity of transformers is O(L·d·log(d)/ε²)" \
     --domain "ML theory" --output ./results
 ```

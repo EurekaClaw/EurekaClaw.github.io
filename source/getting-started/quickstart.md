@@ -4,10 +4,19 @@ Five minutes from zero to a generated paper.
 
 ## 1. Install
 
+**macOS / Linux** (recommended)
+
+```bash
+curl -fsSL https://eurekaclaw.ai/install.sh | bash
+eurekaclaw onboard            # interactive setup wizard (creates .env)
+```
+
+**Manual install (all platforms)**
+
 ```bash
 git clone https://github.com/EurekaClaw/EurekaClaw
 cd EurekaClaw
-pip install -e "."
+make install                  # pip install -e "." + npm install (frontend)
 cp .env.example .env
 ```
 
@@ -18,6 +27,8 @@ Edit `.env` and add your `ANTHROPIC_API_KEY` (or see [Authentication](authentica
 ```bash
 eurekaclaw install-skills
 ```
+
+> **Required.** This step downloads the built-in seed skills (proof strategies, domain heuristics, lemma templates) that EurekaClaw needs to run. Skipping it will cause proofs to fail with `No skills available` or produce significantly degraded results.
 
 ## 3. Run Your First Proof
 

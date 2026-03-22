@@ -117,8 +117,8 @@ Visual interface with live progress, settings sliders, and results viewer.
 ## Installation
 
 ```bash
-git clone https://github.com/EurekaClaw/EurekaClaw_dev_zero
-cd EurekaClaw_dev_zero
+git clone https://github.com/EurekaClaw/EurekaClaw
+cd EurekaClaw
 pip install -e "."
 cp .env.example .env          # add ANTHROPIC_API_KEY
 

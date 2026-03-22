@@ -54,7 +54,7 @@ html_theme_options = {
     "icon_links": [
         {
             "name": "GitHub",
-            "url": "https://github.com/EurekaClaw/EurekaClaw_dev_zero",
+            "url": "https://github.com/EurekaClaw/EurekaClaw",
             "icon": "fa-brands fa-github",
         },
     ],

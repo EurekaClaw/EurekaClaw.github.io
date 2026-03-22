@@ -9,8 +9,8 @@ Windows support is **under development**. Native Windows installation is not ful
 ## From Source (Recommended)
 
 ```bash
-git clone https://github.com/EurekaClaw/EurekaClaw_dev_zero
-cd EurekaClaw_dev_zero
+git clone https://github.com/EurekaClaw/EurekaClaw
+cd EurekaClaw
 pip install -e "."
 ```
 

@@ -1,6 +1,10 @@
 # Installation
 
-**Requirements:** Python ≥ 3.11
+**Requirements:** Python ≥ 3.11 · **Supported platforms:** macOS, Linux
+
+```{note}
+Windows support is **under development**. Native Windows installation is not fully supported yet. In the meantime, Windows users should install [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install) (Ubuntu) and follow the instructions below inside the WSL terminal.
+```
 
 ## From Source (Recommended)
 

@@ -179,6 +179,7 @@ changelog/index
 EurekaClaw builds on ideas and inspiration from the broader AI-for-science community. We thank the authors of the following projects:
 
 - [MetaClaw](https://github.com/aiming-lab/MetaClaw) — multi-agent research orchestration
+- [AutoResearchClaw](https://github.com/aiming-lab/AutoResearchClaw) — automated research orchestration
 - [EvoScientist](https://github.com/EvoScientist/EvoScientist) — evolutionary hypothesis generation
 - [AI-Researcher](https://github.com/hkuds/ai-researcher) — automated research pipeline
 - [Awesome AI for Science](https://github.com/ai-boost/awesome-ai-for-science) — curated resource list

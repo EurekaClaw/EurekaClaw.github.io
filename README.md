@@ -31,7 +31,8 @@ Docs are built and deployed automatically to GitHub Pages via `.github/workflows
 
 To enable GitHub Pages on your fork:
 1. Go to **Settings → Pages**
-2. Set **Source** to **GitHub Actions**
+2. Set **Source** to **Deploy from a branch**
+3. Set **Branch** to `gh-pages` / `/ (root)`
 
 ## Adding New Pages
 

@@ -549,48 +549,8 @@
 </section>
 <section id="pipeline-stages">
 <h2>Pipeline Stages<a class="headerlink" href="#pipeline-stages" title="Link to this heading">#</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>InputSpec (conjecture / domain / paper_ids)
-        │
-        ▼
- ┌─────────────────────────────────────────────────────────────┐
- │                    MetaOrchestrator                         │
- │                                                             │
- │  1. SurveyAgent ──────────────────────────► Bibliography   │
- │                                             ResearchBrief   │
- │  2. IdeationAgent ────────────────────────► ResearchBrief   │
- │                                             (5 directions)  │
- │  3. DivergentConvergentPlanner ───────────► selected dir.   │
- │                                                             │
- │  4. [GateController] ─── human review ────► approved dir.  │
- │                                                             │
- │  5. TheoryAgent ──────────────────────────► TheoryState     │
- │       ├── PaperReader                       (proven lemmas) │
- │       ├── GapAnalyst                                        │
- │       ├── ProofArchitect                                    │
- │       ├── LemmaDeveloper loop (Prover/Verifier/Refiner)     │
- │       ├── Assembler                                         │
- │       ├── TheoremCrystallizer                               │
- │       └── ConsistencyChecker                                │
- │                                                             │
- │  6. [theory_review_gate] ─── human review ► approved proof │
- │       (always shown; y=proceed, n=re-run theory with fix)   │
- │                                                             │
- │  7. ExperimentAgent (optional) ───────────► ExperimentResult│
- │                                                             │
- │  8. WriterAgent ──────────────────────────► LaTeX paper     │
- │                                             + PDF           │
- │  9. ContinualLearningLoop ────────────────► new skills      │
- └─────────────────────────────────────────────────────────────┘
-        │
-        ▼
- ResearchOutput → results/&lt;session_id&gt;/
-   ├── paper.tex / paper.pdf
-   ├── references.bib
-   ├── theory_state.json
-   ├── research_brief.json
-   └── experiment_result.json
-</pre></div>
-</div>
+<a class="reference internal image-reference" href="../_images/pipeline-main.svg"><img alt="EurekaClaw Main Pipeline" class="align-center" src="../_images/pipeline-main.svg" style="width: 100%;" />
+</a>
 </section>
 <section id="core-components">
 <h2>Core Components<a class="headerlink" href="#core-components" title="Link to this heading">#</a></h2>
@@ -711,41 +671,13 @@
 </table>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">LemmaDeveloper</span></code> runs its own inner loop per lemma:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>for each open_goal:
-    Prover → Verifier → (if failed) Refiner → repeat
-    CounterexampleSearcher runs in parallel
-    Stagnation detection: if same error N times → force Refiner
-</pre></div>
-</div>
+<a class="reference internal image-reference" href="../_images/pipeline-theory.svg"><img alt="TheoryAgent Inner Loop and LemmaDeveloper Sub-Loop" class="align-center" src="../_images/pipeline-theory.svg" style="width: 100%;" />
+</a>
 </section>
 <section id="latex-compilation-pipeline">
 <h2>LaTeX Compilation Pipeline<a class="headerlink" href="#latex-compilation-pipeline" title="Link to this heading">#</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>WriterAgent.execute()
-    │  generates paper body
-    ▼
-_extract_latex()          — strip preamble, normalize envs, fix syntax
-    ├── markdown → section headings
-    ├── \begin{Proof} → \begin{proof}  (case normalization)
-    ├── \endproof → \end{proof}
-    ├── tikzpicture removal
-    ├── QED box deduplication
-    ├── orphan \end{X} removal
-    └── unclosed \begin{X} auto-closing
-    │
-    ▼
-LATEX_PREAMBLE + body + LATEX_END  →  paper.tex
-    │
-    ▼
-save_artifacts()
-    ├── write references.bib   ← BEFORE compile
-    ├── _fix_missing_citations() — remove \cite{} with no .bib entry
-    └── _compile_pdf()
-          ├── pdflatex (pass 1 — generate .aux)
-          ├── bibtex  (if references.bib exists)
-          ├── pdflatex (pass 2 — resolve citations)
-          └── pdflatex (pass 3 — finalize)
-</pre></div>
-</div>
+<a class="reference internal image-reference" href="../_images/pipeline-latex.svg"><img alt="LaTeX Compilation Pipeline" class="align-center" src="../_images/pipeline-latex.svg" style="width: 90%;" />
+</a>
 </section>
 <section id="direction-planning-fallback">
 <h2>Direction Planning Fallback<a class="headerlink" href="#direction-planning-fallback" title="Link to this heading">#</a></h2>
@@ -793,15 +725,8 @@ save_artifacts()
 </section>
 <section id="post-run-learning">
 <h2>Post-Run Learning<a class="headerlink" href="#post-run-learning" title="Link to this heading">#</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ContinualLearningLoop.post_run()
-    ├── extract failures (FailedAttempt[]) from TheoryState
-    ├── deduplicate — only unique failure patterns
-    ├── compress successes — proof text trimmed to 300 chars
-    ├── SkillEvolver.distill_from_session()
-    │       → new SkillRecord .md files in ~/.eurekaclaw/skills/
-    └── (rl/madmax modes) ProcessRewardModel scoring
-</pre></div>
-</div>
+<a class="reference internal image-reference" href="../_images/pipeline-learning.svg"><img alt="Post-Run Continual Learning" class="align-center" src="../_images/pipeline-learning.svg" style="width: 90%;" />
+</a>
 </section>
 </section>
 

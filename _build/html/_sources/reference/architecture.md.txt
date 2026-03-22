@@ -6,47 +6,10 @@ EurekaClaw is organized as a **multi-agent pipeline** coordinated by a `MetaOrch
 
 ## Pipeline Stages
 
-```
-InputSpec (conjecture / domain / paper_ids)
-        │
-        ▼
- ┌─────────────────────────────────────────────────────────────┐
- │                    MetaOrchestrator                         │
- │                                                             │
- │  1. SurveyAgent ──────────────────────────► Bibliography   │
- │                                             ResearchBrief   │
- │  2. IdeationAgent ────────────────────────► ResearchBrief   │
- │                                             (5 directions)  │
- │  3. DivergentConvergentPlanner ───────────► selected dir.   │
- │                                                             │
- │  4. [GateController] ─── human review ────► approved dir.  │
- │                                                             │
- │  5. TheoryAgent ──────────────────────────► TheoryState     │
- │       ├── PaperReader                       (proven lemmas) │
- │       ├── GapAnalyst                                        │
- │       ├── ProofArchitect                                    │
- │       ├── LemmaDeveloper loop (Prover/Verifier/Refiner)     │
- │       ├── Assembler                                         │
- │       ├── TheoremCrystallizer                               │
- │       └── ConsistencyChecker                                │
- │                                                             │
- │  6. [theory_review_gate] ─── human review ► approved proof │
- │       (always shown; y=proceed, n=re-run theory with fix)   │
- │                                                             │
- │  7. ExperimentAgent (optional) ───────────► ExperimentResult│
- │                                                             │
- │  8. WriterAgent ──────────────────────────► LaTeX paper     │
- │                                             + PDF           │
- │  9. ContinualLearningLoop ────────────────► new skills      │
- └─────────────────────────────────────────────────────────────┘
-        │
-        ▼
- ResearchOutput → results/<session_id>/
-   ├── paper.tex / paper.pdf
-   ├── references.bib
-   ├── theory_state.json
-   ├── research_brief.json
-   └── experiment_result.json
+```{image} ../_static/images/pipeline-main.svg
+:alt: EurekaClaw Main Pipeline
+:width: 100%
+:align: center
 ```
 
 ## Core Components
@@ -130,40 +93,19 @@ The `TheoryAgent` runs a **bottom-up proof pipeline** implemented in `inner_loop
 | 7 | `ConsistencyChecker` | full TheoryState | consistency report |
 
 The `LemmaDeveloper` runs its own inner loop per lemma:
-```
-for each open_goal:
-    Prover → Verifier → (if failed) Refiner → repeat
-    CounterexampleSearcher runs in parallel
-    Stagnation detection: if same error N times → force Refiner
+
+```{image} ../_static/images/pipeline-theory.svg
+:alt: TheoryAgent Inner Loop and LemmaDeveloper Sub-Loop
+:width: 100%
+:align: center
 ```
 
 ## LaTeX Compilation Pipeline
 
-```
-WriterAgent.execute()
-    │  generates paper body
-    ▼
-_extract_latex()          — strip preamble, normalize envs, fix syntax
-    ├── markdown → section headings
-    ├── \begin{Proof} → \begin{proof}  (case normalization)
-    ├── \endproof → \end{proof}
-    ├── tikzpicture removal
-    ├── QED box deduplication
-    ├── orphan \end{X} removal
-    └── unclosed \begin{X} auto-closing
-    │
-    ▼
-LATEX_PREAMBLE + body + LATEX_END  →  paper.tex
-    │
-    ▼
-save_artifacts()
-    ├── write references.bib   ← BEFORE compile
-    ├── _fix_missing_citations() — remove \cite{} with no .bib entry
-    └── _compile_pdf()
-          ├── pdflatex (pass 1 — generate .aux)
-          ├── bibtex  (if references.bib exists)
-          ├── pdflatex (pass 2 — resolve citations)
-          └── pdflatex (pass 3 — finalize)
+```{image} ../_static/images/pipeline-latex.svg
+:alt: LaTeX Compilation Pipeline
+:width: 90%
+:align: center
 ```
 
 ## Direction Planning Fallback
@@ -207,12 +149,8 @@ The TheoryAgent supports graceful pausing at stage boundaries via `ProofCheckpoi
 
 ## Post-Run Learning
 
-```
-ContinualLearningLoop.post_run()
-    ├── extract failures (FailedAttempt[]) from TheoryState
-    ├── deduplicate — only unique failure patterns
-    ├── compress successes — proof text trimmed to 300 chars
-    ├── SkillEvolver.distill_from_session()
-    │       → new SkillRecord .md files in ~/.eurekaclaw/skills/
-    └── (rl/madmax modes) ProcessRewardModel scoring
+```{image} ../_static/images/pipeline-learning.svg
+:alt: Post-Run Continual Learning
+:width: 90%
+:align: center
 ```

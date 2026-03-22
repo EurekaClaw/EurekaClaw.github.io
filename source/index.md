@@ -123,11 +123,17 @@ Visual interface with live progress, settings sliders, and results viewer.
 
 ## Installation
 
-**macOS / Linux** (recommended)
+**macOS / Linux**
 
 ```bash
 curl -fsSL https://eurekaclaw.ai/install.sh | bash
 eurekaclaw onboard            # interactive setup wizard
+```
+
+**Windows** *(under development — not fully supported yet)*
+
+```powershell
+powershell -c "irm https://eurekaclaw.ai/install_win.ps1 | iex"
 ```
 
 **Manual install (all platforms)**

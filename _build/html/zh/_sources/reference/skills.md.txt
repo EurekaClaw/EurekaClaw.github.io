@@ -1,4 +1,4 @@
-# Skills System
+# 技能体统
 
 Skills are reusable, domain-specific pieces of knowledge injected into agent prompts before each task. They encode successful proof strategies, domain conventions, and common pitfalls learned from previous runs.
 

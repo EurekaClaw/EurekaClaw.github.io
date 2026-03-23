@@ -1,4 +1,4 @@
-# Token Limits
+# Token限制
 
 This document explains the `Token limits per call type` controls in the UI and the corresponding backend settings.
 

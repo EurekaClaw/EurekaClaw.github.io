@@ -1,6 +1,6 @@
-# Changelog
+# 开发日志
 
-Summary of all updates from `UPDATES.md`.
+开发日志
 
 ---
 

@@ -1,4 +1,4 @@
-# Agents
+# 智能体
 
 EurekaClaw has five specialized agents coordinated by the `MetaOrchestrator`. Each agent runs a tool-use loop with periodic context compression.
 

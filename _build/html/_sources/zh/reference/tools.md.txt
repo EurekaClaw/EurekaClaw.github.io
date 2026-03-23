@@ -1,4 +1,4 @@
-# Research Tools
+# 研究工具
 
 Tools are callable functions exposed to agents via the Anthropic tool-use API. Each tool has a name, description, input schema, and async `call()` method.
 

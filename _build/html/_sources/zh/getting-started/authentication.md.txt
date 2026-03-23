@@ -1,22 +1,22 @@
-# Authentication
+# API Key授权
 
-EurekaClaw supports three authentication methods.
+EurekaClaw支持3种认证方式。
 
-## Option A — Anthropic API Key (Most Common)
+## 选项一 — Anthropic API Key
 
 ```bash
 cp .env.example .env
 ```
 
-Edit `.env`:
+修改 `.env`：
 
 ```ini
 ANTHROPIC_API_KEY=sk-ant-...
 ```
 
-## Option B — Claude Pro/Max via OAuth
+## 选项二 — Claude Pro/Max（通过 OAuth）
 
-No API key required. Uses your Claude Pro or Max subscription.
+不需要API Key。用您的Claude Pro/Max订阅。
 
 ```bash
 pip install "eurekaclaw[oauth]"
@@ -27,9 +27,9 @@ ccproxy auth login claude_api   # opens browser for one-time login
 ANTHROPIC_AUTH_MODE=oauth
 ```
 
-EurekaClaw automatically starts and stops ccproxy alongside your session.
+EurekaClaw 在你的对话过程中自动开启和停止ccproxy。
 
-## Option C — OpenRouter or Local Model
+## 选项三 — OpenRouter或者本地模型
 
 ### OpenRouter
 
@@ -40,7 +40,7 @@ OPENAI_COMPAT_API_KEY=sk-or-...
 OPENAI_COMPAT_MODEL=anthropic/claude-sonnet-4-6
 ```
 
-### Local Ollama / vLLM
+### 本地 Ollama / vLLM
 
 ```ini
 LLM_BACKEND=local
@@ -56,4 +56,4 @@ MINIMAX_API_KEY=...
 MINIMAX_MODEL=abab7-chat
 ```
 
-See [Configuration](../reference/configuration.md) for all LLM backend options.
+参考 [配置](../reference/configuration.md) 查看所有LLM支持.

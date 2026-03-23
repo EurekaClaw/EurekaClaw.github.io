@@ -1,4 +1,4 @@
-# Domain Plugin System
+# 领域插件系统
 
 EurekaClaw uses a three-tier plugin architecture to support domain-specific research:
 

@@ -1,4 +1,4 @@
-# CLI Reference
+# CLI 参考
 
 Install the package (or run `python -m eurekaclaw`) to get the `eurekaclaw` command.
 

@@ -1,4 +1,4 @@
-# Memory System
+# 记忆系统
 
 EurekaClaw uses a **four-tier memory system** managed by `MemoryManager`.
 

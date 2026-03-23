@@ -1,4 +1,4 @@
-# Configuration
+# 配置
 
 All settings are read from environment variables (or a `.env` file in the project root). Copy `.env.example` to `.env` and edit before running.
 

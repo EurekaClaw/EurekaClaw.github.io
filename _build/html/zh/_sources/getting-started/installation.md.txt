@@ -1,12 +1,12 @@
-# Installation
+# 安装
 
-**Supported platforms:** macOS, Linux, Windows *(Windows under active development)*
+**支持平台：** macOS, Linux, Windows
 
 ```{note}
 Native Windows support is under active development. A Windows installer is available (see below) but not yet fully supported. If you run into issues, install [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install) (Ubuntu) and follow the macOS/Linux instructions inside the WSL terminal.
 ```
 
-## Installer Script (Recommended)
+## 安装方式（推荐）
 
 **macOS / Linux**
 
@@ -14,17 +14,17 @@ Native Windows support is under active development. A Windows installer is avail
 curl -fsSL https://eurekaclaw.ai/install.sh | bash
 ```
 
-**Windows** *(under development — not fully supported yet)*
+**Windows**
 
 ```powershell
 powershell -c "irm https://eurekaclaw.ai/install_win.ps1 | iex"
 ```
 
-The macOS/Linux installer clones the repo, creates a virtual environment, installs EurekaClaw, and adds the `eurekaclaw` command to your PATH. Run `eurekaclaw onboard` afterwards to configure your API key and settings.
+macOS/Linux安装程序复制项目仓库，创建虚拟环境，安装EurekaClaw，并将 `eurekaclaw` 命令添加到路径中。然后运行 `eurekaclaw onboard` 来配置API密钥和设置。
 
-## Manual Install
+## 手动安装
 
-**Requirements:** Python ≥ 3.11, Node.js ≥ 20, Git
+**要求：** Python ≥ 3.11, Node.js ≥ 20, Git
 
 ```bash
 git clone https://github.com/EurekaClaw/EurekaClaw
@@ -32,21 +32,21 @@ cd EurekaClaw
 make install                  # pip install -e "." + npm install (frontend)
 ```
 
-## With Optional Extras
+## 额外功能安装
 
 ```bash
 pip install -e ".[openai,oauth]"
 ```
 
-| Extra | Enables |
+| 安装选项 | 功能 |
 |---|---|
-| `openai` | OpenRouter and local vLLM/Ollama backends |
-| `oauth` | Claude Pro/Max login via ccproxy (no API key needed) |
-| `pdf` | Full-PDF extraction via Docling (`PaperReader`) |
+| `openai` | OpenRouter和本地vLLM/Ollama后端 |
+| `oauth` | 通过ccproxy登录Claude Pro/Max（无需API Key） |
+| `pdf` | 通过Docling (`PaperReader`)进行完整PDF生成 |
 
-## Optional System Tools
+## 可选系统工具
 
-EurekaClaw works without any of these — it skips the associated step if a tool is absent.
+以下工具都是可选工具：
 
 | Tool | Purpose | Install |
 |---|---|---|
@@ -55,10 +55,10 @@ EurekaClaw works without any of these — it skips the associated step if a tool
 | **clawhub** | Install skills from ClawHub registry | `pip install clawhub` |
 
 ```{note}
-**Docker / sandboxed code execution** is listed as an optional tool but is **future work** — the experiment runner and `execute_python` tool are not yet safely sandboxed for general use. Keep `EXPERIMENT_MODE=false` until a future release adds proper sandbox support.
+**Docker / 沙盒代码执行** 作为可选工具列出，目前为**试用版**-实验运行程序和 `execute_python` 工具尚未安全地放入沙盒中供一般使用。可以设置`EXPERIMENT_MODE=false`。
 ```
 
-## Install Seed Skills
+## 安装种子技能
 
 After installation, copy the bundled seed skills to your local skill bank:
 
@@ -68,7 +68,7 @@ eurekaclaw install-skills
 
 This is a one-time step. Skills are saved to `~/.eurekaclaw/skills/` and automatically used by agents on future runs.
 
-## Verify Installation
+## 验证安装
 
 ```bash
 eurekaclaw --help

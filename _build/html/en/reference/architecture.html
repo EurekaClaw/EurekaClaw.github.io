@@ -1,0 +1,870 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Architecture &#8212; EurekaClaw</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=12ae9570" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=2709fde1"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=9345eede"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/architecture';</script>
+    <link rel="icon" href="../_static/logo-claw.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Agents" href="agents.html" />
+    <link rel="prev" title="Python API" href="api.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt=""/>
+    <img src="../_static/logo.svg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">EurekaClaw</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/authentication.html">
+    Authentication
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user-guide/index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="cli.html">
+    CLI Reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="configuration.html">
+    Configuration
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="api.html">
+    Python API
+  </a>
+</li>
+
+
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="#">
+    Architecture
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="agents.html">
+    Agents
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="tools.html">
+    Research Tools
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="memory.html">
+    Memory System
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="skills.html">
+    Skills System
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="token-limits.html">
+    Token Limits
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="domains.html">
+    Domain Plugin System
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/EurekaClaw/EurekaClaw" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/authentication.html">
+    Authentication
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user-guide/index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="cli.html">
+    CLI Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="configuration.html">
+    Configuration
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api.html">
+    Python API
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Architecture
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="agents.html">
+    Agents
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tools.html">
+    Research Tools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="memory.html">
+    Memory System
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="skills.html">
+    Skills System
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="token-limits.html">
+    Token Limits
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="domains.html">
+    Domain Plugin System
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/EurekaClaw/EurekaClaw" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Architecture</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="architecture">
+<h1>Architecture<a class="headerlink" href="#architecture" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>EurekaClaw is organized as a <strong>multi-agent pipeline</strong> coordinated by a <code class="docutils literal notranslate"><span class="pre">MetaOrchestrator</span></code>. Each agent is specialized for one stage of the research lifecycle. Artifacts are shared between agents via a central <code class="docutils literal notranslate"><span class="pre">KnowledgeBus</span></code>.</p>
+</section>
+<section id="pipeline-stages">
+<h2>Pipeline Stages<a class="headerlink" href="#pipeline-stages" title="Link to this heading">#</a></h2>
+<a class="reference internal image-reference" href="../_images/pipeline-main.svg"><img alt="EurekaClaw Main Pipeline" class="align-center" src="../_images/pipeline-main.svg" style="width: 100%;" />
+</a>
+</section>
+<section id="core-components">
+<h2>Core Components<a class="headerlink" href="#core-components" title="Link to this heading">#</a></h2>
+<section id="knowledgebus">
+<h3>KnowledgeBus<a class="headerlink" href="#knowledgebus" title="Link to this heading">#</a></h3>
+<p>Central in-memory artifact store shared by all agents. All data flows through it — no agent holds private state between turns.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>KnowledgeBus
+├── ResearchBrief    — survey findings, selected direction
+├── TheoryState      — proof state machine (lemma DAG, proofs, goals)
+├── Bibliography     — all papers found during survey
+├── ExperimentResult — numerical validation results
+└── TaskPipeline     — current task execution plan
+</pre></div>
+</div>
+<p>Artifacts are persisted to <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/runs/&lt;session_id&gt;/</span></code> at the end of each session.</p>
+</section>
+<section id="agent-session-context-compression">
+<h3>Agent Session &amp; Context Compression<a class="headerlink" href="#agent-session-context-compression" title="Link to this heading">#</a></h3>
+<p>Each agent maintains a conversation history (<code class="docutils literal notranslate"><span class="pre">AgentSession</span></code>) through its tool-use loop. To prevent unbounded context growth:</p>
+<ul class="simple">
+<li><p>History is <strong>compressed every N turns</strong> (configurable via <code class="docutils literal notranslate"><span class="pre">CONTEXT_COMPRESS_AFTER_TURNS</span></code>, default 6)</p></li>
+<li><p>A fast model summarizes the history into bullet points</p></li>
+<li><p>The full conversation is replaced with the summary</p></li>
+</ul>
+</section>
+<section id="skill-injection">
+<h3>Skill Injection<a class="headerlink" href="#skill-injection" title="Link to this heading">#</a></h3>
+<p>Before each agent call, the <code class="docutils literal notranslate"><span class="pre">SkillInjector</span></code> retrieves the top-k most relevant skills from the skill bank and injects them into the system prompt as examples. This is the primary mechanism for cross-session learning.</p>
+</section>
+<section id="domain-plugin-system">
+<h3>Domain Plugin System<a class="headerlink" href="#domain-plugin-system" title="Link to this heading">#</a></h3>
+<p>Domain-specific behavior (tools, skills, workflow hints) is injected via <code class="docutils literal notranslate"><span class="pre">DomainPlugin</span></code> classes. The correct plugin is auto-detected from the domain string or conjecture keywords. See <a class="reference internal" href="domains.html"><span class="std std-doc">domains.md</span></a>.</p>
+</section>
+</section>
+<section id="data-models">
+<h2>Data Models<a class="headerlink" href="#data-models" title="Link to this heading">#</a></h2>
+<section id="theorystate-proof-state-machine">
+<h3>TheoryState — Proof State Machine<a class="headerlink" href="#theorystate-proof-state-machine" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>TheoryState
+├── informal_statement      — plain-English conjecture
+├── formal_statement        — LaTeX-formalized theorem
+├── known_results[]         — KnownResult extracted from literature
+├── research_gap            — GapAnalyst&#39;s finding
+├── proof_plan[]            — ProofPlan (provenance: known/adapted/new)
+├── lemma_dag{}             — LemmaNode graph (dependencies)
+├── proven_lemmas{}         — lemma_id → ProofRecord
+├── open_goals[]            — remaining lemma_ids to prove
+├── failed_attempts[]       — FailedAttempt history
+├── counterexamples[]       — Counterexample discoveries
+├── assembled_proof         — final combined proof text
+└── status                  — pending/in_progress/proved/refuted/abandoned
+</pre></div>
+</div>
+</section>
+<section id="researchbrief-planning-state">
+<h3>ResearchBrief — Planning State<a class="headerlink" href="#researchbrief-planning-state" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ResearchBrief
+├── domain, query, conjecture
+├── directions[]            — ResearchDirection (scored 0-1)
+│     ├── novelty_score
+│     ├── soundness_score
+│     ├── transformative_score
+│     └── composite_score   — weighted average
+├── selected_direction      — chosen after convergence
+└── open_problems[], key_mathematical_objects[]
+</pre></div>
+</div>
+</section>
+</section>
+<section id="theory-agent-inner-loop-7-stages">
+<h2>Theory Agent Inner Loop (7 Stages)<a class="headerlink" href="#theory-agent-inner-loop-7-stages" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">TheoryAgent</span></code> runs a <strong>bottom-up proof pipeline</strong> implemented in <code class="docutils literal notranslate"><span class="pre">inner_loop_yaml.py</span></code>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Stage</p></th>
+<th class="head"><p>Class</p></th>
+<th class="head"><p>Input</p></th>
+<th class="head"><p>Output</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PaperReader</span></code></p></td>
+<td><p>Bibliography</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">known_results[]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">GapAnalyst</span></code></p></td>
+<td><p>known_results + conjecture</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">research_gap</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ProofArchitect</span></code></p></td>
+<td><p>research_gap</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">proof_plan[]</span></code> (provenance-annotated)</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">LemmaDeveloper</span></code></p></td>
+<td><p>proof_plan, open_goals</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">proven_lemmas{}</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Assembler</span></code></p></td>
+<td><p>proven_lemmas</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">assembled_proof</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TheoremCrystallizer</span></code></p></td>
+<td><p>assembled_proof</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">formal_statement</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ConsistencyChecker</span></code></p></td>
+<td><p>full TheoryState</p></td>
+<td><p>consistency report</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">LemmaDeveloper</span></code> runs its own inner loop per lemma:</p>
+<a class="reference internal image-reference" href="../_images/pipeline-theory.svg"><img alt="TheoryAgent Inner Loop and LemmaDeveloper Sub-Loop" class="align-center" src="../_images/pipeline-theory.svg" style="width: 100%;" />
+</a>
+</section>
+<section id="latex-compilation-pipeline">
+<h2>LaTeX Compilation Pipeline<a class="headerlink" href="#latex-compilation-pipeline" title="Link to this heading">#</a></h2>
+<a class="reference internal image-reference" href="../_images/pipeline-latex.svg"><img alt="LaTeX Compilation Pipeline" class="align-center" src="../_images/pipeline-latex.svg" style="width: 90%;" />
+</a>
+</section>
+<section id="direction-planning-fallback">
+<h2>Direction Planning Fallback<a class="headerlink" href="#direction-planning-fallback" title="Link to this heading">#</a></h2>
+<p>After the <code class="docutils literal notranslate"><span class="pre">IdeationAgent</span></code> runs, <code class="docutils literal notranslate"><span class="pre">MetaOrchestrator._handle_direction_gate()</span></code> calls <code class="docutils literal notranslate"><span class="pre">DivergentConvergentPlanner.diverge()</span></code> to generate 5 research directions. If the planner fails or returns an empty list (e.g. LLM parse error, API timeout), instead of silently proceeding with no direction the orchestrator <strong>halts and prompts the user</strong>:</p>
+<ol class="arabic simple">
+<li><p>Prints up to 5 open problems found by the survey as context.</p></li>
+<li><p>Asks the user to type a hypothesis/direction manually.</p></li>
+<li><p>Constructs a <code class="docutils literal notranslate"><span class="pre">ResearchDirection</span></code> from the input and writes it to <code class="docutils literal notranslate"><span class="pre">ResearchBrief</span></code>.</p></li>
+<li><p>If the user enters nothing or presses Ctrl+C, raises <code class="docutils literal notranslate"><span class="pre">RuntimeError</span></code> and the session exits cleanly.</p></li>
+</ol>
+<p>This is implemented in <code class="docutils literal notranslate"><span class="pre">_handle_manual_direction()</span></code> in <code class="docutils literal notranslate"><span class="pre">meta_orchestrator.py</span></code>.</p>
+</section>
+<section id="theory-review-gate">
+<h2>Theory Review Gate<a class="headerlink" href="#theory-review-gate" title="Link to this heading">#</a></h2>
+<p>After the TheoryAgent completes and before the WriterAgent runs, the <code class="docutils literal notranslate"><span class="pre">MetaOrchestrator</span></code> executes the <code class="docutils literal notranslate"><span class="pre">theory_review_gate</span></code> orchestrator task. This gate is <strong>independent of <code class="docutils literal notranslate"><span class="pre">gate_mode</span></code></strong> and always fires.</p>
+<p><strong>Flow:</strong></p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">GateController.theory_review_prompt()</span></code> prints a numbered lemma list with <code class="docutils literal notranslate"><span class="pre">✓</span> <span class="pre">verified</span></code> / <code class="docutils literal notranslate"><span class="pre">~</span> <span class="pre">low</span> <span class="pre">confidence</span></code> tags for each proved lemma, plus any open goals.</p></li>
+<li><p>The user is asked: <strong>y</strong> (proceed) or <strong>n</strong> (flag the most problematic step).</p></li>
+<li><p>On rejection:</p>
+<ul class="simple">
+<li><p>User enters the lemma number (<code class="docutils literal notranslate"><span class="pre">L3</span></code>) or ID, and a description of the logical gap.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MetaOrchestrator._handle_theory_review_gate()</span></code> finds the theory task, injects the feedback as <code class="docutils literal notranslate"><span class="pre">[User</span> <span class="pre">feedback]:</span> <span class="pre">...</span></code>, resets it to <code class="docutils literal notranslate"><span class="pre">PENDING</span></code>, and re-runs the TheoryAgent once.</p></li>
+<li><p>After the revision, the updated sketch is shown again for a final look (no further retry).</p></li>
+</ul>
+</li>
+<li><p>On second rejection, the pipeline proceeds to the WriterAgent anyway with a warning.</p></li>
+</ol>
+</section>
+<section id="pause-resume">
+<h2>Pause / Resume<a class="headerlink" href="#pause-resume" title="Link to this heading">#</a></h2>
+<p>The TheoryAgent supports graceful pausing at stage boundaries via <code class="docutils literal notranslate"><span class="pre">ProofCheckpoint</span></code> (<code class="docutils literal notranslate"><span class="pre">agents/theory/checkpoint.py</span></code>).</p>
+<p><strong>Pause flow:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">eurekaclaw</span> <span class="pre">pause</span> <span class="pre">&lt;session_id&gt;</span></code> or <strong>Ctrl+C</strong> writes <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/sessions/&lt;session_id&gt;/pause.flag</span></code>.</p></li>
+<li><p>At each stage boundary in <code class="docutils literal notranslate"><span class="pre">inner_loop_yaml._run_once()</span></code>, <code class="docutils literal notranslate"><span class="pre">ProofCheckpoint.is_pause_requested()</span></code> is checked.</p></li>
+<li><p>When detected: clears the flag, saves <code class="docutils literal notranslate"><span class="pre">checkpoint.json</span></code> (current stage + full <code class="docutils literal notranslate"><span class="pre">TheoryState</span></code>), raises <code class="docutils literal notranslate"><span class="pre">ProofPausedException</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ProofPausedException</span></code> propagates through both <code class="docutils literal notranslate"><span class="pre">_run_once</span></code> and <code class="docutils literal notranslate"><span class="pre">agent.py</span></code> (explicit re-raise in both <code class="docutils literal notranslate"><span class="pre">except</span> <span class="pre">Exception</span></code> handlers).</p></li>
+</ul>
+<p><strong>Resume flow:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">eurekaclaw</span> <span class="pre">resume</span> <span class="pre">&lt;session_id&gt;</span></code> loads <code class="docutils literal notranslate"><span class="pre">checkpoint.json</span></code>, reconstructs <code class="docutils literal notranslate"><span class="pre">TheoryState</span></code>, and re-runs the TheoryAgent starting at the saved stage.</p></li>
+</ul>
+<p><strong>Checkpoint file:</strong> <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/sessions/&lt;session_id&gt;/checkpoint.json</span></code></p>
+</section>
+<section id="post-run-learning">
+<h2>Post-Run Learning<a class="headerlink" href="#post-run-learning" title="Link to this heading">#</a></h2>
+<a class="reference internal image-reference" href="../_images/pipeline-learning.svg"><img alt="Post-Run Continual Learning" class="align-center" src="../_images/pipeline-learning.svg" style="width: 90%;" />
+</a>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="api.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Python API</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="agents.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Agents</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-stages">Pipeline Stages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-components">Core Components</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#knowledgebus">KnowledgeBus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agent-session-context-compression">Agent Session &amp; Context Compression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skill-injection">Skill Injection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-plugin-system">Domain Plugin System</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-models">Data Models</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#theorystate-proof-state-machine">TheoryState — Proof State Machine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#researchbrief-planning-state">ResearchBrief — Planning State</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#theory-agent-inner-loop-7-stages">Theory Agent Inner Loop (7 Stages)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latex-compilation-pipeline">LaTeX Compilation Pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direction-planning-fallback">Direction Planning Fallback</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#theory-review-gate">Theory Review Gate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pause-resume">Pause / Resume</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post-run-learning">Post-Run Learning</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/EurekaClaw/EurekaClaw.github.io/edit/main/source/reference/architecture.md">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, EurekaClaw Contributors.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

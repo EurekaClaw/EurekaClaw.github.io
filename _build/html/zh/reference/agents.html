@@ -1,0 +1,951 @@
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Agents &#8212; EurekaClaw</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=7c91f8fd"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=9345eede"></script>
+    <script src="../_static/translations.js?v=540d3cec"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/agents';</script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="Research Tools" href="tools.html" />
+    <link rel="prev" title="Architecture" href="architecture.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">跳转至主要内容</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>回到顶部</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="版本警告"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="网页导航">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt=""/>
+    <img src="../_static/logo.svg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">EurekaClaw</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/quickstart.html">
+    快速开始
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/authentication.html">
+    Authentication
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user-guide/index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="cli.html">
+    CLI Reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="configuration.html">
+    Configuration
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="api.html">
+    Python API
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="architecture.html">
+    Architecture
+  </a>
+</li>
+
+
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="#">
+    Agents
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="tools.html">
+    Research Tools
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="memory.html">
+    Memory System
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="skills.html">
+    Skills System
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="token-limits.html">
+    Token Limits
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="domains.html">
+    Domain Plugin System
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../changelog/index.html">
+    开发日志
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/EurekaClaw/EurekaClaw" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="亮色"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="暗色"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="当前页面">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/quickstart.html">
+    快速开始
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/authentication.html">
+    Authentication
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user-guide/index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="cli.html">
+    CLI Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="configuration.html">
+    Configuration
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api.html">
+    Python API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="architecture.html">
+    Architecture
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Agents
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tools.html">
+    Research Tools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="memory.html">
+    Memory System
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="skills.html">
+    Skills System
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="token-limits.html">
+    Token Limits
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="domains.html">
+    Domain Plugin System
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../changelog/index.html">
+    开发日志
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/EurekaClaw/EurekaClaw" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="亮色"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="暗色"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="章节导航">
+  <p class="bd-links__title" role="heading" aria-level="1">章节导航</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="初始页面">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Agents</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="agents">
+<h1>Agents<a class="headerlink" href="#agents" title="链接到此标题。">#</a></h1>
+<p>EurekaClaw has five specialized agents coordinated by the <code class="docutils literal notranslate"><span class="pre">MetaOrchestrator</span></code>. Each agent runs a tool-use loop with periodic context compression.</p>
+<section id="baseagent">
+<h2>BaseAgent<a class="headerlink" href="#baseagent" title="链接到此标题。">#</a></h2>
+<p>All agents inherit from <code class="docutils literal notranslate"><span class="pre">eurekaclaw/agents/base.py</span></code>:</p>
+<p><strong>Key Methods:</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">execute(task:</span> <span class="pre">Task)</span> <span class="pre">-&gt;</span> <span class="pre">AgentResult</span></code></p></td>
+<td><p>Abstract. Run the agent on a task</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">get_tool_names()</span> <span class="pre">-&gt;</span> <span class="pre">list[str]</span></code></p></td>
+<td><p>Abstract. Return allowed tool names for this agent</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">build_system_prompt(task:</span> <span class="pre">Task)</span> <span class="pre">-&gt;</span> <span class="pre">str</span></code></p></td>
+<td><p>Combine role prompt + injected skills</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">run_agent_loop(task,</span> <span class="pre">initial_user_message,</span> <span class="pre">max_turns,</span> <span class="pre">max_tokens)</span></code></p></td>
+<td><p>Tool-use loop with context compression</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">_compress_history()</span> <span class="pre">-&gt;</span> <span class="pre">str</span></code></p></td>
+<td><p>Summarize conversation with fast model every N turns</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">_call_model(system,</span> <span class="pre">messages,</span> <span class="pre">tools,</span> <span class="pre">max_tokens)</span></code></p></td>
+<td><p>LLM call with exponential-backoff retry</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Context Compression:</strong> Every <code class="docutils literal notranslate"><span class="pre">CONTEXT_COMPRESS_AFTER_TURNS</span></code> turns (default 6), history longer than 12 messages is compressed to a single summary using the fast model. This bounds input token growth across long runs.</p>
+</section>
+<hr class="docutils" />
+<section id="surveyagent">
+<h2>SurveyAgent<a class="headerlink" href="#surveyagent" title="链接到此标题。">#</a></h2>
+<p><strong>Role:</strong> <code class="docutils literal notranslate"><span class="pre">SURVEY</span></code>
+<strong>File:</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/agents/survey/agent.py</span></code>
+<strong>Max Turns:</strong> <code class="docutils literal notranslate"><span class="pre">SURVEY_MAX_TURNS</span></code> (default 8)</p>
+<p><strong>Purpose:</strong> Search the literature and populate the KnowledgeBus with papers, open problems, and key mathematical objects.</p>
+<p><strong>Tools:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">arxiv_search</span></code> — Find relevant papers on arXiv</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">semantic_scholar_search</span></code> — Search Semantic Scholar for citation counts and metadata</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">web_search</span></code> — Supplement with general web search</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">citation_manager</span></code> — Format and store references</p></li>
+</ul>
+<p><strong>Inputs (from KnowledgeBus):</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ResearchBrief.domain</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ResearchBrief.query</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ResearchBrief.conjecture</span></code></p></li>
+</ul>
+<p><strong>Outputs:</strong></p>
+<ul class="simple">
+<li><p>Appends papers to <code class="docutils literal notranslate"><span class="pre">Bibliography</span></code> on the bus</p></li>
+<li><p>Writes to <code class="docutils literal notranslate"><span class="pre">ResearchBrief</span></code>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">open_problems</span></code> — list of identified open problems</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">key_mathematical_objects</span></code> — core concepts and structures</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Output JSON keys:</strong> <code class="docutils literal notranslate"><span class="pre">papers</span></code>, <code class="docutils literal notranslate"><span class="pre">open_problems</span></code>, <code class="docutils literal notranslate"><span class="pre">key_mathematical_objects</span></code>, <code class="docutils literal notranslate"><span class="pre">research_frontier</span></code>, <code class="docutils literal notranslate"><span class="pre">insights</span></code></p>
+</section>
+<hr class="docutils" />
+<section id="ideationagent">
+<h2>IdeationAgent<a class="headerlink" href="#ideationagent" title="链接到此标题。">#</a></h2>
+<p><strong>Role:</strong> <code class="docutils literal notranslate"><span class="pre">IDEATION</span></code>
+<strong>File:</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/agents/ideation/agent.py</span></code>
+<strong>Max Turns:</strong> 3</p>
+<p><strong>Purpose:</strong> Generate 5 novel research hypotheses from survey findings. Each direction is scored on <code class="docutils literal notranslate"><span class="pre">novelty_score</span></code>, <code class="docutils literal notranslate"><span class="pre">feasibility_score</span></code>, and <code class="docutils literal notranslate"><span class="pre">impact_score</span></code> (mapped internally to the <code class="docutils literal notranslate"><span class="pre">ResearchDirection</span></code> fields <code class="docutils literal notranslate"><span class="pre">novelty_score</span></code>, <code class="docutils literal notranslate"><span class="pre">soundness_score</span></code>, <code class="docutils literal notranslate"><span class="pre">transformative_score</span></code>).</p>
+<p>Direction <em>selection</em> does <strong>not</strong> happen inside IdeationAgent. After IdeationAgent writes <code class="docutils literal notranslate"><span class="pre">ResearchBrief.directions</span></code>, the orchestrator's <code class="docutils literal notranslate"><span class="pre">direction_selection_gate</span></code> task invokes <code class="docutils literal notranslate"><span class="pre">DivergentConvergentPlanner.converge()</span></code> to pick the highest-scoring direction and set <code class="docutils literal notranslate"><span class="pre">ResearchBrief.selected_direction</span></code>.</p>
+<p><strong>Inputs (from KnowledgeBus):</strong></p>
+<ul class="simple">
+<li><p>Survey findings (<code class="docutils literal notranslate"><span class="pre">ResearchBrief</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Bibliography</span></code></p></li>
+</ul>
+<p><strong>Outputs:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ResearchBrief.directions</span></code> — 5 <code class="docutils literal notranslate"><span class="pre">ResearchDirection</span></code> objects with composite scores</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="theoryagent">
+<h2>TheoryAgent<a class="headerlink" href="#theoryagent" title="链接到此标题。">#</a></h2>
+<p><strong>Role:</strong> <code class="docutils literal notranslate"><span class="pre">THEORY</span></code>
+<strong>File:</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/agents/theory/agent.py</span></code>
+<strong>Max Iterations:</strong> <code class="docutils literal notranslate"><span class="pre">THEORY_MAX_ITERATIONS</span></code> (default 10)
+<strong>Inner Stage Max Turns:</strong> <code class="docutils literal notranslate"><span class="pre">THEORY_STAGE_MAX_TURNS</span></code> (default 6)</p>
+<p><strong>Purpose:</strong> Prove the selected research direction via a 7-stage bottom-up proof pipeline.</p>
+<p><strong>Tools:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">arxiv_search</span></code> — Look up lemmas and techniques from papers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wolfram_alpha</span></code> — Symbolic computation and bound verification</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lean4_verify</span></code> — Formal proof verification in Lean4</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">execute_python</span></code> — Numerical checks and sanity tests</p></li>
+</ul>
+<p><strong>Inputs (from KnowledgeBus):</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ResearchBrief.selected_direction</span></code></p></li>
+</ul>
+<p><strong>Outputs:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TheoryState</span></code> with <code class="docutils literal notranslate"><span class="pre">status</span></code> = <code class="docutils literal notranslate"><span class="pre">proved</span></code> / <code class="docutils literal notranslate"><span class="pre">refuted</span></code> / <code class="docutils literal notranslate"><span class="pre">abandoned</span></code></p></li>
+</ul>
+<p><strong>7-Stage Inner Loop</strong> (<code class="docutils literal notranslate"><span class="pre">inner_loop_yaml.py</span></code>):</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Stage</p></th>
+<th class="head"><p>Class</p></th>
+<th class="head"><p>Input</p></th>
+<th class="head"><p>Output</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PaperReader</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Bibliography</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">known_results[]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">GapAnalyst</span></code></p></td>
+<td><p>known_results + conjecture</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">research_gap</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ProofArchitect</span></code></p></td>
+<td><p>research_gap + known_results</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">proof_plan[]</span></code> (provenance-annotated)</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">LemmaDeveloper</span></code></p></td>
+<td><p>proof_plan, open_goals</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">proven_lemmas{}</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Assembler</span></code></p></td>
+<td><p>proven_lemmas</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">assembled_proof</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TheoremCrystallizer</span></code></p></td>
+<td><p>assembled_proof</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">formal_statement</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ConsistencyChecker</span></code></p></td>
+<td><p>full TheoryState</p></td>
+<td><p>consistency report</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>LemmaDeveloper inner loop</strong> (per lemma):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>for each open_goal:
+    Prover → Verifier → (if failed) Refiner → repeat
+    CounterexampleSearcher runs in parallel
+    Stagnation detection: if same error N times → force Refiner
+</pre></div>
+</div>
+<p><strong>Provenance system:</strong> Each lemma in the proof plan is annotated as <code class="docutils literal notranslate"><span class="pre">known</span></code> (directly citable), <code class="docutils literal notranslate"><span class="pre">adapted</span></code> (needs modification), or <code class="docutils literal notranslate"><span class="pre">new</span></code> (must be fully proved). Only <code class="docutils literal notranslate"><span class="pre">adapted</span></code> and <code class="docutils literal notranslate"><span class="pre">new</span></code> lemmas enter the proof loop.</p>
+<p><strong>Auto-verify:</strong> Proofs with confidence ≥ <code class="docutils literal notranslate"><span class="pre">AUTO_VERIFY_CONFIDENCE</span></code> (default 0.95) are accepted without an LLM verifier call. The LLM Verifier itself uses a separate pass threshold <code class="docutils literal notranslate"><span class="pre">VERIFIER_PASS_CONFIDENCE</span></code> (default 0.90).</p>
+<p><strong>ProofArchitect retry policy:</strong> If the full provenance-annotated plan fails (e.g. the LLM returns a field as <code class="docutils literal notranslate"><span class="pre">null</span></code>), the architect retries with a simplified 3-lemma prompt (foundational → central bound → main result). Only if both attempts fail does it fall back to a single <code class="docutils literal notranslate"><span class="pre">main_result</span></code> goal.</p>
+<p><strong>Outer iteration loop:</strong> After the Assembler runs, <code class="docutils literal notranslate"><span class="pre">TheoremCrystallizer</span></code> + <code class="docutils literal notranslate"><span class="pre">ConsistencyChecker</span></code> iterate up to <code class="docutils literal notranslate"><span class="pre">theory_max_iterations</span></code> times. The <code class="docutils literal notranslate"><span class="pre">ConsistencyChecker</span></code> classifies every failure into one of three severity levels, and the retry path is chosen accordingly:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Severity</p></th>
+<th class="head"><p>Meaning</p></th>
+<th class="head"><p>Retry path</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uncited</span></code></p></td>
+<td><p>Proof logic is sound but proved lemmas are not cited in the assembled text</p></td>
+<td><p>Re-run <code class="docutils literal notranslate"><span class="pre">TheoremCrystallizer</span></code> inline, then immediately mark proof as <code class="docutils literal notranslate"><span class="pre">proved</span></code> and exit the outer loop — <strong>no second ConsistencyChecker pass</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">major</span></code></p></td>
+<td><p>A specific lemma is incorrect or the logical link between two lemmas is broken</p></td>
+<td><p>Re-run <code class="docutils literal notranslate"><span class="pre">LemmaDeveloper</span> <span class="pre">→</span> <span class="pre">Assembler</span> <span class="pre">→</span> <span class="pre">TheoremCrystallizer</span> <span class="pre">→</span> <span class="pre">ConsistencyChecker</span></code> (one attempt). If this also fails, escalate to <code class="docutils literal notranslate"><span class="pre">all_wrong</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">all_wrong</span></code></p></td>
+<td><p>Fundamental proof breakdown — wrong approach or multiple incorrect lemmas</p></td>
+<td><p>Re-run from <code class="docutils literal notranslate"><span class="pre">ProofArchitect</span></code> (new proof plan) through the full pipeline</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>If the LLM does not return a severity field, it is inferred heuristically: failures with only <code class="docutils literal notranslate"><span class="pre">uncited_lemmas</span></code> and no <code class="docutils literal notranslate"><span class="pre">issues</span></code> are classified as <code class="docutils literal notranslate"><span class="pre">uncited</span></code>; all others as <code class="docutils literal notranslate"><span class="pre">major</span></code>.</p>
+<p><strong>Citation convention:</strong> The Assembler is instructed to cite every proved lemma by its identifier in square brackets, e.g. <code class="docutils literal notranslate"><span class="pre">By</span> <span class="pre">[arm_pull_count_bound],</span> <span class="pre">...</span></code>. The ConsistencyChecker verifies that all proved lemma IDs appear in the assembled proof and flags any that are missing.</p>
+<p><strong>Knowledge Graph writes:</strong> Lemma nodes and dependency edges are written to the Tier 3 KG whenever lemmas are proved, regardless of whether the final consistency check passes. This preserves the lemma-level graph even when the theorem statement crystallization fails.</p>
+</section>
+<hr class="docutils" />
+<section id="experimentagent-under-development">
+<h2>ExperimentAgent <em>(under development)</em><a class="headerlink" href="#experimentagent-under-development" title="链接到此标题。">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>The ExperimentAgent and the <code class="docutils literal notranslate"><span class="pre">execute_python</span></code> tool are <strong>future work</strong>. Automated code execution against LLM-generated Python is not yet safely sandboxed for general use. Keep <code class="docutils literal notranslate"><span class="pre">EXPERIMENT_MODE=false</span></code> until proper sandboxing lands in a future release.</p>
+</div>
+<p><strong>Role:</strong> <code class="docutils literal notranslate"><span class="pre">EXPERIMENT</span></code>
+<strong>File:</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/agents/experiment/agent.py</span></code>
+<strong>Max Turns:</strong> 5</p>
+<p><strong>Purpose:</strong> Empirically validate theoretical bounds via numerical experiments, particularly for low-confidence lemmas.</p>
+<p><strong>Tools:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">execute_python</span></code> — Run numerical simulations <em>(future work — see note above)</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wolfram_alpha</span></code> — Symbolic bound checking</p></li>
+<li><p>Domain-specific tools (e.g., <code class="docutils literal notranslate"><span class="pre">run_bandit_experiment</span></code> for MAB domain)</p></li>
+</ul>
+<p><strong>Auto-skip logic:</strong> The agent checks <code class="docutils literal notranslate"><span class="pre">TheoryState.formal_statement</span></code> for quantitative signals before running:</p>
+<ul class="simple">
+<li><p><strong>Run experiments:</strong> <code class="docutils literal notranslate"><span class="pre">O(</span></code>, <code class="docutils literal notranslate"><span class="pre">\Omega(</span></code>, inequality operators, <code class="docutils literal notranslate"><span class="pre">sample</span> <span class="pre">complexity</span></code>, <code class="docutils literal notranslate"><span class="pre">regret</span></code>, convergence/generalization terms</p></li>
+<li><p><strong>Skip:</strong> <code class="docutils literal notranslate"><span class="pre">\exists</span></code>, existence quantifiers, pure algebraic/combinatorial structures</p></li>
+</ul>
+<p><strong>Low-confidence lemma testing:</strong></p>
+<ul class="simple">
+<li><p>Separates <code class="docutils literal notranslate"><span class="pre">proven_lemmas</span></code> into <code class="docutils literal notranslate"><span class="pre">verified</span></code> and <code class="docutils literal notranslate"><span class="pre">low_confidence</span></code> groups</p></li>
+<li><p>For each low-confidence lemma: samples random instances, checks the conclusion holds, computes <code class="docutils literal notranslate"><span class="pre">violation_rate</span></code></p></li>
+<li><p>Lemmas with <code class="docutils literal notranslate"><span class="pre">violation_rate</span> <span class="pre">&gt;</span> <span class="pre">1%</span></code> are flagged as <code class="docutils literal notranslate"><span class="pre">numerically_suspect</span></code></p></li>
+</ul>
+<p><strong>Inputs (from KnowledgeBus):</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TheoryState</span></code> (proven lemmas, formal statement)</p></li>
+</ul>
+<p><strong>Outputs:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ExperimentResult</span></code> on KnowledgeBus with <code class="docutils literal notranslate"><span class="pre">alignment_score</span></code> and per-lemma check results</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="writeragent">
+<h2>WriterAgent<a class="headerlink" href="#writeragent" title="链接到此标题。">#</a></h2>
+<p><strong>Role:</strong> <code class="docutils literal notranslate"><span class="pre">WRITER</span></code>
+<strong>File:</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/agents/writer/agent.py</span></code>
+<strong>Max Turns:</strong> <code class="docutils literal notranslate"><span class="pre">WRITER_MAX_TURNS</span></code> (default 4)</p>
+<p><strong>Purpose:</strong> Produce a complete academic paper in LaTeX (or Markdown) from all pipeline artifacts.</p>
+<p><strong>Tools:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">citation_manager</span></code> — Format bibliography entries and generate consistent cite keys</p></li>
+</ul>
+<p><strong>Inputs (from KnowledgeBus):</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ResearchBrief</span></code> (domain, conjecture, selected direction)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TheoryState</span></code> (all proofs, lemmas, formal statement)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Bibliography</span></code> (papers with exact cite keys)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ExperimentResult</span></code> (if available)</p></li>
+</ul>
+<p><strong>Outputs:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">latex_paper</span></code> string stored in <code class="docutils literal notranslate"><span class="pre">ResearchOutput</span></code></p></li>
+</ul>
+<p><strong>LaTeX features:</strong></p>
+<ul class="simple">
+<li><p>Full <code class="docutils literal notranslate"><span class="pre">LATEX_PREAMBLE</span></code> with 13 theorem environments: <code class="docutils literal notranslate"><span class="pre">theorem</span></code>, <code class="docutils literal notranslate"><span class="pre">lemma</span></code>, <code class="docutils literal notranslate"><span class="pre">corollary</span></code>, <code class="docutils literal notranslate"><span class="pre">definition</span></code>, <code class="docutils literal notranslate"><span class="pre">proposition</span></code>, <code class="docutils literal notranslate"><span class="pre">assumption</span></code>, <code class="docutils literal notranslate"><span class="pre">conjecture</span></code>, <code class="docutils literal notranslate"><span class="pre">claim</span></code>, <code class="docutils literal notranslate"><span class="pre">example</span></code>, <code class="docutils literal notranslate"><span class="pre">fact</span></code>, <code class="docutils literal notranslate"><span class="pre">observation</span></code>, <code class="docutils literal notranslate"><span class="pre">maintheorem</span></code>, <code class="docutils literal notranslate"><span class="pre">remark</span></code></p></li>
+<li><p>Common math macros: <code class="docutils literal notranslate"><span class="pre">\R</span></code>, <code class="docutils literal notranslate"><span class="pre">\N</span></code>, <code class="docutils literal notranslate"><span class="pre">\Z</span></code>, <code class="docutils literal notranslate"><span class="pre">\E</span></code>, <code class="docutils literal notranslate"><span class="pre">\Prob</span></code>, <code class="docutils literal notranslate"><span class="pre">\softmax</span></code>, <code class="docutils literal notranslate"><span class="pre">\Att</span></code>, <code class="docutils literal notranslate"><span class="pre">\argmax</span></code>, <code class="docutils literal notranslate"><span class="pre">\argmin</span></code>, <code class="docutils literal notranslate"><span class="pre">\norm</span></code>, <code class="docutils literal notranslate"><span class="pre">\abs</span></code>, <code class="docutils literal notranslate"><span class="pre">\inner</span></code></p></li>
+</ul>
+<p><strong><code class="docutils literal notranslate"><span class="pre">_extract_latex</span></code> normalization pipeline:</strong></p>
+<ol class="arabic simple">
+<li><p>Strip preamble / <code class="docutils literal notranslate"><span class="pre">\begin{document}</span></code> / <code class="docutils literal notranslate"><span class="pre">\end{document}</span></code> wrappers</p></li>
+<li><p>Normalize environment names (<code class="docutils literal notranslate"><span class="pre">\begin{Proof}</span></code> → <code class="docutils literal notranslate"><span class="pre">\begin{proof}</span></code>, <code class="docutils literal notranslate"><span class="pre">rem</span></code> → <code class="docutils literal notranslate"><span class="pre">remark</span></code>, <code class="docutils literal notranslate"><span class="pre">prop</span></code> → <code class="docutils literal notranslate"><span class="pre">proposition</span></code>, etc.)</p></li>
+<li><p>Convert Markdown headings to LaTeX section commands</p></li>
+<li><p>Remove <code class="docutils literal notranslate"><span class="pre">tikzpicture</span></code> environments and empty <code class="docutils literal notranslate"><span class="pre">figure</span></code> environments</p></li>
+<li><p>Fix syntax errors (<code class="docutils literal notranslate"><span class="pre">\begin</span> <span class="pre">lemma}</span></code> → <code class="docutils literal notranslate"><span class="pre">\begin{lemma}</span></code>, <code class="docutils literal notranslate"><span class="pre">\begin{flushright</span></code> → <code class="docutils literal notranslate"><span class="pre">\begin{flushright}</span></code>)</p></li>
+<li><p>Replace <code class="docutils literal notranslate"><span class="pre">\endproof</span></code> with <code class="docutils literal notranslate"><span class="pre">\end{proof}</span></code></p></li>
+<li><p>Remove manual QED boxes (<code class="docutils literal notranslate"><span class="pre">\begin{flushright}$\square$\end{flushright}</span></code>)</p></li>
+<li><p>Strip <code class="docutils literal notranslate"><span class="pre">\bibliographystyle</span></code> and <code class="docutils literal notranslate"><span class="pre">\bibliography</span></code> lines from the body</p></li>
+<li><p>Close unclosed environments (two-pass: remove orphaned <code class="docutils literal notranslate"><span class="pre">\end{X}</span></code>, then append missing ones)</p></li>
+</ol>
+<p><strong>Proof style enforcement</strong> (<code class="docutils literal notranslate"><span class="pre">ENFORCE_PROOF_STYLE=true</span></code>):</p>
+<ul class="simple">
+<li><p>No skip words (&quot;clearly&quot;, &quot;trivially&quot;, &quot;by standard arguments&quot;) without immediate justification</p></li>
+<li><p>Every inequality must name the lemma or theorem it uses</p></li>
+<li><p>Each lemma proof opens with informal intuition</p></li>
+<li><p>Low-confidence lemmas tagged with <code class="docutils literal notranslate"><span class="pre">\textcolor{orange}{[Unverified</span> <span class="pre">step]}</span></code></p></li>
+<li><p>Limitations section explains all unverified steps</p></li>
+</ul>
+<p><strong>Citation consistency:</strong> The writer prompt includes <code class="docutils literal notranslate"><span class="pre">\cite{key}</span></code> for each reference using the same key generation algorithm as <code class="docutils literal notranslate"><span class="pre">_generate_bibtex</span></code> in <code class="docutils literal notranslate"><span class="pre">main.py</span></code>.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="architecture.html"
+       title="上一页">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title">Architecture</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="tools.html"
+       title="下一页">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title">Research Tools</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 当前页面
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#baseagent">BaseAgent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#surveyagent">SurveyAgent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ideationagent">IdeationAgent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#theoryagent">TheoryAgent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experimentagent-under-development">ExperimentAgent <em>(under development)</em></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writeragent">WriterAgent</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/EurekaClaw/EurekaClaw.github.io/edit/main/source/reference/agents.md">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          由 GitHub 编辑
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, EurekaClaw Contributors.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0创建。
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

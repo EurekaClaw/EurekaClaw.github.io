@@ -1,4 +1,4 @@
-# Troubleshooting
+# 错误检索
 
 ## `No skills available` / Proof Fails Immediately
 

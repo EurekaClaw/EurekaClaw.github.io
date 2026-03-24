@@ -1,4 +1,4 @@
-# Gate Mode and Human Review
+# 门控模式和人类辅助审核
 
 Control how much the system pauses for your input with `--gate`.
 

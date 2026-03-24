@@ -1,4 +1,4 @@
-# Input Modes
+# 输出模式
 
 EurekaClaw has three input modes. Pick the one that matches how well-defined your goal is.
 

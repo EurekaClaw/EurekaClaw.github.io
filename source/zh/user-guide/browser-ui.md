@@ -1,8 +1,8 @@
-# Browser UI
+# 浏览器UI界面
 
-## Launching the UI
+## 打开UI界面
 
-### One-line commands
+### 命令
 
 ```bash
 # Production — build frontend, open browser, serve on :8080
@@ -18,20 +18,20 @@ make dev
 eurekaclaw ui --open-browser
 ```
 
-With a custom host/port:
+自定义端口
 
 ```bash
 eurekaclaw ui --host 0.0.0.0 --port 8080 --open-browser
 ```
 
-### How it works
+### 原理
 
-| Mode | Frontend | Backend | URL |
+| 模式 | 前端 | 后端 | URL |
 |---|---|---|---|
-| **Production** (`make start`) | Pre-built bundle in `eurekaclaw/ui/static/` | Python server + API on same port | `http://localhost:8080` |
-| **Dev** (`make dev`) | Vite dev server with HMR | Python API on `:7860`; Vite proxies `/api/*` | `http://localhost:5173` |
+| **Production** (`make start`) | 预构建于 `eurekaclaw/ui/static/` | Python server + API| `http://localhost:8080` |
+| **Dev** (`make dev`) | 配备HMR的Vite dev服务器 | Python API 在 `:7860` 端口; Vite 代理： `/api/*` | `http://localhost:5173` |
 
-### Frontend build (when you change React code)
+### 前端构建（当需要更改React代码时）
 
 ```bash
 make build       # tsc + vite build → eurekaclaw/ui/static/
@@ -40,33 +40,33 @@ make typecheck   # type-check only, no output
 
 ---
 
-## Views
+## 界面
 
-### Workspace
+### 工作区
 
-The main view when a session is selected. Contains:
+选择会话时的主视图。包含：
 
-- **Agent track** (left) — one card per pipeline stage (Survey · Ideation · Theory · Validation · Writing). Click any card to open the Agent Drawer with stage-specific details.
-- **Tabs** (right):
+-**代理跟踪**（左）-每个流程一张卡篇（调查·构思·推理·验证·写作）。单击任意卡以打开具有特定于阶段的详细信息的智能体。
+-**选项卡**（右）：
 
-| Tab | Content |
+| 标签页 | 内容 |
 |---|---|
-| **Live** | Real-time stage cards, log stream, thinking animation while running |
-| **Proof** | Theorem block, lemma chain with confidence badges, counterexample warnings |
-| **Paper** | PDF download, Generate PDF, LaTeX source viewer with copy button |
-| **Logs** | Full raw log output |
+| **Live** | 实时阶段卡片，日志流，运行时思考动画 |
+| **Proof** | 定理块，带置信度标签的引理链，反例警告 |
+| **Paper** | PDF下载，生成PDF，LaTeX 代码查看（带复制按钮） |
+| **Logs** | 完整日志原始输出|
 
-### Skills
+### 技能
 
-Browse, install, and delete skills. Left panel shows seed skills; right panel is the ClawHub external install panel. Each skill card shows usage count and success rate.
+浏览、安装和删除技能。左面板显示种子技能；右面板为ClawHub的外部安装面板。每个技能卡显示使用计数和成功率。
 
-### Config
+### 设置
 
-Edit all `.env` variables in the browser, including 12 `MAX_TOKENS_*` sliders. Changes are written directly to your `.env` file and take effect on the next run. See [Token Limits](../reference/token-limits.md) for what each slider controls.
+在UI界面修改 `.env` 环境变量，包括 `MAX_TOKENS_*` 滑块. 修改的结果直接写入 `.env` 文件，并在下一次运行时起作用。详细信息参考 [Token限制](../reference/token-limits.md) 。
 
 ### Onboarding
 
-The interactive setup wizard (shown on first launch). Guides through model selection, API key setup, optional tools, and skills installation. Can be re-opened at any time via the Guide button in the bottom-right corner.
+交互式设置向导（首次启动时显示）。指导模型选择、API密钥设置、可选工具和技能安装。可通过右下角的导向按钮随时重新打开。
 
 ---
 
@@ -74,9 +74,9 @@ The interactive setup wizard (shown on first launch). Guides through model selec
 
 ### Pause / Resume
 
-While a session is running, a **Pause proof** button appears. EurekaClaw stops gracefully at the next lemma boundary and writes a checkpoint to `~/.eurekaclaw/sessions/<session_id>/checkpoint.json`.
+会话运行时，会出现**暂停验证**按钮。EurekaClaw在下一个引理边界处优雅地停止，并将检查点写入 `~/.eurekaclaw/sessions/<session_id>/checkpoint.json`.
 
-When paused, you can optionally type feedback before resuming:
+暂停时，您可以选择在恢复之前键入反馈：
 
 ```
 📐 Guide the proof before resuming
@@ -85,29 +85,29 @@ Lemma chips: [concentration_bound] [main_result] ...
 Textarea: "Use Bernstein instead of Hoeffding for lemma 2"
 ```
 
-Feedback is injected directly into the next theory attempt.
+反馈直接注入到下一个理论尝试中。
 
-### Session list status indicators
+### 会话列表状态指示器
 
-| Status | Visual |
+| 状态 | 标签 |
 |---|---|
-| Running | Blue `RUNNING` tag |
-| Pausing | Amber `PAUSING…` tag (pulsing) |
-| Paused | Amber `PAUSED` tag |
-| Resuming | Green `RESUMING…` tag (pulsing) |
-| Completed | Green `FINISHED` tag |
-| Failed | Red `FAILED` tag |
+| Running | 蓝色 `RUNNING` 标签 |
+| Pausing | 琥珀色 `PAUSING…` 标签 (闪烁) |
+| Paused | 琥珀色 `PAUSED` 标签 |
+| Resuming | 绿色 `RESUMING…` 标签 (闪烁) |
+| Completed | 绿色 `FINISHED` 标签 |
+| Failed | 红色 `FAILED` 标签 |
 
-Failed sessions show a **Restart** button that carries the original query to a new run.
+失败的会话显示**重新启动**按钮，将原始查询带到新运行。
 
 ---
 
-## Gate Overlays
+## 门控机制
 
-When `--gate auto` or `--gate human` is set, the UI shows full-screen gate modals at pipeline decision points:
+当设置 `--gate auto` 或者 `--gate human` ，UI界面在决策点显示全屏门控机制。
 
-| Gate | When it appears | What you can do |
+| 门控 | 出现时间 | 您能做什么 |
 |---|---|---|
-| **Survey** | If 0 papers found | Add extra context or search terms |
-| **Direction** | After ideation generates 5 directions | Select a direction or let the system choose |
-| **Theory Review** | After theory completes | Approve, flag concerns, pick specific lemmas to revisit |
+| **Survey** | 如果没有论文能找到 | 添加额外的内容或者搜索项 |
+| **Direction** | 构思后出现多个研究方向 | 选择方向或让系统选择 |
+| **Theory Review** | 理论推导完成后 | 批准理论研究，或者标记关注点、选择要重新思考的特定引理 |

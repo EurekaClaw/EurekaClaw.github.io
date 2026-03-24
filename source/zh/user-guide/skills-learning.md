@@ -1,4 +1,4 @@
-# Skills and Continual Learning
+# 技能和持续学习
 
 ## What Are Skills?
 

@@ -1,4 +1,4 @@
-# Understanding the Output
+# 输出内容
 
 After a run, `./results/<session_id>/` contains:
 

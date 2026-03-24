@@ -3,7 +3,7 @@
 **支持平台：** macOS, Linux, Windows
 
 ```{note}
-Native Windows support is under active development. A Windows installer is available (see below) but not yet fully supported. If you run into issues, install [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install) (Ubuntu) and follow the macOS/Linux instructions inside the WSL terminal.
+Windows installer可用（请参见下文）。如果遇到问题，请安装[WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install)（Ubuntu）并遵循WSL终端内部的macOS/Linux说明。
 ```
 
 ## 安装方式（推荐）
@@ -60,13 +60,13 @@ pip install -e ".[openai,oauth]"
 
 ## 安装种子技能
 
-After installation, copy the bundled seed skills to your local skill bank:
+此代码可以安装种子技能到技能库：
 
 ```bash
 eurekaclaw install-skills
 ```
 
-This is a one-time step. Skills are saved to `~/.eurekaclaw/skills/` and automatically used by agents on future runs.
+此代码只需要运行一次，技能存储在 `~/.eurekaclaw/skills/` 中，并自动用于后续运行。
 
 ## 验证安装
 

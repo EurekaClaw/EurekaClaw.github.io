@@ -120,14 +120,6 @@ If the issue persists, also raise `MAX_TOKENS_ASSEMBLER`.
 
 ---
 
-## `AttributeError: 'ProofPausedException' object has no attribute 'paused_before_stage'`
-
-**Cause:** Outdated code. The correct attribute is `stage_name`.
-
-**Fix:** Pull the latest version: `git pull`
-
----
-
 ## Example Workflows
 
 ### Prove a Known Result (Sanity Check)

@@ -1,37 +1,37 @@
 # 错误检索
 
-## `No skills available` / Proof Fails Immediately
+## `No skills available` / 证明立即失败
 
-**Cause:** The initial skill set has not been installed. This happens when `eurekaclaw install-skills` was skipped during setup.
+**原因：**初始技能集尚未安装。这是由于在安装过程中跳过了 `eurekaclaw install-skills` 命令造成的。
 
-**Fix:**
+**修复：**
 
 ```bash
 eurekaclaw install-skills
 ```
 
-This downloads the built-in seed skills (proof strategies, domain heuristics, lemma templates) required for the pipeline to run. Re-run it any time you want to reset skills to the defaults.
+此操作会下载管道运行所需的内置种子技能（证明策略、领域启发式方法、Token模板）。您可以随时重新运行此操作，将技能重置为默认值。
 
 ---
 
-## `paper.pdf` Not Generated
+## `paper.pdf` 未生成
 
-**Cause:** `pdflatex` not installed or not in `PATH`.
+**原因：** `pdflatex` 未安装或不在 `PATH` 中。
 
-**Fix:**
+**修复：**
 - Linux: `sudo apt install texlive-full`
-- macOS: install [MacTeX](https://www.tug.org/mactex/)
-- Set `LATEX_BIN=/usr/local/bin/pdflatex` in `.env`
+- macOS: 安装 [MacTeX](https://www.tug.org/mactex/)
+- `.env` 里设置 `LATEX_BIN=/usr/local/bin/pdflatex` 
 
-The `.tex` and `.bib` files are always saved — compile manually or upload to Overleaf.
+`.tex` 和 `.bib` 文件始终会被保存——手动编译或上传到 Overleaf。
 
 ---
 
-## Citations Show as `?` in the PDF
+## 引用在 PDF 中显示为 `?`
 
-**Cause:** bibtex not run, or cite keys mismatch.
+**原因：** bibtex 未运行，或引用标签不匹配。
 
-**Fix:** Run the compile sequence manually:
+**修复：** 手动运行编译序列：
 
 ```bash
 cd results/<session_id>
@@ -45,101 +45,93 @@ pdflatex paper.tex
 
 ## `Parsed zero lemmas from architect response`
 
-**Cause:** LLM returned an unrecognized proof plan format.
+**原因：** LLM 返回了无法识别的证明计划格式。
 
-**Fix:** Handled automatically via a 4-pass parser. If it persists, use a more capable model (`EUREKACLAW_MODEL`) and retry.
-
----
-
-## Proof Status is `abandoned`
-
-**Cause:** Hit `THEORY_MAX_ITERATIONS` without completing all lemmas.
-
-**Fix options:**
-1. Increase `THEORY_MAX_ITERATIONS=20`
-2. Simplify the conjecture — split into smaller parts
-3. Use `--gate human` to provide hints during the run
-
-The partial proof is still saved in `theory_state.json`.
+**修复：** 已通过 4 次遍历解析器自动处理。如果问题仍然存在，请使用功能更强大的模型（`EUREKACLAW_MODEL`）并重试。
 
 ---
 
-## Proof was `refuted`
+## 证明状态是 `abandoned`（被放弃）
 
-**Cause:** A counterexample was found — the conjecture as stated is false or needs refinement.
+**原因：** 在未证明所有引理的情况下达到 `THEORY_MAX_ITERATIONS`。
 
-**What to do:**
-1. Check `theory_state.json → counterexamples[]` for the specific falsifying example
-2. Refine your conjecture (tighten conditions, change the bound)
-3. Re-run with the updated conjecture
+**修复可选方案：**
+1. 增加 `THEORY_MAX_ITERATIONS=20`
+2. 简化猜想——将其拆分成更小的部分
+3. 使用 `--gate human` 参数在运行过程中提供提示
 
----
-
-## Rate Limit / API Errors
-
-**Cause:** Anthropic API rate limit hit during a long run.
-
-**Fix:** EurekaClaw retries automatically with exponential backoff (5 attempts, 4–90 second waits). If errors persist:
-- Reduce `MAX_TOKENS_AGENT` and `MAX_TOKENS_PROVER`
-- Set `CONTEXT_COMPRESS_AFTER_TURNS=4`
-- Set `EXPERIMENT_MODE=false`
+部分证明仍然保存在 `theory_state.json` 中。
 
 ---
 
-## Lean4 Verification Not Running
+## 证明被 `refuted`（反驳）
 
-**Cause:** `lean` binary not found in `PATH`.
+**原因：** 发现了一个反例——所提出的猜想是错误的，或者需要改进。
 
-**Fix:** Install Lean4 and set `LEAN4_BIN=/path/to/lean`. Without Lean4, the verifier falls back to LLM peer review.
+**修复：**
+1. 查看 `theory_state.json → counterexamples[]` 以获取具体的反例。
+2. 完善你的猜想（收紧条件，改变界限）
+3. 使用更新后的猜想重新运行
 
 ---
 
-## The Output Paper Has `[Unverified step]` Warnings
+## 速率限制/API 错误
 
-**Cause:** One or more lemmas have `verified=false`.
+**原因：**长时间运行期间，Anthropic API 达到速率限制。
 
-**What to do:**
-1. Check `theory_state.json → proven_lemmas` for flagged lemmas
-2. Re-run with `--gate human` and provide hints at the theory gate
-3. Increase `THEORY_MAX_ITERATIONS`
-4. Simplify the conjecture or break it into smaller lemmas
+**修复方法：** EurekaClaw 会自动使用指数退避算法重试（5 次尝试，每次等待 4-90 秒）。如果错误仍然存​​在：
+- 减少 `MAX_TOKENS_AGENT` 和 `MAX_TOKENS_PROVER`
+- 设置 `CONTEXT_COMPRESS_AFTER_TURNS=4`
+- 设置 `EXPERIMENT_MODE=false`
+
+---
+
+## Lean4 验证未运行
+
+**原因：**在 `PATH` 中找不到 `lean` 二进制文件。
+
+**解决方法：**安装 Lean4 并设置 `LEAN4_BIN=/path/to/lean`。如果没有 Lean4，验证程序将回退到 LLM 同行评审。
+
+---
+
+## 输出文件存在 `[Unverified step]` 警告
+
+**原因：**一个或多个词条的 `verified=false`。
+
+**该怎么办：**
+1. 检查 `theory_state.json → proven_lemmas` 中标记的词元
+2. 使用 `--gate human` 参数重新运行，并在理论门处提供提示
+3. 增加 `THEORY_MAX_ITERANTS`
+4. 简化猜想或将其分解为更小的引理
 
 ---
 
 ## ConsistencyChecker: FAIL — Theorem Statement Truncated
 
-**Cause:** `TheoremCrystallizer` ran out of tokens mid-expression.
+**原因：** `TheoremCrystallizer` 在表达式执行过程中用完了Token。
 
-**Fix:** Increase `MAX_TOKENS_CRYSTALLIZER` in `.env`:
+**修复：** 在 `.env` 增加 `MAX_TOKENS_CRYSTALLIZER`：
 
 ```ini
 MAX_TOKENS_CRYSTALLIZER=4096
 ```
 
-If the issue persists, also raise `MAX_TOKENS_ASSEMBLER`.
+如果问题仍然存在，则同时引发 `MAX_TOKENS_ASSEMBLER` 异常。
 
 ---
 
-## `AttributeError: 'ProofPausedException' object has no attribute 'paused_before_stage'`
+## 示例工作流程
 
-**Cause:** Outdated code. The correct attribute is `stage_name`.
-
-**Fix:** Pull the latest version: `git pull`
-
----
-
-## Example Workflows
-
-### Prove a Known Result (Sanity Check)
+### 验证已知结果（合理性检验）
 
 ```bash
 eurekaclaw prove "The sum of the first n natural numbers equals n(n+1)/2" \
     --domain "combinatorics" --output ./results
 ```
 
-Expected: `proved` with 1–2 simple lemmas in under 5 minutes.
+预期结果：用 1-2 个简单引理在 5 分钟内证明。
 
-### Explore an Open Research Area
+### 探索开放研究领域
 
 ```bash
 eurekaclaw explore "graph neural networks" \
@@ -147,18 +139,18 @@ eurekaclaw explore "graph neural networks" \
     --gate auto --output ./results
 ```
 
-### Reproduce + Extend a Paper
+### 重现并扩展一篇论文
 
 ```bash
 eurekaclaw from-papers 1706.03762 \
     --domain "transformer theory" --gate human --output ./results
 ```
 
-### Domain-Specific MAB Research
+### 特定领域（多臂Bandit）研究
 
 ```bash
 eurekaclaw prove "UCB1 achieves O(sqrt(KT log K)) regret for K-armed Gaussian bandits" \
     --domain "multi-armed bandits" --output ./results
 ```
 
-The MAB domain plugin activates automatically, providing specialized tools and seed skills.
+多臂Bandit(MAB)插件会自动激活，提供专门的工具和种子技能。

@@ -1,6 +1,6 @@
 # 记忆系统
 
-EurekaClaw uses a **four-tier memory system** managed by `MemoryManager`.
+EurekaClaw 使用由 `MemoryManager` 管理的**四层记忆系统**。
 
 ```
 eurekaclaw/memory/
@@ -13,7 +13,7 @@ eurekaclaw/learning/
 └── memory_extractor.py  SessionMemoryExtractor (Tier 4: domain markdown insights)
 ```
 
-Storage layout under `~/.eurekaclaw/` (configurable via `EUREKACLAW_DIR`):
+`~/.eurekaclaw/`（可通过 `EUREKACLAW_DIR` 配置）下的存储布局：
 
 ```
 ~/.eurekaclaw/
@@ -29,11 +29,11 @@ Storage layout under `~/.eurekaclaw/` (configurable via `EUREKACLAW_DIR`):
 
 ---
 
-## Tier 1 — Episodic Memory (session-scoped)
+## 第一层 — 情节记忆（会话级）
 
-**File:** `eurekaclaw/memory/episodic.py`
+**文件：** `eurekaclaw/memory/episodic.py`
 
-In-RAM ring buffer (max 500 entries). Records agent events during the current session. Lost when the process ends — never persisted to disk.
+内存中的环形缓冲区（最多 500 条）。记录当前会话中的智能体事件。进程结束后丢失——永不持久化到磁盘。
 
 ```python
 def log_event(
@@ -42,7 +42,7 @@ def log_event(
     metadata: dict | None = None
 ) -> EpisodicEntry
 ```
-Log a structured event (tool call, result, decision, error) from an agent. Called automatically by `BaseAgent` after each tool call.
+记录来自智能体的结构化事件（工具调用、结果、决策、错误）。由 `BaseAgent` 在每次工具调用后自动调用。
 
 ```python
 def recent_events(
@@ -50,16 +50,16 @@ def recent_events(
     agent_role: str | None = None
 ) -> list[EpisodicEntry]
 ```
-Return the N most recent events, optionally filtered by agent role.
+返回最近 N 条事件，可按智能体角色过滤。
 
 ---
 
-## Tier 2 — Persistent Memory (cross-run key-value)
+## 第二层 — 持久化记忆（跨会话键值存储）
 
-**File:** `eurekaclaw/memory/persistent.py`
-**Storage:** `~/.eurekaclaw/memory/persistent.json`
+**文件：** `eurekaclaw/memory/persistent.py`
+**存储：** `~/.eurekaclaw/memory/persistent.json`
 
-Stores arbitrary JSON-serializable key-value records that survive across sessions.
+存储可跨会话保存的任意 JSON 可序列化键值记录。
 
 ```python
 def remember(
@@ -69,26 +69,26 @@ def remember(
     source_session: str = ""
 ) -> None
 ```
-Save or overwrite a cross-run record. `key` is typically namespaced (e.g., `"theory.failed_strategies.concentration_bounds"`).
+保存或覆盖一条跨会话记录。`key` 通常有命名空间（例如 `"theory.failed_strategies.concentration_bounds"`）。
 
 ```python
 def recall(key: str) -> Any | None
 ```
-Retrieve a value by exact key. Returns `None` if not found.
+按精确键检索值。若未找到则返回 `None`。
 
 ```python
 def recall_by_tag(tag: str) -> list[CrossRunRecord]
 ```
-Return all records that include the given tag.
+返回所有包含指定标签的记录。
 
 ---
 
-## Tier 3 — Knowledge Graph (theorem dependency network)
+## 第三层 — 知识图谱（定理依赖网络）
 
-**File:** `eurekaclaw/memory/knowledge_graph.py`
-**Storage:** `~/.eurekaclaw/memory/knowledge_graph.json`
+**文件：** `eurekaclaw/memory/knowledge_graph.py`
+**存储：** `~/.eurekaclaw/memory/knowledge_graph.json`
 
-A directed graph that tracks proven theorems and their dependencies across all sessions. Exportable to networkx for analysis.
+跟踪所有会话中已证明定理及其依赖关系的有向图。可导出为 networkx 格式进行分析。
 
 ```python
 def add_theorem(
@@ -99,51 +99,51 @@ def add_theorem(
     tags: list[str] | None = None
 ) -> KnowledgeNode
 ```
-Register a newly proved theorem.
+注册一个新证明的定理。
 
 ```python
 def link_theorems(from_id: str, to_id: str, relation: str = "uses") -> None
 ```
-Record a dependency between two theorems. Relation types: `"uses"`, `"generalizes"`, `"specializes"`, `"contradicts"`.
+记录两个定理之间的依赖关系。关系类型：`"uses"`、`"generalizes"`、`"specializes"`、`"contradicts"`。
 
 ```python
 def find_related_theorems(node_id: str, depth: int = 2) -> list[KnowledgeNode]
 ```
-BFS traversal — returns theorems within `depth` hops of `node_id`.
+BFS 遍历——返回距 `node_id` 在 `depth` 跳以内的定理。
 
 ---
 
-## Tier 4 — Domain Memories (cross-session markdown insights)
+## 第四层 — 领域记忆（跨会话 Markdown 洞察）
 
-**File:** `eurekaclaw/learning/memory_extractor.py`
-**Storage:** `~/.eurekaclaw/memories/<domain>/YYYYMMDD_<slug>.md`
+**文件：** `eurekaclaw/learning/memory_extractor.py`
+**存储：** `~/.eurekaclaw/memories/<domain>/YYYYMMDD_<slug>.md`
 
-The primary mechanism for cross-session learning. After each session, `SessionMemoryExtractor` uses the fast model to analyse `TheoryState` and extract structured insights in four categories:
+跨会话学习的主要机制。每次会话结束后，`SessionMemoryExtractor` 使用快速模型分析 `TheoryState`，并按四个类别提取结构化洞察：
 
-| Category | What gets saved |
+| 类别 | 保存内容 |
 |---|---|
-| `domain_knowledge` | New facts, lemmas, theorems discovered or confirmed |
-| `proof_strategy` | Proof techniques that worked (or failed) in this domain |
-| `open_problems` | Conjectures raised but not resolved |
-| `pitfalls` | Approaches that looked promising but failed, with root cause |
+| `domain_knowledge` | 本次发现或确认的新事实、引理、定理 |
+| `proof_strategy` | 在该领域有效（或失败）的证明技术 |
+| `open_problems` | 提出但未解决的猜想 |
+| `pitfalls` | 看似有前途但最终失败的方法及其根本原因 |
 
-Only entries with `confidence >= 0.5` are saved. A sha256 fingerprint index (`_index.json`) deduplicates exact matches. Near-duplicates (keyword overlap > 40%) are checked by the LLM and merged when redundant.
+仅保存 `confidence >= 0.5` 的条目。sha256 指纹索引（`_index.json`）用于去除精确重复。对于关键词重叠超过 40% 的近重复内容，由 LLM 检查并在冗余时合并。
 
-### Injection into future sessions
+### 注入到未来会话
 
-At the start of each session, `BaseAgent.build_system_prompt()` calls:
+每次会话开始时，`BaseAgent.build_system_prompt()` 调用：
 
 ```python
 memory.load_for_injection(domain, k=4, query=task_description)
 ```
 
-This selects the 4 most **relevant** high-confidence `.md` files for the domain using cosine similarity against `query`, strips frontmatter, and injects the content into the system prompt as `<memories>...</memories>`.
+该函数通过余弦相似度对 `query` 选出领域内 4 个最**相关**的高置信度 `.md` 文件，去除 frontmatter 后以 `<memories>...</memories>` 形式注入系统提示词。
 
-**Semantic ranking:** each memory file's embedding is stored in `_index.json` at write time (via `eurekaclaw/memory/embedding_utils.py`). At retrieval time, candidates are scored by `cosine_similarity(query_embedding, memory_embedding)` and the top-k are returned. Falls back to recency ordering if embeddings are unavailable.
+**语义排序：** 每个记忆文件的嵌入向量在写入时存储于 `_index.json`（通过 `eurekaclaw/memory/embedding_utils.py`）。检索时，候选文件按 `cosine_similarity(query_embedding, memory_embedding)` 打分，返回前 k 个。若嵌入向量不可用，则回退到按时间倒序排序。
 
 ---
 
-## Lifecycle
+## 生命周期
 
 ```
 During session
@@ -167,9 +167,9 @@ Next session startup
 
 ---
 
-## Data Models
+## 数据模型
 
-**File:** `eurekaclaw/types/memory.py`
+**文件：** `eurekaclaw/types/memory.py`
 
 ### EpisodicEntry
 
@@ -211,12 +211,12 @@ class KnowledgeNode(BaseModel):
 
 ---
 
-## Storage Locations
+## 存储位置
 
-| Tier | Storage | Location |
+| 层级 | 存储方式 | 位置 |
 |---|---|---|
-| Tier 1: Episodic | RAM (process lifetime) | — |
-| Tier 2: Persistent | JSON file | `~/.eurekaclaw/memory/persistent.json` |
-| Tier 3: Knowledge graph | JSON file | `~/.eurekaclaw/memory/knowledge_graph.json` |
-| Tier 4: Domain insights | Markdown files | `~/.eurekaclaw/memories/<domain>/` |
-| Run artifacts | Per-session JSON | `~/.eurekaclaw/runs/<session_id>/` |
+| 第一层：情节记忆 | 内存（进程生命周期） | — |
+| 第二层：持久化记忆 | JSON 文件 | `~/.eurekaclaw/memory/persistent.json` |
+| 第三层：知识图谱 | JSON 文件 | `~/.eurekaclaw/memory/knowledge_graph.json` |
+| 第四层：领域洞察 | Markdown 文件 | `~/.eurekaclaw/memories/<domain>/` |
+| 运行产物 | 每个会话的 JSON | `~/.eurekaclaw/runs/<session_id>/` |

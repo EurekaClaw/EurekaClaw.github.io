@@ -2,9 +2,9 @@
 
 ## EurekaSession
 
-**File:** `eurekaclaw/main.py`
+**文件：** `eurekaclaw/main.py`
 
-The main entry point for running research programmatically.
+以编程方式运行研究任务的主入口。
 
 ```python
 from eurekaclaw.main import EurekaSession, run_research, save_artifacts
@@ -12,91 +12,91 @@ from eurekaclaw.main import EurekaSession, run_research, save_artifacts
 session = EurekaSession()
 ```
 
-### Constructor
+### 构造函数
 
 ```python
 class EurekaSession:
     def __init__(self, session_id: str | None = None) -> None
 ```
 
-- `session_id` — Optional. Auto-generated UUID if not provided.
-- Creates a `KnowledgeBus` and lazily initializes `MetaOrchestrator`.
+- `session_id` — 可选。若不提供，则自动生成 UUID。
+- 创建一个 `KnowledgeBus`，并延迟初始化 `MetaOrchestrator`。
 
-### Methods
+### 方法
 
 ```python
 async def run(self, input_spec: InputSpec) -> ResearchOutput
 ```
-Run a full research session from an `InputSpec`. This is the lowest-level async entry point used internally.
+从 `InputSpec` 运行完整的研究会话。这是内部使用的最底层异步入口。
 
 ```python
 async def run_detailed(self, conjecture: str, domain: str = "") -> ResearchOutput
 ```
-**Level 1:** Prove a specific conjecture.
+**级别 1：** 证明特定猜想。
 
 ```python
 async def run_from_papers(self, paper_ids: list[str], domain: str) -> ResearchOutput
 ```
-**Level 2:** Find gaps and generate hypotheses from reference papers.
+**级别 2：** 从参考论文中发现研究空白并生成假设。
 
 ```python
 async def run_exploration(self, domain: str, query: str = "") -> ResearchOutput
 ```
-**Level 3:** Open exploration of a research domain.
+**级别 3：** 对研究领域进行开放式探索。
 
-### Properties
+### 属性
 
 ```python
 @property
 def orchestrator(self) -> MetaOrchestrator
 ```
-Lazy-initialized orchestrator. Auto-detects domain plugin from `InputSpec.domain`.
+延迟初始化的编排器。根据 `InputSpec.domain` 自动检测领域插件。
 
 ---
 
-## Convenience Functions
+## 便捷函数
 
 ```python
 def run_research(conjecture: str, domain: str = "") -> ResearchOutput
 ```
-Synchronous entry point (wraps `asyncio.run()`). Runs Level 1 prove pipeline.
+同步入口（封装 `asyncio.run()`）。运行级别 1 证明流水线。
 
 ```python
 def save_artifacts(result: ResearchOutput, out_dir: str | Path) -> Path
 ```
-Write all pipeline artifacts to disk and compile the PDF.
+将所有流水线产物写入磁盘并编译 PDF。
 
-**Writes:**
-- `paper.tex` — LaTeX source
-- `references.bib` — BibTeX bibliography
-- `theory_state.json` — Full proof state
-- `research_brief.json` — Planning state
-- `experiment_result.json` — Numerical results (if available)
+**写入内容：**
+- `paper.tex` — LaTeX 源码
+- `references.bib` — BibTeX 参考文献
+- `theory_state.json` — 完整证明状态
+- `research_brief.json` — 规划状态
+- `experiment_result.json` — 数值结果（如有）
 
-**LaTeX compile sequence:**
-1. `pdflatex paper.tex` (pass 1 — generate `.aux`)
-2. `bibtex paper` (only if `references.bib` exists and is non-empty)
-3. `pdflatex paper.tex` (pass 2 — resolve citations)
-4. `pdflatex paper.tex` (pass 3 — finalize)
+**LaTeX 编译步骤：**
+1. `pdflatex paper.tex`（第 1 遍——生成 `.aux`）
+2. `bibtex paper`（仅当 `references.bib` 存在且非空时执行）
+3. `pdflatex paper.tex`（第 2 遍——解析引用）
+4. `pdflatex paper.tex`（第 3 遍——最终定稿）
 
-**Citation validation:** Before compiling, `_fix_missing_citations()` removes any `\cite{}` keys that have no matching entry in `references.bib`, preventing `?` symbols in the output PDF.
+**引用校验：** 编译前，`_fix_missing_citations()` 会移除 `references.bib` 中没有对应条目的 `\cite{}` 键，防止输出 PDF 出现 `?` 符号。
 
-**Returns:** `Path` to the output directory.
+**返回值：** 输出目录的 `Path`。
 
 ---
 
 ## KnowledgeBus
 
-**File:** `eurekaclaw/knowledge_bus/bus.py`
+**文件：** `eurekaclaw/knowledge_bus/bus.py`
 
-Central in-memory artifact store shared by all agents in a session. All data flows through the bus — no agent holds private state between turns.
+会话中所有智能体共享的中央内存产物存储。所有数据通过总线流转——智能体在轮次之间不保留私有状态。
 
 ```python
 class KnowledgeBus:
     def __init__(self, session_id: str) -> None
 ```
 
-### Typed Artifact Access
+### 类型化产物访问
 
 ```python
 def put_research_brief(brief: ResearchBrief) -> None
@@ -116,42 +116,42 @@ def put_pipeline(pipeline: TaskPipeline) -> None
 def get_pipeline() -> TaskPipeline | None
 ```
 
-### Generic Key-Value Store
+### 通用键值存储
 
 ```python
 def put(key: str, value: Any) -> None
 def get(key: str, default: Any = None) -> Any
 ```
 
-For arbitrary data shared between agents (e.g., `numerically_suspect` lemma IDs).
+用于智能体之间共享任意数据（例如 `numerically_suspect` 引理 ID）。
 
-### Reactive Subscriptions
+### 响应式订阅
 
 ```python
 def subscribe(artifact_type: str, callback: Callable) -> None
 ```
-Register a callback triggered whenever an artifact of `artifact_type` is updated on the bus.
+注册一个回调，在总线上指定类型的产物更新时触发。
 
-### Persistence
+### 持久化
 
 ```python
 def persist(session_dir: Path) -> None
 ```
-Serialize all artifacts to JSON files in `session_dir`.
+将所有产物序列化为 JSON 文件并保存到 `session_dir`。
 
 ```python
 @classmethod
 def load(session_id: str, session_dir: Path) -> KnowledgeBus
 ```
-Reconstruct a bus from a previously persisted session directory.
+从之前持久化的会话目录重建总线。
 
 ---
 
 ## InputSpec
 
-**File:** `eurekaclaw/types/tasks.py`
+**文件：** `eurekaclaw/types/tasks.py`
 
-Specifies what to research.
+指定研究内容。
 
 ```python
 class InputSpec(BaseModel):
@@ -169,9 +169,9 @@ class InputSpec(BaseModel):
 
 ## ResearchOutput
 
-**File:** `eurekaclaw/types/tasks.py`
+**文件：** `eurekaclaw/types/tasks.py`
 
-The result of a full research session.
+完整研究会话的结果。
 
 ```python
 class ResearchOutput(BaseModel):
@@ -189,38 +189,38 @@ class ResearchOutput(BaseModel):
 
 ---
 
-## Data Models Quick Reference
+## 数据模型速查表
 
-All models are Pydantic `BaseModel` instances. See [architecture.md](architecture.md) for field-level diagrams.
+所有模型均为 Pydantic `BaseModel` 实例。字段级别的图示请参见 [architecture.md](architecture.md)。
 
-| Model | File | Description |
+| 模型 | 文件 | 说明 |
 |---|---|---|
-| `InputSpec` | `types/tasks.py` | Research input specification |
-| `ResearchOutput` | `types/tasks.py` | Full session result |
-| `Task` | `types/tasks.py` | Single pipeline task |
-| `TaskPipeline` | `types/tasks.py` | Ordered task sequence |
-| `ResearchBrief` | `types/artifacts.py` | Survey findings + selected direction |
-| `ResearchDirection` | `types/artifacts.py` | Scored research hypothesis |
-| `TheoryState` | `types/artifacts.py` | Proof state machine |
-| `LemmaNode` | `types/artifacts.py` | Node in the lemma dependency DAG |
-| `ProofRecord` | `types/artifacts.py` | Completed proof for one lemma |
-| `ProofPlan` | `types/artifacts.py` | Planned lemma with provenance |
-| `KnownResult` | `types/artifacts.py` | Result extracted from a paper |
-| `FailedAttempt` | `types/artifacts.py` | Failed proof attempt record |
-| `Counterexample` | `types/artifacts.py` | Discovered counterexample |
-| `ExperimentResult` | `types/artifacts.py` | Numerical validation results |
-| `NumericalBound` | `types/artifacts.py` | Theoretical vs empirical bound comparison |
-| `Bibliography` | `types/artifacts.py` | Collection of papers + BibTeX |
-| `Paper` | `types/artifacts.py` | Single paper metadata |
-| `AgentResult` | `types/agents.py` | Result from one agent task |
-| `SkillRecord` | `types/skills.py` | A skill with metadata |
-| `EpisodicEntry` | `types/memory.py` | Session-scoped memory event |
-| `CrossRunRecord` | `types/memory.py` | Persistent cross-run memory record |
-| `KnowledgeNode` | `types/memory.py` | Theorem in the knowledge graph |
+| `InputSpec` | `types/tasks.py` | 研究输入规范 |
+| `ResearchOutput` | `types/tasks.py` | 完整会话结果 |
+| `Task` | `types/tasks.py` | 单个流水线任务 |
+| `TaskPipeline` | `types/tasks.py` | 有序任务序列 |
+| `ResearchBrief` | `types/artifacts.py` | 调研结果 + 选定方向 |
+| `ResearchDirection` | `types/artifacts.py` | 带评分的研究假设 |
+| `TheoryState` | `types/artifacts.py` | 证明状态机 |
+| `LemmaNode` | `types/artifacts.py` | 引理依赖 DAG 中的节点 |
+| `ProofRecord` | `types/artifacts.py` | 单个引理的完整证明 |
+| `ProofPlan` | `types/artifacts.py` | 带来源标注的计划引理 |
+| `KnownResult` | `types/artifacts.py` | 从论文中提取的已知结论 |
+| `FailedAttempt` | `types/artifacts.py` | 失败的证明尝试记录 |
+| `Counterexample` | `types/artifacts.py` | 发现的反例 |
+| `ExperimentResult` | `types/artifacts.py` | 数值验证结果 |
+| `NumericalBound` | `types/artifacts.py` | 理论界与实验界的对比 |
+| `Bibliography` | `types/artifacts.py` | 论文集合 + BibTeX |
+| `Paper` | `types/artifacts.py` | 单篇论文元数据 |
+| `AgentResult` | `types/agents.py` | 单个智能体任务的结果 |
+| `SkillRecord` | `types/skills.py` | 带元数据的技能 |
+| `EpisodicEntry` | `types/memory.py` | 会话级内存事件 |
+| `CrossRunRecord` | `types/memory.py` | 跨会话持久化内存记录 |
+| `KnowledgeNode` | `types/memory.py` | 知识图谱中的定理节点 |
 
 ---
 
-## Example: Run a Proof Session
+## 示例：运行证明会话
 
 ```python
 import asyncio
@@ -238,7 +238,7 @@ async def main():
 asyncio.run(main())
 ```
 
-## Example: Load and Re-generate Artifacts
+## 示例：加载会话并重新生成产物
 
 ```python
 from eurekaclaw.knowledge_bus.bus import KnowledgeBus

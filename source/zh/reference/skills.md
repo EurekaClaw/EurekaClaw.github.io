@@ -1,6 +1,6 @@
 # 技能系统
 
-Skills are reusable, domain-specific pieces of knowledge injected into agent prompts before each task. They encode successful proof strategies, domain conventions, and common pitfalls learned from previous runs.
+技能是在每次任务前注入智能体提示词的可复用、领域特定的知识片段。它们编码了从之前运行中总结出的成功证明策略、领域约定和常见陷阱。
 
 ```
 eurekaclaw/skills/
@@ -12,9 +12,9 @@ eurekaclaw/skills/
 
 ---
 
-## Skill File Format
+## 技能文件格式
 
-Each skill is a Markdown file with YAML frontmatter:
+每个技能是一个带 YAML frontmatter 的 Markdown 文件：
 
 ```markdown
 ---
@@ -39,75 +39,75 @@ When bounding UCB1 regret, decompose into:
 Use Hoeffding for sub-Gaussian rewards, Bernstein when variance is known...
 ```
 
-Skills are stored in one of three locations depending on their origin (see [Skill Lifecycle](#skill-lifecycle) below).
+技能根据其来源存储在三个位置之一（详见下方[技能生命周期](#技能生命周期)）。
 
 ---
 
 ## SkillRegistry
 
-**File:** `eurekaclaw/skills/registry.py`
+**文件：** `eurekaclaw/skills/registry.py`
 
 ```python
 class SkillRegistry:
     def __init__(skills_dir: Path | None = None) -> None
 ```
 
-### Loading
+### 加载
 
 ```python
 def load_all() -> list[SkillRecord]
 ```
-Load all skills from registered directories. Load order (later overrides earlier):
-1. Seed skills in `eurekaclaw/skills/seed_skills/`
-2. Domain plugin skills (extra directories from `get_skills_dirs()`)
-3. User skills in `~/.eurekaclaw/skills/` (highest priority)
+从已注册目录加载所有技能。加载顺序（后者覆盖前者）：
+1. `eurekaclaw/skills/seed_skills/` 中的种子技能
+2. 领域插件技能（来自 `get_skills_dirs()` 的额外目录）
+3. `~/.eurekaclaw/skills/` 中的用户技能（最高优先级）
 
 ```python
 def add_skills_dir(path: Path) -> None
 ```
-Register an extra directory to load skills from (used by domain plugins).
+注册额外的技能目录（由领域插件使用）。
 
 ```python
 def reload() -> None
 ```
-Reload all skills from disk (e.g., after distillation writes new files).
+从磁盘重新加载所有技能（例如蒸馏写入新文件后）。
 
-### Retrieval
+### 检索
 
 ```python
 def get(name: str) -> SkillRecord | None
 ```
-Retrieve a skill by exact name.
+按精确名称检索技能。
 
 ```python
 def get_by_tags(tags: list[str]) -> list[SkillRecord]
 ```
-Return all skills that have at least one of the given tags.
+返回所有包含至少一个给定标签的技能。
 
 ```python
 def get_by_role(role: str) -> list[SkillRecord]
 ```
-Return all skills whose `agent_roles` includes `role`.
+返回所有 `agent_roles` 包含 `role` 的技能。
 
 ```python
 def get_by_pipeline_stage(stage: str) -> list[SkillRecord]
 ```
-Return all skills for a given pipeline stage.
+返回指定流水线阶段的所有技能。
 
-### Storage
+### 存储
 
 ```python
 def upsert(skill: SkillRecord) -> None
 ```
-Write skill to disk and register in memory. Creates or overwrites the `.md` file in `~/.eurekaclaw/skills/`.
+将技能写入磁盘并注册到内存。在 `~/.eurekaclaw/skills/` 中创建或覆盖 `.md` 文件。
 
 ---
 
 ## SkillInjector
 
-**File:** `eurekaclaw/skills/injector.py`
+**文件：** `eurekaclaw/skills/injector.py`
 
-Retrieves the most relevant skills for a task and formats them for injection into agent system prompts.
+检索与任务最相关的技能并将其格式化，注入智能体系统提示词。
 
 ```python
 class SkillInjector:
@@ -117,9 +117,9 @@ class SkillInjector:
     ) -> None
 ```
 
-`selected_skills` — optional list of skill names to **pin**. Pinned skills are always included at the front of the top-k result, before any usage-sorted optional skills. If a pinned skill name is not found in the registry, a warning is logged and it is silently skipped.
+`selected_skills` — 可选的技能名称列表，用于**固定**技能。固定技能始终排在前 k 个结果的最前面，优先于按使用次数排序的可选技能。若固定技能名称在注册表中未找到，则记录警告并静默跳过。
 
-### Retrieval
+### 检索
 
 ```python
 def top_k(
@@ -130,27 +130,27 @@ def top_k(
 ) -> list[SkillRecord]
 ```
 
-**Retrieval strategies:**
+**检索策略：**
 
-| Strategy | Description |
+| 策略 | 说明 |
 |---|---|
-| `tag` | Filter by matching `agent_roles` and `pipeline_stages`; pinned skills first, then optional sorted by `usage_count` |
-| `semantic` | Embedding-based similarity using `sentence-transformers` (if installed) |
-| `hybrid` | Tag filter (3×k candidates), then text similarity ranking |
+| `tag` | 按匹配的 `agent_roles` 和 `pipeline_stages` 过滤；固定技能优先，其余按 `usage_count` 排序 |
+| `semantic` | 基于 `sentence-transformers` 的嵌入相似度（若已安装） |
+| `hybrid` | 标签过滤（3×k 候选），再按文本相似度排序 |
 
-**Pinned-skill priority:** When `selected_skills` is non-empty, the `tag` (and by extension `hybrid`) retrieval splits candidates into:
-1. **Must-have** — skills in both `selected_skills` and the role/stage set → always placed first
-2. **Optional** — remaining candidates → sorted by `usage_count` descending
+**固定技能优先级：** 当 `selected_skills` 非空时，`tag`（及 `hybrid`）检索将候选分为：
+1. **必须包含** — 同时在 `selected_skills` 和角色/阶段集合中的技能 → 始终排在前面
+2. **可选** — 剩余候选 → 按 `usage_count` 降序排序
 
-The combined list is then truncated to `k`.
+合并后的列表截断为 `k` 个。
 
-### Formatting
+### 格式化
 
 ```python
 def render_for_prompt(skills: list[SkillRecord]) -> str
 ```
 
-Returns an XML block injected into the agent system prompt:
+返回注入智能体系统提示词的 XML 块：
 
 ```xml
 <skills>
@@ -166,9 +166,9 @@ Returns an XML block injected into the agent system prompt:
 
 ---
 
-## Data Models
+## 数据模型
 
-**File:** `eurekaclaw/types/skills.py`
+**文件：** `eurekaclaw/types/skills.py`
 
 ```python
 class SkillMeta(BaseModel):
@@ -195,9 +195,9 @@ class SkillRecord(BaseModel):
 
 ---
 
-## Skill Distillation (Post-Run Learning)
+## 技能蒸馏（运行后学习）
 
-After each successful session, `ContinualLearningLoop.post_run()` distills new skills from the session:
+每次成功的会话结束后，`ContinualLearningLoop.post_run()` 从会话中蒸馏新技能：
 
 ```
 ContinualLearningLoop.post_run()
@@ -209,29 +209,29 @@ ContinualLearningLoop.post_run()
     └── (rl/madmax modes) ProcessRewardModel scoring
 ```
 
-**`SkillEvolver.distill_from_session()`** uses the main LLM to:
-1. Identify generalizable patterns from successful proofs
-2. Write a new skill Markdown file with appropriate tags and roles
-3. Set `source: distilled` in frontmatter
+**`SkillEvolver.distill_from_session()`** 使用主 LLM：
+1. 从成功的证明中识别可推广的模式
+2. 编写带有适当标签和角色的新技能 Markdown 文件
+3. 在 frontmatter 中设置 `source: distilled`
 
-New skills are immediately available in the next session via `SkillRegistry.reload()`.
+新技能通过 `SkillRegistry.reload()` 在下一次会话中立即可用。
 
 ---
 
-## Seed Skills (MAB Domain)
+## 种子技能（MAB 领域）
 
-The MAB domain plugin ships four seed skills:
+MAB 领域插件内置四个种子技能：
 
-| Skill | Tags | Description |
+| 技能 | 标签 | 说明 |
 |---|---|---|
-| `ucb_regret_analysis` | bandit, regret, ucb | UCB1 regret decomposition via concentration |
-| `thompson_sampling_analysis` | bandit, thompson, bayesian | Thompson Sampling regret analysis |
-| `lower_bound_construction` | bandit, lower-bound, information | Lai-Robbins and Fano-based lower bounds |
-| `bandit_simulation` | bandit, simulation, experiment | How to run and interpret bandit simulations |
+| `ucb_regret_analysis` | bandit, regret, ucb | 通过集中不等式进行 UCB1 遗憾分解 |
+| `thompson_sampling_analysis` | bandit, thompson, bayesian | Thompson Sampling 遗憾分析 |
+| `lower_bound_construction` | bandit, lower-bound, information | Lai-Robbins 和基于 Fano 的下界 |
+| `bandit_simulation` | bandit, simulation, experiment | 如何运行和解读赌博机模拟 |
 
 ---
 
-## Installing Seed Skills
+## 安装种子技能
 
 ```bash
 eurekaclaw install-skills                      # copy seeds to ~/.eurekaclaw/skills/
@@ -239,31 +239,31 @@ eurekaclaw install-skills --force              # overwrite existing copies
 eurekaclaw install-skills <skillname>          # install a skill from ClawHub
 ```
 
-The `<skillname>` form fetches a skill from the [ClawHub](https://clawhub.ai/) registry using the `clawhub` CLI (must be installed separately). Example:
+`<skillname>` 形式通过 `clawhub` CLI（需单独安装）从 [ClawHub](https://clawhub.ai/) 注册表获取技能。示例：
 
 ```bash
 eurekaclaw install-skills steipete/github
 ```
 
-This command is a convenience for inspection and manual editing only. Agents do **not** require it — seed skills are always available directly from the package.
+此命令仅用于检查和手动编辑。智能体**不需要**执行此命令——种子技能始终直接从包中获取。
 
 ---
 
-## Skill Lifecycle
+## 技能生命周期
 
-Understanding where skills physically live prevents confusion about why `~/.eurekaclaw/skills/` may not contain every skill an agent can see.
+了解技能的物理存储位置，可以避免对 `~/.eurekaclaw/skills/` 中未包含某些技能的困惑。
 
-### Three storage locations
+### 三个存储位置
 
-| Location | Who writes there | When |
+| 位置 | 写入者 | 时机 |
 |---|---|---|
-| `eurekaclaw/skills/seed_skills/` | Package developers (you) | Committed to the repo; bundled with `pip install` |
-| `eurekaclaw/domains/<domain>/skills/` | Domain plugin authors | Registered via `add_skills_dir()` at plugin load time |
-| `~/.eurekaclaw/skills/` | `install-skills` CLI + `SkillEvolver` + ClawHub | On demand; user-editable |
+| `eurekaclaw/skills/seed_skills/` | 包开发者（您） | 提交到代码库；随 `pip install` 打包 |
+| `eurekaclaw/domains/<domain>/skills/` | 领域插件作者 | 通过 `add_skills_dir()` 在插件加载时注册 |
+| `~/.eurekaclaw/skills/` | `install-skills` CLI + `SkillEvolver` + ClawHub | 按需写入；用户可编辑 |
 
-### Load order at runtime
+### 运行时加载顺序
 
-Every time `SkillRegistry._load()` runs, it reads all three sources in this order. A skill with the same `name` in a later source **overrides** the earlier one:
+每次 `SkillRegistry._load()` 运行时，按以下顺序读取所有三个来源。同名技能后来者覆盖前者：
 
 ```
 1. eurekaclaw/skills/seed_skills/**/*.md        (lowest priority)
@@ -271,33 +271,33 @@ Every time `SkillRegistry._load()` runs, it reads all three sources in this orde
 3. ~/.eurekaclaw/skills/**/*.md                 (highest priority — overrides seeds)
 ```
 
-**Consequence:** adding a file to `seed_skills/` makes it immediately visible to agents on the next run, without copying anything to `~/.eurekaclaw/skills/`. The absence of a seed skill from `~/.eurekaclaw/skills/` does not reduce agent capability.
+**结论：** 向 `seed_skills/` 添加文件后，智能体在下一次运行时即可看到该技能，无需将任何内容复制到 `~/.eurekaclaw/skills/`。`~/.eurekaclaw/skills/` 中缺少某个种子技能不会降低智能体能力。
 
-### How new skills are generated
+### 新技能的生成方式
 
-Skills enter the system through three paths:
+技能通过三条路径进入系统：
 
-#### 1. Seed skills (developer-authored)
+#### 1. 种子技能（开发者编写）
 
-Create a `.md` file in `eurekaclaw/skills/seed_skills/<category>/`:
+在 `eurekaclaw/skills/seed_skills/<category>/` 中创建 `.md` 文件：
 
 ```bash
 # e.g. for a new theory skill
 touch eurekaclaw/skills/seed_skills/theory/my_new_skill.md
 ```
 
-Set `source: seed` in frontmatter. The skill is available to all agents immediately after the file is saved — no CLI step required.
+在 frontmatter 中设置 `source: seed`。文件保存后，智能体立即可用——无需 CLI 步骤。
 
-#### 2. LLM distillation (automatic, post-run)
+#### 2. LLM 蒸馏（自动，运行后）
 
-After each successful session, `SkillEvolver.distill_from_session()` is called with up to 5 `FailedAttempt` records and 5 `ProofRecord` successes from the session. It calls the fast model with a distillation prompt and parses the response into a new `SkillRecord`.
+每次成功的会话结束后，`SkillEvolver.distill_from_session()` 使用会话中最多 5 条 `FailedAttempt` 记录和 5 条 `ProofRecord` 成功记录进行调用。它使用快速模型发起蒸馏提示，并将响应解析为新的 `SkillRecord`。
 
-The new skill is written to `~/.eurekaclaw/skills/<name>.md` via `SkillRegistry.upsert()` with:
+新技能通过 `SkillRegistry.upsert()` 写入 `~/.eurekaclaw/skills/<name>.md`，带有：
 - `source: distilled`
 - `name: distilled_<session_id[:8]>_<random_hex>`
-- Tags, roles, and stages extracted from the LLM response
+- 从 LLM 响应中提取的标签、角色和阶段
 
-It is immediately available to subsequent sessions without any restart.
+后续会话无需重启即可立即使用。
 
 ```
 Session completes
@@ -307,26 +307,26 @@ Session completes
                             └── SkillRegistry.upsert()  →  ~/.eurekaclaw/skills/<name>.md
 ```
 
-#### 3. ClawHub skills
+#### 3. ClawHub 技能
 
 ```bash
 eurekaclaw install-skills <author>/<skillname>
 ```
 
-Downloads the skill from the [ClawHub](https://clawhub.ai/) registry via the `clawhub` CLI and places it in `~/.eurekaclaw/skills/`. Requires `clawhub` to be installed (`pip install clawhub` or equivalent).
+通过 `clawhub` CLI 从 [ClawHub](https://clawhub.ai/) 注册表下载技能并放置在 `~/.eurekaclaw/skills/` 中。需要安装 `clawhub`（`pip install clawhub` 或等效方式）。
 
-#### 4. Manual user skills
+#### 4. 手动用户技能
 
-Place any `.md` file with valid YAML frontmatter directly in `~/.eurekaclaw/skills/`. It will be loaded on the next session. Use `source: manual` in the frontmatter to distinguish from distilled skills.
+将任何带有有效 YAML frontmatter 的 `.md` 文件直接放入 `~/.eurekaclaw/skills/`，下一次会话加载时即可使用。在 frontmatter 中使用 `source: manual` 与蒸馏技能区分。
 
-### Skill stats update
+### 技能统计更新
 
-After each session, `SkillRegistry.update_stats(name, success)` rewrites the skill file with updated `usage_count` and `success_rate` (exponential moving average, α=0.3). This only affects skills that already exist in `~/.eurekaclaw/skills/` — seed skills in the package are never modified on disk by running sessions.
+每次会话结束后，`SkillRegistry.update_stats(name, success)` 会以更新后的 `usage_count` 和 `success_rate`（指数移动平均，α=0.3）重写技能文件。这仅影响 `~/.eurekaclaw/skills/` 中已存在的技能——包内的种子技能不会被运行会话修改。
 
-### Why `~/.eurekaclaw/skills/` may look empty
+### 为何 `~/.eurekaclaw/skills/` 可能看起来是空的
 
-A fresh installation with no sessions run yet will have an empty `~/.eurekaclaw/skills/` directory. This is normal. The agents are not "missing" any skills — they read seed skills and domain plugin skills directly at runtime. `~/.eurekaclaw/skills/` fills up over time through:
+全新安装且尚未运行任何会话时，`~/.eurekaclaw/skills/` 目录将为空。这是正常现象。智能体并未"缺失"任何技能——它们在运行时直接读取种子技能和领域插件技能。`~/.eurekaclaw/skills/` 会随时间通过以下方式逐渐填充：
 
-- `eurekaclaw install-skills` (one-time copy for inspection/editing)
-- Completed sessions (automatic distillation)
-- Manual placement of custom `.md` files
+- `eurekaclaw install-skills`（一次性复制，用于检查/编辑）
+- 已完成的会话（自动蒸馏）
+- 手动放置的自定义 `.md` 文件

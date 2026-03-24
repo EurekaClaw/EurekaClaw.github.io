@@ -1,8 +1,8 @@
 # 研究工具
 
-Tools are callable functions exposed to agents via the Anthropic tool-use API. Each tool has a name, description, input schema, and async `call()` method.
+工具是通过 Anthropic 工具调用 API 暴露给智能体的可调用函数。每个工具包含名称、描述、输入模式和异步 `call()` 方法。
 
-## Tool Architecture
+## 工具架构
 
 ```python
 class BaseTool(ABC):
@@ -14,27 +14,27 @@ class BaseTool(ABC):
     def to_anthropic_tool_def(self) -> dict: ... # format for API
 ```
 
-Tools are stored in a `ToolRegistry`. The default registry (`build_default_registry()`) includes the 7 built-in tools. Domain plugins can add extra tools via `DomainPlugin.register_tools()`.
+工具存储在 `ToolRegistry` 中。默认注册表（`build_default_registry()`）包含 7 个内置工具。领域插件可通过 `DomainPlugin.register_tools()` 添加额外工具。
 
 ---
 
-## Built-in Tools
+## 内置工具
 
 ### `arxiv_search`
 
-**File:** `eurekaclaw/tools/arxiv.py`
+**文件：** `eurekaclaw/tools/arxiv.py`
 
-**Purpose:** Search arXiv for academic papers.
+**功能：** 在 arXiv 上搜索学术论文。
 
-**Inputs:**
+**输入：**
 
-| Parameter | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 说明 |
 |---|---|---|---|
-| `query` | string | required | Search query |
-| `max_results` | integer | 8 | Number of results (capped at `ARXIV_MAX_RESULTS`) |
-| `sort_by` | string | `relevance` | Sort order: `relevance`, `lastUpdatedDate`, `submittedDate` |
+| `query` | string | 必填 | 搜索查询 |
+| `max_results` | integer | 8 | 结果数量（上限为 `ARXIV_MAX_RESULTS`） |
+| `sort_by` | string | `relevance` | 排序方式：`relevance`、`lastUpdatedDate`、`submittedDate` |
 
-**Output:** JSON array of:
+**输出：** JSON 数组，每项包含：
 ```json
 [{
   "arxiv_id": "2301.00774",
@@ -47,25 +47,25 @@ Tools are stored in a `ToolRegistry`. The default registry (`build_default_regis
 }]
 ```
 
-**External dependency:** `arxiv` Python package
+**外部依赖：** `arxiv` Python 包
 
 ---
 
 ### `semantic_scholar_search`
 
-**File:** `eurekaclaw/tools/semantic_scholar.py`
+**文件：** `eurekaclaw/tools/semantic_scholar.py`
 
-**Purpose:** Search Semantic Scholar for papers with citation counts and venue information.
+**功能：** 在 Semantic Scholar 上搜索带引用数和期刊信息的论文。
 
-**Inputs:**
+**输入：**
 
-| Parameter | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 说明 |
 |---|---|---|---|
-| `query` | string | required | Search query |
-| `limit` | integer | 10 | Number of results |
-| `year_range` | string | `""` | Optional year filter (e.g., `"2020-2024"`) |
+| `query` | string | 必填 | 搜索查询 |
+| `limit` | integer | 10 | 结果数量 |
+| `year_range` | string | `""` | 可选年份过滤（例如 `"2020-2024"`） |
 
-**Output:** JSON array of:
+**输出：** JSON 数组，每项包含：
 ```json
 [{
   "s2_id": "...",
@@ -80,46 +80,46 @@ Tools are stored in a `ToolRegistry`. The default registry (`build_default_regis
 }]
 ```
 
-**External dependency:** Semantic Scholar Graph API v1. Set `S2_API_KEY` for higher rate limits.
+**外部依赖：** Semantic Scholar Graph API v1。设置 `S2_API_KEY` 可获得更高速率限制。
 
 ---
 
 ### `web_search`
 
-**File:** `eurekaclaw/tools/web_search.py`
+**文件：** `eurekaclaw/tools/web_search.py`
 
-**Purpose:** General web search for supplementary research context.
+**功能：** 通用网络搜索，用于补充研究背景。
 
-**Inputs:**
+**输入：**
 
-| Parameter | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 说明 |
 |---|---|---|---|
-| `query` | string | required | Search query |
-| `count` | integer | 5 | Number of results |
+| `query` | string | 必填 | 搜索查询 |
+| `count` | integer | 5 | 结果数量 |
 
-**Output:** JSON array of:
+**输出：** JSON 数组：
 ```json
 [{"title": "...", "url": "...", "description": "..."}]
 ```
 
-**Backends:** Brave Search (preferred, requires `BRAVE_SEARCH_API_KEY`) or SerpAPI (fallback, requires `SERPAPI_KEY`).
+**后端：** Brave Search（首选，需要 `BRAVE_SEARCH_API_KEY`）或 SerpAPI（回退，需要 `SERPAPI_KEY`）。
 
 ---
 
 ### `lean4_verify`
 
-**File:** `eurekaclaw/tools/lean4.py`
+**文件：** `eurekaclaw/tools/lean4.py`
 
-**Purpose:** Formally verify a proof using the Lean4 theorem prover.
+**功能：** 使用 Lean4 定理证明器对证明进行形式化验证。
 
-**Inputs:**
+**输入：**
 
-| Parameter | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 说明 |
 |---|---|---|---|
-| `proof_code` | string | required | Lean4 proof code |
-| `theorem_name` | string | `""` | Optional theorem name for reporting |
+| `proof_code` | string | 必填 | Lean4 证明代码 |
+| `theorem_name` | string | `""` | 可选的定理名称（用于报告） |
 
-**Output:**
+**输出：**
 ```json
 {
   "verified": true,
@@ -127,7 +127,7 @@ Tools are stored in a `ToolRegistry`. The default registry (`build_default_regis
   "message": "Proof checked successfully"
 }
 ```
-Or on failure:
+失败时：
 ```json
 {
   "verified": false,
@@ -136,84 +136,84 @@ Or on failure:
 }
 ```
 
-**External dependency:** Lean4 binary at `LEAN4_BIN` (default: `lean`). Imports Mathlib and Aesop. Timeout: 120 seconds. Max heartbeats: 400,000.
+**外部依赖：** `LEAN4_BIN` 路径下的 Lean4 二进制文件（默认：`lean`）。导入 Mathlib 和 Aesop。超时：120 秒。最大心跳数：400,000。
 
 ---
 
-### `execute_python` *(under development)*
+### `execute_python` *（开发中）*
 
 ```{warning}
-Safe sandboxed code execution is **future work**. Without Docker properly configured, this tool runs LLM-generated Python directly in a host subprocess with no filesystem or network isolation. Do not enable `EXPERIMENT_MODE` until a future release adds proper sandbox support.
+安全的沙箱化代码执行属于**未来工作**。在未正确配置 Docker 的情况下，此工具会直接在宿主子进程中运行 LLM 生成的 Python 代码，没有任何文件系统或网络隔离。在未来版本添加适当的沙箱支持之前，请勿启用 `EXPERIMENT_MODE`。
 ```
 
-**File:** `eurekaclaw/tools/code_exec.py`
+**文件：** `eurekaclaw/tools/code_exec.py`
 
-**Purpose:** Execute Python code for numerical experiments and sanity checks.
+**功能：** 执行 Python 代码以进行数值实验和合理性检验。
 
-**Inputs:**
+**输入：**
 
-| Parameter | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 说明 |
 |---|---|---|---|
-| `code` | string | required | Python code to execute |
-| `requirements` | list[string] | `[]` | Extra packages to install before running |
+| `code` | string | 必填 | 要执行的 Python 代码 |
+| `requirements` | list[string] | `[]` | 运行前需额外安装的包 |
 
-**Output:**
+**输出：**
 ```json
 {"output": "stdout + stderr from execution"}
 ```
-Or on error:
+出错时：
 ```json
 {"error": "exception message"}
 ```
 
-**Sandbox:** Subprocess with 30-second timeout. Set `USE_DOCKER_SANDBOX=true` to run in a Docker container (`python:3.11-slim`, 512 MB RAM, network disabled) instead of the host. If Docker is unavailable, falls back silently to host subprocess. Package installation uses `uv pip` (falls back to `pip`).
+**沙箱：** 带有 30 秒超时的子进程。设置 `USE_DOCKER_SANDBOX=true` 可在 Docker 容器（`python:3.11-slim`，512 MB 内存，禁用网络）中运行，而非在宿主机上。若 Docker 不可用，则静默回退到宿主子进程。包安装使用 `uv pip`（回退到 `pip`）。
 
 ---
 
 ### `wolfram_alpha`
 
-**File:** `eurekaclaw/tools/wolfram.py`
+**文件：** `eurekaclaw/tools/wolfram.py`
 
-**Purpose:** Symbolic computation, formula simplification, and bound verification.
+**功能：** 符号计算、公式化简和界的验证。
 
-**Inputs:**
+**输入：**
 
-| Parameter | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 说明 |
 |---|---|---|---|
-| `query` | string | required | Natural language or symbolic query |
+| `query` | string | 必填 | 自然语言或符号查询 |
 
-**Output:** JSON array of Wolfram Alpha pods:
+**输出：** Wolfram Alpha pod 的 JSON 数组：
 ```json
 [{"title": "Result", "result": "..."}]
 ```
 
-**External dependency:** Wolfram Alpha API v2. Requires `WOLFRAM_APP_ID`.
+**外部依赖：** Wolfram Alpha API v2。需要 `WOLFRAM_APP_ID`。
 
 ---
 
 ### `citation_manager`
 
-**File:** `eurekaclaw/tools/citation.py`
+**文件：** `eurekaclaw/tools/citation.py`
 
-**Purpose:** Generate BibTeX entries and format citation keys consistently.
+**功能：** 生成 BibTeX 条目并统一格式化引用键。
 
-**Actions:**
+**操作：**
 
-| Action | Description |
+| 操作 | 说明 |
 |---|---|
-| `generate_bibtex` | Generate a BibTeX entry from paper metadata |
-| `format_cite` | Return the `\cite{key}` command for a paper |
-| `list_entries` | List all citation entries in the current session |
+| `generate_bibtex` | 从论文元数据生成 BibTeX 条目 |
+| `format_cite` | 返回论文的 `\cite{key}` 命令 |
+| `list_entries` | 列出当前会话中所有引用条目 |
 
-**Output:** JSON with `cite_key` and `bibtex` strings.
+**输出：** 包含 `cite_key` 和 `bibtex` 字符串的 JSON。
 
-**Note:** Uses the same key-generation algorithm as `_generate_bibtex` in `main.py` to ensure consistency between the writer's `\cite{}` commands and the `.bib` file.
+**说明：** 使用与 `main.py` 中 `_generate_bibtex` 相同的键生成算法，确保 Writer 的 `\cite{}` 命令与 `.bib` 文件保持一致。
 
 ---
 
 ## ToolRegistry
 
-**File:** `eurekaclaw/tools/registry.py`
+**文件：** `eurekaclaw/tools/registry.py`
 
 ```python
 class ToolRegistry:
@@ -230,31 +230,31 @@ def build_default_registry() -> ToolRegistry   # create with all 7 built-in tool
 
 ---
 
-## Domain-Specific Tools
+## 领域特定工具
 
-Domain plugins can register additional tools via `DomainPlugin.register_tools(registry)`.
+领域插件可通过 `DomainPlugin.register_tools(registry)` 注册额外工具。
 
-### MAB Domain: `run_bandit_experiment`
+### MAB 领域：`run_bandit_experiment`
 
-**File:** `eurekaclaw/domains/mab/tools/bandit_tool.py`
+**文件：** `eurekaclaw/domains/mab/tools/bandit_tool.py`
 
-**Purpose:** Run multi-armed bandit simulations to empirically validate regret bounds.
+**功能：** 运行多臂赌博机模拟，对遗憾界进行实证验证。
 
-**Inputs:**
+**输入：**
 
-| Parameter | Type | Description |
+| 参数 | 类型 | 说明 |
 |---|---|---|
-| `algorithm` | string | `ucb1` or `thompson_sampling` |
-| `n_arms` | integer | Number of arms K |
-| `n_rounds` | integer | Time horizon T |
-| `distribution` | string | `gaussian` or `bernoulli` |
-| `n_trials` | integer | Monte Carlo trials for averaging |
+| `algorithm` | string | `ucb1` 或 `thompson_sampling` |
+| `n_arms` | integer | 臂数 K |
+| `n_rounds` | integer | 时间跨度 T |
+| `distribution` | string | `gaussian` 或 `bernoulli` |
+| `n_trials` | integer | 用于平均的蒙特卡洛试验次数 |
 
-**Output:** JSON with empirical regret, per-arm stats, and comparison against theoretical bound.
+**输出：** 包含实验遗憾、每臂统计数据及与理论界对比的 JSON。
 
-**Supporting modules:**
-- `domains/mab/envs/stochastic.py` — `GaussianBandit`, `BernoulliBandit`
-- `domains/mab/envs/runner.py` — `run_experiment()`, `sweep_T()`
-- `domains/mab/tools/concentration.py` — Hoeffding, Bernstein, sub-Gaussian bounds
-- `domains/mab/tools/regret.py` — Regret decomposition, Lai-Robbins lower bound
-- `domains/mab/tools/information.py` — KL(Bernoulli), KL(Gaussian), Fano's inequality
+**支持模块：**
+- `domains/mab/envs/stochastic.py` — `GaussianBandit`、`BernoulliBandit`
+- `domains/mab/envs/runner.py` — `run_experiment()`、`sweep_T()`
+- `domains/mab/tools/concentration.py` — Hoeffding、Bernstein、次高斯界
+- `domains/mab/tools/regret.py` — 遗憾分解、Lai-Robbins 下界
+- `domains/mab/tools/information.py` — KL(Bernoulli)、KL(Gaussian)、Fano 不等式

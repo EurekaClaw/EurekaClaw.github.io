@@ -1,59 +1,59 @@
-# Token限制
+# Token 限制
 
-This document explains the `Token limits per call type` controls in the UI and the corresponding backend settings.
+本文档介绍 UI 中"每次调用类型的 Token 限制"控制项及对应的后端设置。
 
-These limits do **not** change the model's total context window. They control the **maximum output length for a single model call** at a specific stage.
+这些限制**不会**改变模型的总上下文窗口大小。它们控制的是**特定阶段中单次模型调用的最大输出长度**。
 
-In practice:
-- Raising a limit gives that stage more room to finish a proof, theorem statement, or draft.
-- Lowering a limit makes the stage cheaper and faster, but increases the chance of truncation.
-- The most useful limits to tune depend on which theory pipeline you are using.
+实际效果：
+- 提高某个限制，可让该阶段有更多空间来完成证明、定理语句或草稿。
+- 降低某个限制，可使该阶段更省钱、更快，但增加被截断的风险。
+- 最有调优价值的限制取决于您使用的是哪个理论流水线。
 
-## Where These Settings Live
+## 设置位置
 
-Backend configuration lives in:
+后端配置位于：
 - `eurekaclaw/config.py`
 
-The UI config mapping lives in:
-- `eurekaclaw/ui/server.py` (`_CONFIG_FIELDS`)
+UI 配置映射位于：
+- `eurekaclaw/ui/server.py`（`_CONFIG_FIELDS`）
 
-The UI form lives in:
+UI 表单位于：
 - `frontend/index.html`
 - `eurekaclaw/ui/static/index.html`
 
-## Quick Reference
+## 速查表
 
-| Variable | Default | Used by |
+| 变量 | 默认值 | 使用者 |
 |---|---|---|
-| `MAX_TOKENS_AGENT` | `8192` | Generic agent loops (SurveyAgent, WriterAgent, fallback paths) |
-| `MAX_TOKENS_PROVER` | `4096` | `Prover` — lemma proof generation |
-| `MAX_TOKENS_PLANNER` | `4096` | `DivergentConvergentPlanner` (diverge phase); converge uses half |
-| `MAX_TOKENS_ARCHITECT` | `3072` | `ProofArchitect` in the `default` pipeline |
-| `MAX_TOKENS_DECOMPOSER` | `4096` | `KeyLemmaExtractor` and legacy decomposer stages |
-| `MAX_TOKENS_ASSEMBLER` | `6144` | `Assembler` — full proof narrative |
-| `MAX_TOKENS_FORMALIZER` | `4096` | `Formalizer`, `Refiner`, `CounterexampleSearcher`, `ResourceAnalyst`, `PaperReader` |
-| `MAX_TOKENS_CRYSTALLIZER` | `4096` | `TheoremCrystallizer` — final theorem statement |
-| `MAX_TOKENS_ANALYST` | `1536` | `MemoryGuidedAnalyzer`, `TemplateSelector`, `ProofSkeletonBuilder` (`memory_guided` pipeline) |
-| `MAX_TOKENS_SKETCH` | `1024` | `SketchGenerator` — Lean4/Coq sketch |
-| `MAX_TOKENS_VERIFIER` | `2048` | `Verifier` and peer-review calls |
-| `MAX_TOKENS_COMPRESS` | `512` | Context compression summaries (fast model) |
+| `MAX_TOKENS_AGENT` | `8192` | 通用智能体循环（SurveyAgent、WriterAgent、回退路径） |
+| `MAX_TOKENS_PROVER` | `4096` | `Prover` — 引理证明生成 |
+| `MAX_TOKENS_PLANNER` | `4096` | `DivergentConvergentPlanner`（diverge 阶段）；converge 使用一半 |
+| `MAX_TOKENS_ARCHITECT` | `3072` | `default` 流水线中的 `ProofArchitect` |
+| `MAX_TOKENS_DECOMPOSER` | `4096` | `KeyLemmaExtractor` 和遗留分解阶段 |
+| `MAX_TOKENS_ASSEMBLER` | `6144` | `Assembler` — 完整证明叙述 |
+| `MAX_TOKENS_FORMALIZER` | `4096` | `Formalizer`、`Refiner`、`CounterexampleSearcher`、`ResourceAnalyst`、`PaperReader` |
+| `MAX_TOKENS_CRYSTALLIZER` | `4096` | `TheoremCrystallizer` — 最终定理语句 |
+| `MAX_TOKENS_ANALYST` | `1536` | `MemoryGuidedAnalyzer`、`TemplateSelector`、`ProofSkeletonBuilder`（`memory_guided` 流水线） |
+| `MAX_TOKENS_SKETCH` | `1024` | `SketchGenerator` — Lean4/Coq 草图 |
+| `MAX_TOKENS_VERIFIER` | `2048` | `Verifier` 和同行评审调用 |
+| `MAX_TOKENS_COMPRESS` | `512` | 上下文压缩摘要（快速模型） |
 
-## Which Pipeline Uses What
+## 各流水线使用情况
 
-There are two theory pipelines:
+理论流水线有两种：
 - `default`
 - `memory_guided`
 
-### `default` Pipeline
+### `default` 流水线
 
-The stages that matter most for `default` are:
+对 `default` 流水线影响最大的阶段：
 - `Architect`
 - `Prover`
 - `Assembler`
 - `TheoremCrystallizer`
 - `Verifier`
 
-Relevant code:
+相关代码：
 - [default_proof_pipeline.yaml](eurekaclaw/agents/theory/proof_pipelines/default_proof_pipeline.yaml)
 - [proof_architect.py](eurekaclaw/agents/theory/proof_architect.py)
 - [prover.py](eurekaclaw/agents/theory/prover.py)
@@ -61,16 +61,16 @@ Relevant code:
 - [theorem_crystallizer.py](eurekaclaw/agents/theory/theorem_crystallizer.py)
 - [verifier.py](eurekaclaw/agents/theory/verifier.py)
 
-If the `default` pipeline is struggling, the most useful knobs are usually:
+若 `default` 流水线遇到问题，通常最有效的调节顺序为：
 1. `Architect`
 2. `Prover`
 3. `Assembler`
 4. `TheoremCrystallizer`
 5. `Verifier`
 
-### `memory_guided` Pipeline
+### `memory_guided` 流水线
 
-The stages that matter most for `memory_guided` are:
+对 `memory_guided` 流水线影响最大的阶段：
 - `Analyst`
 - `Decomposer`
 - `Prover`
@@ -78,7 +78,7 @@ The stages that matter most for `memory_guided` are:
 - `TheoremCrystallizer`
 - `Verifier`
 
-Relevant code:
+相关代码：
 - [memory_guided_proof_pipeline.yaml](eurekaclaw/agents/theory/proof_pipelines/memory_guided_proof_pipeline.yaml)
 - [analysis_stages.py](eurekaclaw/agents/theory/analysis_stages.py)
 - [key_lemma_extractor.py](eurekaclaw/agents/theory/key_lemma_extractor.py)
@@ -87,7 +87,7 @@ Relevant code:
 - [theorem_crystallizer.py](eurekaclaw/agents/theory/theorem_crystallizer.py)
 - [verifier.py](eurekaclaw/agents/theory/verifier.py)
 
-If the `memory_guided` pipeline is struggling, the most useful knobs are usually:
+若 `memory_guided` 流水线遇到问题，通常最有效的调节顺序为：
 1. `Analyst`
 2. `Decomposer`
 3. `Prover`
@@ -95,186 +95,186 @@ If the `memory_guided` pipeline is struggling, the most useful knobs are usually
 5. `TheoremCrystallizer`
 6. `Verifier`
 
-## What Each Important Stage Does
+## 各重要阶段的作用
 
-### Agent loop
+### 智能体循环
 
-Used by generic agent calls, including:
+用于通用智能体调用，包括：
 - `SurveyAgent`
 - `WriterAgent`
-- any stage that falls back to the generic base agent path
+- 所有回退到通用基础智能体路径的阶段
 
-Relevant code:
+相关代码：
 - [base.py](eurekaclaw/agents/base.py)
 - [agent.py](eurekaclaw/agents/survey/agent.py)
 - [agent.py](eurekaclaw/agents/writer/agent.py)
 
-Raise this when:
-- survey answers are too short
-- writer keeps stopping early
+在以下情况时提高：
+- 调研结果过短
+- Writer 频繁提前停止
 
 ### Prover
 
-Used for theorem-proof generation at the lemma level.
+用于引理级别的定理证明生成。
 
-Relevant code:
+相关代码：
 - [prover.py](eurekaclaw/agents/theory/prover.py)
 
-Raise this when:
-- lemma proofs stop mid-argument
-- prover keeps omitting technical steps
+在以下情况时提高：
+- 引理证明在论证中途停止
+- Prover 频繁省略技术步骤
 
 ### Architect
 
-Used by `ProofArchitect` in the `default` pipeline.
+用于 `default` 流水线中的 `ProofArchitect`。
 
-Relevant code:
+相关代码：
 - [proof_architect.py](eurekaclaw/agents/theory/proof_architect.py)
 
-Raise this when:
-- proof plans are too shallow
-- the architect returns incomplete lemma structure
+在以下情况时提高：
+- 证明计划过于浅层
+- Architect 返回不完整的引理结构
 
 ### Analyst
 
-Used by `MemoryGuidedAnalyzer`, `TemplateSelector`, and `ProofSkeletonBuilder` in the `memory_guided` pipeline.
+用于 `memory_guided` 流水线中的 `MemoryGuidedAnalyzer`、`TemplateSelector` 和 `ProofSkeletonBuilder`。
 
-Relevant code:
+相关代码：
 - [analysis_stages.py](eurekaclaw/agents/theory/analysis_stages.py)
 
-Raise this when:
-- the pipeline picks poor proof templates
-- proof skeletons are too sketchy
-- memory-guided analysis is too thin
+在以下情况时提高：
+- 流水线选择了较差的证明模板
+- 证明框架过于粗略
+- 记忆引导分析内容过薄
 
 ### Decomposer
 
-Used by decomposition-style stages, including `KeyLemmaExtractor`.
+用于分解式阶段，包括 `KeyLemmaExtractor`。
 
-Relevant code:
+相关代码：
 - [key_lemma_extractor.py](eurekaclaw/agents/theory/key_lemma_extractor.py)
 - [decomposer.py](eurekaclaw/agents/theory/decomposer.py)
 
-Raise this when:
-- key lemmas are missing
-- decomposition is too coarse
+在以下情况时提高：
+- 关键引理缺失
+- 分解粒度过粗
 
 ### Assembler
 
-Used to produce `state.assembled_proof`.
+用于生成 `state.assembled_proof`。
 
-Relevant code:
+相关代码：
 - [assembler.py](eurekaclaw/agents/theory/assembler.py)
 
-Raise this when:
-- the proof body ends mid-sentence
-- `assembled_proof` looks truncated
-- theorem extraction later fails because the proof narrative is incomplete
+在以下情况时提高：
+- 证明正文在句子中途结束
+- `assembled_proof` 看起来被截断
+- 后续定理提取失败，因为证明叙述不完整
 
 ### TheoremCrystallizer
 
-Used to produce `state.formal_statement`.
+用于生成 `state.formal_statement`。
 
-Relevant code:
+相关代码：
 - [theorem_crystallizer.py](eurekaclaw/agents/theory/theorem_crystallizer.py)
 
-Raise this when:
-- the theorem statement is truncated
-- the theorem ends mid-formula
-- the theorem block is missing assumptions or terms that are present in the assembled proof
+在以下情况时提高：
+- 定理语句被截断
+- 定理在公式中途结束
+- 定理块中缺少汇总证明中存在的假设或术语
 
 ### Verifier
 
-Used for:
-- lemma peer review
-- consistency checking
+用于：
+- 引理同行评审
+- 一致性检查
 
-Relevant code:
+相关代码：
 - [verifier.py](eurekaclaw/agents/theory/verifier.py)
 - [consistency_checker.py](eurekaclaw/agents/theory/consistency_checker.py)
 
-Raise this when:
-- reviewer outputs are too terse
-- consistency checks miss obvious issues
+在以下情况时提高：
+- 审阅者输出过于简短
+- 一致性检查遗漏了明显问题
 
 ### Formalizer / Refiner
 
-Shared budget for several theorem-support stages:
+多个定理支撑阶段的共享预算：
 - `Formalizer`
 - `Refiner`
 - `CounterexampleSearcher`
 - `ResourceAnalyst`
 - `PaperReader`
 
-Relevant code:
+相关代码：
 - [formalizer.py](eurekaclaw/agents/theory/formalizer.py)
 - [refiner.py](eurekaclaw/agents/theory/refiner.py)
 - [counterexample.py](eurekaclaw/agents/theory/counterexample.py)
 - [resource_analyst.py](eurekaclaw/agents/theory/resource_analyst.py)
 - [paper_reader.py](eurekaclaw/agents/theory/paper_reader.py)
 
-Raise this when:
-- paper extraction is too shallow
-- counterexample search is too thin
-- refinement suggestions are incomplete
+在以下情况时提高：
+- 论文提取内容过浅
+- 反例搜索结果过少
+- 改进建议不完整
 
-## Practical Guidance
+## 实践指南
 
-### If the assembled proof is truncated
+### 若汇总证明被截断
 
-Increase:
+依次提高：
 1. `Assembler`
-2. `Prover` if lemma proofs are also too short
+2. 若引理证明也过短，提高 `Prover`
 
-### If the theorem statement is truncated
+### 若定理语句被截断
 
-Increase:
+依次提高：
 1. `TheoremCrystallizer`
-2. `Assembler` if the proof narrative itself is incomplete
+2. 若证明叙述本身不完整，提高 `Assembler`
 
-### If `default` planning is weak
+### 若 `default` 规划效果较弱
 
-Increase:
+依次提高：
 1. `Architect`
 2. `Prover`
 
-### If `memory_guided` planning is weak
+### 若 `memory_guided` 规划效果较弱
 
-Increase:
+依次提高：
 1. `Analyst`
 2. `Decomposer`
 3. `Prover`
 
-### If writer or survey outputs are too short
+### 若 Writer 或 Survey 输出过短
 
-Increase:
+提高：
 1. `Agent loop`
 
-## Important Distinction
+## 重要区别
 
-These controls are **not** the same as the model's full context window.
+这些控制项**不等同于**模型的完整上下文窗口。
 
-They only control:
-- how much a single stage may output in one call
+它们仅控制：
+- 单个阶段在一次调用中最多输出多少内容
 
-They do **not** directly control:
-- how much total conversation history can be sent
-- how large the model's full context window is
+它们**不直接控制**：
+- 可发送的总对话历史量
+- 模型完整上下文窗口的大小
 
-So a stage can fail in two different ways:
-- the stage output is too short because its own token limit is too low
-- the whole request is too heavy or too complex even though the per-call limit is large enough
+因此，一个阶段可能以两种不同方式失败：
+- 该阶段自身的 token 限制过低，导致输出过短
+- 整个请求过于繁重或复杂，即使单次调用限制足够大也会失败
 
-## Current UI Coverage
+## 当前 UI 覆盖范围
 
-The UI now exposes the major token-limit controls used by both theory pipelines, including:
+UI 现已暴露两个理论流水线使用的主要 token 限制控制项，包括：
 - `Architect`
 - `Assembler`
 - `TheoremCrystallizer`
 - `Analyst`
 - `Sketch`
 
-If you add new `max_tokens_*` fields in the backend later, remember to update:
+若后续在后端添加了新的 `max_tokens_*` 字段，请记得同步更新：
 - [server.py](eurekaclaw/ui/server.py)
 - [frontend/index.html](frontend/index.html)
 - [index.html](eurekaclaw/ui/static/index.html)

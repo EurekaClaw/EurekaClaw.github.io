@@ -1,6 +1,6 @@
 # 领域插件系统
 
-EurekaClaw uses a three-tier plugin architecture to support domain-specific research:
+EurekaClaw 采用三层插件架构来支持领域特定的研究：
 
 ```
 EurekaClaw (general pipeline)          ← domain-agnostic: survey / theory / experiment / writer
@@ -8,13 +8,13 @@ EurekaClaw (general pipeline)          ← domain-agnostic: survey / theory / ex
             └── Workflow                ← per-domain research guidance injected into agent prompts
 ```
 
-Plugins add domain-specific tools, skills, and prompt guidance without modifying core code.
+插件无需修改核心代码，即可为特定领域添加工具、技能和提示词引导。
 
 ---
 
-## DomainPlugin Base Class
+## DomainPlugin 基类
 
-**File:** `eurekaclaw/domains/base.py`
+**文件：** `eurekaclaw/domains/base.py`
 
 ```python
 class DomainPlugin(ABC):
@@ -24,7 +24,7 @@ class DomainPlugin(ABC):
     description: str = ""
 ```
 
-### Abstract Methods
+### 抽象方法
 
 ```python
 @abstractmethod
@@ -38,7 +38,7 @@ def get_workflow_hint(self) -> str:
     ...
 ```
 
-### Optional Methods
+### 可选方法
 
 ```python
 def get_skills_dirs(self) -> list[Path]:
@@ -52,11 +52,11 @@ def get_benchmark_problems(self, level: str) -> list[dict]:
 
 ---
 
-## Plugin Registry
+## 插件注册表
 
-**File:** `eurekaclaw/domains/__init__.py`
+**文件：** `eurekaclaw/domains/__init__.py`
 
-### Registration
+### 注册
 
 ```python
 @register_domain
@@ -65,27 +65,27 @@ class MyPlugin(DomainPlugin):
     ...
 ```
 
-The `@register_domain` decorator registers a plugin class by its `name`.
+`@register_domain` 装饰器通过插件的 `name` 属性注册该插件类。
 
-### Resolution
+### 解析
 
 ```python
 def resolve_domain(domain: str) -> DomainPlugin | None
 ```
 
-Auto-detect the right plugin from a domain string or conjecture keywords. Matching order:
-1. Exact key match against registered plugin names
-2. Keyword scan — returns the first plugin whose `keywords` list contains any word from `domain`
+从领域字符串或猜想关键词自动检测正确的插件。匹配顺序：
+1. 与已注册插件名称进行精确匹配
+2. 关键词扫描——返回 `keywords` 列表中包含 `domain` 中任意词的第一个插件
 
-Returns `None` if no plugin matches (runs in general mode).
+若无匹配插件，则返回 `None`（以通用模式运行）。
 
 ---
 
-## MAB Domain Plugin
+## MAB 领域插件
 
-**Package:** `eurekaclaw/domains/mab/`
+**包：** `eurekaclaw/domains/mab/`
 
-The built-in example plugin for stochastic multi-armed bandit theory.
+用于随机多臂赌博机理论的内置示例插件。
 
 ```python
 @register_domain
@@ -99,9 +99,9 @@ class MABDomainPlugin(DomainPlugin):
     ]
 ```
 
-**Auto-detected when domain contains:** `bandit`, `UCB`, `thompson`, `regret`, `exploration`, `multi-armed`, etc.
+**当领域包含以下词汇时自动检测：** `bandit`、`UCB`、`thompson`、`regret`、`exploration`、`multi-armed` 等。
 
-### Package Structure
+### 包结构
 
 ```
 domains/mab/
@@ -128,9 +128,9 @@ domains/mab/
 
 ---
 
-## How to Add a New Domain
+## 如何添加新领域
 
-1. **Create the plugin package:**
+1. **创建插件包：**
 
 ```python
 # eurekaclaw/domains/my_domain/__init__.py
@@ -163,7 +163,7 @@ class MyDomainPlugin(DomainPlugin):
         return json.loads(bm_file.read_text()) if bm_file.exists() else []
 ```
 
-2. **Register the import** in `eurekaclaw/domains/__init__.py`:
+2. **在 `eurekaclaw/domains/__init__.py` 中注册导入：**
 
 ```python
 _DOMAIN_PACKAGES = [
@@ -172,16 +172,16 @@ _DOMAIN_PACKAGES = [
 ]
 ```
 
-3. **That's it.** `resolve_domain("keyword1 problem")` will auto-select your plugin.
+3. **完成。** `resolve_domain("keyword1 problem")` 将自动选择您的插件。
 
 ---
 
-## Domain Plugin Integration
+## 领域插件集成方式
 
-When `MetaOrchestrator` runs with a detected domain plugin, it:
+当 `MetaOrchestrator` 检测到领域插件并运行时，它将：
 
-1. Calls `plugin.register_tools(tool_registry)` — adds domain tools to the registry
-2. Calls `plugin.get_skills_dirs()` — loads domain skills into `SkillRegistry`
-3. Injects `plugin.get_workflow_hint()` into agent system prompts
+1. 调用 `plugin.register_tools(tool_registry)` — 将领域工具添加到注册表
+2. 调用 `plugin.get_skills_dirs()` — 将领域技能加载到 `SkillRegistry`
+3. 将 `plugin.get_workflow_hint()` 注入智能体系统提示词
 
-No changes to any core agent or orchestrator code are needed.
+无需修改任何核心智能体或编排器代码。

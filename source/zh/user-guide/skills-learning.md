@@ -2,53 +2,53 @@
 
 ## What Are Skills?
 
-Skills are Markdown files that encode successful proof strategies, domain conventions, and common techniques. They are injected into agent prompts before each task, improving results without retraining the model.
+技能是 Markdown 文件，其中编码了成功的证明策略、领域内的惯例和常用技巧。它们会在每次任务执行前注入到代理提示词中，从而无需重新训练模型即可提升结果。
 
-Skills live in `~/.eurekaclaw/skills/`.
+技能文件位于 `~/.eurekaclaw/skills/` 目录下。
 
-## Viewing Your Skills
+## 查看您的技能
 
 ```bash
 eurekaclaw skills
 ```
 
-## Installing Built-in Skills
+## 安装内置技能
 
 ```bash
 eurekaclaw install-skills
 eurekaclaw install-skills --force   # overwrite existing
 ```
 
-## Installing from ClawHub
+## 从 ClawHub 安装
 
 ```bash
 eurekaclaw install-skills steipete/github
 ```
 
-Downloads from the [ClawHub](https://clawhub.ai/) registry. Requires the `clawhub` CLI.
+从 [ClawHub](https://clawhub.ai/) 下载。需要 `clawhub` 命令行界面。
 
-## How EurekaClaw Learns
+## EurekaClaw 如何学习
 
-After each session, the `ContinualLearningLoop` runs automatically. It:
-1. Extracts unique failure patterns from the session
-2. Distills successful proof strategies using the LLM
-3. Writes new `.md` skill files to `~/.eurekaclaw/skills/`
+每次学习结束后，`ContinualLearningLoop` 都会自动运行。它：
+1. 从会话中提取独特的故障模式
+2. 运用大语言模型提炼成功的证明策略
+3. 将新的 `.md` 技能文件写入 `~/.eurekaclaw/skills/` 目录
 
-These new skills are automatically used in future sessions.
+这些新技能将在以后的课程中自动应用。
 
-## Learning Modes
+## 学习模式
 
-Set `EUREKACLAW_MODE` in `.env`:
+在 `.env` 文件中设置 `EUREKACLAW_MODE`：
 
-| Mode | What runs after each session |
+| 模式 | 每次会话结束后运行的内容 |
 |---|---|
-| `skills_only` (default) | Distill failures into new skill files |
-| `rl` | Skill distillation + Process Reward Model scoring of proof trajectories |
-| `madmax` | Skill distillation + PRM scoring + cloud LoRA fine-tuning (GRPO) |
+| `skills_only` (默认) | 将失败结果提炼成新的技能文件 |
+| `rl` | 技能提炼 + 过程奖励模型对证明轨迹进行评分 |
+| `madmax` | 技能提炼 + PRM 评分 + 云端 LoRA 微调 (GRPO) |
 
-## Writing Skills Manually
+## 手动写作技巧
 
-Create a `.md` file in `~/.eurekaclaw/skills/`:
+在 `~/.eurekaclaw/skills/` 目录下创建一个 `.md` 文件：
 
 ```markdown
 ---
@@ -62,15 +62,15 @@ source: manual
 created_at: 2026-03-21T00:00:00
 ---
 
-# Azuma vs Bernstein
+# 样例：Azuma 与 Bernstein 
 
-Use Azuma-Hoeffding when:
-- Bounded differences condition holds
-- Variance is unknown
+在以下情况下使用 Azuma-Hoeffding 算法：
+- 有界差分条件成立
+- 方差未知
 
-Use Bernstein when:
-- You have a bound on the variance
-- Gives tighter constant factors for small variance
+在以下情况下使用Bernstein定理：
+- 你已经设定了方差的上限
+- 对于小方差，可提供更精确的常数因子
 ```
 
-See [Skills Reference](../reference/skills.md) for the full skill system documentation.
+有关完整的技能系统文档，请参阅[技能参考](../reference/skills.md)。

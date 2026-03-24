@@ -1,10 +1,10 @@
 # 系统结构
 
-## Overview
+## 概述
 
-EurekaClaw is organized as a **multi-agent pipeline** coordinated by a `MetaOrchestrator`. Each agent is specialized for one stage of the research lifecycle. Artifacts are shared between agents via a central `KnowledgeBus`.
+EurekaClaw 以**多智能体流水线**形式组织，由 `MetaOrchestrator` 统一调度。每个智能体专注于研究生命周期的某一阶段，产物通过中央 `KnowledgeBus` 在智能体之间共享。
 
-## Pipeline Stages
+## 流水线阶段
 
 ```{image} ../_static/images/pipeline-main.svg
 :alt: EurekaClaw Main Pipeline
@@ -12,11 +12,11 @@ EurekaClaw is organized as a **multi-agent pipeline** coordinated by a `MetaOrch
 :align: center
 ```
 
-## Core Components
+## 核心组件
 
 ### KnowledgeBus
 
-Central in-memory artifact store shared by all agents. All data flows through it — no agent holds private state between turns.
+所有智能体共享的中央内存产物存储。所有数据通过它流转——智能体在轮次之间不保留私有状态。
 
 ```
 KnowledgeBus
@@ -27,26 +27,26 @@ KnowledgeBus
 └── TaskPipeline     — current task execution plan
 ```
 
-Artifacts are persisted to `~/.eurekaclaw/runs/<session_id>/` at the end of each session.
+产物在每次会话结束时持久化到 `~/.eurekaclaw/runs/<session_id>/`。
 
-### Agent Session & Context Compression
+### 智能体会话与上下文压缩
 
-Each agent maintains a conversation history (`AgentSession`) through its tool-use loop. To prevent unbounded context growth:
-- History is **compressed every N turns** (configurable via `CONTEXT_COMPRESS_AFTER_TURNS`, default 6)
-- A fast model summarizes the history into bullet points
-- The full conversation is replaced with the summary
+每个智能体在工具调用循环中维护一段对话历史（`AgentSession`）。为防止上下文无限增长：
+- 历史每隔 N 轮**压缩一次**（通过 `CONTEXT_COMPRESS_AFTER_TURNS` 配置，默认 6）
+- 快速模型将历史压缩为要点摘要
+- 完整对话被替换为该摘要
 
-### Skill Injection
+### 技能注入
 
-Before each agent call, the `SkillInjector` retrieves the top-k most relevant skills from the skill bank and injects them into the system prompt as examples. This is the primary mechanism for cross-session learning.
+每次调用智能体之前，`SkillInjector` 从技能库中检索最相关的前 k 个技能，并以示例形式注入系统提示词。这是跨会话学习的主要机制。
 
-### Domain Plugin System
+### 领域插件系统
 
-Domain-specific behavior (tools, skills, workflow hints) is injected via `DomainPlugin` classes. The correct plugin is auto-detected from the domain string or conjecture keywords. See [domains.md](domains.md).
+领域特定的行为（工具、技能、工作流提示）通过 `DomainPlugin` 类注入。正确的插件根据领域字符串或猜想关键词自动检测。详见 [domains.md](domains.md)。
 
-## Data Models
+## 数据模型
 
-### TheoryState — Proof State Machine
+### TheoryState — 证明状态机
 
 ```
 TheoryState
@@ -64,7 +64,7 @@ TheoryState
 └── status                  — pending/in_progress/proved/refuted/abandoned
 ```
 
-### ResearchBrief — Planning State
+### ResearchBrief — 规划状态
 
 ```
 ResearchBrief
@@ -78,21 +78,21 @@ ResearchBrief
 └── open_problems[], key_mathematical_objects[]
 ```
 
-## Theory Agent Inner Loop (7 Stages)
+## TheoryAgent 内层循环（7 阶段）
 
-The `TheoryAgent` runs a **bottom-up proof pipeline** implemented in `inner_loop_yaml.py`:
+`TheoryAgent` 运行一个**自底向上的证明流水线**，实现于 `inner_loop_yaml.py`：
 
-| Stage | Class | Input | Output |
+| 阶段 | 类 | 输入 | 输出 |
 |---|---|---|---|
 | 1 | `PaperReader` | Bibliography | `known_results[]` |
 | 2 | `GapAnalyst` | known_results + conjecture | `research_gap` |
-| 3 | `ProofArchitect` | research_gap | `proof_plan[]` (provenance-annotated) |
+| 3 | `ProofArchitect` | research_gap | `proof_plan[]`（带来源标注） |
 | 4 | `LemmaDeveloper` | proof_plan, open_goals | `proven_lemmas{}` |
 | 5 | `Assembler` | proven_lemmas | `assembled_proof` |
 | 6 | `TheoremCrystallizer` | assembled_proof | `formal_statement` |
-| 7 | `ConsistencyChecker` | full TheoryState | consistency report |
+| 7 | `ConsistencyChecker` | 完整 TheoryState | 一致性报告 |
 
-The `LemmaDeveloper` runs its own inner loop per lemma:
+`LemmaDeveloper` 对每个引理运行独立的内层循环：
 
 ```{image} ../_static/images/pipeline-theory.svg
 :alt: TheoryAgent Inner Loop and LemmaDeveloper Sub-Loop
@@ -100,7 +100,7 @@ The `LemmaDeveloper` runs its own inner loop per lemma:
 :align: center
 ```
 
-## LaTeX Compilation Pipeline
+## LaTeX 编译流水线
 
 ```{image} ../_static/images/pipeline-latex.svg
 :alt: LaTeX Compilation Pipeline
@@ -108,46 +108,46 @@ The `LemmaDeveloper` runs its own inner loop per lemma:
 :align: center
 ```
 
-## Direction Planning Fallback
+## 方向规划回退机制
 
-After the `IdeationAgent` runs, `MetaOrchestrator._handle_direction_gate()` calls `DivergentConvergentPlanner.diverge()` to generate 5 research directions. If the planner fails or returns an empty list (e.g. LLM parse error, API timeout), instead of silently proceeding with no direction the orchestrator **halts and prompts the user**:
+`IdeationAgent` 运行后，`MetaOrchestrator._handle_direction_gate()` 调用 `DivergentConvergentPlanner.diverge()` 生成 5 个研究方向。若规划器失败或返回空列表（例如 LLM 解析错误、API 超时），编排器不会静默地以无方向继续执行，而是**暂停并提示用户**：
 
-1. Prints up to 5 open problems found by the survey as context.
-2. Asks the user to type a hypothesis/direction manually.
-3. Constructs a `ResearchDirection` from the input and writes it to `ResearchBrief`.
-4. If the user enters nothing or presses Ctrl+C, raises `RuntimeError` and the session exits cleanly.
+1. 打印调研发现的最多 5 个开放问题作为上下文。
+2. 请求用户手动输入一个假设/方向。
+3. 根据输入构建 `ResearchDirection` 并写入 `ResearchBrief`。
+4. 若用户未输入任何内容或按下 Ctrl+C，则抛出 `RuntimeError`，会话干净退出。
 
-This is implemented in `_handle_manual_direction()` in `meta_orchestrator.py`.
+该逻辑实现于 `meta_orchestrator.py` 的 `_handle_manual_direction()` 中。
 
-## Theory Review Gate
+## 理论评审关卡
 
-After the TheoryAgent completes and before the WriterAgent runs, the `MetaOrchestrator` executes the `theory_review_gate` orchestrator task. This gate is **independent of `gate_mode`** and always fires.
+TheoryAgent 完成后、WriterAgent 运行前，`MetaOrchestrator` 执行 `theory_review_gate` 编排器任务。该关卡**独立于 `gate_mode`**，始终触发。
 
-**Flow:**
-1. `GateController.theory_review_prompt()` prints a numbered lemma list with `✓ verified` / `~ low confidence` tags for each proved lemma, plus any open goals.
-2. The user is asked: **y** (proceed) or **n** (flag the most problematic step).
-3. On rejection:
-   - User enters the lemma number (`L3`) or ID, and a description of the logical gap.
-   - `MetaOrchestrator._handle_theory_review_gate()` finds the theory task, injects the feedback as `[User feedback]: ...`, resets it to `PENDING`, and re-runs the TheoryAgent once.
-   - After the revision, the updated sketch is shown again for a final look (no further retry).
-4. On second rejection, the pipeline proceeds to the WriterAgent anyway with a warning.
+**流程：**
+1. `GateController.theory_review_prompt()` 打印带编号的引理列表，每个已证明引理标注 `✓ verified` / `~ low confidence`，并显示所有未解决目标。
+2. 询问用户：**y**（继续）或 **n**（标记最有问题的步骤）。
+3. 拒绝时：
+   - 用户输入引理编号（`L3`）或 ID，以及逻辑缺口的描述。
+   - `MetaOrchestrator._handle_theory_review_gate()` 找到理论任务，将反馈以 `[User feedback]: ...` 形式注入，将任务重置为 `PENDING`，并重新运行 TheoryAgent 一次。
+   - 修订后再次展示更新后的草稿（不再进一步重试）。
+4. 第二次拒绝时，流水线仍会继续推进到 WriterAgent，并显示警告。
 
-## Pause / Resume
+## 暂停 / 恢复
 
-The TheoryAgent supports graceful pausing at stage boundaries via `ProofCheckpoint` (`agents/theory/checkpoint.py`).
+TheoryAgent 通过 `ProofCheckpoint`（`agents/theory/checkpoint.py`）支持在阶段边界优雅暂停。
 
-**Pause flow:**
-- `eurekaclaw pause <session_id>` or **Ctrl+C** writes `~/.eurekaclaw/sessions/<session_id>/pause.flag`.
-- At each stage boundary in `inner_loop_yaml._run_once()`, `ProofCheckpoint.is_pause_requested()` is checked.
-- When detected: clears the flag, saves `checkpoint.json` (current stage + full `TheoryState`), raises `ProofPausedException`.
-- `ProofPausedException` propagates through both `_run_once` and `agent.py` (explicit re-raise in both `except Exception` handlers).
+**暂停流程：**
+- `eurekaclaw pause <session_id>` 或 **Ctrl+C** 会在 `~/.eurekaclaw/sessions/<session_id>/pause.flag` 写入暂停标志。
+- 在 `inner_loop_yaml._run_once()` 的每个阶段边界处，检查 `ProofCheckpoint.is_pause_requested()`。
+- 检测到暂停时：清除标志，保存 `checkpoint.json`（当前阶段 + 完整 `TheoryState`），抛出 `ProofPausedException`。
+- `ProofPausedException` 在 `_run_once` 和 `agent.py` 中均会显式重新抛出，向上传播。
 
-**Resume flow:**
-- `eurekaclaw resume <session_id>` loads `checkpoint.json`, reconstructs `TheoryState`, and re-runs the TheoryAgent starting at the saved stage.
+**恢复流程：**
+- `eurekaclaw resume <session_id>` 加载 `checkpoint.json`，重建 `TheoryState`，并从保存的阶段重新运行 TheoryAgent。
 
-**Checkpoint file:** `~/.eurekaclaw/sessions/<session_id>/checkpoint.json`
+**检查点文件：** `~/.eurekaclaw/sessions/<session_id>/checkpoint.json`
 
-## Post-Run Learning
+## 运行后学习
 
 ```{image} ../_static/images/pipeline-learning.svg
 :alt: Post-Run Continual Learning

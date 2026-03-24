@@ -32,6 +32,9 @@ jobs:
       - name: Build docs
         run: make html SPHINXOPTS="--keep-going -n"
 
+      - name: Fix Sphinx zh search bug (ChineseStemmer undefined)
+        run: sed -i 's/window\.Stemmer = ChineseStemmer/window.Stemmer = EnglishStemmer/' _build/html/zh/_static/language_data.js
+
       - name: Deploy to gh-pages
         if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v4

@@ -16,6 +16,7 @@ install:
 html:
 	@$(SPHINXBUILD) -b html "$(SOURCEDIR)" "$(BUILDDIR)/html" $(SPHINXOPTS) $(O)
 	@$(SPHINXBUILD) -b html "$(SOURCEDIR)/zh" "$(BUILDDIR)/html/zh" $(SPHINXOPTS) $(O)
+	@sed -i 's/window\.Stemmer = ChineseStemmer/window.Stemmer = EnglishStemmer/' "$(BUILDDIR)/html/zh/_static/language_data.js"
 	@echo
 	@echo "Build finished."
 	@echo "  English: _build/html/index.html"
@@ -23,6 +24,7 @@ html:
 
 html-zh:
 	@$(SPHINXBUILD) -b html "$(SOURCEDIR)/zh" "$(BUILDDIR)/html/zh" $(SPHINXOPTS) $(O)
+	@sed -i 's/window\.Stemmer = ChineseStemmer/window.Stemmer = EnglishStemmer/' "$(BUILDDIR)/html/zh/_static/language_data.js"
 	@echo
 	@echo "Build finished. Open _build/html/zh/index.html"
 

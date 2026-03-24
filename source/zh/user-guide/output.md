@@ -1,21 +1,21 @@
 # 输出内容
 
-After a run, `./results/<session_id>/` contains:
+运行后，`./results/<session_id>/` 包含：
 
-| File | Description |
+| 文件 | 描述 |
 |---|---|
-| `paper.pdf` | Compiled PDF (requires pdflatex + bibtex) |
-| `paper.tex` | Full LaTeX source — edit and recompile if needed |
-| `references.bib` | BibTeX bibliography |
-| `theory_state.json` | Full proof state — lemmas, proofs, confidence scores |
-| `research_brief.json` | Planning state — directions scored and selected |
-| `experiment_result.json` | Numerical validation results (if experiment ran) |
+| `paper.pdf` | 编译后的 PDF 文件（需要 pdflatex 和 bibtex） |
+| `paper.tex` | 完整的 LaTeX 源代码 — 如有需要，可编辑并重新编译 |
+| `references.bib` | BibTeX 参考文献  |
+| `theory_state.json` | 完整证明状态 — 引理、证明、置信度评分 |
+| `research_brief.json` | 规划状态 — 研究方向评分和已选 |
+| `experiment_result.json` | 数值验证结果（如果实验已运行） |
 
-Paused sessions also write a checkpoint to `~/.eurekaclaw/sessions/<session_id>/checkpoint.json`.
+暂停的会话还会向 `~/.eurekaclaw/sessions/<session_id>/checkpoint.json` 写入一个检查点。
 
-## Reading `theory_state.json`
+## 读取 `theory_state.json`
 
-Key fields:
+关键字段:
 
 ```
 {
@@ -40,33 +40,33 @@ Key fields:
 }
 ```
 
-### Proof Status
+### 证明状态
 
-| Status | Meaning |
+| 状态 | 含义 |
 |---|---|
-| `proved` | All lemmas verified, assembled proof complete |
-| `refuted` | A counterexample was found; the conjecture is false or needs refinement |
-| `abandoned` | Hit `THEORY_MAX_ITERATIONS` without completing; partial proof saved |
+| `proved` | 所有引理均已验证，证明完毕 |
+| `refuted` | 已找到反例；该猜想是错误的或需要完善 |
+| `abandoned` | 未完成就达到了 `THEORY_MAX_ITERATIONS`；部分证明已保存 |
 
-### Lemma Provenance
+### 引理来源
 
-| Provenance | Meaning |
+| 来源 | 含义 |
 |---|---|
-| `known` | Directly citable — no new proof needed |
-| `adapted` | A known result modified to fit this context |
-| `new` | Genuinely novel — fully proved from scratch |
+| `known` | 可直接引用——无需新的证据 |
+| `adapted` | 已验证的结果，经过修改以适应此上下文 |
+| `new` | 真正意义上的创新——从零开始，完全验证 |
 
-## Low-Confidence Warnings
+## 低置信度警告
 
-If a lemma has `verified=false`, the PDF contains:
+如果某个词条的 `verified=false` 为真，则 PDF 包含：
 
 ```
 [Unverified step]   ← orange text
 ```
 
-and a **Limitations** section explaining all unverified steps. Review `theory_state.json → proven_lemmas` to see which lemmas are flagged.
+以及一个 **Limitations** 部分解释了所有未经验证的步骤。请查看 `theory_state.json → proven_lemmas` 以了解哪些词条已被标记。
 
-## Using the Python API to Access Results
+## 使用 Python API 访问结果
 
 ```python
 import json
@@ -81,4 +81,4 @@ print("Direction:", direction["title"])
 print("Novelty score:", direction["novelty_score"])
 ```
 
-See [Python API](../reference/api.md) for full details.
+有关完整详细信息，请参阅 [Python API](../reference/api.md)。

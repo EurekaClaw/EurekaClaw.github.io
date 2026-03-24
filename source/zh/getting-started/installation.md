@@ -50,9 +50,9 @@ pip install -e ".[openai,oauth]"
 
 | Tool | Purpose | Install |
 |---|---|---|
-| **pdflatex** + bibtex | Compile `paper.tex` → `paper.pdf` | TeX Live / MacTeX |
-| **Lean4** | Formal proof verification | [leanprover.github.io](https://leanprover.github.io) |
-| **clawhub** | Install skills from ClawHub registry | `pip install clawhub` |
+| **pdflatex** + bibtex | 编译 `paper.tex` → `paper.pdf` | TeX Live / MacTeX |
+| **Lean4** | 正式定义检验 | [leanprover.github.io](https://leanprover.github.io) |
+| **clawhub** | 从ClawHub上安装技能 | `pip install clawhub` |
 
 ```{note}
 **Docker / 沙盒代码执行** 作为可选工具列出，目前为**试用版**-实验运行程序和 `execute_python` 工具尚未安全地放入沙盒中供一般使用。可以设置`EXPERIMENT_MODE=false`。

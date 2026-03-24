@@ -9,5 +9,5 @@ myst:
 ```{toctree}
 :maxdepth: 1
 
-开发日志
+changelog
 ```

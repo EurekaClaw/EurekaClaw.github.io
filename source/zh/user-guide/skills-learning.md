@@ -1,6 +1,6 @@
 # 技能和持续学习
 
-## What Are Skills?
+## 技能是什么？
 
 技能是 Markdown 文件，其中编码了成功的证明策略、领域内的惯例和常用技巧。它们会在每次任务执行前注入到代理提示词中，从而无需重新训练模型即可提升结果。
 
@@ -62,15 +62,15 @@ source: manual
 created_at: 2026-03-21T00:00:00
 ---
 
-# 样例：Azuma 与 Bernstein 
+# Azuma vs Bernstein
 
-在以下情况下使用 Azuma-Hoeffding 算法：
-- 有界差分条件成立
-- 方差未知
+Use Azuma-Hoeffding when:
+- Bounded differences condition holds
+- Variance is unknown
 
-在以下情况下使用Bernstein定理：
-- 你已经设定了方差的上限
-- 对于小方差，可提供更精确的常数因子
+Use Bernstein when:
+- You have a bound on the variance
+- Gives tighter constant factors for small variance
 ```
 
 有关完整的技能系统文档，请参阅[技能参考](../reference/skills.md)。

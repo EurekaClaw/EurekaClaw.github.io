@@ -70,9 +70,9 @@ make typecheck   # type-check only, no output
 
 ---
 
-## Session Controls
+## 对话控制
 
-### Pause / Resume
+### 暂停 / 恢复
 
 会话运行时，会出现**暂停验证**按钮。EurekaClaw在下一个引理边界处优雅地停止，并将检查点写入 `~/.eurekaclaw/sessions/<session_id>/checkpoint.json`.
 

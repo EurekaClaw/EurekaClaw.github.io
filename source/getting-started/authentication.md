@@ -29,7 +29,17 @@ ANTHROPIC_AUTH_MODE=oauth
 
 EurekaClaw automatically starts and stops ccproxy alongside your session.
 
-## Option C — OpenRouter or Local Model
+## Option C — Codex via OAuth
+
+No API key required. Uses your Codex subscription.
+
+```bash
+pip install "eurekaclaw[codex]"
+codex auth login   # first login your own Codex
+eurekaclaw login --provider openai-codex
+```
+
+## Option D — OpenRouter or Local Model
 
 ### OpenRouter
 

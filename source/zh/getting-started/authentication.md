@@ -29,7 +29,17 @@ ANTHROPIC_AUTH_MODE=oauth
 
 EurekaClaw 在你的对话过程中自动开启和停止ccproxy。
 
-## 选项三 — OpenRouter或者本地模型
+## 选项三 — Codex（通过 OAuth）
+
+不需要API Key。用您的Codex订阅。
+
+```bash
+pip install "eurekaclaw[codex]"
+codex auth login   # first login your own Codex
+eurekaclaw login --provider openai-codex
+```
+
+## 选项四 — OpenRouter或者本地模型
 
 ### OpenRouter
 

@@ -41,6 +41,7 @@ pip install -e ".[openai,oauth]"
 | 安装选项 | 功能 |
 |---|---|
 | `openai` | OpenRouter和本地vLLM/Ollama后端 |
+| `codex` | 登录Codex（无需API Key） |
 | `oauth` | 通过ccproxy登录Claude Pro/Max（无需API Key） |
 | `pdf` | 通过Docling (`PaperReader`)进行完整PDF读取 |
 

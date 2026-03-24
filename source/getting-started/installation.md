@@ -41,6 +41,7 @@ pip install -e ".[openai,oauth]"
 | Extra | Enables |
 |---|---|
 | `openai` | OpenRouter and local vLLM/Ollama backends |
+| `codex` | Codex login via oauth (no API key needed) |
 | `oauth` | Claude Pro/Max login via ccproxy (no API key needed) |
 | `pdf` | Full-PDF extraction via Docling (`PaperReader`) |
 

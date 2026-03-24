@@ -104,10 +104,10 @@ Failed sessions show a **Restart** button that carries the original query to a n
 
 ## Gate Overlays
 
-When `--gate auto` or `--gate human` is set, the UI shows full-screen gate modals at pipeline decision points:
+Gates appear as overlay dialogs on top of the workspace — no matter which tab you are on. There are three gates:
 
 | Gate | When it appears | What you can do |
 |---|---|---|
-| **Survey** | If 0 papers found | Add extra context or search terms |
-| **Direction** | After ideation generates 5 directions | Select a direction or let the system choose |
-| **Theory Review** | After theory completes | Approve, flag concerns, pick specific lemmas to revisit |
+| **Survey** | Literature survey finds 0 papers | Provide paper IDs or arXiv IDs to retry, or continue without papers |
+| **Direction** | Ideation returns no candidate research directions | Type a custom direction or accept the original conjecture as-is |
+| **Theory Review** | After the theorem-prover completes | Approve to continue to writing, or flag a specific lemma with a reason — flagging triggers a re-run with your feedback injected; auto-approved after `THEORY_REVIEW_MAX_RETRIES` retries (default 3) |

@@ -1,8 +1,28 @@
 # Gate Mode and Human Review
 
-Control how much the system pauses for your input with `--gate`.
+EurekaClaw includes interactive gates that pause the pipeline and ask for your input at key decision points. Gates work in both the browser UI and the CLI.
 
-## `--gate none` (Default)
+## Browser UI Gates
+
+When running `eurekaclaw ui`, gates appear as overlay dialogs on top of the workspace — no matter which tab you are on. There are three gates:
+
+**Survey gate** — triggers when the literature survey finds 0 papers.
+
+The overlay asks you to provide paper IDs or arXiv IDs to retry the survey, or to continue without papers.
+
+**Direction gate** — triggers when ideation returns no candidate research directions (detailed/prove mode).
+
+The overlay shows the original conjecture as a default and lets you type a custom direction, or accept the conjecture as-is.
+
+**Theory review gate** — triggers after the theorem-prover completes.
+
+The overlay shows the assembled proof and lets you either approve it (pipeline continues to experiments and writing) or flag a specific lemma with a reason. Flagging causes the theory agent to re-run with your feedback injected. After a configurable number of retries (`THEORY_REVIEW_MAX_RETRIES`, default 3) the proof is auto-approved.
+
+## CLI Gates
+
+When running from the terminal, the same gates appear as interactive prompts.
+
+### `--gate none` (Default)
 
 Fully automatic. Runs end-to-end with no interaction. Summary cards are printed but the pipeline never pauses.
 
@@ -10,7 +30,7 @@ Fully automatic. Runs end-to-end with no interaction. Summary cards are printed 
 eurekaclaw prove "..." --gate none
 ```
 
-## `--gate auto`
+### `--gate auto`
 
 Summary cards after each stage. Pauses for human review **only** when a low-confidence lemma is detected (i.e., `verified=false` after the theory stage). Good for catching problems without constant interruption.
 
@@ -18,7 +38,7 @@ Summary cards after each stage. Pauses for human review **only** when a low-conf
 eurekaclaw prove "..." --gate auto
 ```
 
-## `--gate human`
+### `--gate human`
 
 Pauses at every stage gate and asks for approval. After approving, you can type a correction or hint injected into the next agent's prompt:
 
@@ -34,29 +54,6 @@ eurekaclaw prove "..." --gate human
 :::{note} Auto-escalation
 Even with `--gate auto`, if any lemma has `verified=false`, the gate automatically escalates to human review for that stage.
 :::
-
-## Theory Review Gate
-
-After the TheoryAgent completes and **before** the WriterAgent runs, EurekaClaw always shows a proof sketch review — regardless of `--gate` mode:
-
-```
-──────────────── Proof Sketch Review ────────────────
-  L1  [✓] arm_pull_count_bound  verified
-       For arm a with mean gap Δ_a ...
-  L2  [~] regret_decomposition  low confidence
-       Total regret decomposes as ...
-  L3  [✓] main_theorem          verified
-       UCB1 achieves O(√(KT log T)) regret ...
-──────────────────────────────────────────────────────
-
-Does this proof sketch look correct?
-  y  — Proceed to writing
-  n  — Flag the most logically problematic step
-→
-```
-
-- **y / Enter** — proceed to the WriterAgent
-- **n** — you specify which step has the critical gap (e.g. `L2`) and describe the issue. TheoryAgent re-runs once with your feedback injected.
 
 ## Pause and Resume
 

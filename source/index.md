@@ -43,13 +43,6 @@ All `.env` variables: backends, models, token limits, pipeline modes, retry sett
 Every command, option, and exit code for the `eurekaclaw` command-line tool.
 :::
 
-:::{grid-item-card} 🐍 Python API
-:link: reference/api
-:link-type: doc
-
-`EurekaSession`, `KnowledgeBus`, `InputSpec`, `ResearchOutput`, and all data models.
-:::
-
 :::{grid-item-card} 🏗️ Architecture
 :link: reference/architecture
 :link-type: doc

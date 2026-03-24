@@ -43,13 +43,6 @@ myst:
 EurekaClaw命令行界面的命令、选项和退出代码。
 :::
 
-:::{grid-item-card} 🐍 Python API
-:link: zh/reference/api
-:link-type: doc
-
-`EurekaSession`、`KnowledgeBus`、`InputSpec`、`ResearchOutput`和所有数据模型。
-:::
-
 :::{grid-item-card} 🏗️ 系统架构
 :link: zh/reference/architecture
 :link-type: doc

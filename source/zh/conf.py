@@ -45,7 +45,7 @@ html_theme = "pydata_sphinx_theme"
 html_title = "EurekaClaw"
 html_logo = "_static/logo-claw.png"
 html_favicon = "_static/logo-claw.png"
-html_static_path = ["_static"]
+html_static_path = ["../_static"]
 html_css_files = ["css/custom.css"]
 
 html_theme_options = {
@@ -63,7 +63,7 @@ html_theme_options = {
     ],
     "navbar_start": ["navbar-logo"],
     "navbar_center": ["navbar-nav"],
-    "navbar_end": ["navbar-icon-links", "theme-switcher"],
+    "navbar_end": ["language-switcher", "navbar-icon-links", "theme-switcher"],
     "navbar_persistent": ["search-button"],
     "primary_sidebar_end": ["sidebar-ethical-ads"],
     "secondary_sidebar_items": ["page-toc", "edit-this-page"],

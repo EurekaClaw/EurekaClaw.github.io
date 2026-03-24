@@ -60,7 +60,7 @@ html_theme_options = {
     ],
     "navbar_start": ["navbar-logo"],
     "navbar_center": ["navbar-nav"],
-    "navbar_end": ["navbar-icon-links", "theme-switcher"],
+    "navbar_end": ["language-switcher", "navbar-icon-links", "theme-switcher"],
     "navbar_persistent": ["search-button"],
     "primary_sidebar_end": ["sidebar-ethical-ads"],
     "secondary_sidebar_items": ["page-toc", "edit-this-page"],

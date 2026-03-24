@@ -182,6 +182,45 @@ html[data-theme="dark"] .sd-card:hover {
 }
 
 /* ------------------------------------------------------------------
+   Language switcher (EN | 中文)
+   ------------------------------------------------------------------ */
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  padding: 0 0.4rem;
+  white-space: nowrap;
+}
+
+.lang-switcher .lang-current {
+  font-weight: 700;
+  color: var(--ec-blue);
+}
+
+.lang-switcher .lang-sep {
+  color: var(--pst-color-text-muted, #6c757d);
+}
+
+.lang-switcher .lang-link {
+  color: var(--pst-color-text-muted, #6c757d);
+  text-decoration: none;
+}
+
+.lang-switcher .lang-link:hover {
+  color: var(--ec-blue);
+  text-decoration: none;
+}
+
+html[data-theme="dark"] .lang-switcher .lang-current {
+  color: var(--ec-blue-mid);
+}
+
+html[data-theme="dark"] .lang-switcher .lang-link:hover {
+  color: var(--ec-blue-mid);
+}
+
+/* ------------------------------------------------------------------
    Footer
    ------------------------------------------------------------------ */
 footer {

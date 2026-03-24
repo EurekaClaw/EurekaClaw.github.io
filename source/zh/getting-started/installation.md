@@ -42,7 +42,7 @@ pip install -e ".[openai,oauth]"
 |---|---|
 | `openai` | OpenRouter和本地vLLM/Ollama后端 |
 | `oauth` | 通过ccproxy登录Claude Pro/Max（无需API Key） |
-| `pdf` | 通过Docling (`PaperReader`)进行完整PDF生成 |
+| `pdf` | 通过Docling (`PaperReader`)进行完整PDF读取 |
 
 ## 可选系统工具
 

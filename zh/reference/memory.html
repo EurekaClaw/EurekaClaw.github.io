@@ -1,0 +1,926 @@
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>记忆系统 &#8212; EurekaClaw</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=74c509de" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=7c91f8fd"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=9345eede"></script>
+    <script src="../_static/translations.js?v=540d3cec"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/memory';</script>
+    <link rel="icon" href="../_static/logo-claw.png"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="技能系统" href="skills.html" />
+    <link rel="prev" title="研究工具" href="tools.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">跳转至主要内容</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>回到顶部</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="版本警告"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="网页导航">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt=""/>
+    <img src="../_static/logo.svg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">EurekaClaw</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/installation.html">
+    安装
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/quickstart.html">
+    快速开始
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/authentication.html">
+    API Key授权
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user-guide/index.html">
+    用户指南
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="cli.html">
+    CLI 参考
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="configuration.html">
+    配置
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="api.html">
+    Python API
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="architecture.html">
+    系统结构
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="agents.html">
+    智能体
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="tools.html">
+    研究工具
+  </a>
+</li>
+
+
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="#">
+    记忆系统
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="skills.html">
+    技能系统
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="token-limits.html">
+    Token 限制
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="domains.html">
+    领域插件系统
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../changelog/index.html">
+    开发日志
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><div class="lang-switcher">
+  <a class="lang-link" href="/reference/memory.html">EN</a>
+  <span class="lang-sep">|</span>
+  <span class="lang-current">中文</span>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/EurekaClaw/EurekaClaw" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="亮色"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="暗色"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="当前页面">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/installation.html">
+    安装
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/quickstart.html">
+    快速开始
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/authentication.html">
+    API Key授权
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user-guide/index.html">
+    用户指南
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="cli.html">
+    CLI 参考
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="configuration.html">
+    配置
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api.html">
+    Python API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="architecture.html">
+    系统结构
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="agents.html">
+    智能体
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tools.html">
+    研究工具
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    记忆系统
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="skills.html">
+    技能系统
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="token-limits.html">
+    Token 限制
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="domains.html">
+    领域插件系统
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../changelog/index.html">
+    开发日志
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><div class="lang-switcher">
+  <a class="lang-link" href="/reference/memory.html">EN</a>
+  <span class="lang-sep">|</span>
+  <span class="lang-current">中文</span>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/EurekaClaw/EurekaClaw" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="亮色"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="暗色"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="章节导航">
+  <p class="bd-links__title" role="heading" aria-level="1">章节导航</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="初始页面">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">记忆系统</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="id1">
+<h1>记忆系统<a class="headerlink" href="#id1" title="链接到此标题。">#</a></h1>
+<p>EurekaClaw 使用由 <code class="docutils literal notranslate"><span class="pre">MemoryManager</span></code> 管理的<strong>四层记忆系统</strong>。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>eurekaclaw/memory/
+├── manager.py          MemoryManager (main interface)
+├── episodic.py         EpisodicMemory (in-RAM ring buffer)
+├── persistent.py       PersistentMemory (cross-run JSON file)
+└── knowledge_graph.py  KnowledgeGraph (theorem dependency network)
+
+eurekaclaw/learning/
+└── memory_extractor.py  SessionMemoryExtractor (Tier 4: domain markdown insights)
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/</span></code>（可通过 <code class="docutils literal notranslate"><span class="pre">EUREKACLAW_DIR</span></code> 配置）下的存储布局：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~/.eurekaclaw/
+├── memory/
+│   ├── persistent.json        ← Tier 2: cross-run key-value store
+│   └── knowledge_graph.json   ← Tier 3: theorem dependency graph
+├── memories/
+│   └── &lt;domain&gt;/
+│       ├── YYYYMMDD_&lt;slug&gt;.md ← Tier 4: per-domain insight files
+│       └── _index.json        ← Tier 4: index for semantic search
+└── skills/                    ← skill files updated by ContinualLearningLoop
+</pre></div>
+</div>
+<hr class="docutils" />
+<section id="id2">
+<h2>第一层 — 情节记忆（会话级）<a class="headerlink" href="#id2" title="链接到此标题。">#</a></h2>
+<p><strong>文件：</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/memory/episodic.py</span></code></p>
+<p>内存中的环形缓冲区（最多 500 条）。记录当前会话中的智能体事件。进程结束后丢失——永不持久化到磁盘。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">log_event</span><span class="p">(</span>
+    <span class="n">agent_role</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">content</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">metadata</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EpisodicEntry</span>
+</pre></div>
+</div>
+<p>记录来自智能体的结构化事件（工具调用、结果、决策、错误）。由 <code class="docutils literal notranslate"><span class="pre">BaseAgent</span></code> 在每次工具调用后自动调用。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">recent_events</span><span class="p">(</span>
+    <span class="n">n</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="n">agent_role</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">EpisodicEntry</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>返回最近 N 条事件，可按智能体角色过滤。</p>
+</section>
+<hr class="docutils" />
+<section id="id3">
+<h2>第二层 — 持久化记忆（跨会话键值存储）<a class="headerlink" href="#id3" title="链接到此标题。">#</a></h2>
+<p><strong>文件：</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/memory/persistent.py</span></code>
+<strong>存储：</strong> <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/memory/persistent.json</span></code></p>
+<p>存储可跨会话保存的任意 JSON 可序列化键值记录。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">remember</span><span class="p">(</span>
+    <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="n">tags</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">source_session</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>保存或覆盖一条跨会话记录。<code class="docutils literal notranslate"><span class="pre">key</span></code> 通常有命名空间（例如 <code class="docutils literal notranslate"><span class="pre">&quot;theory.failed_strategies.concentration_bounds&quot;</span></code>）。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">recall</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span> <span class="o">|</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>按精确键检索值。若未找到则返回 <code class="docutils literal notranslate"><span class="pre">None</span></code>。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">recall_by_tag</span><span class="p">(</span><span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">CrossRunRecord</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>返回所有包含指定标签的记录。</p>
+</section>
+<hr class="docutils" />
+<section id="id4">
+<h2>第三层 — 知识图谱（定理依赖网络）<a class="headerlink" href="#id4" title="链接到此标题。">#</a></h2>
+<p><strong>文件：</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/memory/knowledge_graph.py</span></code>
+<strong>存储：</strong> <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/memory/knowledge_graph.json</span></code></p>
+<p>跟踪所有会话中已证明定理及其依赖关系的有向图。可导出为 networkx 格式进行分析。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">add_theorem</span><span class="p">(</span>
+    <span class="n">theorem_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">formal_statement</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">session_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">KnowledgeNode</span>
+</pre></div>
+</div>
+<p>注册一个新证明的定理。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">link_theorems</span><span class="p">(</span><span class="n">from_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">to_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">relation</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;uses&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>记录两个定理之间的依赖关系。关系类型：<code class="docutils literal notranslate"><span class="pre">&quot;uses&quot;</span></code>、<code class="docutils literal notranslate"><span class="pre">&quot;generalizes&quot;</span></code>、<code class="docutils literal notranslate"><span class="pre">&quot;specializes&quot;</span></code>、<code class="docutils literal notranslate"><span class="pre">&quot;contradicts&quot;</span></code>。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">find_related_theorems</span><span class="p">(</span><span class="n">node_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">depth</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">KnowledgeNode</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>BFS 遍历——返回距 <code class="docutils literal notranslate"><span class="pre">node_id</span></code> 在 <code class="docutils literal notranslate"><span class="pre">depth</span></code> 跳以内的定理。</p>
+</section>
+<hr class="docutils" />
+<section id="markdown">
+<h2>第四层 — 领域记忆（跨会话 Markdown 洞察）<a class="headerlink" href="#markdown" title="链接到此标题。">#</a></h2>
+<p><strong>文件：</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/learning/memory_extractor.py</span></code>
+<strong>存储：</strong> <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/memories/&lt;domain&gt;/YYYYMMDD_&lt;slug&gt;.md</span></code></p>
+<p>跨会话学习的主要机制。每次会话结束后，<code class="docutils literal notranslate"><span class="pre">SessionMemoryExtractor</span></code> 使用快速模型分析 <code class="docutils literal notranslate"><span class="pre">TheoryState</span></code>，并按四个类别提取结构化洞察：</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>类别</p></th>
+<th class="head"><p>保存内容</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">domain_knowledge</span></code></p></td>
+<td><p>本次发现或确认的新事实、引理、定理</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">proof_strategy</span></code></p></td>
+<td><p>在该领域有效（或失败）的证明技术</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">open_problems</span></code></p></td>
+<td><p>提出但未解决的猜想</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pitfalls</span></code></p></td>
+<td><p>看似有前途但最终失败的方法及其根本原因</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>仅保存 <code class="docutils literal notranslate"><span class="pre">confidence</span> <span class="pre">&gt;=</span> <span class="pre">0.5</span></code> 的条目。sha256 指纹索引（<code class="docutils literal notranslate"><span class="pre">_index.json</span></code>）用于去除精确重复。对于关键词重叠超过 40% 的近重复内容，由 LLM 检查并在冗余时合并。</p>
+<section id="id5">
+<h3>注入到未来会话<a class="headerlink" href="#id5" title="链接到此标题。">#</a></h3>
+<p>每次会话开始时，<code class="docutils literal notranslate"><span class="pre">BaseAgent.build_system_prompt()</span></code> 调用：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">memory</span><span class="o">.</span><span class="n">load_for_injection</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">query</span><span class="o">=</span><span class="n">task_description</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>该函数通过余弦相似度对 <code class="docutils literal notranslate"><span class="pre">query</span></code> 选出领域内 4 个最<strong>相关</strong>的高置信度 <code class="docutils literal notranslate"><span class="pre">.md</span></code> 文件，去除 frontmatter 后以 <code class="docutils literal notranslate"><span class="pre">&lt;memories&gt;...&lt;/memories&gt;</span></code> 形式注入系统提示词。</p>
+<p><strong>语义排序：</strong> 每个记忆文件的嵌入向量在写入时存储于 <code class="docutils literal notranslate"><span class="pre">_index.json</span></code>（通过 <code class="docutils literal notranslate"><span class="pre">eurekaclaw/memory/embedding_utils.py</span></code>）。检索时，候选文件按 <code class="docutils literal notranslate"><span class="pre">cosine_similarity(query_embedding,</span> <span class="pre">memory_embedding)</span></code> 打分，返回前 k 个。若嵌入向量不可用，则回退到按时间倒序排序。</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id6">
+<h2>生命周期<a class="headerlink" href="#id6" title="链接到此标题。">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>During session
+  BaseAgent.execute() → memory.log_event() → Tier 1 (RAM only)
+
+After session (ContinualLearningLoop.post_run())
+  SessionMemoryExtractor.extract_and_save()
+    → LLM analysis of TheoryState (proven lemmas + failed attempts)
+    → write ~/.eurekaclaw/memories/&lt;domain&gt;/YYYYMMDD_&lt;slug&gt;.md  [Tier 4]
+
+  ToolPatternExtractor.extract_and_save()
+    → analyse tool-call patterns → generate new Skill files
+
+  SkillRegistry.update_stats()
+    → EMA α=0.3 update on success_rate for all injected skills
+
+Next session startup
+  MetaOrchestrator → MemoryManager.load_for_injection(domain)
+    → top-4 Tier 4 files → injected into agent system prompts
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="id7">
+<h2>数据模型<a class="headerlink" href="#id7" title="链接到此标题。">#</a></h2>
+<p><strong>文件：</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/types/memory.py</span></code></p>
+<section id="episodicentry">
+<h3>EpisodicEntry<a class="headerlink" href="#episodicentry" title="链接到此标题。">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">EpisodicEntry</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">entry_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">session_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">agent_role</span><span class="p">:</span> <span class="nb">str</span>      <span class="c1"># &quot;survey&quot;, &quot;theory&quot;, &quot;writer&quot;, etc.</span>
+    <span class="n">content</span><span class="p">:</span> <span class="nb">str</span>         <span class="c1"># free-text event description</span>
+    <span class="n">metadata</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># structured data (tool name, paper_id, etc.)</span>
+    <span class="n">timestamp</span><span class="p">:</span> <span class="n">datetime</span>
+</pre></div>
+</div>
+</section>
+<section id="crossrunrecord">
+<h3>CrossRunRecord<a class="headerlink" href="#crossrunrecord" title="链接到此标题。">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">CrossRunRecord</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">record_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">key</span><span class="p">:</span> <span class="nb">str</span>             <span class="c1"># namespaced key, e.g. &quot;theory.failed_strategies.sample_complexity&quot;</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">Any</span>           <span class="c1"># arbitrary JSON-serializable value</span>
+    <span class="n">tags</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">source_session</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">created_at</span><span class="p">:</span> <span class="n">datetime</span>
+    <span class="n">updated_at</span><span class="p">:</span> <span class="n">datetime</span>
+</pre></div>
+</div>
+</section>
+<section id="knowledgenode">
+<h3>KnowledgeNode<a class="headerlink" href="#knowledgenode" title="链接到此标题。">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">KnowledgeNode</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">node_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">theorem_name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">formal_statement</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">session_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>  <span class="c1"># session that proved this theorem</span>
+    <span class="n">tags</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">created_at</span><span class="p">:</span> <span class="n">datetime</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id8">
+<h2>存储位置<a class="headerlink" href="#id8" title="链接到此标题。">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>层级</p></th>
+<th class="head"><p>存储方式</p></th>
+<th class="head"><p>位置</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>第一层：情节记忆</p></td>
+<td><p>内存（进程生命周期）</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p>第二层：持久化记忆</p></td>
+<td><p>JSON 文件</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/memory/persistent.json</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>第三层：知识图谱</p></td>
+<td><p>JSON 文件</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/memory/knowledge_graph.json</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>第四层：领域洞察</p></td>
+<td><p>Markdown 文件</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/memories/&lt;domain&gt;/</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>运行产物</p></td>
+<td><p>每个会话的 JSON</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/runs/&lt;session_id&gt;/</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tools.html"
+       title="上一页">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title">研究工具</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="skills.html"
+       title="下一页">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title">技能系统</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 当前页面
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">第一层 — 情节记忆（会话级）</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">第二层 — 持久化记忆（跨会话键值存储）</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">第三层 — 知识图谱（定理依赖网络）</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown">第四层 — 领域记忆（跨会话 Markdown 洞察）</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">注入到未来会话</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">生命周期</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">数据模型</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#episodicentry">EpisodicEntry</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crossrunrecord">CrossRunRecord</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#knowledgenode">KnowledgeNode</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">存储位置</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/EurekaClaw/EurekaClaw.github.io/edit/main/source/reference/memory.md">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          由 GitHub 编辑
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, EurekaClaw Contributors.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4创建。
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

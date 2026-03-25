@@ -1,0 +1,1407 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Changelog &#8212; EurekaClaw</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=74c509de" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=2709fde1"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=9345eede"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'changelog/changelog';</script>
+    <link rel="icon" href="../_static/logo-claw.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Changelog" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt=""/>
+    <img src="../_static/logo.svg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">EurekaClaw</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/authentication.html">
+    Authentication
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user-guide/index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference/cli.html">
+    CLI Reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../reference/configuration.html">
+    Configuration
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../reference/api.html">
+    Python API
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../reference/architecture.html">
+    Architecture
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../reference/agents.html">
+    Agents
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../reference/tools.html">
+    Research Tools
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../reference/memory.html">
+    Memory System
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../reference/skills.html">
+    Skills System
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../reference/token-limits.html">
+    Token Limits
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../reference/domains.html">
+    Domain Plugin System
+  </a>
+</li>
+
+
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="index.html">
+    Changelog
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><div class="lang-switcher">
+  <span class="lang-current">EN</span>
+  <span class="lang-sep">|</span>
+  <a class="lang-link" href="/zh/changelog/changelog.html">中文</a>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/EurekaClaw/EurekaClaw" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/authentication.html">
+    Authentication
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user-guide/index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference/cli.html">
+    CLI Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference/configuration.html">
+    Configuration
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference/api.html">
+    Python API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference/architecture.html">
+    Architecture
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference/agents.html">
+    Agents
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference/tools.html">
+    Research Tools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference/memory.html">
+    Memory System
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference/skills.html">
+    Skills System
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference/token-limits.html">
+    Token Limits
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference/domains.html">
+    Domain Plugin System
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><div class="lang-switcher">
+  <span class="lang-current">EN</span>
+  <span class="lang-sep">|</span>
+  <a class="lang-link" href="/zh/changelog/changelog.html">中文</a>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/EurekaClaw/EurekaClaw" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Changelog</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Changelog</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Changelog</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="changelog">
+<h1>Changelog<a class="headerlink" href="#changelog" title="Link to this heading">#</a></h1>
+<p>Summary of all updates from <code class="docutils literal notranslate"><span class="pre">UPDATES.md</span></code>.</p>
+<hr class="docutils" />
+<section id="continued-prs-23-28-29-30-31-33">
+<h2>2026-03-20 (continued — PRs #23, #28, #29, #30, #31, #33)<a class="headerlink" href="#continued-prs-23-28-29-30-31-33" title="Link to this heading">#</a></h2>
+<section id="principled-prover-confidence-scoring">
+<h3>8. Principled Prover Confidence Scoring<a class="headerlink" href="#principled-prover-confidence-scoring" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">Prover</span></code> now replaces purely format-based heuristics with a structured LLM self-assessment block appended to every proof response.</p>
+<p><strong>Prompt change:</strong> the system prompt instructs the LLM to append a <code class="docutils literal notranslate"><span class="pre">\</span></code>``json` block after the proof body:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;confidence&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0-1.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;completeness&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;complete|partial|sketch&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;gaps&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;...uncertain step descriptions...&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;weakest_step&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;techniques_used&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;...&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Calibration guide embedded in the prompt:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Range</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>≥ 0.95</p></td>
+<td><p>Every step elementary or from a named theorem; no hand-waving</p></td>
+</tr>
+<tr class="row-odd"><td><p>0.80–0.94</p></td>
+<td><p>All key steps present; at most one routine calculation left implicit</p></td>
+</tr>
+<tr class="row-even"><td><p>0.60–0.79</p></td>
+<td><p>Sketch correct but one non-trivial step not fully worked out</p></td>
+</tr>
+<tr class="row-odd"><td><p>0.40–0.59</p></td>
+<td><p>Main idea right but genuine gap flagged with <code class="docutils literal notranslate"><span class="pre">[GAP:</span> <span class="pre">...]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>&lt; 0.40</p></td>
+<td><p>Incomplete proof or possibly wrong approach</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">_parse_proof_attempt()</span></code> pipeline (6 steps):</strong></p>
+<ol class="arabic simple">
+<li><p>Extract inline <code class="docutils literal notranslate"><span class="pre">[GAP:</span> <span class="pre">...]</span></code> tags</p></li>
+<li><p>Parse the structured JSON self-assessment block</p></li>
+<li><p>Heuristic fallback if no valid block (presence of “QED”, “□”, “this completes”)</p></li>
+<li><p>Citation-integrity check: penalty −0.15 per uncited lemma ID (cap −0.30)</p></li>
+<li><p>Weasel-word penalty: −0.05 per “clearly”/”obviously”/etc. (cap −0.15)</p></li>
+<li><p>Strip JSON block from stored <code class="docutils literal notranslate"><span class="pre">proof_text</span></code>; extract optional Lean4 sketch</p></li>
+</ol>
+</section>
+<section id="verifier-bug-fix-format-code-error">
+<h3>9. Verifier Bug Fix: Format Code Error<a class="headerlink" href="#verifier-bug-fix-format-code-error" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Verifier._peer_review()</span></code> was raising <code class="docutils literal notranslate"><span class="pre">Unknown</span> <span class="pre">format</span> <span class="pre">code</span> <span class="pre">'f'</span> <span class="pre">for</span> <span class="pre">object</span> <span class="pre">of</span> <span class="pre">type</span> <span class="pre">'str'</span></code> because <code class="docutils literal notranslate"><span class="pre">settings.verifier_pass_confidence</span></code> returned a <code class="docutils literal notranslate"><span class="pre">str</span></code> via Pydantic’s env-var parsing. Fixed by explicit <code class="docutils literal notranslate"><span class="pre">float()</span></code> cast before <code class="docutils literal notranslate"><span class="pre">:.2f</span></code> formatting.</p>
+</section>
+<section id="pdftex-font-expansion-fix">
+<h3>10. pdfTeX Font Expansion Fix<a class="headerlink" href="#pdftex-font-expansion-fix" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">!</span> <span class="pre">pdfTeX</span> <span class="pre">error</span> <span class="pre">(font</span> <span class="pre">expansion):</span> <span class="pre">auto</span> <span class="pre">expansion</span> <span class="pre">is</span> <span class="pre">only</span> <span class="pre">possible</span> <span class="pre">with</span> <span class="pre">scalable</span> <span class="pre">fonts</span></code> caused by <code class="docutils literal notranslate"><span class="pre">microtype</span></code>’s automatic font expansion being incompatible with <code class="docutils literal notranslate"><span class="pre">lmss</span></code> (Latin Modern Sans) on TeX Live 2022. Fixed by passing <code class="docutils literal notranslate"><span class="pre">expansion=false</span></code> to <code class="docutils literal notranslate"><span class="pre">\RequirePackage[expansion=false]{microtype}</span></code> in <code class="docutils literal notranslate"><span class="pre">eureka.cls</span></code>.</p>
+</section>
+<section id="token-limit-ui-sliders-extended">
+<h3>11. Token Limit UI Sliders (Extended)<a class="headerlink" href="#token-limit-ui-sliders-extended" title="Link to this heading">#</a></h3>
+<p>Five additional token-limit controls added to the Settings tab:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Setting</p></th>
+<th class="head"><p>UI label</p></th>
+<th class="head"><p>Default</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_ASSEMBLER</span></code></p></td>
+<td><p>Assembler</p></td>
+<td><p>4096</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_CRYSTALLIZER</span></code></p></td>
+<td><p>Crystallizer</p></td>
+<td><p>2500</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_ARCHITECT</span></code></p></td>
+<td><p>Proof architect</p></td>
+<td><p>3000</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_ANALYST</span></code></p></td>
+<td><p>Analysis stages</p></td>
+<td><p>1600</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_SKETCH</span></code></p></td>
+<td><p>Proof sketch</p></td>
+<td><p>600</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">server.py</span></code>’s <code class="docutils literal notranslate"><span class="pre">_CONFIG_FIELDS</span></code> mapping updated to expose all 12 token-limit knobs to the UI.</p>
+<p>All hardcoded <code class="docutils literal notranslate"><span class="pre">max_tokens=...</span></code> literals across theory and learning agent files replaced with <code class="docutils literal notranslate"><span class="pre">settings.max_tokens_*</span></code> references.</p>
+</section>
+<section id="human-intervention-for-empty-survey">
+<h3>12. Human Intervention for Empty Survey<a class="headerlink" href="#human-intervention-for-empty-survey" title="Link to this heading">#</a></h3>
+<p>When the survey stage completes with zero papers found, the pipeline pauses and prompts the user:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>⚠ Survey stage completed but found 0 papers.
+Please provide a comma-separated list of paper IDs/titles to retry,
+or press Enter to proceed without papers:
+</pre></div>
+</div>
+<p>If the user provides titles, the survey task is re-injected with the paper list and re-executed once. Implemented in <code class="docutils literal notranslate"><span class="pre">MetaOrchestrator._handle_empty_survey_fallback()</span></code>.</p>
+</section>
+<section id="proofcheckpoint-bug-fixes-issue-27">
+<h3>13. ProofCheckpoint Bug Fixes (Issue #27)<a class="headerlink" href="#proofcheckpoint-bug-fixes-issue-27" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bug</p></th>
+<th class="head"><p>Fix</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cp.checkpoint_path</span></code> AttributeError — public property was missing</p></td>
+<td><p>Added <code class="docutils literal notranslate"><span class="pre">&#64;property</span> <span class="pre">checkpoint_path</span> <span class="pre">→</span> <span class="pre">self._checkpoint</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cli.py</span> <span class="pre">resume</span></code> used wrong meta key <code class="docutils literal notranslate"><span class="pre">&quot;research_brief&quot;</span></code> (dict)</p></td>
+<td><p>Fixed to <code class="docutils literal notranslate"><span class="pre">json.loads(meta.get(&quot;research_brief_json&quot;,</span> <span class="pre">&quot;{}&quot;)</span> <span class="pre">or</span> <span class="pre">&quot;{}&quot;)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cli.py</span> <span class="pre">resume</span></code> used wrong attribute <code class="docutils literal notranslate"><span class="pre">exc.paused_before_stage</span></code></p></td>
+<td><p>Fixed to <code class="docutils literal notranslate"><span class="pre">exc.stage_name</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="minimax-llm-backend-pr-23">
+<h3>14. Minimax LLM Backend (PR #23)<a class="headerlink" href="#minimax-llm-backend-pr-23" title="Link to this heading">#</a></h3>
+<p>New backend shortcut <code class="docutils literal notranslate"><span class="pre">LLM_BACKEND=minimax</span></code>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MINIMAX_API_KEY</span></code></p></td>
+<td><p>Minimax API key</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MINIMAX_MODEL</span></code></p></td>
+<td><p>Minimax model name (e.g. <code class="docutils literal notranslate"><span class="pre">abab7-chat</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">active_model</span></code> / <code class="docutils literal notranslate"><span class="pre">active_fast_model</span></code> properties</strong> added to <code class="docutils literal notranslate"><span class="pre">Config</span></code> — resolve the correct model string for any backend (Anthropic, Minimax, OpenAI-compat). All agents and theory stages updated to use <code class="docutils literal notranslate"><span class="pre">settings.active_model</span></code> / <code class="docutils literal notranslate"><span class="pre">settings.active_fast_model</span></code> instead of hardcoded model names.</p>
+</section>
+<section id="pdf-extraction-via-docling-pr-23">
+<h3>15. PDF Extraction via Docling (PR #23)<a class="headerlink" href="#pdf-extraction-via-docling-pr-23" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">PaperReader._extract_from_paper_pdf()</span></code> fetches the full arXiv PDF via Docling, filters to theorem/lemma sections with a regex pass, then runs the LLM extractor over the rich excerpt instead of the abstract only.</p>
+<p>Enable with the <code class="docutils literal notranslate"><span class="pre">[pdf]</span></code> optional extra:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>eurekaclaw<span class="o">[</span>pdf<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="memory-relevance-based-retrieval-pr-30">
+<h3>16. Memory Relevance-Based Retrieval (PR #30)<a class="headerlink" href="#memory-relevance-based-retrieval-pr-30" title="Link to this heading">#</a></h3>
+<p>Tier 4 domain memories are now ranked by <strong>cosine similarity</strong> to the current task query instead of most-recently-written ordering.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_index.json</span></code> now stores a <code class="docutils literal notranslate"><span class="pre">&quot;embedding&quot;</span></code> field per memory file (computed at write time using <code class="docutils literal notranslate"><span class="pre">embedding_utils.get_embedding()</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MemoryManager.load_for_injection(domain,</span> <span class="pre">k,</span> <span class="pre">query)</span></code> accepts a <code class="docutils literal notranslate"><span class="pre">query</span></code> argument; if provided, ranks candidates by cosine similarity and returns the top-k most relevant files</p></li>
+<li><p>New helper module: <code class="docutils literal notranslate"><span class="pre">eurekaclaw/memory/embedding_utils.py</span></code> (<code class="docutils literal notranslate"><span class="pre">get_embedding()</span></code>, <code class="docutils literal notranslate"><span class="pre">cosine_similarity()</span></code>)</p></li>
+</ul>
+</section>
+<section id="smile-sty-math-macro-package-pr-28">
+<h3>17. smile.sty Math Macro Package (PR #28)<a class="headerlink" href="#smile-sty-math-macro-package-pr-28" title="Link to this heading">#</a></h3>
+<p>A comprehensive SMiLe-group math macro package (<code class="docutils literal notranslate"><span class="pre">smile.sty</span></code>) is now bundled with the template:</p>
+<ul class="simple">
+<li><p>Blackboard bold shortcuts: <code class="docutils literal notranslate"><span class="pre">\RR</span></code>, <code class="docutils literal notranslate"><span class="pre">\EE</span></code>, <code class="docutils literal notranslate"><span class="pre">\PP</span></code>, <code class="docutils literal notranslate"><span class="pre">\NN</span></code>, <code class="docutils literal notranslate"><span class="pre">\ZZ</span></code>, <code class="docutils literal notranslate"><span class="pre">\QQ</span></code>, <code class="docutils literal notranslate"><span class="pre">\CC</span></code>, …</p></li>
+<li><p>Calligraphic shortcuts: <code class="docutils literal notranslate"><span class="pre">\cA</span></code> … <code class="docutils literal notranslate"><span class="pre">\cZ</span></code></p></li>
+<li><p>Bold vectors (mathbf family): <code class="docutils literal notranslate"><span class="pre">\xb</span></code>, <code class="docutils literal notranslate"><span class="pre">\Wb</span></code>, … and (bm family): <code class="docutils literal notranslate"><span class="pre">\bx</span></code>, <code class="docutils literal notranslate"><span class="pre">\bW</span></code>, …</p></li>
+<li><p>Bold Greek: <code class="docutils literal notranslate"><span class="pre">\balpha</span></code>, <code class="docutils literal notranslate"><span class="pre">\bbeta</span></code>, <code class="docutils literal notranslate"><span class="pre">\bGamma</span></code>, …</p></li>
+<li><p>Norm/bracket macros: <code class="docutils literal notranslate"><span class="pre">\norm{x}</span></code>, <code class="docutils literal notranslate"><span class="pre">\nbr{x}</span></code>, <code class="docutils literal notranslate"><span class="pre">\bignorm{x}</span></code>, <code class="docutils literal notranslate"><span class="pre">\opnorm{x}{p}</span></code></p></li>
+</ul>
+<p>The writer agent system prompt is updated to list all available macros and instruct the LLM to use them instead of redefining equivalents.</p>
+</section>
+<section id="openclaw-hub-integration-pr-31">
+<h3>18. OpenClaw Hub Integration (PR #31)<a class="headerlink" href="#openclaw-hub-integration-pr-31" title="Link to this heading">#</a></h3>
+<p>Skills can now be installed directly from the <a class="reference external" href="https://clawhub.ai/">ClawHub</a> registry:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>install-skills<span class="w"> </span>&lt;skillname&gt;
+<span class="c1"># e.g. eurekaclaw install-skills steipete/github</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">install-skills</span></code> with no argument continues to install all bundled seed skills. The <code class="docutils literal notranslate"><span class="pre">clawhub</span></code> CLI must be installed separately. The implementation lives in <code class="docutils literal notranslate"><span class="pre">eurekaclaw/skills/from_hub.py</span></code>.</p>
+</section>
+<section id="bug-fix-pause-attributeerror-pr-33">
+<h3>19. Bug Fix: pause AttributeError (PR #33)<a class="headerlink" href="#bug-fix-pause-attributeerror-pr-33" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">cli.py</span></code> referenced <code class="docutils literal notranslate"><span class="pre">exc.paused_before_stage</span></code> but <code class="docutils literal notranslate"><span class="pre">ProofPausedException</span></code> stores the field as <code class="docutils literal notranslate"><span class="pre">stage_name</span></code>. Fixed both call sites so pausing a run no longer crashes with <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code>.</p>
+</section>
+<section id="direction-planning-fallback-pr-33">
+<h3>20. Direction Planning Fallback (PR #33)<a class="headerlink" href="#direction-planning-fallback-pr-33" title="Link to this heading">#</a></h3>
+<p>When <code class="docutils literal notranslate"><span class="pre">DivergentConvergentPlanner.diverge()</span></code> returns an empty list or throws an exception, the orchestrator now halts and prompts the user to enter a research direction manually instead of silently continuing with no direction. The survey’s open problems are shown as context. Empty input or Ctrl+C raises <code class="docutils literal notranslate"><span class="pre">RuntimeError</span></code> and exits cleanly.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id1">
+<h2>2026-03-20<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<section id="theory-review-gate">
+<h3>1. Theory Review Gate<a class="headerlink" href="#theory-review-gate" title="Link to this heading">#</a></h3>
+<p>A new <code class="docutils literal notranslate"><span class="pre">theory_review_gate</span></code> orchestrator task is inserted between the TheoryAgent and WriterAgent in <code class="docutils literal notranslate"><span class="pre">default_pipeline.yaml</span></code>. It is always shown, regardless of <code class="docutils literal notranslate"><span class="pre">--gate</span></code> mode.</p>
+<ul class="simple">
+<li><p>Displays a numbered lemma chain (L1, L2, …) with <code class="docutils literal notranslate"><span class="pre">✓</span> <span class="pre">verified</span></code> / <code class="docutils literal notranslate"><span class="pre">~</span> <span class="pre">low</span> <span class="pre">confidence</span></code> tags.</p></li>
+<li><p><strong>y / Enter</strong> → proceed to writer.</p></li>
+<li><p><strong>n</strong> → user specifies the most problematic step (by number or ID) and describes the issue. The TheoryAgent re-runs once with the feedback injected into its task description, then shows the updated sketch once more.</p></li>
+</ul>
+</section>
+<section id="pause-resume">
+<h3>2. Pause / Resume<a class="headerlink" href="#pause-resume" title="Link to this heading">#</a></h3>
+<p>Two new CLI commands and a graceful <code class="docutils literal notranslate"><span class="pre">SIGINT</span></code> handler:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">eurekaclaw</span> <span class="pre">pause</span> <span class="pre">&lt;session_id&gt;</span></code></p></td>
+<td><p>Write <code class="docutils literal notranslate"><span class="pre">pause.flag</span></code>; theory agent stops at next stage boundary and saves <code class="docutils literal notranslate"><span class="pre">checkpoint.json</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">eurekaclaw</span> <span class="pre">resume</span> <span class="pre">&lt;session_id&gt;</span></code></p></td>
+<td><p>Load checkpoint and continue from the saved stage</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Ctrl+C</strong> during <code class="docutils literal notranslate"><span class="pre">prove</span></code></p></td>
+<td><p>Same as <code class="docutils literal notranslate"><span class="pre">pause</span></code> — writes flag instead of raising <code class="docutils literal notranslate"><span class="pre">KeyboardInterrupt</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Checkpoint file: <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/sessions/&lt;session_id&gt;/checkpoint.json</span></code></p>
+</section>
+<section id="proofarchitect-improvements">
+<h3>3. ProofArchitect Improvements<a class="headerlink" href="#proofarchitect-improvements" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">source=None</span></code> crash fixed:</strong> <code class="docutils literal notranslate"><span class="pre">item.get(&quot;source&quot;)</span> <span class="pre">or</span> <span class="pre">&quot;&quot;</span></code> instead of <code class="docutils literal notranslate"><span class="pre">item.get(&quot;source&quot;,</span> <span class="pre">&quot;&quot;)</span></code> so a JSON <code class="docutils literal notranslate"><span class="pre">null</span></code> value never passes through as <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>3-layer fallback:</strong> full plan (4–10 lemmas) → 3-lemma simplified plan → single <code class="docutils literal notranslate"><span class="pre">main_result</span></code>. Single-goal is now truly a last resort.</p></li>
+</ul>
+</section>
+<section id="citation-quality-improvements">
+<h3>4. Citation Quality Improvements<a class="headerlink" href="#citation-quality-improvements" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Assembler</strong> prompt requires explicit <code class="docutils literal notranslate"><span class="pre">[lemma_id]</span></code> citations in the assembled proof (e.g., <code class="docutils literal notranslate"><span class="pre">By</span> <span class="pre">[arm_pull_count_bound],</span> <span class="pre">…</span></code>).</p></li>
+<li><p><strong>ConsistencyChecker</strong> receives the list of proved lemma IDs and verifies all appear in the proof; returns <code class="docutils literal notranslate"><span class="pre">uncited_lemmas</span></code>.</p></li>
+<li><p><strong>Retry routing:</strong> when ConsistencyChecker failure is citation-related (“uncited” / “missing citation”), the retry loop re-runs the Assembler as well as the Crystallizer — not just the Crystallizer.</p></li>
+</ul>
+</section>
+<section id="theoremcrystallizer-fixes">
+<h3>5. TheoremCrystallizer Fixes<a class="headerlink" href="#theoremcrystallizer-fixes" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">max_tokens</span></code> raised from 1500 → 2500 to prevent mid-expression truncation of LaTeX formulas.</p></li>
+<li><p>Added explicit no-truncation constraint for math environments.</p></li>
+</ul>
+</section>
+<section id="knowledge-graph-write-timing">
+<h3>6. Knowledge Graph Write Timing<a class="headerlink" href="#knowledge-graph-write-timing" title="Link to this heading">#</a></h3>
+<p>Tier 3 KG writes now trigger whenever <code class="docutils literal notranslate"><span class="pre">proven_count</span> <span class="pre">&gt;</span> <span class="pre">0</span></code> (i.e., after any lemma is proved), not only when the full consistency check passes. Lemma nodes and dependency edges are preserved even when crystallization fails.</p>
+</section>
+<section id="bug-fixes">
+<h3>7. Bug Fixes<a class="headerlink" href="#bug-fixes" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>File</p></th>
+<th class="head"><p>Bug</p></th>
+<th class="head"><p>Fix</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">agents/theory/inner_loop_yaml.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cp.delete()</span></code> AttributeError at checkpoint clear</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cp.delete()</span></code> → <code class="docutils literal notranslate"><span class="pre">cp.clear()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">agents/theory/inner_loop_yaml.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ProofPausedException</span></code> swallowed by bare <code class="docutils literal notranslate"><span class="pre">except</span> <span class="pre">Exception</span></code></p></td>
+<td><p>Added <code class="docutils literal notranslate"><span class="pre">isinstance(e,</span> <span class="pre">ProofPausedException):</span> <span class="pre">raise</span></code> before handler</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">agents/theory/agent.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ProofPausedException</span></code> swallowed in agent execute</p></td>
+<td><p>Added explicit re-raise</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">orchestrator/meta_orchestrator.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">_init_brief</span></code> created a new session UUID, mismatching <code class="docutils literal notranslate"><span class="pre">pause.flag</span></code> path</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">session_id</span></code> reuses <code class="docutils literal notranslate"><span class="pre">bus.session_id</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id2">
+<h2>2026-03-19<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="robust-lemma-decomposer-parsing">
+<h3>1. Robust Lemma Decomposer Parsing<a class="headerlink" href="#robust-lemma-decomposer-parsing" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">_parse_lemmas</span></code> in <code class="docutils literal notranslate"><span class="pre">agents/theory/decomposer.py</span></code> now uses a 4-pass extraction strategy instead of 2, preventing the “Empty lemma list from decomposer” fallback in most cases:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pass</p></th>
+<th class="head"><p>Strategy</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>JSON inside <code class="docutils literal notranslate"><span class="pre">```json</span> <span class="pre">```</span></code> or plain <code class="docutils literal notranslate"><span class="pre">```</span> <span class="pre">```</span></code> code fence</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>First JSON object <code class="docutils literal notranslate"><span class="pre">{...}</span></code> — checks 7 key names: <code class="docutils literal notranslate"><span class="pre">lemmas</span></code>, <code class="docutils literal notranslate"><span class="pre">steps</span></code>, <code class="docutils literal notranslate"><span class="pre">subgoals</span></code>, <code class="docutils literal notranslate"><span class="pre">proof_steps</span></code>, <code class="docutils literal notranslate"><span class="pre">lemma_list</span></code>, <code class="docutils literal notranslate"><span class="pre">components</span></code>, <code class="docutils literal notranslate"><span class="pre">parts</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>First JSON array <code class="docutils literal notranslate"><span class="pre">[...]</span></code> — accepted directly as lemma list</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Plain-text numbered/bulleted list heuristic</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">_normalize_list</span></code> accepts flexible field names per item (<code class="docutils literal notranslate"><span class="pre">id</span></code>/<code class="docutils literal notranslate"><span class="pre">lemma_id</span></code>/<code class="docutils literal notranslate"><span class="pre">name</span></code>/<code class="docutils literal notranslate"><span class="pre">title</span></code>, <code class="docutils literal notranslate"><span class="pre">statement</span></code>/<code class="docutils literal notranslate"><span class="pre">formal_statement</span></code>/<code class="docutils literal notranslate"><span class="pre">hypothesis</span></code>/<code class="docutils literal notranslate"><span class="pre">content</span></code>, etc.) so variant LLM output schemas are handled without falling back to single-theorem mode.</p>
+<p>The same 4-pass strategy was also applied to <code class="docutils literal notranslate"><span class="pre">ProofArchitect._parse_lemmas</span></code>.</p>
+</section>
+<section id="ui-polling-log-suppression">
+<h3>2. UI Polling Log Suppression<a class="headerlink" href="#ui-polling-log-suppression" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/runs/&lt;id&gt;</span> <span class="pre">200</span></code> status-poll requests are now logged at <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> level instead of <code class="docutils literal notranslate"><span class="pre">INFO</span></code>, removing repetitive log noise during long runs.</p>
+</section>
+<section id="id3">
+<h3>3. Bug Fixes<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>File</p></th>
+<th class="head"><p>Bug</p></th>
+<th class="head"><p>Fix</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">agents/survey/agent.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ValueError:</span> <span class="pre">substring</span> <span class="pre">not</span> <span class="pre">found</span></code> on unclosed <code class="docutils literal notranslate"><span class="pre">```json</span></code> block</p></td>
+<td><p>Wrapped <code class="docutils literal notranslate"><span class="pre">text.index</span></code> in try/except</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">agents/base.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">run_agent_loop</span></code> ignoring <code class="docutils literal notranslate"><span class="pre">SURVEY_MAX_TURNS</span></code> setting</p></td>
+<td><p>Uses dynamic <code class="docutils literal notranslate"><span class="pre">AsyncRetrying</span></code> now</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">main.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">NameError:</span> <span class="pre">name</span> <span class="pre">'Path'</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">defined</span></code> in <code class="docutils literal notranslate"><span class="pre">save_artifacts</span></code></p></td>
+<td><p>Added <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">pathlib</span> <span class="pre">import</span> <span class="pre">Path</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ui/server.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/runs/...</span></code> spamming the log</p></td>
+<td><p>Demoted to <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> for 200 polling responses</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="always-on-stage-summary-cards">
+<h3>4. Always-On Stage Summary Cards<a class="headerlink" href="#always-on-stage-summary-cards" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">orchestrator/gate.py</span></code> now prints a Rich summary card after every completed pipeline stage regardless of <code class="docutils literal notranslate"><span class="pre">GATE_MODE</span></code>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Stage</p></th>
+<th class="head"><p>Card shows</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">survey</span></code></p></td>
+<td><p>Papers found, open problems, key mathematical objects</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">theory</span></code></p></td>
+<td><p>Proof status, per-lemma breakdown with confidence tags</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">experiment</span></code></p></td>
+<td><p>Alignment score, per-lemma numerical check results</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">writer</span></code></p></td>
+<td><p>Full session summary before final output</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="human-gate-improvements">
+<h3>5. Human Gate Improvements<a class="headerlink" href="#human-gate-improvements" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Text feedback input:</strong> after approving a gate, users can type a correction or hint injected into the next agent’s task via <code class="docutils literal notranslate"><span class="pre">get_user_feedback()</span></code></p></li>
+<li><p><strong>Auto-escalation:</strong> if ≥1 lemma has <code class="docutils literal notranslate"><span class="pre">verified=False</span></code> after theory stage, gate auto-escalates from <code class="docutils literal notranslate"><span class="pre">auto</span></code> to <code class="docutils literal notranslate"><span class="pre">human</span></code> with full lemma confidence breakdown</p></li>
+<li><p><strong>Default changed:</strong> <code class="docutils literal notranslate"><span class="pre">GATE_MODE</span></code> default changed from <code class="docutils literal notranslate"><span class="pre">none</span></code> to <code class="docutils literal notranslate"><span class="pre">auto</span></code></p></li>
+</ul>
+</section>
+<section id="proof-readability-enforcement-writeragent">
+<h3>6. Proof Readability Enforcement (WriterAgent)<a class="headerlink" href="#proof-readability-enforcement-writeragent" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">ENFORCE_PROOF_STYLE=true</span></code> (default) injects <code class="docutils literal notranslate"><span class="pre">_PROOF_STYLE_RULES</span></code> into writer prompts:</p>
+<ul class="simple">
+<li><p>No skip words (“clearly”, “trivially”, “by standard arguments”) without immediate justification</p></li>
+<li><p>Every inequality must name the lemma or theorem it uses</p></li>
+<li><p>Each lemma proof opens with 1–2 sentences of informal explanation</p></li>
+<li><p>Low-confidence lemmas tagged <code class="docutils literal notranslate"><span class="pre">\textcolor{orange}{\textbf{[Unverified</span> <span class="pre">step]}}</span></code> in PDF</p></li>
+<li><p>Limitations section explains all unverified steps</p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">\usepackage{xcolor}</span></code> to <code class="docutils literal notranslate"><span class="pre">LATEX_PREAMBLE</span></code></p></li>
+</ul>
+</section>
+<section id="targeted-numerical-testing-experimentagent">
+<h3>7. Targeted Numerical Testing (ExperimentAgent)<a class="headerlink" href="#targeted-numerical-testing-experimentagent" title="Link to this heading">#</a></h3>
+<p>ExperimentAgent now separates proven lemmas into <code class="docutils literal notranslate"><span class="pre">verified</span></code> and <code class="docutils literal notranslate"><span class="pre">low_confidence</span></code> groups:</p>
+<ul class="simple">
+<li><p>For each low-confidence lemma: runs dedicated numerical test, computes <code class="docutils literal notranslate"><span class="pre">violation_rate</span></code></p></li>
+<li><p>Lemmas with <code class="docutils literal notranslate"><span class="pre">violation_rate</span> <span class="pre">&gt;</span> <span class="pre">1%</span></code> flagged as <code class="docutils literal notranslate"><span class="pre">numerically_suspect</span></code></p></li>
+<li><p>Experiment stage summary card shows per-lemma check results with color coding</p></li>
+<li><p>WriterAgent adds stronger warnings for <code class="docutils literal notranslate"><span class="pre">numerically_suspect</span></code> lemmas</p></li>
+</ul>
+</section>
+<section id="cli-default-output-directory">
+<h3>8. CLI Default Output Directory<a class="headerlink" href="#cli-default-output-directory" title="Link to this heading">#</a></h3>
+<p>All three CLI commands (<code class="docutils literal notranslate"><span class="pre">prove</span></code>, <code class="docutils literal notranslate"><span class="pre">explore</span></code>, <code class="docutils literal notranslate"><span class="pre">from-papers</span></code>) now default to <code class="docutils literal notranslate"><span class="pre">./results</span></code> if <code class="docutils literal notranslate"><span class="pre">--output</span></code> is not specified.</p>
+</section>
+<section id="bibliography-citation-fix">
+<h3>9. Bibliography &amp; Citation Fix<a class="headerlink" href="#bibliography-citation-fix" title="Link to this heading">#</a></h3>
+<p>Removed <code class="docutils literal notranslate"><span class="pre">\cite{}</span></code> → <code class="docutils literal notranslate"><span class="pre">?</span></code> bug in output PDFs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_fix_missing_citations()</span></code> surgically removes <code class="docutils literal notranslate"><span class="pre">\cite{}</span></code> keys that have no matching entry in <code class="docutils literal notranslate"><span class="pre">references.bib</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LATEX_END</span></code> split into <code class="docutils literal notranslate"><span class="pre">LATEX_END_WITH_BIB</span></code> / <code class="docutils literal notranslate"><span class="pre">LATEX_END_NO_BIB</span></code> — <code class="docutils literal notranslate"><span class="pre">\bibliography{references}</span></code> only added when <code class="docutils literal notranslate"><span class="pre">.bib</span></code> is non-empty</p></li>
+<li><p>WriterAgent prompt instructs LLM to use exact cite keys (same as <code class="docutils literal notranslate"><span class="pre">_generate_bibtex</span></code>)</p></li>
+</ul>
+</section>
+<section id="latex-extraction-improvements">
+<h3>10. LaTeX Extraction Improvements<a class="headerlink" href="#latex-extraction-improvements" title="Link to this heading">#</a></h3>
+<p>Extended <code class="docutils literal notranslate"><span class="pre">_extract_latex</span></code> in WriterAgent with:</p>
+<ul class="simple">
+<li><p>Markdown heading → LaTeX section conversion</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tikzpicture</span></code> environment removal</p></li>
+<li><p>Environment name normalization additions: <code class="docutils literal notranslate"><span class="pre">rem</span></code>→<code class="docutils literal notranslate"><span class="pre">remark</span></code>, <code class="docutils literal notranslate"><span class="pre">rema</span></code>→<code class="docutils literal notranslate"><span class="pre">remark</span></code>, <code class="docutils literal notranslate"><span class="pre">prop</span></code>→<code class="docutils literal notranslate"><span class="pre">proposition</span></code>, <code class="docutils literal notranslate"><span class="pre">defin</span></code>→<code class="docutils literal notranslate"><span class="pre">definition</span></code>, <code class="docutils literal notranslate"><span class="pre">corolary</span></code>→<code class="docutils literal notranslate"><span class="pre">corollary</span></code>, <code class="docutils literal notranslate"><span class="pre">Cor</span></code>→<code class="docutils literal notranslate"><span class="pre">corollary</span></code>, <code class="docutils literal notranslate"><span class="pre">Thm</span></code>→<code class="docutils literal notranslate"><span class="pre">theorem</span></code>, <code class="docutils literal notranslate"><span class="pre">Lem</span></code>→<code class="docutils literal notranslate"><span class="pre">lemma</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\endproof</span></code> → <code class="docutils literal notranslate"><span class="pre">\end{proof}</span></code> substitution</p></li>
+<li><p>QED box removal (<code class="docutils literal notranslate"><span class="pre">\begin{flushright}$\square$\end{flushright}</span></code>)</p></li>
+<li><p>Two-pass <code class="docutils literal notranslate"><span class="pre">_close_open_environments</span></code>: (1) remove orphaned <code class="docutils literal notranslate"><span class="pre">\end{X}</span></code>, (2) append missing <code class="docutils literal notranslate"><span class="pre">\end{X}</span></code></p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id4">
+<h2>2026-03-18<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<section id="context-compression">
+<h3>1. Context Compression<a class="headerlink" href="#context-compression" title="Link to this heading">#</a></h3>
+<p>Optimization summary:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Stage</p></th>
+<th class="head"><p>Before</p></th>
+<th class="head"><p>After</p></th>
+<th class="head"><p>Saving</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Formalizer model</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">opus</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">haiku</span></code></p></td>
+<td><p>~90% cost per call</p></td>
+</tr>
+<tr class="row-odd"><td><p>Formalizer re-run</p></td>
+<td><p>Every iteration</p></td>
+<td><p>Only on change</p></td>
+<td><p>Saves N-1 calls</p></td>
+</tr>
+<tr class="row-even"><td><p>Proven lemma context</p></td>
+<td><p>200-char proof text</p></td>
+<td><p>Statement only (120)</p></td>
+<td><p>~40% input tokens</p></td>
+</tr>
+<tr class="row-odd"><td><p>Verifier (high-conf)</p></td>
+<td><p>Always LLM call</p></td>
+<td><p>Auto-accept ≥ 0.85</p></td>
+<td><p>~30% fewer calls</p></td>
+</tr>
+<tr class="row-even"><td><p>Verifier proof text</p></td>
+<td><p>Raw (up to 3000 chars)</p></td>
+<td><p>Head+tail (1000 chars)</p></td>
+<td><p>~67% input tokens</p></td>
+</tr>
+<tr class="row-odd"><td><p>Agent loop history</p></td>
+<td><p>Accumulates forever</p></td>
+<td><p>Compressed every 6 turns</p></td>
+<td><p>~60% input tokens</p></td>
+</tr>
+<tr class="row-even"><td><p>Stagnation</p></td>
+<td><p>Wastes 3+ iterations</p></td>
+<td><p>Forced refinement</p></td>
+<td><p>Saves full iterations</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Run performance:</strong> typical run now ~20 LLM calls (down from ~35); worst case ~55 (down from ~100).</p>
+<p><strong>Agent <code class="docutils literal notranslate"><span class="pre">max_turns</span></code> reductions:</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Agent</p></th>
+<th class="head"><p>Before</p></th>
+<th class="head"><p>After</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>SurveyAgent</p></td>
+<td><p>15</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p>IdeationAgent</p></td>
+<td><p>5</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-even"><td><p>ExperimentAgent</p></td>
+<td><p>10</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>WriterAgent</p></td>
+<td><p>5</p></td>
+<td><p>3</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>New config knobs:</strong> <code class="docutils literal notranslate"><span class="pre">CONTEXT_COMPRESS_AFTER_TURNS</span></code>, <code class="docutils literal notranslate"><span class="pre">AUTO_VERIFY_CONFIDENCE</span></code>, <code class="docutils literal notranslate"><span class="pre">STAGNATION_WINDOW</span></code></p>
+</section>
+<section id="configurable-token-limits-per-call-type">
+<h3>2. Configurable Token Limits Per Call Type<a class="headerlink" href="#configurable-token-limits-per-call-type" title="Link to this heading">#</a></h3>
+<p>7 new <code class="docutils literal notranslate"><span class="pre">.env</span></code> variables:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Applies to</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_AGENT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">8192</span></code></p></td>
+<td><p>All agent reasoning loops</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_PROVER</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4096</span></code></p></td>
+<td><p>Proof generation</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_PLANNER</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4096</span></code></p></td>
+<td><p>Research direction planning</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_DECOMPOSER</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2048</span></code></p></td>
+<td><p>Lemma decomposition</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_FORMALIZER</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2048</span></code></p></td>
+<td><p>Formalization, refiner, counterexample</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_VERIFIER</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1024</span></code></p></td>
+<td><p>Proof verification</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_COMPRESS</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">512</span></code></p></td>
+<td><p>Context compression</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>UI sliders added in the Settings tab for all 7 values.</p>
+</section>
+<section id="multi-backend-llm-support">
+<h3>3. Multi-Backend LLM Support<a class="headerlink" href="#multi-backend-llm-support" title="Link to this heading">#</a></h3>
+<p>Three named backends in <code class="docutils literal notranslate"><span class="pre">config.py</span></code> and <code class="docutils literal notranslate"><span class="pre">llm/factory.py</span></code>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Backend</p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">LLM_BACKEND=</span></code></p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Anthropic native</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">anthropic</span></code></p></td>
+<td><p>Default</p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenRouter</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">openrouter</span></code></p></td>
+<td><p>Set <code class="docutils literal notranslate"><span class="pre">OPENAI_COMPAT_API_KEY=sk-or-...</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Local (vLLM/Ollama)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">local</span></code></p></td>
+<td><p>Defaults to <code class="docutils literal notranslate"><span class="pre">http://localhost:8000/v1</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>ccproxy / OAuth fallback:</strong> if <code class="docutils literal notranslate"><span class="pre">ANTHROPIC_API_KEY</span></code> is empty, automatically reads <code class="docutils literal notranslate"><span class="pre">~/.claude/.credentials.json</span></code> and routes through ccproxy (allows Claude Pro/Max users to run without a separate API key).</p>
+</section>
+<section id="additional-tuning-knobs">
+<h3>4. Additional Tuning Knobs<a class="headerlink" href="#additional-tuning-knobs" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Effect</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SURVEY_MAX_TURNS</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">8</span></code></p></td>
+<td><p>Tool-use turns in SurveyAgent</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">THEORY_STAGE_MAX_TURNS</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">6</span></code></p></td>
+<td><p>Turns per theory stage</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">WRITER_MAX_TURNS</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4</span></code></p></td>
+<td><p>Turns for paper generation</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ARXIV_MAX_RESULTS</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">10</span></code></p></td>
+<td><p>Hard cap on arXiv results</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">LLM_RETRY_ATTEMPTS</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">5</span></code></p></td>
+<td><p>Retry attempts on 5xx / rate-limit errors</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LLM_RETRY_WAIT_MIN</span></code> / <code class="docutils literal notranslate"><span class="pre">MAX</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4</span></code> / <code class="docutils literal notranslate"><span class="pre">90</span></code></p></td>
+<td><p>Exponential backoff bounds</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="domain-plugin-architecture">
+<h3>5. Domain Plugin Architecture<a class="headerlink" href="#domain-plugin-architecture" title="Link to this heading">#</a></h3>
+<p>New three-tier plugin system:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>EurekaClaw (general pipeline)
+    └── DomainPlugin (e.g. MAB)
+            └── Workflow (per-domain prompt guidance)
+</pre></div>
+</div>
+<p><strong>New files:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">domains/base.py</span></code> — <code class="docutils literal notranslate"><span class="pre">DomainPlugin</span></code> ABC with 4 methods</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">domains/__init__.py</span></code> — <code class="docutils literal notranslate"><span class="pre">&#64;register_domain</span></code> decorator + <code class="docutils literal notranslate"><span class="pre">resolve_domain()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">domains/mab/</span></code> — MAB domain plugin (GaussianBandit, BernoulliBandit, 4 tools, 4 skills, 3-level benchmark)</p></li>
+</ul>
+<p><strong>Core changes:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SkillRegistry.add_skills_dir()</span></code> — load skills from domain directories</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">build_default_registry()</span></code> — now domain-agnostic; domain tools registered via plugin</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MetaOrchestrator</span></code> — accepts <code class="docutils literal notranslate"><span class="pre">domain_plugin</span></code> parameter</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EurekaSession.run()</span></code> — auto-detects domain plugin from <code class="docutils literal notranslate"><span class="pre">InputSpec.domain</span></code></p></li>
+</ul>
+</section>
+<section id="latex-compilation-robustness">
+<h3>6. LaTeX Compilation Robustness<a class="headerlink" href="#latex-compilation-robustness" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Added 7 <code class="docutils literal notranslate"><span class="pre">\newtheorem</span></code> declarations to <code class="docutils literal notranslate"><span class="pre">LATEX_PREAMBLE</span></code>: <code class="docutils literal notranslate"><span class="pre">assumption</span></code>, <code class="docutils literal notranslate"><span class="pre">maintheorem</span></code>, <code class="docutils literal notranslate"><span class="pre">conjecture</span></code>, <code class="docutils literal notranslate"><span class="pre">claim</span></code>, <code class="docutils literal notranslate"><span class="pre">example</span></code>, <code class="docutils literal notranslate"><span class="pre">fact</span></code>, <code class="docutils literal notranslate"><span class="pre">observation</span></code></p></li>
+<li><p>Environment name normalization in <code class="docutils literal notranslate"><span class="pre">_extract_latex</span></code> (step 6): mis-cased names corrected</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_close_open_environments()</span></code> — new static method, stack-based, prevents <code class="docutils literal notranslate"><span class="pre">\begin{tabular}</span></code> truncation from causing fatal errors</p></li>
+<li><p>Removed <code class="docutils literal notranslate"><span class="pre">_rescue_compile</span></code> and <code class="docutils literal notranslate"><span class="pre">paper_rescue.tex</span></code> fallback entirely</p></li>
+<li><p>Full bibtex-aware compile sequence: <code class="docutils literal notranslate"><span class="pre">pdflatex</span> <span class="pre">→</span> <span class="pre">bibtex</span> <span class="pre">→</span> <span class="pre">pdflatex</span> <span class="pre">→</span> <span class="pre">pdflatex</span></code></p></li>
+</ul>
+</section>
+<section id="bibliography-reference-resolution">
+<h3>7. Bibliography &amp; Reference Resolution<a class="headerlink" href="#bibliography-reference-resolution" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Write order fixed:</strong> <code class="docutils literal notranslate"><span class="pre">references.bib</span></code> saved <strong>before</strong> <code class="docutils literal notranslate"><span class="pre">_compile_pdf()</span></code> is called</p></li>
+<li><p><strong>bibtex added to compile sequence:</strong> previously only <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code> ran twice</p></li>
+<li><p><strong>Cite key consistency:</strong> <code class="docutils literal notranslate"><span class="pre">_compute_cite_keys()</span></code> in WriterAgent uses identical algorithm to <code class="docutils literal notranslate"><span class="pre">_generate_bibtex</span></code> in <code class="docutils literal notranslate"><span class="pre">main.py</span></code></p></li>
+<li><p><strong>Duplicate key handling:</strong> <code class="docutils literal notranslate"><span class="pre">_generate_bibtex</span></code> deduplicates with <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code>, … suffixes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ResearchOutput.bibliography_json</span></code> field added</p></li>
+</ul>
+</section>
+<section id="experiment-mode-control">
+<h3>8. Experiment Mode Control<a class="headerlink" href="#experiment-mode-control" title="Link to this heading">#</a></h3>
+<p>New <code class="docutils literal notranslate"><span class="pre">EXPERIMENT_MODE</span></code> env var:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">auto</span></code> — skip experiment if formal statement has no quantitative signals</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">true</span></code> — always run experiment stage</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">false</span></code> — always skip experiment stage</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Changelog</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continued-prs-23-28-29-30-31-33">2026-03-20 (continued — PRs #23, #28, #29, #30, #31, #33)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principled-prover-confidence-scoring">8. Principled Prover Confidence Scoring</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verifier-bug-fix-format-code-error">9. Verifier Bug Fix: Format Code Error</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pdftex-font-expansion-fix">10. pdfTeX Font Expansion Fix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#token-limit-ui-sliders-extended">11. Token Limit UI Sliders (Extended)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#human-intervention-for-empty-survey">12. Human Intervention for Empty Survey</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proofcheckpoint-bug-fixes-issue-27">13. ProofCheckpoint Bug Fixes (Issue #27)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimax-llm-backend-pr-23">14. Minimax LLM Backend (PR #23)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pdf-extraction-via-docling-pr-23">15. PDF Extraction via Docling (PR #23)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-relevance-based-retrieval-pr-30">16. Memory Relevance-Based Retrieval (PR #30)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#smile-sty-math-macro-package-pr-28">17. smile.sty Math Macro Package (PR #28)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#openclaw-hub-integration-pr-31">18. OpenClaw Hub Integration (PR #31)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bug-fix-pause-attributeerror-pr-33">19. Bug Fix: pause AttributeError (PR #33)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#direction-planning-fallback-pr-33">20. Direction Planning Fallback (PR #33)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2026-03-20</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#theory-review-gate">1. Theory Review Gate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pause-resume">2. Pause / Resume</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proofarchitect-improvements">3. ProofArchitect Improvements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#citation-quality-improvements">4. Citation Quality Improvements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#theoremcrystallizer-fixes">5. TheoremCrystallizer Fixes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#knowledge-graph-write-timing">6. Knowledge Graph Write Timing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bug-fixes">7. Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2026-03-19</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#robust-lemma-decomposer-parsing">1. Robust Lemma Decomposer Parsing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ui-polling-log-suppression">2. UI Polling Log Suppression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3. Bug Fixes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#always-on-stage-summary-cards">4. Always-On Stage Summary Cards</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#human-gate-improvements">5. Human Gate Improvements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proof-readability-enforcement-writeragent">6. Proof Readability Enforcement (WriterAgent)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#targeted-numerical-testing-experimentagent">7. Targeted Numerical Testing (ExperimentAgent)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cli-default-output-directory">8. CLI Default Output Directory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliography-citation-fix">9. Bibliography &amp; Citation Fix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latex-extraction-improvements">10. LaTeX Extraction Improvements</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2026-03-18</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#context-compression">1. Context Compression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configurable-token-limits-per-call-type">2. Configurable Token Limits Per Call Type</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-backend-llm-support">3. Multi-Backend LLM Support</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-tuning-knobs">4. Additional Tuning Knobs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-plugin-architecture">5. Domain Plugin Architecture</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latex-compilation-robustness">6. LaTeX Compilation Robustness</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliography-reference-resolution">7. Bibliography &amp; Reference Resolution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-mode-control">8. Experiment Mode Control</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/EurekaClaw/EurekaClaw.github.io/edit/main/source/changelog/changelog.md">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, EurekaClaw Contributors.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

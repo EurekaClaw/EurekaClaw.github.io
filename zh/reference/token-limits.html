@@ -1,0 +1,1086 @@
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Token 限制 &#8212; EurekaClaw</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=74c509de" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=7c91f8fd"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=9345eede"></script>
+    <script src="../_static/translations.js?v=540d3cec"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/token-limits';</script>
+    <link rel="icon" href="../_static/logo-claw.png"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="领域插件系统" href="domains.html" />
+    <link rel="prev" title="技能系统" href="skills.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">跳转至主要内容</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>回到顶部</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="版本警告"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="网页导航">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt=""/>
+    <img src="../_static/logo.svg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">EurekaClaw</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/installation.html">
+    安装
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/quickstart.html">
+    快速开始
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/authentication.html">
+    API Key授权
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user-guide/index.html">
+    用户指南
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="cli.html">
+    CLI 参考
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="configuration.html">
+    配置
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="api.html">
+    Python API
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="architecture.html">
+    系统结构
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="agents.html">
+    智能体
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="tools.html">
+    研究工具
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="memory.html">
+    记忆系统
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="skills.html">
+    技能系统
+  </a>
+</li>
+
+
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="#">
+    Token 限制
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="domains.html">
+    领域插件系统
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../changelog/index.html">
+    开发日志
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><div class="lang-switcher">
+  <a class="lang-link" href="/reference/token-limits.html">EN</a>
+  <span class="lang-sep">|</span>
+  <span class="lang-current">中文</span>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/EurekaClaw/EurekaClaw" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="亮色"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="暗色"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="当前页面">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/installation.html">
+    安装
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/quickstart.html">
+    快速开始
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/authentication.html">
+    API Key授权
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user-guide/index.html">
+    用户指南
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="cli.html">
+    CLI 参考
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="configuration.html">
+    配置
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api.html">
+    Python API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="architecture.html">
+    系统结构
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="agents.html">
+    智能体
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tools.html">
+    研究工具
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="memory.html">
+    记忆系统
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="skills.html">
+    技能系统
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Token 限制
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="domains.html">
+    领域插件系统
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../changelog/index.html">
+    开发日志
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><div class="lang-switcher">
+  <a class="lang-link" href="/reference/token-limits.html">EN</a>
+  <span class="lang-sep">|</span>
+  <span class="lang-current">中文</span>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/EurekaClaw/EurekaClaw" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="亮色"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="暗色"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="章节导航">
+  <p class="bd-links__title" role="heading" aria-level="1">章节导航</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="初始页面">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Token 限制</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="token">
+<h1>Token 限制<a class="headerlink" href="#token" title="链接到此标题。">#</a></h1>
+<p>本文档介绍 UI 中&quot;每次调用类型的 Token 限制&quot;控制项及对应的后端设置。</p>
+<p>这些限制<strong>不会</strong>改变模型的总上下文窗口大小。它们控制的是<strong>特定阶段中单次模型调用的最大输出长度</strong>。</p>
+<p>实际效果：</p>
+<ul class="simple">
+<li><p>提高某个限制，可让该阶段有更多空间来完成证明、定理语句或草稿。</p></li>
+<li><p>降低某个限制，可使该阶段更省钱、更快，但增加被截断的风险。</p></li>
+<li><p>最有调优价值的限制取决于您使用的是哪个理论流水线。</p></li>
+</ul>
+<section id="id1">
+<h2>设置位置<a class="headerlink" href="#id1" title="链接到此标题。">#</a></h2>
+<p>后端配置位于：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">eurekaclaw/config.py</span></code></p></li>
+</ul>
+<p>UI 配置映射位于：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">eurekaclaw/ui/server.py</span></code>（<code class="docutils literal notranslate"><span class="pre">_CONFIG_FIELDS</span></code>）</p></li>
+</ul>
+<p>UI 表单位于：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">frontend/index.html</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">eurekaclaw/ui/static/index.html</span></code></p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>速查表<a class="headerlink" href="#id2" title="链接到此标题。">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>变量</p></th>
+<th class="head"><p>默认值</p></th>
+<th class="head"><p>使用者</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_AGENT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">8192</span></code></p></td>
+<td><p>通用智能体循环（SurveyAgent、WriterAgent、回退路径）</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_PROVER</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4096</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Prover</span></code> — 引理证明生成</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_PLANNER</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4096</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DivergentConvergentPlanner</span></code>（diverge 阶段）；converge 使用一半</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_ARCHITECT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3072</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">default</span></code> 流水线中的 <code class="docutils literal notranslate"><span class="pre">ProofArchitect</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_DECOMPOSER</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4096</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">KeyLemmaExtractor</span></code> 和遗留分解阶段</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_ASSEMBLER</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">6144</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Assembler</span></code> — 完整证明叙述</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_FORMALIZER</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4096</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Formalizer</span></code>、<code class="docutils literal notranslate"><span class="pre">Refiner</span></code>、<code class="docutils literal notranslate"><span class="pre">CounterexampleSearcher</span></code>、<code class="docutils literal notranslate"><span class="pre">ResourceAnalyst</span></code>、<code class="docutils literal notranslate"><span class="pre">PaperReader</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_CRYSTALLIZER</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4096</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TheoremCrystallizer</span></code> — 最终定理语句</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_ANALYST</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1536</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MemoryGuidedAnalyzer</span></code>、<code class="docutils literal notranslate"><span class="pre">TemplateSelector</span></code>、<code class="docutils literal notranslate"><span class="pre">ProofSkeletonBuilder</span></code>（<code class="docutils literal notranslate"><span class="pre">memory_guided</span></code> 流水线）</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_SKETCH</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1024</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SketchGenerator</span></code> — Lean4/Coq 草图</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_VERIFIER</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2048</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Verifier</span></code> 和同行评审调用</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_COMPRESS</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">512</span></code></p></td>
+<td><p>上下文压缩摘要（快速模型）</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id3">
+<h2>各流水线使用情况<a class="headerlink" href="#id3" title="链接到此标题。">#</a></h2>
+<p>理论流水线有两种：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">default</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">memory_guided</span></code></p></li>
+</ul>
+<section id="default">
+<h3><code class="docutils literal notranslate"><span class="pre">default</span></code> 流水线<a class="headerlink" href="#default" title="链接到此标题。">#</a></h3>
+<p>对 <code class="docutils literal notranslate"><span class="pre">default</span></code> 流水线影响最大的阶段：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Architect</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Prover</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Assembler</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TheoremCrystallizer</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Verifier</span></code></p></li>
+</ul>
+<p>相关代码：</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/proof_pipelines/default_proof_pipeline.yaml"><span class="xref myst">default_proof_pipeline.yaml</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/proof_architect.py"><span class="xref myst">proof_architect.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/prover.py"><span class="xref myst">prover.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/assembler.py"><span class="xref myst">assembler.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/theorem_crystallizer.py"><span class="xref myst">theorem_crystallizer.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/verifier.py"><span class="xref myst">verifier.py</span></a></p></li>
+</ul>
+<p>若 <code class="docutils literal notranslate"><span class="pre">default</span></code> 流水线遇到问题，通常最有效的调节顺序为：</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Architect</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Prover</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Assembler</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TheoremCrystallizer</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Verifier</span></code></p></li>
+</ol>
+</section>
+<section id="memory-guided">
+<h3><code class="docutils literal notranslate"><span class="pre">memory_guided</span></code> 流水线<a class="headerlink" href="#memory-guided" title="链接到此标题。">#</a></h3>
+<p>对 <code class="docutils literal notranslate"><span class="pre">memory_guided</span></code> 流水线影响最大的阶段：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Analyst</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Decomposer</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Prover</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Assembler</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TheoremCrystallizer</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Verifier</span></code></p></li>
+</ul>
+<p>相关代码：</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/proof_pipelines/memory_guided_proof_pipeline.yaml"><span class="xref myst">memory_guided_proof_pipeline.yaml</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/analysis_stages.py"><span class="xref myst">analysis_stages.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/key_lemma_extractor.py"><span class="xref myst">key_lemma_extractor.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/prover.py"><span class="xref myst">prover.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/assembler.py"><span class="xref myst">assembler.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/theorem_crystallizer.py"><span class="xref myst">theorem_crystallizer.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/verifier.py"><span class="xref myst">verifier.py</span></a></p></li>
+</ul>
+<p>若 <code class="docutils literal notranslate"><span class="pre">memory_guided</span></code> 流水线遇到问题，通常最有效的调节顺序为：</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Analyst</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Decomposer</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Prover</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Assembler</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TheoremCrystallizer</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Verifier</span></code></p></li>
+</ol>
+</section>
+</section>
+<section id="id4">
+<h2>各重要阶段的作用<a class="headerlink" href="#id4" title="链接到此标题。">#</a></h2>
+<section id="id5">
+<h3>智能体循环<a class="headerlink" href="#id5" title="链接到此标题。">#</a></h3>
+<p>用于通用智能体调用，包括：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SurveyAgent</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WriterAgent</span></code></p></li>
+<li><p>所有回退到通用基础智能体路径的阶段</p></li>
+</ul>
+<p>相关代码：</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#eurekaclaw/agents/base.py"><span class="xref myst">base.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/survey/agent.py"><span class="xref myst">agent.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/writer/agent.py"><span class="xref myst">agent.py</span></a></p></li>
+</ul>
+<p>在以下情况时提高：</p>
+<ul class="simple">
+<li><p>调研结果过短</p></li>
+<li><p>Writer 频繁提前停止</p></li>
+</ul>
+</section>
+<section id="prover">
+<h3>Prover<a class="headerlink" href="#prover" title="链接到此标题。">#</a></h3>
+<p>用于引理级别的定理证明生成。</p>
+<p>相关代码：</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/prover.py"><span class="xref myst">prover.py</span></a></p></li>
+</ul>
+<p>在以下情况时提高：</p>
+<ul class="simple">
+<li><p>引理证明在论证中途停止</p></li>
+<li><p>Prover 频繁省略技术步骤</p></li>
+</ul>
+</section>
+<section id="architect">
+<h3>Architect<a class="headerlink" href="#architect" title="链接到此标题。">#</a></h3>
+<p>用于 <code class="docutils literal notranslate"><span class="pre">default</span></code> 流水线中的 <code class="docutils literal notranslate"><span class="pre">ProofArchitect</span></code>。</p>
+<p>相关代码：</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/proof_architect.py"><span class="xref myst">proof_architect.py</span></a></p></li>
+</ul>
+<p>在以下情况时提高：</p>
+<ul class="simple">
+<li><p>证明计划过于浅层</p></li>
+<li><p>Architect 返回不完整的引理结构</p></li>
+</ul>
+</section>
+<section id="analyst">
+<h3>Analyst<a class="headerlink" href="#analyst" title="链接到此标题。">#</a></h3>
+<p>用于 <code class="docutils literal notranslate"><span class="pre">memory_guided</span></code> 流水线中的 <code class="docutils literal notranslate"><span class="pre">MemoryGuidedAnalyzer</span></code>、<code class="docutils literal notranslate"><span class="pre">TemplateSelector</span></code> 和 <code class="docutils literal notranslate"><span class="pre">ProofSkeletonBuilder</span></code>。</p>
+<p>相关代码：</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/analysis_stages.py"><span class="xref myst">analysis_stages.py</span></a></p></li>
+</ul>
+<p>在以下情况时提高：</p>
+<ul class="simple">
+<li><p>流水线选择了较差的证明模板</p></li>
+<li><p>证明框架过于粗略</p></li>
+<li><p>记忆引导分析内容过薄</p></li>
+</ul>
+</section>
+<section id="decomposer">
+<h3>Decomposer<a class="headerlink" href="#decomposer" title="链接到此标题。">#</a></h3>
+<p>用于分解式阶段，包括 <code class="docutils literal notranslate"><span class="pre">KeyLemmaExtractor</span></code>。</p>
+<p>相关代码：</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/key_lemma_extractor.py"><span class="xref myst">key_lemma_extractor.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/decomposer.py"><span class="xref myst">decomposer.py</span></a></p></li>
+</ul>
+<p>在以下情况时提高：</p>
+<ul class="simple">
+<li><p>关键引理缺失</p></li>
+<li><p>分解粒度过粗</p></li>
+</ul>
+</section>
+<section id="assembler">
+<h3>Assembler<a class="headerlink" href="#assembler" title="链接到此标题。">#</a></h3>
+<p>用于生成 <code class="docutils literal notranslate"><span class="pre">state.assembled_proof</span></code>。</p>
+<p>相关代码：</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/assembler.py"><span class="xref myst">assembler.py</span></a></p></li>
+</ul>
+<p>在以下情况时提高：</p>
+<ul class="simple">
+<li><p>证明正文在句子中途结束</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">assembled_proof</span></code> 看起来被截断</p></li>
+<li><p>后续定理提取失败，因为证明叙述不完整</p></li>
+</ul>
+</section>
+<section id="theoremcrystallizer">
+<h3>TheoremCrystallizer<a class="headerlink" href="#theoremcrystallizer" title="链接到此标题。">#</a></h3>
+<p>用于生成 <code class="docutils literal notranslate"><span class="pre">state.formal_statement</span></code>。</p>
+<p>相关代码：</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/theorem_crystallizer.py"><span class="xref myst">theorem_crystallizer.py</span></a></p></li>
+</ul>
+<p>在以下情况时提高：</p>
+<ul class="simple">
+<li><p>定理语句被截断</p></li>
+<li><p>定理在公式中途结束</p></li>
+<li><p>定理块中缺少汇总证明中存在的假设或术语</p></li>
+</ul>
+</section>
+<section id="verifier">
+<h3>Verifier<a class="headerlink" href="#verifier" title="链接到此标题。">#</a></h3>
+<p>用于：</p>
+<ul class="simple">
+<li><p>引理同行评审</p></li>
+<li><p>一致性检查</p></li>
+</ul>
+<p>相关代码：</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/verifier.py"><span class="xref myst">verifier.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/consistency_checker.py"><span class="xref myst">consistency_checker.py</span></a></p></li>
+</ul>
+<p>在以下情况时提高：</p>
+<ul class="simple">
+<li><p>审阅者输出过于简短</p></li>
+<li><p>一致性检查遗漏了明显问题</p></li>
+</ul>
+</section>
+<section id="formalizer-refiner">
+<h3>Formalizer / Refiner<a class="headerlink" href="#formalizer-refiner" title="链接到此标题。">#</a></h3>
+<p>多个定理支撑阶段的共享预算：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Formalizer</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Refiner</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CounterexampleSearcher</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ResourceAnalyst</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PaperReader</span></code></p></li>
+</ul>
+<p>相关代码：</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/formalizer.py"><span class="xref myst">formalizer.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/refiner.py"><span class="xref myst">refiner.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/counterexample.py"><span class="xref myst">counterexample.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/resource_analyst.py"><span class="xref myst">resource_analyst.py</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/agents/theory/paper_reader.py"><span class="xref myst">paper_reader.py</span></a></p></li>
+</ul>
+<p>在以下情况时提高：</p>
+<ul class="simple">
+<li><p>论文提取内容过浅</p></li>
+<li><p>反例搜索结果过少</p></li>
+<li><p>改进建议不完整</p></li>
+</ul>
+</section>
+</section>
+<section id="id6">
+<h2>实践指南<a class="headerlink" href="#id6" title="链接到此标题。">#</a></h2>
+<section id="id7">
+<h3>若汇总证明被截断<a class="headerlink" href="#id7" title="链接到此标题。">#</a></h3>
+<p>依次提高：</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Assembler</span></code></p></li>
+<li><p>若引理证明也过短，提高 <code class="docutils literal notranslate"><span class="pre">Prover</span></code></p></li>
+</ol>
+</section>
+<section id="id8">
+<h3>若定理语句被截断<a class="headerlink" href="#id8" title="链接到此标题。">#</a></h3>
+<p>依次提高：</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TheoremCrystallizer</span></code></p></li>
+<li><p>若证明叙述本身不完整，提高 <code class="docutils literal notranslate"><span class="pre">Assembler</span></code></p></li>
+</ol>
+</section>
+<section id="id9">
+<h3>若 <code class="docutils literal notranslate"><span class="pre">default</span></code> 规划效果较弱<a class="headerlink" href="#id9" title="链接到此标题。">#</a></h3>
+<p>依次提高：</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Architect</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Prover</span></code></p></li>
+</ol>
+</section>
+<section id="id10">
+<h3>若 <code class="docutils literal notranslate"><span class="pre">memory_guided</span></code> 规划效果较弱<a class="headerlink" href="#id10" title="链接到此标题。">#</a></h3>
+<p>依次提高：</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Analyst</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Decomposer</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Prover</span></code></p></li>
+</ol>
+</section>
+<section id="writer-survey">
+<h3>若 Writer 或 Survey 输出过短<a class="headerlink" href="#writer-survey" title="链接到此标题。">#</a></h3>
+<p>提高：</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Agent</span> <span class="pre">loop</span></code></p></li>
+</ol>
+</section>
+</section>
+<section id="id11">
+<h2>重要区别<a class="headerlink" href="#id11" title="链接到此标题。">#</a></h2>
+<p>这些控制项<strong>不等同于</strong>模型的完整上下文窗口。</p>
+<p>它们仅控制：</p>
+<ul class="simple">
+<li><p>单个阶段在一次调用中最多输出多少内容</p></li>
+</ul>
+<p>它们<strong>不直接控制</strong>：</p>
+<ul class="simple">
+<li><p>可发送的总对话历史量</p></li>
+<li><p>模型完整上下文窗口的大小</p></li>
+</ul>
+<p>因此，一个阶段可能以两种不同方式失败：</p>
+<ul class="simple">
+<li><p>该阶段自身的 token 限制过低，导致输出过短</p></li>
+<li><p>整个请求过于繁重或复杂，即使单次调用限制足够大也会失败</p></li>
+</ul>
+</section>
+<section id="ui">
+<h2>当前 UI 覆盖范围<a class="headerlink" href="#ui" title="链接到此标题。">#</a></h2>
+<p>UI 现已暴露两个理论流水线使用的主要 token 限制控制项，包括：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Architect</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Assembler</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TheoremCrystallizer</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Analyst</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Sketch</span></code></p></li>
+</ul>
+<p>若后续在后端添加了新的 <code class="docutils literal notranslate"><span class="pre">max_tokens_*</span></code> 字段，请记得同步更新：</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#eurekaclaw/ui/server.py"><span class="xref myst">server.py</span></a></p></li>
+<li><p><a class="reference internal" href="#frontend/index.html"><span class="xref myst">frontend/index.html</span></a></p></li>
+<li><p><a class="reference internal" href="#eurekaclaw/ui/static/index.html"><span class="xref myst">index.html</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="skills.html"
+       title="上一页">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title">技能系统</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="domains.html"
+       title="下一页">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title">领域插件系统</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 当前页面
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">设置位置</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">速查表</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">各流水线使用情况</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#default"><code class="docutils literal notranslate"><span class="pre">default</span></code> 流水线</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-guided"><code class="docutils literal notranslate"><span class="pre">memory_guided</span></code> 流水线</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">各重要阶段的作用</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">智能体循环</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prover">Prover</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#architect">Architect</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyst">Analyst</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decomposer">Decomposer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assembler">Assembler</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#theoremcrystallizer">TheoremCrystallizer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verifier">Verifier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formalizer-refiner">Formalizer / Refiner</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">实践指南</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">若汇总证明被截断</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">若定理语句被截断</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">若 <code class="docutils literal notranslate"><span class="pre">default</span></code> 规划效果较弱</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">若 <code class="docutils literal notranslate"><span class="pre">memory_guided</span></code> 规划效果较弱</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writer-survey">若 Writer 或 Survey 输出过短</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">重要区别</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ui">当前 UI 覆盖范围</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/EurekaClaw/EurekaClaw.github.io/edit/main/source/reference/token-limits.md">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          由 GitHub 编辑
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, EurekaClaw Contributors.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4创建。
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

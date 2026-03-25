@@ -1,0 +1,964 @@
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>智能体 &#8212; EurekaClaw</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=74c509de" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=7c91f8fd"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=9345eede"></script>
+    <script src="../_static/translations.js?v=540d3cec"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/agents';</script>
+    <link rel="icon" href="../_static/logo-claw.png"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="研究工具" href="tools.html" />
+    <link rel="prev" title="系统结构" href="architecture.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">跳转至主要内容</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>回到顶部</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="版本警告"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="网页导航">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt=""/>
+    <img src="../_static/logo.svg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">EurekaClaw</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/installation.html">
+    安装
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/quickstart.html">
+    快速开始
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/authentication.html">
+    API Key授权
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user-guide/index.html">
+    用户指南
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="cli.html">
+    CLI 参考
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="configuration.html">
+    配置
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="api.html">
+    Python API
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="architecture.html">
+    系统结构
+  </a>
+</li>
+
+
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="#">
+    智能体
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="tools.html">
+    研究工具
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="memory.html">
+    记忆系统
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="skills.html">
+    技能系统
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="token-limits.html">
+    Token 限制
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="domains.html">
+    领域插件系统
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../changelog/index.html">
+    开发日志
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><div class="lang-switcher">
+  <a class="lang-link" href="/reference/agents.html">EN</a>
+  <span class="lang-sep">|</span>
+  <span class="lang-current">中文</span>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/EurekaClaw/EurekaClaw" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="亮色"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="暗色"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="当前页面">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/installation.html">
+    安装
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/quickstart.html">
+    快速开始
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/authentication.html">
+    API Key授权
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user-guide/index.html">
+    用户指南
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="cli.html">
+    CLI 参考
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="configuration.html">
+    配置
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api.html">
+    Python API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="architecture.html">
+    系统结构
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    智能体
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tools.html">
+    研究工具
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="memory.html">
+    记忆系统
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="skills.html">
+    技能系统
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="token-limits.html">
+    Token 限制
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="domains.html">
+    领域插件系统
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../changelog/index.html">
+    开发日志
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><div class="lang-switcher">
+  <a class="lang-link" href="/reference/agents.html">EN</a>
+  <span class="lang-sep">|</span>
+  <span class="lang-current">中文</span>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/EurekaClaw/EurekaClaw" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="亮色"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="暗色"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="章节导航">
+  <p class="bd-links__title" role="heading" aria-level="1">章节导航</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="初始页面">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">智能体</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="id1">
+<h1>智能体<a class="headerlink" href="#id1" title="链接到此标题。">#</a></h1>
+<p>EurekaClaw 包含五个专职智能体，由 <code class="docutils literal notranslate"><span class="pre">MetaOrchestrator</span></code> 统一调度。每个智能体运行一个工具调用循环，并定期对上下文进行压缩。</p>
+<section id="baseagent">
+<h2>BaseAgent<a class="headerlink" href="#baseagent" title="链接到此标题。">#</a></h2>
+<p>所有智能体均继承自 <code class="docutils literal notranslate"><span class="pre">eurekaclaw/agents/base.py</span></code>：</p>
+<p><strong>核心方法：</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>方法</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">execute(task:</span> <span class="pre">Task)</span> <span class="pre">-&gt;</span> <span class="pre">AgentResult</span></code></p></td>
+<td><p>抽象方法。在给定任务上运行智能体</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">get_tool_names()</span> <span class="pre">-&gt;</span> <span class="pre">list[str]</span></code></p></td>
+<td><p>抽象方法。返回该智能体允许使用的工具名称列表</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">build_system_prompt(task:</span> <span class="pre">Task)</span> <span class="pre">-&gt;</span> <span class="pre">str</span></code></p></td>
+<td><p>合并角色提示词与注入的技能</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">run_agent_loop(task,</span> <span class="pre">initial_user_message,</span> <span class="pre">max_turns,</span> <span class="pre">max_tokens)</span></code></p></td>
+<td><p>带上下文压缩的工具调用循环</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">_compress_history()</span> <span class="pre">-&gt;</span> <span class="pre">str</span></code></p></td>
+<td><p>每隔 N 轮使用快速模型对对话历史进行摘要</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">_call_model(system,</span> <span class="pre">messages,</span> <span class="pre">tools,</span> <span class="pre">max_tokens)</span></code></p></td>
+<td><p>带指数退避重试的 LLM 调用</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>上下文压缩：</strong> 每隔 <code class="docutils literal notranslate"><span class="pre">CONTEXT_COMPRESS_AFTER_TURNS</span></code> 轮（默认 6 轮），当历史消息超过 12 条时，使用快速模型将其压缩为单条摘要。这可将长时运行中的输入 token 增长控制在合理范围内。</p>
+</section>
+<hr class="docutils" />
+<section id="surveyagent">
+<h2>SurveyAgent<a class="headerlink" href="#surveyagent" title="链接到此标题。">#</a></h2>
+<p><strong>角色：</strong> <code class="docutils literal notranslate"><span class="pre">SURVEY</span></code>
+<strong>文件：</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/agents/survey/agent.py</span></code>
+<strong>最大轮次：</strong> <code class="docutils literal notranslate"><span class="pre">SURVEY_MAX_TURNS</span></code>（默认 8）</p>
+<p><strong>功能：</strong> 检索文献，并将论文、开放问题及关键数学对象填充到 KnowledgeBus。</p>
+<p><strong>工具：</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">arxiv_search</span></code> — 在 arXiv 上检索相关论文</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">semantic_scholar_search</span></code> — 在 Semantic Scholar 上检索引用数和元数据</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">web_search</span></code> — 补充通用网络搜索</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">citation_manager</span></code> — 格式化并存储参考文献</p></li>
+</ul>
+<p><strong>输入（来自 KnowledgeBus）：</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ResearchBrief.domain</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ResearchBrief.query</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ResearchBrief.conjecture</span></code></p></li>
+</ul>
+<p><strong>输出：</strong></p>
+<ul class="simple">
+<li><p>将论文追加到总线上的 <code class="docutils literal notranslate"><span class="pre">Bibliography</span></code></p></li>
+<li><p>写入 <code class="docutils literal notranslate"><span class="pre">ResearchBrief</span></code>：</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">open_problems</span></code> — 识别出的开放问题列表</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">key_mathematical_objects</span></code> — 核心概念与结构</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>输出 JSON 键：</strong> <code class="docutils literal notranslate"><span class="pre">papers</span></code>、<code class="docutils literal notranslate"><span class="pre">open_problems</span></code>、<code class="docutils literal notranslate"><span class="pre">key_mathematical_objects</span></code>、<code class="docutils literal notranslate"><span class="pre">research_frontier</span></code>、<code class="docutils literal notranslate"><span class="pre">insights</span></code></p>
+</section>
+<hr class="docutils" />
+<section id="ideationagent">
+<h2>IdeationAgent<a class="headerlink" href="#ideationagent" title="链接到此标题。">#</a></h2>
+<p><strong>角色：</strong> <code class="docutils literal notranslate"><span class="pre">IDEATION</span></code>
+<strong>文件：</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/agents/ideation/agent.py</span></code>
+<strong>最大轮次：</strong> 3</p>
+<p><strong>功能：</strong> 基于调研结果生成 5 个新颖的研究假设。每个方向在 <code class="docutils literal notranslate"><span class="pre">novelty_score</span></code>、<code class="docutils literal notranslate"><span class="pre">feasibility_score</span></code> 和 <code class="docutils literal notranslate"><span class="pre">impact_score</span></code> 三个维度上打分（内部映射到 <code class="docutils literal notranslate"><span class="pre">ResearchDirection</span></code> 的 <code class="docutils literal notranslate"><span class="pre">novelty_score</span></code>、<code class="docutils literal notranslate"><span class="pre">soundness_score</span></code>、<code class="docutils literal notranslate"><span class="pre">transformative_score</span></code> 字段）。</p>
+<p>研究方向<em>选择</em>不在 IdeationAgent 内部完成。IdeationAgent 将 <code class="docutils literal notranslate"><span class="pre">ResearchBrief.directions</span></code> 写入后，编排器的 <code class="docutils literal notranslate"><span class="pre">direction_selection_gate</span></code> 任务会调用 <code class="docutils literal notranslate"><span class="pre">DivergentConvergentPlanner.converge()</span></code> 选出得分最高的方向，并设置 <code class="docutils literal notranslate"><span class="pre">ResearchBrief.selected_direction</span></code>。</p>
+<p><strong>输入（来自 KnowledgeBus）：</strong></p>
+<ul class="simple">
+<li><p>调研结果（<code class="docutils literal notranslate"><span class="pre">ResearchBrief</span></code>）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Bibliography</span></code></p></li>
+</ul>
+<p><strong>输出：</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ResearchBrief.directions</span></code> — 5 个带综合评分的 <code class="docutils literal notranslate"><span class="pre">ResearchDirection</span></code> 对象</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="theoryagent">
+<h2>TheoryAgent<a class="headerlink" href="#theoryagent" title="链接到此标题。">#</a></h2>
+<p><strong>角色：</strong> <code class="docutils literal notranslate"><span class="pre">THEORY</span></code>
+<strong>文件：</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/agents/theory/agent.py</span></code>
+<strong>最大迭代次数：</strong> <code class="docutils literal notranslate"><span class="pre">THEORY_MAX_ITERATIONS</span></code>（默认 10）
+<strong>内层阶段最大轮次：</strong> <code class="docutils literal notranslate"><span class="pre">THEORY_STAGE_MAX_TURNS</span></code>（默认 6）</p>
+<p><strong>功能：</strong> 通过 7 阶段自底向上的证明流水线，证明选定的研究方向。</p>
+<p><strong>工具：</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">arxiv_search</span></code> — 从论文中检索引理和技术方法</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wolfram_alpha</span></code> — 符号计算与界的验证</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lean4_verify</span></code> — 在 Lean4 中进行形式化证明验证</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">execute_python</span></code> — 数值检验与合理性测试</p></li>
+</ul>
+<p><strong>输入（来自 KnowledgeBus）：</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ResearchBrief.selected_direction</span></code></p></li>
+</ul>
+<p><strong>输出：</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TheoryState</span></code>，其中 <code class="docutils literal notranslate"><span class="pre">status</span></code> 为 <code class="docutils literal notranslate"><span class="pre">proved</span></code> / <code class="docutils literal notranslate"><span class="pre">refuted</span></code> / <code class="docutils literal notranslate"><span class="pre">abandoned</span></code></p></li>
+</ul>
+<p><strong>7 阶段内层循环</strong>（<code class="docutils literal notranslate"><span class="pre">inner_loop_yaml.py</span></code>）：</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>阶段</p></th>
+<th class="head"><p>类</p></th>
+<th class="head"><p>输入</p></th>
+<th class="head"><p>输出</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PaperReader</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Bibliography</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">known_results[]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">GapAnalyst</span></code></p></td>
+<td><p>known_results + conjecture</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">research_gap</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ProofArchitect</span></code></p></td>
+<td><p>research_gap + known_results</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">proof_plan[]</span></code>（带来源标注）</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">LemmaDeveloper</span></code></p></td>
+<td><p>proof_plan, open_goals</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">proven_lemmas{}</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Assembler</span></code></p></td>
+<td><p>proven_lemmas</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">assembled_proof</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TheoremCrystallizer</span></code></p></td>
+<td><p>assembled_proof</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">formal_statement</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ConsistencyChecker</span></code></p></td>
+<td><p>完整 TheoryState</p></td>
+<td><p>一致性报告</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>LemmaDeveloper 内层循环</strong>（逐引理）：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>for each open_goal:
+    Prover → Verifier → (if failed) Refiner → repeat
+    CounterexampleSearcher runs in parallel
+    Stagnation detection: if same error N times → force Refiner
+</pre></div>
+</div>
+<p><strong>来源标注系统：</strong> 证明计划中的每个引理均被标注为 <code class="docutils literal notranslate"><span class="pre">known</span></code>（可直接引用）、<code class="docutils literal notranslate"><span class="pre">adapted</span></code>（需修改）或 <code class="docutils literal notranslate"><span class="pre">new</span></code>（必须完整证明）。只有 <code class="docutils literal notranslate"><span class="pre">adapted</span></code> 和 <code class="docutils literal notranslate"><span class="pre">new</span></code> 引理进入证明循环。</p>
+<p><strong>自动验证：</strong> 置信度大于等于 <code class="docutils literal notranslate"><span class="pre">AUTO_VERIFY_CONFIDENCE</span></code>（默认 0.95）的证明无需调用 LLM 验证器即可被接受。LLM 验证器本身使用独立的通过阈值 <code class="docutils literal notranslate"><span class="pre">VERIFIER_PASS_CONFIDENCE</span></code>（默认 0.90）。</p>
+<p><strong>ProofArchitect 重试策略：</strong> 若完整的带来源标注计划失败（例如 LLM 将某字段返回为 <code class="docutils literal notranslate"><span class="pre">null</span></code>），则使用简化的 3 引理提示词重试（基础引理 → 核心界 → 主要结论）。只有两次尝试均失败时，才回退到单个 <code class="docutils literal notranslate"><span class="pre">main_result</span></code> 目标。</p>
+<p><strong>外层迭代循环：</strong> Assembler 运行后，<code class="docutils literal notranslate"><span class="pre">TheoremCrystallizer</span></code> + <code class="docutils literal notranslate"><span class="pre">ConsistencyChecker</span></code> 最多迭代 <code class="docutils literal notranslate"><span class="pre">theory_max_iterations</span></code> 次。<code class="docutils literal notranslate"><span class="pre">ConsistencyChecker</span></code> 将每次失败分为三个严重级别，并据此选择重试路径：</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>严重级别</p></th>
+<th class="head"><p>含义</p></th>
+<th class="head"><p>重试路径</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uncited</span></code></p></td>
+<td><p>证明逻辑正确，但已证明引理未在汇总文本中被引用</p></td>
+<td><p>内联重新运行 <code class="docutils literal notranslate"><span class="pre">TheoremCrystallizer</span></code>，随即将证明标记为 <code class="docutils literal notranslate"><span class="pre">proved</span></code> 并退出外层循环——<strong>不进行第二次 ConsistencyChecker 检验</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">major</span></code></p></td>
+<td><p>某个引理不正确，或两个引理之间的逻辑关联断裂</p></td>
+<td><p>重新运行 <code class="docutils literal notranslate"><span class="pre">LemmaDeveloper</span> <span class="pre">→</span> <span class="pre">Assembler</span> <span class="pre">→</span> <span class="pre">TheoremCrystallizer</span> <span class="pre">→</span> <span class="pre">ConsistencyChecker</span></code>（一次尝试）。若仍失败，升级为 <code class="docutils literal notranslate"><span class="pre">all_wrong</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">all_wrong</span></code></p></td>
+<td><p>证明根本性失败——思路错误或多个引理不正确</p></td>
+<td><p>从 <code class="docutils literal notranslate"><span class="pre">ProofArchitect</span></code>（新证明计划）重新运行完整流水线</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>若 LLM 未返回严重级别字段，则启发式推断：仅含 <code class="docutils literal notranslate"><span class="pre">uncited_lemmas</span></code> 且无 <code class="docutils literal notranslate"><span class="pre">issues</span></code> 的失败归类为 <code class="docutils literal notranslate"><span class="pre">uncited</span></code>；其余均归类为 <code class="docutils literal notranslate"><span class="pre">major</span></code>。</p>
+<p><strong>引用约定：</strong> Assembler 被要求在汇总证明中使用方括号引用每个已证明引理的标识符，例如 <code class="docutils literal notranslate"><span class="pre">By</span> <span class="pre">[arm_pull_count_bound],</span> <span class="pre">...</span></code>。ConsistencyChecker 验证所有已证明引理的 ID 是否出现在汇总证明中，并标出缺失的部分。</p>
+<p><strong>知识图谱写入：</strong> 无论最终一致性检查是否通过，只要引理被证明，引理节点和依赖边就会写入 Tier 3 知识图谱。即使定理语句结晶化失败，引理级别的图也会被保留。</p>
+</section>
+<hr class="docutils" />
+<section id="experimentagent">
+<h2>ExperimentAgent <em>（开发中）</em><a class="headerlink" href="#experimentagent" title="链接到此标题。">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>ExperimentAgent 及 <code class="docutils literal notranslate"><span class="pre">execute_python</span></code> 工具属于<strong>未来工作</strong>。针对 LLM 生成的 Python 代码进行自动化执行，目前尚未为通用场景提供安全的沙箱隔离。在未来版本正式引入沙箱之前，请将 <code class="docutils literal notranslate"><span class="pre">EXPERIMENT_MODE</span></code> 保持为 <code class="docutils literal notranslate"><span class="pre">false</span></code>。</p>
+</div>
+<p><strong>角色：</strong> <code class="docutils literal notranslate"><span class="pre">EXPERIMENT</span></code>
+<strong>文件：</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/agents/experiment/agent.py</span></code>
+<strong>最大轮次：</strong> 5</p>
+<p><strong>功能：</strong> 通过数值实验对理论界进行实证验证，尤其针对置信度较低的引理。</p>
+<p><strong>工具：</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">execute_python</span></code> — 运行数值模拟*（未来工作——见上方说明）*</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wolfram_alpha</span></code> — 符号界检验</p></li>
+<li><p>领域特定工具（例如 MAB 领域的 <code class="docutils literal notranslate"><span class="pre">run_bandit_experiment</span></code>）</p></li>
+</ul>
+<p><strong>自动跳过逻辑：</strong> 智能体在运行前检查 <code class="docutils literal notranslate"><span class="pre">TheoryState.formal_statement</span></code> 中的定量信号：</p>
+<ul class="simple">
+<li><p><strong>运行实验：</strong> <code class="docutils literal notranslate"><span class="pre">O(</span></code>、<code class="docutils literal notranslate"><span class="pre">\Omega(</span></code>、不等式运算符、<code class="docutils literal notranslate"><span class="pre">sample</span> <span class="pre">complexity</span></code>、<code class="docutils literal notranslate"><span class="pre">regret</span></code>、收敛/泛化相关词汇</p></li>
+<li><p><strong>跳过：</strong> <code class="docutils literal notranslate"><span class="pre">\exists</span></code>、存在量词、纯代数/组合结构</p></li>
+</ul>
+<p><strong>低置信度引理测试：</strong></p>
+<ul class="simple">
+<li><p>将 <code class="docutils literal notranslate"><span class="pre">proven_lemmas</span></code> 分为 <code class="docutils literal notranslate"><span class="pre">verified</span></code> 和 <code class="docutils literal notranslate"><span class="pre">low_confidence</span></code> 两组</p></li>
+<li><p>对每个低置信度引理：随机采样实例，检验结论是否成立，计算 <code class="docutils literal notranslate"><span class="pre">violation_rate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">violation_rate</span> <span class="pre">&gt;</span> <span class="pre">1%</span></code> 的引理被标记为 <code class="docutils literal notranslate"><span class="pre">numerically_suspect</span></code></p></li>
+</ul>
+<p><strong>输入（来自 KnowledgeBus）：</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TheoryState</span></code>（已证明引理、形式语句）</p></li>
+</ul>
+<p><strong>输出：</strong></p>
+<ul class="simple">
+<li><p>KnowledgeBus 上的 <code class="docutils literal notranslate"><span class="pre">ExperimentResult</span></code>，包含 <code class="docutils literal notranslate"><span class="pre">alignment_score</span></code> 及逐引理检验结果</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="writeragent">
+<h2>WriterAgent<a class="headerlink" href="#writeragent" title="链接到此标题。">#</a></h2>
+<p><strong>角色：</strong> <code class="docutils literal notranslate"><span class="pre">WRITER</span></code>
+<strong>文件：</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/agents/writer/agent.py</span></code>
+<strong>最大轮次：</strong> <code class="docutils literal notranslate"><span class="pre">WRITER_MAX_TURNS</span></code>（默认 4）</p>
+<p><strong>功能：</strong> 基于所有流水线产物，生成完整的 LaTeX（或 Markdown）格式学术论文。</p>
+<p><strong>工具：</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">citation_manager</span></code> — 格式化参考文献条目并生成一致的引用键</p></li>
+</ul>
+<p><strong>输入（来自 KnowledgeBus）：</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ResearchBrief</span></code>（领域、猜想、选定方向）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TheoryState</span></code>（所有证明、引理、形式语句）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Bibliography</span></code>（带精确引用键的论文列表）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ExperimentResult</span></code>（如有）</p></li>
+</ul>
+<p><strong>输出：</strong></p>
+<ul class="simple">
+<li><p>存储于 <code class="docutils literal notranslate"><span class="pre">ResearchOutput</span></code> 中的 <code class="docutils literal notranslate"><span class="pre">latex_paper</span></code> 字符串</p></li>
+</ul>
+<p><strong>LaTeX 特性：</strong></p>
+<ul class="simple">
+<li><p>完整的 <code class="docutils literal notranslate"><span class="pre">LATEX_PREAMBLE</span></code>，包含 13 个定理环境：<code class="docutils literal notranslate"><span class="pre">theorem</span></code>、<code class="docutils literal notranslate"><span class="pre">lemma</span></code>、<code class="docutils literal notranslate"><span class="pre">corollary</span></code>、<code class="docutils literal notranslate"><span class="pre">definition</span></code>、<code class="docutils literal notranslate"><span class="pre">proposition</span></code>、<code class="docutils literal notranslate"><span class="pre">assumption</span></code>、<code class="docutils literal notranslate"><span class="pre">conjecture</span></code>、<code class="docutils literal notranslate"><span class="pre">claim</span></code>、<code class="docutils literal notranslate"><span class="pre">example</span></code>、<code class="docutils literal notranslate"><span class="pre">fact</span></code>、<code class="docutils literal notranslate"><span class="pre">observation</span></code>、<code class="docutils literal notranslate"><span class="pre">maintheorem</span></code>、<code class="docutils literal notranslate"><span class="pre">remark</span></code></p></li>
+<li><p>常用数学宏：<code class="docutils literal notranslate"><span class="pre">\R</span></code>、<code class="docutils literal notranslate"><span class="pre">\N</span></code>、<code class="docutils literal notranslate"><span class="pre">\Z</span></code>、<code class="docutils literal notranslate"><span class="pre">\E</span></code>、<code class="docutils literal notranslate"><span class="pre">\Prob</span></code>、<code class="docutils literal notranslate"><span class="pre">\softmax</span></code>、<code class="docutils literal notranslate"><span class="pre">\Att</span></code>、<code class="docutils literal notranslate"><span class="pre">\argmax</span></code>、<code class="docutils literal notranslate"><span class="pre">\argmin</span></code>、<code class="docutils literal notranslate"><span class="pre">\norm</span></code>、<code class="docutils literal notranslate"><span class="pre">\abs</span></code>、<code class="docutils literal notranslate"><span class="pre">\inner</span></code></p></li>
+</ul>
+<p><strong><code class="docutils literal notranslate"><span class="pre">_extract_latex</span></code> 规范化流水线：</strong></p>
+<ol class="arabic simple">
+<li><p>去除前言 / <code class="docutils literal notranslate"><span class="pre">\begin{document}</span></code> / <code class="docutils literal notranslate"><span class="pre">\end{document}</span></code> 包装</p></li>
+<li><p>规范化环境名称（<code class="docutils literal notranslate"><span class="pre">\begin{Proof}</span></code> → <code class="docutils literal notranslate"><span class="pre">\begin{proof}</span></code>，<code class="docutils literal notranslate"><span class="pre">rem</span></code> → <code class="docutils literal notranslate"><span class="pre">remark</span></code>，<code class="docutils literal notranslate"><span class="pre">prop</span></code> → <code class="docutils literal notranslate"><span class="pre">proposition</span></code> 等）</p></li>
+<li><p>将 Markdown 标题转换为 LaTeX 章节命令</p></li>
+<li><p>移除 <code class="docutils literal notranslate"><span class="pre">tikzpicture</span></code> 环境及空的 <code class="docutils literal notranslate"><span class="pre">figure</span></code> 环境</p></li>
+<li><p>修复语法错误（<code class="docutils literal notranslate"><span class="pre">\begin</span> <span class="pre">lemma}</span></code> → <code class="docutils literal notranslate"><span class="pre">\begin{lemma}</span></code>，<code class="docutils literal notranslate"><span class="pre">\begin{flushright</span></code> → <code class="docutils literal notranslate"><span class="pre">\begin{flushright}</span></code> 等）</p></li>
+<li><p>将 <code class="docutils literal notranslate"><span class="pre">\endproof</span></code> 替换为 <code class="docutils literal notranslate"><span class="pre">\end{proof}</span></code></p></li>
+<li><p>移除手动 QED 框（<code class="docutils literal notranslate"><span class="pre">\begin{flushright}$\square$\end{flushright}</span></code>）</p></li>
+<li><p>从正文中去除 <code class="docutils literal notranslate"><span class="pre">\bibliographystyle</span></code> 和 <code class="docutils literal notranslate"><span class="pre">\bibliography</span></code> 行</p></li>
+<li><p>关闭未闭合的环境（两轮处理：先移除孤立的 <code class="docutils literal notranslate"><span class="pre">\end{X}</span></code>，再补充缺失的环境结束标记）</p></li>
+</ol>
+<p><strong>证明风格强制执行</strong>（<code class="docutils literal notranslate"><span class="pre">ENFORCE_PROOF_STYLE=true</span></code>）：</p>
+<ul class="simple">
+<li><p>禁止在没有立即理由的情况下使用省略词（&quot;clearly&quot;、&quot;trivially&quot;、&quot;by standard arguments&quot;）</p></li>
+<li><p>每个不等式必须注明所用引理或定理</p></li>
+<li><p>每个引理证明以非正式直觉作为开头</p></li>
+<li><p>低置信度引理用 <code class="docutils literal notranslate"><span class="pre">\textcolor{orange}{[Unverified</span> <span class="pre">step]}</span></code> 标注</p></li>
+<li><p>局限性章节对所有未验证步骤进行说明</p></li>
+</ul>
+<p><strong>引用一致性：</strong> 写作提示词中每个参考文献均使用 <code class="docutils literal notranslate"><span class="pre">\cite{key}</span></code> 形式，且与 <code class="docutils literal notranslate"><span class="pre">main.py</span></code> 中 <code class="docutils literal notranslate"><span class="pre">_generate_bibtex</span></code> 采用相同的键生成算法。</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="architecture.html"
+       title="上一页">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title">系统结构</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="tools.html"
+       title="下一页">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title">研究工具</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 当前页面
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#baseagent">BaseAgent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#surveyagent">SurveyAgent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ideationagent">IdeationAgent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#theoryagent">TheoryAgent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experimentagent">ExperimentAgent <em>（开发中）</em></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writeragent">WriterAgent</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/EurekaClaw/EurekaClaw.github.io/edit/main/source/reference/agents.md">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          由 GitHub 编辑
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, EurekaClaw Contributors.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4创建。
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

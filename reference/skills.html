@@ -1,0 +1,1057 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Skills System &#8212; EurekaClaw</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=74c509de" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=2709fde1"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=9345eede"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/skills';</script>
+    <link rel="icon" href="../_static/logo-claw.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Token Limits" href="token-limits.html" />
+    <link rel="prev" title="Memory System" href="memory.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt=""/>
+    <img src="../_static/logo.svg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">EurekaClaw</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/authentication.html">
+    Authentication
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user-guide/index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="cli.html">
+    CLI Reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="configuration.html">
+    Configuration
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="api.html">
+    Python API
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="architecture.html">
+    Architecture
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="agents.html">
+    Agents
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="tools.html">
+    Research Tools
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="memory.html">
+    Memory System
+  </a>
+</li>
+
+
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="#">
+    Skills System
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="token-limits.html">
+    Token Limits
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="domains.html">
+    Domain Plugin System
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><div class="lang-switcher">
+  <span class="lang-current">EN</span>
+  <span class="lang-sep">|</span>
+  <a class="lang-link" href="/zh/reference/skills.html">中文</a>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/EurekaClaw/EurekaClaw" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/authentication.html">
+    Authentication
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user-guide/index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="cli.html">
+    CLI Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="configuration.html">
+    Configuration
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api.html">
+    Python API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="architecture.html">
+    Architecture
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="agents.html">
+    Agents
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tools.html">
+    Research Tools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="memory.html">
+    Memory System
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Skills System
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="token-limits.html">
+    Token Limits
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="domains.html">
+    Domain Plugin System
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><div class="lang-switcher">
+  <span class="lang-current">EN</span>
+  <span class="lang-sep">|</span>
+  <a class="lang-link" href="/zh/reference/skills.html">中文</a>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/EurekaClaw/EurekaClaw" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Skills System</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="skills-system">
+<h1>Skills System<a class="headerlink" href="#skills-system" title="Link to this heading">#</a></h1>
+<p>Skills are reusable, domain-specific pieces of knowledge injected into agent prompts before each task. They encode successful proof strategies, domain conventions, and common pitfalls learned from previous runs.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>eurekaclaw/skills/
+├── registry.py      SkillRegistry (load + store skills)
+├── injector.py      SkillInjector (retrieve + format for prompts)
+├── install.py       SkillInstaller (install seed skills or skills from ClawHub)
+└── evolver.py       SkillEvolver (distill skills from proceeded session)
+</pre></div>
+</div>
+<hr class="docutils" />
+<section id="skill-file-format">
+<h2>Skill File Format<a class="headerlink" href="#skill-file-format" title="Link to this heading">#</a></h2>
+<p>Each skill is a Markdown file with YAML frontmatter:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>---
+name: ucb_regret_analysis
+version: &quot;1.0&quot;
+tags: [bandit, regret, ucb, concentration]
+agent_roles: [theory, survey]
+pipeline_stages: [theory]
+description: How to decompose and bound UCB1 regret using concentration inequalities
+source: seed           # seed | distilled | manual
+created_at: 2026-01-01T00:00:00
+usage_count: 0
+<span class="gu">success_rate: null     # float 0-1, or null if unknown</span>
+<span class="gu">---</span>
+
+<span class="gh"># UCB Regret Analysis</span>
+
+When bounding UCB1 regret, decompose into:
+<span class="k">1.</span> Suboptimal arm pulls where confidence bound held (good event)
+<span class="k">2.</span> Pulls where the bound failed (bad event, controlled by concentration)
+
+Use Hoeffding for sub-Gaussian rewards, Bernstein when variance is known...
+</pre></div>
+</div>
+<p>Skills are stored in one of three locations depending on their origin (see <a class="reference internal" href="#skill-lifecycle">Skill Lifecycle</a> below).</p>
+</section>
+<hr class="docutils" />
+<section id="skillregistry">
+<h2>SkillRegistry<a class="headerlink" href="#skillregistry" title="Link to this heading">#</a></h2>
+<p><strong>File:</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/skills/registry.py</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SkillRegistry</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="n">skills_dir</span><span class="p">:</span> <span class="n">Path</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<section id="loading">
+<h3>Loading<a class="headerlink" href="#loading" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">load_all</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">SkillRecord</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Load all skills from registered directories. Load order (later overrides earlier):</p>
+<ol class="arabic simple">
+<li><p>Seed skills in <code class="docutils literal notranslate"><span class="pre">eurekaclaw/skills/seed_skills/</span></code></p></li>
+<li><p>Domain plugin skills (extra directories from <code class="docutils literal notranslate"><span class="pre">get_skills_dirs()</span></code>)</p></li>
+<li><p>User skills in <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code> (highest priority)</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">add_skills_dir</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>Register an extra directory to load skills from (used by domain plugins).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">reload</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>Reload all skills from disk (e.g., after distillation writes new files).</p>
+</section>
+<section id="retrieval">
+<h3>Retrieval<a class="headerlink" href="#retrieval" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SkillRecord</span> <span class="o">|</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>Retrieve a skill by exact name.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_by_tags</span><span class="p">(</span><span class="n">tags</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">SkillRecord</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Return all skills that have at least one of the given tags.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_by_role</span><span class="p">(</span><span class="n">role</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">SkillRecord</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Return all skills whose <code class="docutils literal notranslate"><span class="pre">agent_roles</span></code> includes <code class="docutils literal notranslate"><span class="pre">role</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_by_pipeline_stage</span><span class="p">(</span><span class="n">stage</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">SkillRecord</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Return all skills for a given pipeline stage.</p>
+</section>
+<section id="storage">
+<h3>Storage<a class="headerlink" href="#storage" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">upsert</span><span class="p">(</span><span class="n">skill</span><span class="p">:</span> <span class="n">SkillRecord</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>Write skill to disk and register in memory. Creates or overwrites the <code class="docutils literal notranslate"><span class="pre">.md</span></code> file in <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code>.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="skillinjector">
+<h2>SkillInjector<a class="headerlink" href="#skillinjector" title="Link to this heading">#</a></h2>
+<p><strong>File:</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/skills/injector.py</span></code></p>
+<p>Retrieves the most relevant skills for a task and formats them for injection into agent system prompts.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SkillInjector</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="n">registry</span><span class="p">:</span> <span class="n">SkillRegistry</span><span class="p">,</span>
+        <span class="n">selected_skills</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">selected_skills</span></code> — optional list of skill names to <strong>pin</strong>. Pinned skills are always included at the front of the top-k result, before any usage-sorted optional skills. If a pinned skill name is not found in the registry, a warning is logged and it is silently skipped.</p>
+<section id="id1">
+<h3>Retrieval<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">top_k</span><span class="p">(</span>
+    <span class="n">task</span><span class="p">:</span> <span class="n">Task</span><span class="p">,</span>
+    <span class="n">role</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">strategy</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;semantic&quot;</span><span class="p">,</span> <span class="s2">&quot;hybrid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;tag&quot;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">SkillRecord</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Retrieval strategies:</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Strategy</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tag</span></code></p></td>
+<td><p>Filter by matching <code class="docutils literal notranslate"><span class="pre">agent_roles</span></code> and <code class="docutils literal notranslate"><span class="pre">pipeline_stages</span></code>; pinned skills first, then optional sorted by <code class="docutils literal notranslate"><span class="pre">usage_count</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">semantic</span></code></p></td>
+<td><p>Embedding-based similarity using <code class="docutils literal notranslate"><span class="pre">sentence-transformers</span></code> (if installed)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hybrid</span></code></p></td>
+<td><p>Tag filter (3×k candidates), then text similarity ranking</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Pinned-skill priority:</strong> When <code class="docutils literal notranslate"><span class="pre">selected_skills</span></code> is non-empty, the <code class="docutils literal notranslate"><span class="pre">tag</span></code> (and by extension <code class="docutils literal notranslate"><span class="pre">hybrid</span></code>) retrieval splits candidates into:</p>
+<ol class="arabic simple">
+<li><p><strong>Must-have</strong> — skills in both <code class="docutils literal notranslate"><span class="pre">selected_skills</span></code> and the role/stage set → always placed first</p></li>
+<li><p><strong>Optional</strong> — remaining candidates → sorted by <code class="docutils literal notranslate"><span class="pre">usage_count</span></code> descending</p></li>
+</ol>
+<p>The combined list is then truncated to <code class="docutils literal notranslate"><span class="pre">k</span></code>.</p>
+</section>
+<section id="formatting">
+<h3>Formatting<a class="headerlink" href="#formatting" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">render_for_prompt</span><span class="p">(</span><span class="n">skills</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">SkillRecord</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</pre></div>
+</div>
+<p>Returns an XML block injected into the agent system prompt:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;skills&gt;</span>
+<span class="nt">&lt;skill</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ucb_regret_analysis&quot;</span><span class="nt">&gt;</span>
+#<span class="w"> </span>UCB<span class="w"> </span>Regret<span class="w"> </span>Analysis
+...
+<span class="nt">&lt;/skill&gt;</span>
+<span class="nt">&lt;skill</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;concentration_inequalities&quot;</span><span class="nt">&gt;</span>
+...
+<span class="nt">&lt;/skill&gt;</span>
+<span class="nt">&lt;/skills&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="data-models">
+<h2>Data Models<a class="headerlink" href="#data-models" title="Link to this heading">#</a></h2>
+<p><strong>File:</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/types/skills.py</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SkillMeta</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;1.0&quot;</span>
+    <span class="n">tags</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">agent_roles</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>       <span class="c1"># e.g., [&quot;theory&quot;, &quot;survey&quot;]</span>
+    <span class="n">pipeline_stages</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>   <span class="c1"># e.g., [&quot;theory&quot;, &quot;experiment&quot;]</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">source</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;seed&quot;</span><span class="p">,</span> <span class="s2">&quot;distilled&quot;</span><span class="p">,</span> <span class="s2">&quot;manual&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;seed&quot;</span>
+    <span class="n">created_at</span><span class="p">:</span> <span class="n">datetime</span>
+    <span class="n">usage_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">success_rate</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SkillRecord</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">meta</span><span class="p">:</span> <span class="n">SkillMeta</span>
+    <span class="n">content</span><span class="p">:</span> <span class="nb">str</span>        <span class="c1"># Markdown body after frontmatter</span>
+    <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="c1"># absolute path to the .md file</span>
+    <span class="n">embedding</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># populated on first semantic retrieval</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">full_markdown</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span> <span class="o">...</span>  <span class="c1"># frontmatter + content</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="skill-distillation-post-run-learning">
+<h2>Skill Distillation (Post-Run Learning)<a class="headerlink" href="#skill-distillation-post-run-learning" title="Link to this heading">#</a></h2>
+<p>After each successful session, <code class="docutils literal notranslate"><span class="pre">ContinualLearningLoop.post_run()</span></code> distills new skills from the session:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ContinualLearningLoop.post_run()
+    ├── extract failures (FailedAttempt[]) from TheoryState
+    ├── deduplicate — only unique failure patterns (skip low-novelty)
+    ├── compress successes — proof text trimmed to 300 chars
+    ├── SkillEvolver.distill_from_session()
+    │       → new SkillRecord .md files in ~/.eurekaclaw/skills/
+    └── (rl/madmax modes) ProcessRewardModel scoring
+</pre></div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">SkillEvolver.distill_from_session()</span></code></strong> uses the main LLM to:</p>
+<ol class="arabic simple">
+<li><p>Identify generalizable patterns from successful proofs</p></li>
+<li><p>Write a new skill Markdown file with appropriate tags and roles</p></li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">source:</span> <span class="pre">distilled</span></code> in frontmatter</p></li>
+</ol>
+<p>New skills are immediately available in the next session via <code class="docutils literal notranslate"><span class="pre">SkillRegistry.reload()</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="seed-skills-mab-domain">
+<h2>Seed Skills (MAB Domain)<a class="headerlink" href="#seed-skills-mab-domain" title="Link to this heading">#</a></h2>
+<p>The MAB domain plugin ships four seed skills:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Skill</p></th>
+<th class="head"><p>Tags</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ucb_regret_analysis</span></code></p></td>
+<td><p>bandit, regret, ucb</p></td>
+<td><p>UCB1 regret decomposition via concentration</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">thompson_sampling_analysis</span></code></p></td>
+<td><p>bandit, thompson, bayesian</p></td>
+<td><p>Thompson Sampling regret analysis</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lower_bound_construction</span></code></p></td>
+<td><p>bandit, lower-bound, information</p></td>
+<td><p>Lai-Robbins and Fano-based lower bounds</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">bandit_simulation</span></code></p></td>
+<td><p>bandit, simulation, experiment</p></td>
+<td><p>How to run and interpret bandit simulations</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="installing-seed-skills">
+<h2>Installing Seed Skills<a class="headerlink" href="#installing-seed-skills" title="Link to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>install-skills<span class="w">                      </span><span class="c1"># copy seeds to ~/.eurekaclaw/skills/</span>
+eurekaclaw<span class="w"> </span>install-skills<span class="w"> </span>--force<span class="w">              </span><span class="c1"># overwrite existing copies</span>
+eurekaclaw<span class="w"> </span>install-skills<span class="w"> </span>&lt;skillname&gt;<span class="w">          </span><span class="c1"># install a skill from ClawHub</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;skillname&gt;</span></code> form fetches a skill from the <a class="reference external" href="https://clawhub.ai/">ClawHub</a> registry using the <code class="docutils literal notranslate"><span class="pre">clawhub</span></code> CLI (must be installed separately). Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>install-skills<span class="w"> </span>steipete/github
+</pre></div>
+</div>
+<p>This command is a convenience for inspection and manual editing only. Agents do <strong>not</strong> require it — seed skills are always available directly from the package.</p>
+</section>
+<hr class="docutils" />
+<section id="skill-lifecycle">
+<h2>Skill Lifecycle<a class="headerlink" href="#skill-lifecycle" title="Link to this heading">#</a></h2>
+<p>Understanding where skills physically live prevents confusion about why <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code> may not contain every skill an agent can see.</p>
+<section id="three-storage-locations">
+<h3>Three storage locations<a class="headerlink" href="#three-storage-locations" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Location</p></th>
+<th class="head"><p>Who writes there</p></th>
+<th class="head"><p>When</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">eurekaclaw/skills/seed_skills/</span></code></p></td>
+<td><p>Package developers (you)</p></td>
+<td><p>Committed to the repo; bundled with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">eurekaclaw/domains/&lt;domain&gt;/skills/</span></code></p></td>
+<td><p>Domain plugin authors</p></td>
+<td><p>Registered via <code class="docutils literal notranslate"><span class="pre">add_skills_dir()</span></code> at plugin load time</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">install-skills</span></code> CLI + <code class="docutils literal notranslate"><span class="pre">SkillEvolver</span></code> + ClawHub</p></td>
+<td><p>On demand; user-editable</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="load-order-at-runtime">
+<h3>Load order at runtime<a class="headerlink" href="#load-order-at-runtime" title="Link to this heading">#</a></h3>
+<p>Every time <code class="docutils literal notranslate"><span class="pre">SkillRegistry._load()</span></code> runs, it reads all three sources in this order. A skill with the same <code class="docutils literal notranslate"><span class="pre">name</span></code> in a later source <strong>overrides</strong> the earlier one:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1. eurekaclaw/skills/seed_skills/**/*.md        (lowest priority)
+2. domain plugin skill dirs (extra_dirs)        (medium priority)
+3. ~/.eurekaclaw/skills/**/*.md                 (highest priority — overrides seeds)
+</pre></div>
+</div>
+<p><strong>Consequence:</strong> adding a file to <code class="docutils literal notranslate"><span class="pre">seed_skills/</span></code> makes it immediately visible to agents on the next run, without copying anything to <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code>. The absence of a seed skill from <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code> does not reduce agent capability.</p>
+</section>
+<section id="how-new-skills-are-generated">
+<h3>How new skills are generated<a class="headerlink" href="#how-new-skills-are-generated" title="Link to this heading">#</a></h3>
+<p>Skills enter the system through three paths:</p>
+<section id="seed-skills-developer-authored">
+<h4>1. Seed skills (developer-authored)<a class="headerlink" href="#seed-skills-developer-authored" title="Link to this heading">#</a></h4>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">.md</span></code> file in <code class="docutils literal notranslate"><span class="pre">eurekaclaw/skills/seed_skills/&lt;category&gt;/</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># e.g. for a new theory skill</span>
+touch<span class="w"> </span>eurekaclaw/skills/seed_skills/theory/my_new_skill.md
+</pre></div>
+</div>
+<p>Set <code class="docutils literal notranslate"><span class="pre">source:</span> <span class="pre">seed</span></code> in frontmatter. The skill is available to all agents immediately after the file is saved — no CLI step required.</p>
+</section>
+<section id="llm-distillation-automatic-post-run">
+<h4>2. LLM distillation (automatic, post-run)<a class="headerlink" href="#llm-distillation-automatic-post-run" title="Link to this heading">#</a></h4>
+<p>After each successful session, <code class="docutils literal notranslate"><span class="pre">SkillEvolver.distill_from_session()</span></code> is called with up to 5 <code class="docutils literal notranslate"><span class="pre">FailedAttempt</span></code> records and 5 <code class="docutils literal notranslate"><span class="pre">ProofRecord</span></code> successes from the session. It calls the fast model with a distillation prompt and parses the response into a new <code class="docutils literal notranslate"><span class="pre">SkillRecord</span></code>.</p>
+<p>The new skill is written to <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/&lt;name&gt;.md</span></code> via <code class="docutils literal notranslate"><span class="pre">SkillRegistry.upsert()</span></code> with:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">source:</span> <span class="pre">distilled</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name:</span> <span class="pre">distilled_&lt;session_id[:8]&gt;_&lt;random_hex&gt;</span></code></p></li>
+<li><p>Tags, roles, and stages extracted from the LLM response</p></li>
+</ul>
+<p>It is immediately available to subsequent sessions without any restart.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Session completes
+    └── SkillEvolver.distill_from_session(failures, successes)
+            └── LLM call (fast model, max_tokens=1024)
+                    └── _parse_skill_response()
+                            └── SkillRegistry.upsert()  →  ~/.eurekaclaw/skills/&lt;name&gt;.md
+</pre></div>
+</div>
+</section>
+<section id="clawhub-skills">
+<h4>3. ClawHub skills<a class="headerlink" href="#clawhub-skills" title="Link to this heading">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>install-skills<span class="w"> </span>&lt;author&gt;/&lt;skillname&gt;
+</pre></div>
+</div>
+<p>Downloads the skill from the <a class="reference external" href="https://clawhub.ai/">ClawHub</a> registry via the <code class="docutils literal notranslate"><span class="pre">clawhub</span></code> CLI and places it in <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code>. Requires <code class="docutils literal notranslate"><span class="pre">clawhub</span></code> to be installed (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">clawhub</span></code> or equivalent).</p>
+</section>
+<section id="manual-user-skills">
+<h4>4. Manual user skills<a class="headerlink" href="#manual-user-skills" title="Link to this heading">#</a></h4>
+<p>Place any <code class="docutils literal notranslate"><span class="pre">.md</span></code> file with valid YAML frontmatter directly in <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code>. It will be loaded on the next session. Use <code class="docutils literal notranslate"><span class="pre">source:</span> <span class="pre">manual</span></code> in the frontmatter to distinguish from distilled skills.</p>
+</section>
+</section>
+<section id="skill-stats-update">
+<h3>Skill stats update<a class="headerlink" href="#skill-stats-update" title="Link to this heading">#</a></h3>
+<p>After each session, <code class="docutils literal notranslate"><span class="pre">SkillRegistry.update_stats(name,</span> <span class="pre">success)</span></code> rewrites the skill file with updated <code class="docutils literal notranslate"><span class="pre">usage_count</span></code> and <code class="docutils literal notranslate"><span class="pre">success_rate</span></code> (exponential moving average, α=0.3). This only affects skills that already exist in <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code> — seed skills in the package are never modified on disk by running sessions.</p>
+</section>
+<section id="why-eurekaclaw-skills-may-look-empty">
+<h3>Why <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code> may look empty<a class="headerlink" href="#why-eurekaclaw-skills-may-look-empty" title="Link to this heading">#</a></h3>
+<p>A fresh installation with no sessions run yet will have an empty <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code> directory. This is normal. The agents are not “missing” any skills — they read seed skills and domain plugin skills directly at runtime. <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code> fills up over time through:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">eurekaclaw</span> <span class="pre">install-skills</span></code> (one-time copy for inspection/editing)</p></li>
+<li><p>Completed sessions (automatic distillation)</p></li>
+<li><p>Manual placement of custom <code class="docutils literal notranslate"><span class="pre">.md</span></code> files</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="memory.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Memory System</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="token-limits.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Token Limits</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skill-file-format">Skill File Format</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skillregistry">SkillRegistry</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading">Loading</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval">Retrieval</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#storage">Storage</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skillinjector">SkillInjector</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Retrieval</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formatting">Formatting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-models">Data Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skill-distillation-post-run-learning">Skill Distillation (Post-Run Learning)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seed-skills-mab-domain">Seed Skills (MAB Domain)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-seed-skills">Installing Seed Skills</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skill-lifecycle">Skill Lifecycle</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#three-storage-locations">Three storage locations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-order-at-runtime">Load order at runtime</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-new-skills-are-generated">How new skills are generated</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#seed-skills-developer-authored">1. Seed skills (developer-authored)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-distillation-automatic-post-run">2. LLM distillation (automatic, post-run)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#clawhub-skills">3. ClawHub skills</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#manual-user-skills">4. Manual user skills</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skill-stats-update">Skill stats update</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-eurekaclaw-skills-may-look-empty">Why <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code> may look empty</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/EurekaClaw/EurekaClaw.github.io/edit/main/source/reference/skills.md">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, EurekaClaw Contributors.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

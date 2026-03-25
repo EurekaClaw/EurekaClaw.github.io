@@ -1,0 +1,1145 @@
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>CLI 参考 &#8212; EurekaClaw</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=74c509de" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=7c91f8fd"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=9345eede"></script>
+    <script src="../_static/translations.js?v=540d3cec"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/cli';</script>
+    <link rel="icon" href="../_static/logo-claw.png"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="配置" href="configuration.html" />
+    <link rel="prev" title="错误检索" href="../user-guide/troubleshooting.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">跳转至主要内容</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>回到顶部</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="版本警告"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="网页导航">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt=""/>
+    <img src="../_static/logo.svg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">EurekaClaw</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/installation.html">
+    安装
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/quickstart.html">
+    快速开始
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/authentication.html">
+    API Key授权
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user-guide/index.html">
+    用户指南
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    CLI 参考
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="configuration.html">
+    配置
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="api.html">
+    Python API
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="architecture.html">
+    系统结构
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="agents.html">
+    智能体
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="tools.html">
+    研究工具
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="memory.html">
+    记忆系统
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="skills.html">
+    技能系统
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="token-limits.html">
+    Token 限制
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="domains.html">
+    领域插件系统
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../changelog/index.html">
+    开发日志
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><div class="lang-switcher">
+  <a class="lang-link" href="/reference/cli.html">EN</a>
+  <span class="lang-sep">|</span>
+  <span class="lang-current">中文</span>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/EurekaClaw/EurekaClaw" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="亮色"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="暗色"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="当前页面">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/installation.html">
+    安装
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/quickstart.html">
+    快速开始
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/authentication.html">
+    API Key授权
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user-guide/index.html">
+    用户指南
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    CLI 参考
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="configuration.html">
+    配置
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api.html">
+    Python API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="architecture.html">
+    系统结构
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="agents.html">
+    智能体
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tools.html">
+    研究工具
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="memory.html">
+    记忆系统
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="skills.html">
+    技能系统
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="token-limits.html">
+    Token 限制
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="domains.html">
+    领域插件系统
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../changelog/index.html">
+    开发日志
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><div class="lang-switcher">
+  <a class="lang-link" href="/reference/cli.html">EN</a>
+  <span class="lang-sep">|</span>
+  <span class="lang-current">中文</span>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/EurekaClaw/EurekaClaw" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="亮色"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="暗色"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="章节导航">
+  <p class="bd-links__title" role="heading" aria-level="1">章节导航</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="初始页面">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">CLI 参考</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="cli">
+<h1>CLI 参考<a class="headerlink" href="#cli" title="链接到此标题。">#</a></h1>
+<p>安装软件包（或运行 <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">eurekaclaw</span></code>）后即可使用 <code class="docutils literal notranslate"><span class="pre">eurekaclaw</span></code> 命令。</p>
+<section id="id1">
+<h2>全局选项<a class="headerlink" href="#id1" title="链接到此标题。">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>参数</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--verbose</span></code>, <code class="docutils literal notranslate"><span class="pre">-v</span></code></p></td>
+<td><p>启用 DEBUG 日志</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="id2">
+<h2>命令<a class="headerlink" href="#id2" title="链接到此标题。">#</a></h2>
+<section id="prove">
+<h3><code class="docutils literal notranslate"><span class="pre">prove</span></code> — 证明猜想<a class="headerlink" href="#prove" title="链接到此标题。">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>prove<span class="w"> </span><span class="s2">&quot;&lt;conjecture&gt;&quot;</span><span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p><strong>参数：</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">conjecture</span></code> — 要证明的数学猜想或命题（字符串）</p></li>
+</ul>
+<p><strong>选项：</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>选项</p></th>
+<th class="head"><p>默认值</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--domain</span></code>, <code class="docutils literal notranslate"><span class="pre">-d</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></p></td>
+<td><p>研究领域。若省略，则从猜想自动推断</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--mode</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">skills_only</span></code></p></td>
+<td><p>运行后学习模式：<code class="docutils literal notranslate"><span class="pre">skills_only</span></code>、<code class="docutils literal notranslate"><span class="pre">rl</span></code>、<code class="docutils literal notranslate"><span class="pre">madmax</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--skills</span></code></p></td>
+<td><p><em>(all)</em> （全部）</p></td>
+<td><p>按名称固定特定技能（可重复使用）。固定技能始终优先出现在注入列表前面，不受使用分数影响</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--gate</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">none</span></code></p></td>
+<td><p>关卡控制：<code class="docutils literal notranslate"><span class="pre">human</span></code>、<code class="docutils literal notranslate"><span class="pre">auto</span></code>、<code class="docutils literal notranslate"><span class="pre">none</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--output</span></code>, <code class="docutils literal notranslate"><span class="pre">-o</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">./results</span></code></p></td>
+<td><p>产物输出目录</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>示例：</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>prove<span class="w"> </span><span class="s2">&quot;UCB1 achieves O(sqrt(KT log T)) expected cumulative regret in the stochastic multi-armed bandit setting&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--domain<span class="w"> </span><span class="s2">&quot;multi-armed bandit theory&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--skills<span class="w"> </span>ucb_regret_analysis<span class="w"> </span>--skills<span class="w"> </span>concentration_inequalities<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--gate<span class="w"> </span>human<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>./results
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="explore">
+<h3><code class="docutils literal notranslate"><span class="pre">explore</span></code> — 探索研究领域<a class="headerlink" href="#explore" title="链接到此标题。">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>explore<span class="w"> </span><span class="s2">&quot;&lt;domain&gt;&quot;</span><span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p><strong>参数：</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">domain</span></code> — 要探索的研究领域（字符串）</p></li>
+</ul>
+<p><strong>选项：</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>选项</p></th>
+<th class="head"><p>默认值</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--query</span></code>, <code class="docutils literal notranslate"><span class="pre">-q</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></p></td>
+<td><p>领域内的具体研究问题</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--mode</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">skills_only</span></code></p></td>
+<td><p>运行后学习模式：<code class="docutils literal notranslate"><span class="pre">skills_only</span></code>、<code class="docutils literal notranslate"><span class="pre">rl</span></code>、<code class="docutils literal notranslate"><span class="pre">madmax</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--gate</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">none</span></code></p></td>
+<td><p>关卡控制：<code class="docutils literal notranslate"><span class="pre">human</span></code>、<code class="docutils literal notranslate"><span class="pre">auto</span></code>、<code class="docutils literal notranslate"><span class="pre">none</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--output</span></code>, <code class="docutils literal notranslate"><span class="pre">-o</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">./results</span></code></p></td>
+<td><p>产物输出目录</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>示例：</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>explore<span class="w"> </span><span class="s2">&quot;multi-armed bandit theory&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--query<span class="w"> </span><span class="s2">&quot;tight regret bounds for heavy-tailed rewards&quot;</span><span class="w"> </span>--output<span class="w"> </span>./results
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="from-papers">
+<h3><code class="docutils literal notranslate"><span class="pre">from-papers</span></code> — 从参考论文生成假设<a class="headerlink" href="#from-papers" title="链接到此标题。">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>from-papers<span class="w"> </span>&lt;paper_id&gt;<span class="w"> </span><span class="o">[</span>&lt;paper_id&gt;<span class="w"> </span>...<span class="o">]</span><span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p><strong>参数：</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">paper_ids</span></code> — 一个或多个 arXiv ID 或 Semantic Scholar ID（可变参数）</p></li>
+</ul>
+<p><strong>选项：</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>选项</p></th>
+<th class="head"><p>默认值</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--domain</span></code>, <code class="docutils literal notranslate"><span class="pre">-d</span></code></p></td>
+<td><p><em>（必填）</em></p></td>
+<td><p>研究领域</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--query</span></code>, <code class="docutils literal notranslate"><span class="pre">-q</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></p></td>
+<td><p>论文范围内的具体研究问题或聚焦方向</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--mode</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">skills_only</span></code></p></td>
+<td><p>运行后学习模式</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--skills</span></code></p></td>
+<td><p><em>(all)</em> （全部）</p></td>
+<td><p>按名称固定特定技能（可重复使用）。固定技能始终优先出现在注入列表前面，不受使用分数影响</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--gate</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">none</span></code></p></td>
+<td><p>关卡控制</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--output</span></code>, <code class="docutils literal notranslate"><span class="pre">-o</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">./results</span></code></p></td>
+<td><p>输出目录</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>示例：</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>from-papers<span class="w"> </span><span class="m">1602</span>.01783<span class="w"> </span><span class="m">2301</span>.00774<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--domain<span class="w"> </span><span class="s2">&quot;bandit algorithms&quot;</span><span class="w"> </span>--output<span class="w"> </span>./results
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="pause">
+<h3><code class="docutils literal notranslate"><span class="pre">pause</span></code> — 暂停正在运行的会话<a class="headerlink" href="#pause" title="链接到此标题。">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>pause<span class="w"> </span>&lt;session_id&gt;
+</pre></div>
+</div>
+<p><strong>参数：</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">session_id</span></code> — 要暂停的正在运行的证明的会话 ID（在启动时的控制台头部可以找到）</p></li>
+</ul>
+<p>在 <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/sessions/&lt;session_id&gt;/</span></code> 中写入 <code class="docutils literal notranslate"><span class="pre">pause.flag</span></code> 文件。理论智能体在下一个阶段边界检测到该标志后，保存检查点并以 <code class="docutils literal notranslate"><span class="pre">ProofPausedException</span></code> 干净退出。部分证明状态保存在 <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/sessions/&lt;session_id&gt;/checkpoint.json</span></code> 中。</p>
+<p>运行期间也可以按 <strong>Ctrl+C</strong> 暂停。EurekaClaw 会拦截 <code class="docutils literal notranslate"><span class="pre">SIGINT</span></code> 并写入暂停标志，而非直接抛出 <code class="docutils literal notranslate"><span class="pre">KeyboardInterrupt</span></code>，给智能体留出到达干净检查点边界的时间。</p>
+<p><strong>示例：</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># In a separate terminal while a proof is running:</span>
+eurekaclaw<span class="w"> </span>pause<span class="w"> </span>abc12345
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="resume">
+<h3><code class="docutils literal notranslate"><span class="pre">resume</span></code> — 恢复已暂停的会话<a class="headerlink" href="#resume" title="链接到此标题。">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>resume<span class="w"> </span>&lt;session_id&gt;
+</pre></div>
+</div>
+<p><strong>参数：</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">session_id</span></code> — 要继续的已暂停证明的会话 ID</p></li>
+</ul>
+<p>从 <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/sessions/&lt;session_id&gt;/checkpoint.json</span></code> 加载检查点，并从保存的阶段重新运行理论智能体，此时所有之前已证明的引理均已在 <code class="docutils literal notranslate"><span class="pre">TheoryState</span></code> 中。使用与原始会话相同的领域和查询。</p>
+<p><strong>示例：</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>resume<span class="w"> </span>abc12345
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="replay-theory-tail">
+<h3><code class="docutils literal notranslate"><span class="pre">replay-theory-tail</span></code> — 重放理论尾部阶段<a class="headerlink" href="#replay-theory-tail" title="链接到此标题。">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>replay-theory-tail<span class="w"> </span>&lt;session_id&gt;<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p><strong>参数：</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">session_id</span></code> — 已完成运行的会话 ID</p></li>
+</ul>
+<p><strong>选项：</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>选项</p></th>
+<th class="head"><p>默认值</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--from</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">consistency_checker</span></code></p></td>
+<td><p>重新启动的阶段：<code class="docutils literal notranslate"><span class="pre">assembler</span></code>、<code class="docutils literal notranslate"><span class="pre">theorem_crystallizer</span></code>、<code class="docutils literal notranslate"><span class="pre">consistency_checker</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>从已保存的 <code class="docutils literal notranslate"><span class="pre">theory_state.json</span></code> 重新运行理论流水线的最终阶段（Assembler → TheoremCrystallizer → ConsistencyChecker），无需重复调研、规划或引理证明阶段。适用于快速迭代结晶化或一致性检查失败的情况。</p>
+<p><strong>示例：</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>replay-theory-tail<span class="w"> </span>abc12345<span class="w"> </span>--from<span class="w"> </span>assembler
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="test-paper-reader-paperreader">
+<h3><code class="docutils literal notranslate"><span class="pre">test-paper-reader</span></code> — 对单篇论文测试 PaperReader<a class="headerlink" href="#test-paper-reader-paperreader" title="链接到此标题。">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>test-paper-reader<span class="w"> </span>&lt;session_id&gt;<span class="w"> </span>&lt;paper_ref&gt;<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p><strong>参数：</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">session_id</span></code> — 要使用其参考文献列表的已完成运行的会话 ID</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">paper_ref</span></code> — 论文 ID、arXiv ID，或标题的大小写不敏感子字符串</p></li>
+</ul>
+<p><strong>选项：</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>选项</p></th>
+<th class="head"><p>默认值</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--mode</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">both</span></code></p></td>
+<td><p>提取模式：<code class="docutils literal notranslate"><span class="pre">abstract</span></code>、<code class="docutils literal notranslate"><span class="pre">pdf</span></code>、<code class="docutils literal notranslate"><span class="pre">both</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--direction</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></p></td>
+<td><p>提取提示词的研究方向覆盖</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>对单条参考文献条目执行 PaperReader 的摘要和/或 PDF 提取，无需运行完整流水线。</p>
+<p><strong>示例：</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>test-paper-reader<span class="w"> </span>abc12345<span class="w"> </span><span class="s2">&quot;UCB1&quot;</span><span class="w"> </span>--mode<span class="w"> </span>both
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="onboard">
+<h3><code class="docutils literal notranslate"><span class="pre">onboard</span></code> — 交互式配置向导<a class="headerlink" href="#onboard" title="链接到此标题。">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>onboard<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p><strong>选项：</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>选项</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--non-interactive</span></code></p></td>
+<td><p>不提示直接写入默认值</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--reset</span></code></p></td>
+<td><p>覆盖现有 <code class="docutils literal notranslate"><span class="pre">.env</span></code> 而不合并</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--env-file</span></code></p></td>
+<td><p>要写入的 <code class="docutils literal notranslate"><span class="pre">.env</span></code> 文件路径（默认：<code class="docutils literal notranslate"><span class="pre">.env</span></code>）</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>引导您完成 LLM 后端选择、API 密钥配置、搜索工具设置及系统行为配置，然后写入（或更新）<code class="docutils literal notranslate"><span class="pre">.env</span></code> 文件。</p>
+<p><strong>示例：</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>onboard
+eurekaclaw<span class="w"> </span>onboard<span class="w"> </span>--env-file<span class="w"> </span>~/.eurekaclaw/.env
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="skills">
+<h3><code class="docutils literal notranslate"><span class="pre">skills</span></code> — 列出可用技能<a class="headerlink" href="#skills" title="链接到此标题。">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>skills
+</pre></div>
+</div>
+<p>打印一个 Rich 面板，列出技能库中所有技能及其：</p>
+<ul class="simple">
+<li><p>技能名称</p></li>
+<li><p>标签</p></li>
+<li><p>说明</p></li>
+<li><p>来源（<code class="docutils literal notranslate"><span class="pre">seed</span></code>、<code class="docutils literal notranslate"><span class="pre">distilled</span></code> 或 <code class="docutils literal notranslate"><span class="pre">manual</span></code>）</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="eval-session">
+<h3><code class="docutils literal notranslate"><span class="pre">eval-session</span></code> — 评估已完成的会话<a class="headerlink" href="#eval-session" title="链接到此标题。">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>eval-session<span class="w"> </span>&lt;session_id&gt;
+</pre></div>
+</div>
+<p><strong>参数：</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">session_id</span></code> — 之前运行的会话 ID（在运行目录名称中可以找到）</p></li>
+</ul>
+<p>打印包含证明质量指标的评估报告。</p>
+</section>
+<hr class="docutils" />
+<section id="install-skills">
+<h3><code class="docutils literal notranslate"><span class="pre">install-skills</span></code> — 安装种子技能<a class="headerlink" href="#install-skills" title="链接到此标题。">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>install-skills<span class="w"> </span><span class="o">[</span>SKILLNAME<span class="o">]</span><span class="w"> </span><span class="o">[</span>--force<span class="o">]</span>
+</pre></div>
+</div>
+<p><strong>参数：</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">skillname</span></code> <em>（可选）</em> — 按名称从 clawhub 安装特定技能</p></li>
+</ul>
+<p><strong>选项：</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>选项</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--force</span></code>, <code class="docutils literal notranslate"><span class="pre">-f</span></code></p></td>
+<td><p>覆盖 <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code> 中现有技能</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>不带参数时，将包内所有种子技能复制到 <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code>。若提供了技能名称，则从 clawhub 下载该技能。</p>
+</section>
+<hr class="docutils" />
+<section id="ui-ui">
+<h3><code class="docutils literal notranslate"><span class="pre">ui</span></code> — 启动浏览器 UI<a class="headerlink" href="#ui-ui" title="链接到此标题。">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>ui<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p><strong>选项：</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>选项</p></th>
+<th class="head"><p>默认值</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--host</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code></p></td>
+<td><p>绑定的网络接口</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--port</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">8080</span></code></p></td>
+<td><p>监听端口</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--open-browser</span></code> / <code class="docutils literal notranslate"><span class="pre">--no-open-browser</span></code></p></td>
+<td><p>False</p></td>
+<td><p>启动时是否自动打开浏览器</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>示例：</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>ui<span class="w"> </span>--open-browser
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id3">
+<h2>输出产物<a class="headerlink" href="#id3" title="链接到此标题。">#</a></h2>
+<p>三个研究命令（<code class="docutils literal notranslate"><span class="pre">prove</span></code>、<code class="docutils literal notranslate"><span class="pre">explore</span></code>、<code class="docutils literal notranslate"><span class="pre">from-papers</span></code>）均将产物写入 <code class="docutils literal notranslate"><span class="pre">&lt;output&gt;/&lt;session_id&gt;/</span></code>：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;output&gt;/&lt;session_id&gt;/
+├── paper.tex              LaTeX source
+├── paper.pdf              Compiled PDF (requires pdflatex + bibtex)
+├── references.bib         Bibliography in BibTeX format
+├── theory_state.json      Full proof state (lemmas, proofs, status)
+├── research_brief.json    Planning state (directions, selected direction)
+└── experiment_result.json Numerical validation results (if run)
+</pre></div>
+</div>
+<p>已暂停的会话还会将检查点写入 <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/sessions/&lt;session_id&gt;/checkpoint.json</span></code>。</p>
+</section>
+<section id="id4">
+<h2>理论评审关卡<a class="headerlink" href="#id4" title="链接到此标题。">#</a></h2>
+<p>TheoryAgent 完成后、Writer 运行前，EurekaClaw 会显示带编号的证明草稿并请求确认：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>──────────────── Proof Sketch Review ────────────────
+  L1  [✓] arm_pull_count_bound  verified
+       For arm a with mean gap Δ_a ...
+  L2  [~] regret_decomposition  low confidence
+       Total regret decomposes as ...
+  L3  [✓] main_theorem          verified
+       UCB1 achieves O(√(KT log T)) regret ...
+──────────────────────────────────────────────────────
+
+Does this proof sketch look correct?
+  y  — Proceed to writing
+  n  — Flag the most logically problematic step
+→
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>y / 回车</strong> — 继续执行 WriterAgent</p></li>
+<li><p><strong>n</strong> — 系统询问哪个步骤存在最关键的逻辑缺口（例如 <code class="docutils literal notranslate"><span class="pre">L2</span></code> 或完整引理 ID），以及问题描述。TheoryAgent 会将您的反馈注入任务后重新运行一次，然后再次展示更新后的草稿。</p></li>
+</ul>
+<p>理论评审关卡<strong>始终显示</strong>，不受 <code class="docutils literal notranslate"><span class="pre">--gate</span></code> 模式影响。</p>
+</section>
+<section id="id5">
+<h2>退出码<a class="headerlink" href="#id5" title="链接到此标题。">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>代码</p></th>
+<th class="head"><p>含义</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>成功——论文已生成</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>运行时错误（详见控制台输出）</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../user-guide/troubleshooting.html"
+       title="上一页">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title">错误检索</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="configuration.html"
+       title="下一页">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title">配置</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 当前页面
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">全局选项</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">命令</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prove"><code class="docutils literal notranslate"><span class="pre">prove</span></code> — 证明猜想</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explore"><code class="docutils literal notranslate"><span class="pre">explore</span></code> — 探索研究领域</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-papers"><code class="docutils literal notranslate"><span class="pre">from-papers</span></code> — 从参考论文生成假设</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pause"><code class="docutils literal notranslate"><span class="pre">pause</span></code> — 暂停正在运行的会话</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resume"><code class="docutils literal notranslate"><span class="pre">resume</span></code> — 恢复已暂停的会话</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#replay-theory-tail"><code class="docutils literal notranslate"><span class="pre">replay-theory-tail</span></code> — 重放理论尾部阶段</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-paper-reader-paperreader"><code class="docutils literal notranslate"><span class="pre">test-paper-reader</span></code> — 对单篇论文测试 PaperReader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#onboard"><code class="docutils literal notranslate"><span class="pre">onboard</span></code> — 交互式配置向导</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skills"><code class="docutils literal notranslate"><span class="pre">skills</span></code> — 列出可用技能</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eval-session"><code class="docutils literal notranslate"><span class="pre">eval-session</span></code> — 评估已完成的会话</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-skills"><code class="docutils literal notranslate"><span class="pre">install-skills</span></code> — 安装种子技能</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ui-ui"><code class="docutils literal notranslate"><span class="pre">ui</span></code> — 启动浏览器 UI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">输出产物</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">理论评审关卡</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">退出码</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/EurekaClaw/EurekaClaw.github.io/edit/main/source/reference/cli.md">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          由 GitHub 编辑
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, EurekaClaw Contributors.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4创建。
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

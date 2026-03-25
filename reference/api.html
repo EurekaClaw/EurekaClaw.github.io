@@ -1,0 +1,1013 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Python API &#8212; EurekaClaw</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=74c509de" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=2709fde1"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=9345eede"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api';</script>
+    <link rel="icon" href="../_static/logo-claw.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Architecture" href="architecture.html" />
+    <link rel="prev" title="Configuration" href="configuration.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt=""/>
+    <img src="../_static/logo.svg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">EurekaClaw</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/authentication.html">
+    Authentication
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user-guide/index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="cli.html">
+    CLI Reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="configuration.html">
+    Configuration
+  </a>
+</li>
+
+
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="#">
+    Python API
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="architecture.html">
+    Architecture
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="agents.html">
+    Agents
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="tools.html">
+    Research Tools
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="memory.html">
+    Memory System
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="skills.html">
+    Skills System
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="token-limits.html">
+    Token Limits
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="domains.html">
+    Domain Plugin System
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><div class="lang-switcher">
+  <span class="lang-current">EN</span>
+  <span class="lang-sep">|</span>
+  <a class="lang-link" href="/zh/reference/api.html">中文</a>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/EurekaClaw/EurekaClaw" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/authentication.html">
+    Authentication
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user-guide/index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="cli.html">
+    CLI Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="configuration.html">
+    Configuration
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Python API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="architecture.html">
+    Architecture
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="agents.html">
+    Agents
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tools.html">
+    Research Tools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="memory.html">
+    Memory System
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="skills.html">
+    Skills System
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="token-limits.html">
+    Token Limits
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="domains.html">
+    Domain Plugin System
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><div class="lang-switcher">
+  <span class="lang-current">EN</span>
+  <span class="lang-sep">|</span>
+  <a class="lang-link" href="/zh/reference/api.html">中文</a>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/EurekaClaw/EurekaClaw" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Python API</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="python-api">
+<h1>Python API<a class="headerlink" href="#python-api" title="Link to this heading">#</a></h1>
+<section id="eurekasession">
+<h2>EurekaSession<a class="headerlink" href="#eurekasession" title="Link to this heading">#</a></h2>
+<p><strong>File:</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/main.py</span></code></p>
+<p>The main entry point for running research programmatically.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">eurekaclaw.main</span><span class="w"> </span><span class="kn">import</span> <span class="n">EurekaSession</span><span class="p">,</span> <span class="n">run_research</span><span class="p">,</span> <span class="n">save_artifacts</span>
+
+<span class="n">session</span> <span class="o">=</span> <span class="n">EurekaSession</span><span class="p">()</span>
+</pre></div>
+</div>
+<section id="constructor">
+<h3>Constructor<a class="headerlink" href="#constructor" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">EurekaSession</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">session_id</span></code> — Optional. Auto-generated UUID if not provided.</p></li>
+<li><p>Creates a <code class="docutils literal notranslate"><span class="pre">KnowledgeBus</span></code> and lazily initializes <code class="docutils literal notranslate"><span class="pre">MetaOrchestrator</span></code>.</p></li>
+</ul>
+</section>
+<section id="methods">
+<h3>Methods<a class="headerlink" href="#methods" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_spec</span><span class="p">:</span> <span class="n">InputSpec</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResearchOutput</span>
+</pre></div>
+</div>
+<p>Run a full research session from an <code class="docutils literal notranslate"><span class="pre">InputSpec</span></code>. This is the lowest-level async entry point used internally.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_detailed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conjecture</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResearchOutput</span>
+</pre></div>
+</div>
+<p><strong>Level 1:</strong> Prove a specific conjecture.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_from_papers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paper_ids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResearchOutput</span>
+</pre></div>
+</div>
+<p><strong>Level 2:</strong> Find gaps and generate hypotheses from reference papers.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_exploration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResearchOutput</span>
+</pre></div>
+</div>
+<p><strong>Level 3:</strong> Open exploration of a research domain.</p>
+</section>
+<section id="properties">
+<h3>Properties<a class="headerlink" href="#properties" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@property</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">orchestrator</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MetaOrchestrator</span>
+</pre></div>
+</div>
+<p>Lazy-initialized orchestrator. Auto-detects domain plugin from <code class="docutils literal notranslate"><span class="pre">InputSpec.domain</span></code>.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="convenience-functions">
+<h2>Convenience Functions<a class="headerlink" href="#convenience-functions" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run_research</span><span class="p">(</span><span class="n">conjecture</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResearchOutput</span>
+</pre></div>
+</div>
+<p>Synchronous entry point (wraps <code class="docutils literal notranslate"><span class="pre">asyncio.run()</span></code>). Runs Level 1 prove pipeline.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">save_artifacts</span><span class="p">(</span><span class="n">result</span><span class="p">:</span> <span class="n">ResearchOutput</span><span class="p">,</span> <span class="n">out_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span>
+</pre></div>
+</div>
+<p>Write all pipeline artifacts to disk and compile the PDF.</p>
+<p><strong>Writes:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">paper.tex</span></code> — LaTeX source</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">references.bib</span></code> — BibTeX bibliography</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">theory_state.json</span></code> — Full proof state</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">research_brief.json</span></code> — Planning state</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">experiment_result.json</span></code> — Numerical results (if available)</p></li>
+</ul>
+<p><strong>LaTeX compile sequence:</strong></p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pdflatex</span> <span class="pre">paper.tex</span></code> (pass 1 — generate <code class="docutils literal notranslate"><span class="pre">.aux</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bibtex</span> <span class="pre">paper</span></code> (only if <code class="docutils literal notranslate"><span class="pre">references.bib</span></code> exists and is non-empty)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pdflatex</span> <span class="pre">paper.tex</span></code> (pass 2 — resolve citations)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pdflatex</span> <span class="pre">paper.tex</span></code> (pass 3 — finalize)</p></li>
+</ol>
+<p><strong>Citation validation:</strong> Before compiling, <code class="docutils literal notranslate"><span class="pre">_fix_missing_citations()</span></code> removes any <code class="docutils literal notranslate"><span class="pre">\cite{}</span></code> keys that have no matching entry in <code class="docutils literal notranslate"><span class="pre">references.bib</span></code>, preventing <code class="docutils literal notranslate"><span class="pre">?</span></code> symbols in the output PDF.</p>
+<p><strong>Returns:</strong> <code class="docutils literal notranslate"><span class="pre">Path</span></code> to the output directory.</p>
+</section>
+<hr class="docutils" />
+<section id="knowledgebus">
+<h2>KnowledgeBus<a class="headerlink" href="#knowledgebus" title="Link to this heading">#</a></h2>
+<p><strong>File:</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/knowledge_bus/bus.py</span></code></p>
+<p>Central in-memory artifact store shared by all agents in a session. All data flows through the bus — no agent holds private state between turns.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">KnowledgeBus</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<section id="typed-artifact-access">
+<h3>Typed Artifact Access<a class="headerlink" href="#typed-artifact-access" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">put_research_brief</span><span class="p">(</span><span class="n">brief</span><span class="p">:</span> <span class="n">ResearchBrief</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_research_brief</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ResearchBrief</span> <span class="o">|</span> <span class="kc">None</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">put_theory_state</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">TheoryState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_theory_state</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">TheoryState</span> <span class="o">|</span> <span class="kc">None</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">put_experiment_result</span><span class="p">(</span><span class="n">result</span><span class="p">:</span> <span class="n">ExperimentResult</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_experiment_result</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ExperimentResult</span> <span class="o">|</span> <span class="kc">None</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">put_bibliography</span><span class="p">(</span><span class="n">bib</span><span class="p">:</span> <span class="n">Bibliography</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_bibliography</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Bibliography</span> <span class="o">|</span> <span class="kc">None</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">append_citations</span><span class="p">(</span><span class="n">papers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Paper</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">put_pipeline</span><span class="p">(</span><span class="n">pipeline</span><span class="p">:</span> <span class="n">TaskPipeline</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_pipeline</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">TaskPipeline</span> <span class="o">|</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</section>
+<section id="generic-key-value-store">
+<h3>Generic Key-Value Store<a class="headerlink" href="#generic-key-value-store" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">put</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span>
+</pre></div>
+</div>
+<p>For arbitrary data shared between agents (e.g., <code class="docutils literal notranslate"><span class="pre">numerically_suspect</span></code> lemma IDs).</p>
+</section>
+<section id="reactive-subscriptions">
+<h3>Reactive Subscriptions<a class="headerlink" href="#reactive-subscriptions" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">subscribe</span><span class="p">(</span><span class="n">artifact_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>Register a callback triggered whenever an artifact of <code class="docutils literal notranslate"><span class="pre">artifact_type</span></code> is updated on the bus.</p>
+</section>
+<section id="persistence">
+<h3>Persistence<a class="headerlink" href="#persistence" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">persist</span><span class="p">(</span><span class="n">session_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>Serialize all artifacts to JSON files in <code class="docutils literal notranslate"><span class="pre">session_dir</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@classmethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">load</span><span class="p">(</span><span class="n">session_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">session_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">KnowledgeBus</span>
+</pre></div>
+</div>
+<p>Reconstruct a bus from a previously persisted session directory.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="inputspec">
+<h2>InputSpec<a class="headerlink" href="#inputspec" title="Link to this heading">#</a></h2>
+<p><strong>File:</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/types/tasks.py</span></code></p>
+<p>Specifies what to research.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">InputSpec</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">mode</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;detailed&quot;</span><span class="p">,</span> <span class="s2">&quot;reference&quot;</span><span class="p">,</span> <span class="s2">&quot;exploration&quot;</span><span class="p">]</span>
+    <span class="n">conjecture</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>     <span class="c1"># Level 1: specific conjecture</span>
+    <span class="n">paper_ids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>         <span class="c1"># Level 2: reference paper IDs</span>
+    <span class="n">paper_texts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>       <span class="c1"># Level 2: raw paper texts (alternative)</span>
+    <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>                  <span class="c1"># research domain string</span>
+    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>                   <span class="c1"># Level 3: research question</span>
+    <span class="n">additional_context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>      <span class="c1"># extra context for agents</span>
+    <span class="n">selected_skills</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>   <span class="c1"># manually select skill names to inject</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="researchoutput">
+<h2>ResearchOutput<a class="headerlink" href="#researchoutput" title="Link to this heading">#</a></h2>
+<p><strong>File:</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/types/tasks.py</span></code></p>
+<p>The result of a full research session.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ResearchOutput</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">session_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">latex_paper</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>           <span class="c1"># full LaTeX source</span>
+    <span class="n">pdf_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>     <span class="c1"># path to compiled PDF (if successful)</span>
+    <span class="n">theory_state_json</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>     <span class="c1"># TheoryState serialized as JSON</span>
+    <span class="n">experiment_result_json</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="c1"># ExperimentResult serialized as JSON</span>
+    <span class="n">research_brief_json</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>   <span class="c1"># ResearchBrief serialized as JSON</span>
+    <span class="n">bibliography_json</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>     <span class="c1"># Bibliography serialized as JSON</span>
+    <span class="n">eval_report_json</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>      <span class="c1"># evaluation report (if run)</span>
+    <span class="n">skills_distilled</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># names of new skills written this session</span>
+    <span class="n">completed_at</span><span class="p">:</span> <span class="n">datetime</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="data-models-quick-reference">
+<h2>Data Models Quick Reference<a class="headerlink" href="#data-models-quick-reference" title="Link to this heading">#</a></h2>
+<p>All models are Pydantic <code class="docutils literal notranslate"><span class="pre">BaseModel</span></code> instances. See <a class="reference internal" href="architecture.html"><span class="std std-doc">architecture.md</span></a> for field-level diagrams.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>File</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">InputSpec</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/tasks.py</span></code></p></td>
+<td><p>Research input specification</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ResearchOutput</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/tasks.py</span></code></p></td>
+<td><p>Full session result</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Task</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/tasks.py</span></code></p></td>
+<td><p>Single pipeline task</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TaskPipeline</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/tasks.py</span></code></p></td>
+<td><p>Ordered task sequence</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ResearchBrief</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/artifacts.py</span></code></p></td>
+<td><p>Survey findings + selected direction</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ResearchDirection</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/artifacts.py</span></code></p></td>
+<td><p>Scored research hypothesis</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TheoryState</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/artifacts.py</span></code></p></td>
+<td><p>Proof state machine</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LemmaNode</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/artifacts.py</span></code></p></td>
+<td><p>Node in the lemma dependency DAG</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ProofRecord</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/artifacts.py</span></code></p></td>
+<td><p>Completed proof for one lemma</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ProofPlan</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/artifacts.py</span></code></p></td>
+<td><p>Planned lemma with provenance</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KnownResult</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/artifacts.py</span></code></p></td>
+<td><p>Result extracted from a paper</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">FailedAttempt</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/artifacts.py</span></code></p></td>
+<td><p>Failed proof attempt record</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Counterexample</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/artifacts.py</span></code></p></td>
+<td><p>Discovered counterexample</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ExperimentResult</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/artifacts.py</span></code></p></td>
+<td><p>Numerical validation results</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NumericalBound</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/artifacts.py</span></code></p></td>
+<td><p>Theoretical vs empirical bound comparison</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Bibliography</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/artifacts.py</span></code></p></td>
+<td><p>Collection of papers + BibTeX</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Paper</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/artifacts.py</span></code></p></td>
+<td><p>Single paper metadata</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">AgentResult</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/agents.py</span></code></p></td>
+<td><p>Result from one agent task</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SkillRecord</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/skills.py</span></code></p></td>
+<td><p>A skill with metadata</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">EpisodicEntry</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/memory.py</span></code></p></td>
+<td><p>Session-scoped memory event</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CrossRunRecord</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/memory.py</span></code></p></td>
+<td><p>Persistent cross-run memory record</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">KnowledgeNode</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/memory.py</span></code></p></td>
+<td><p>Theorem in the knowledge graph</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="example-run-a-proof-session">
+<h2>Example: Run a Proof Session<a class="headerlink" href="#example-run-a-proof-session" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">eurekaclaw.main</span><span class="w"> </span><span class="kn">import</span> <span class="n">EurekaSession</span><span class="p">,</span> <span class="n">save_artifacts</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">session</span> <span class="o">=</span> <span class="n">EurekaSession</span><span class="p">()</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">run_detailed</span><span class="p">(</span>
+        <span class="n">conjecture</span><span class="o">=</span><span class="s2">&quot;The sample complexity of transformers is O(L·d·log(d)/ε²)&quot;</span><span class="p">,</span>
+        <span class="n">domain</span><span class="o">=</span><span class="s2">&quot;machine learning theory&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">save_artifacts</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="s2">&quot;./results&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Paper saved to: </span><span class="si">{</span><span class="n">out</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="example-load-and-re-generate-artifacts">
+<h2>Example: Load and Re-generate Artifacts<a class="headerlink" href="#example-load-and-re-generate-artifacts" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">eurekaclaw.knowledge_bus.bus</span><span class="w"> </span><span class="kn">import</span> <span class="n">KnowledgeBus</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">eurekaclaw.types.artifacts</span><span class="w"> </span><span class="kn">import</span> <span class="n">TheoryState</span><span class="p">,</span> <span class="n">ResearchBrief</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">eurekaclaw.main</span><span class="w"> </span><span class="kn">import</span> <span class="n">save_artifacts</span><span class="p">,</span> <span class="n">ResearchOutput</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="c1"># Load existing session artifacts</span>
+<span class="n">session_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;results/my-session-id&quot;</span><span class="p">)</span>
+<span class="n">theory_state</span> <span class="o">=</span> <span class="n">TheoryState</span><span class="o">.</span><span class="n">model_validate_json</span><span class="p">((</span><span class="n">session_dir</span> <span class="o">/</span> <span class="s2">&quot;theory_state.json&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">())</span>
+<span class="n">research_brief</span> <span class="o">=</span> <span class="n">ResearchBrief</span><span class="o">.</span><span class="n">model_validate_json</span><span class="p">((</span><span class="n">session_dir</span> <span class="o">/</span> <span class="s2">&quot;research_brief.json&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">())</span>
+
+<span class="c1"># Re-run writer agent</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">eurekaclaw.agents.writer.agent</span><span class="w"> </span><span class="kn">import</span> <span class="n">WriterAgent</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">eurekaclaw.knowledge_bus.bus</span><span class="w"> </span><span class="kn">import</span> <span class="n">KnowledgeBus</span>
+
+<span class="n">bus</span> <span class="o">=</span> <span class="n">KnowledgeBus</span><span class="p">(</span><span class="n">theory_state</span><span class="o">.</span><span class="n">session_id</span><span class="p">)</span>
+<span class="n">bus</span><span class="o">.</span><span class="n">put_theory_state</span><span class="p">(</span><span class="n">theory_state</span><span class="p">)</span>
+<span class="n">bus</span><span class="o">.</span><span class="n">put_research_brief</span><span class="p">(</span><span class="n">research_brief</span><span class="p">)</span>
+<span class="c1"># ... run writer agent and save</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="configuration.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Configuration</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="architecture.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Architecture</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eurekasession">EurekaSession</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constructor">Constructor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">Properties</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convenience-functions">Convenience Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knowledgebus">KnowledgeBus</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#typed-artifact-access">Typed Artifact Access</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generic-key-value-store">Generic Key-Value Store</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reactive-subscriptions">Reactive Subscriptions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#persistence">Persistence</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inputspec">InputSpec</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#researchoutput">ResearchOutput</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-models-quick-reference">Data Models Quick Reference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-run-a-proof-session">Example: Run a Proof Session</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-load-and-re-generate-artifacts">Example: Load and Re-generate Artifacts</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/EurekaClaw/EurekaClaw.github.io/edit/main/source/reference/api.md">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, EurekaClaw Contributors.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

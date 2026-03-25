@@ -1,0 +1,843 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Troubleshooting &#8212; EurekaClaw</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=74c509de" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=2709fde1"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=9345eede"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user-guide/troubleshooting';</script>
+    <link rel="icon" href="../_static/logo-claw.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="CLI Reference" href="../reference/cli.html" />
+    <link rel="prev" title="Skills and Continual Learning" href="skills-learning.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt=""/>
+    <img src="../_static/logo.svg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">EurekaClaw</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/authentication.html">
+    Authentication
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference/cli.html">
+    CLI Reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../reference/configuration.html">
+    Configuration
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../reference/api.html">
+    Python API
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../reference/architecture.html">
+    Architecture
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../reference/agents.html">
+    Agents
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../reference/tools.html">
+    Research Tools
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../reference/memory.html">
+    Memory System
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../reference/skills.html">
+    Skills System
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../reference/token-limits.html">
+    Token Limits
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../reference/domains.html">
+    Domain Plugin System
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><div class="lang-switcher">
+  <span class="lang-current">EN</span>
+  <span class="lang-sep">|</span>
+  <a class="lang-link" href="/zh/user-guide/troubleshooting.html">中文</a>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/EurekaClaw/EurekaClaw" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/quickstart.html">
+    Quick Start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/authentication.html">
+    Authentication
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference/cli.html">
+    CLI Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference/configuration.html">
+    Configuration
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference/api.html">
+    Python API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference/architecture.html">
+    Architecture
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference/agents.html">
+    Agents
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference/tools.html">
+    Research Tools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference/memory.html">
+    Memory System
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference/skills.html">
+    Skills System
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference/token-limits.html">
+    Token Limits
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference/domains.html">
+    Domain Plugin System
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../changelog/index.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><div class="lang-switcher">
+  <span class="lang-current">EN</span>
+  <span class="lang-sep">|</span>
+  <a class="lang-link" href="/zh/user-guide/troubleshooting.html">中文</a>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/EurekaClaw/EurekaClaw" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="input-modes.html">Input Modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="browser-ui.html">Browser UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="output.html">Understanding the Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gate-mode.html">Gate Mode and Human Review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tuning.html">Tuning for Cost vs. Thoroughness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skills-learning.html">Skills and Continual Learning</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Troubleshooting</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">User Guide</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Troubleshooting</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="troubleshooting">
+<h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h1>
+<section id="no-skills-available-proof-fails-immediately">
+<h2><code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">skills</span> <span class="pre">available</span></code> / Proof Fails Immediately<a class="headerlink" href="#no-skills-available-proof-fails-immediately" title="Link to this heading">#</a></h2>
+<p><strong>Cause:</strong> The initial skill set has not been installed. This happens when <code class="docutils literal notranslate"><span class="pre">eurekaclaw</span> <span class="pre">install-skills</span></code> was skipped during setup.</p>
+<p><strong>Fix:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>install-skills
+</pre></div>
+</div>
+<p>This downloads the built-in seed skills (proof strategies, domain heuristics, lemma templates) required for the pipeline to run. Re-run it any time you want to reset skills to the defaults.</p>
+</section>
+<hr class="docutils" />
+<section id="paper-pdf-not-generated">
+<h2><code class="docutils literal notranslate"><span class="pre">paper.pdf</span></code> Not Generated<a class="headerlink" href="#paper-pdf-not-generated" title="Link to this heading">#</a></h2>
+<p><strong>Cause:</strong> <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code> not installed or not in <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.</p>
+<p><strong>Fix:</strong></p>
+<ul class="simple">
+<li><p>Linux: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">texlive-full</span></code></p></li>
+<li><p>macOS: install <a class="reference external" href="https://www.tug.org/mactex/">MacTeX</a></p></li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">LATEX_BIN=/usr/local/bin/pdflatex</span></code> in <code class="docutils literal notranslate"><span class="pre">.env</span></code></p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">.tex</span></code> and <code class="docutils literal notranslate"><span class="pre">.bib</span></code> files are always saved — compile manually or upload to Overleaf.</p>
+</section>
+<hr class="docutils" />
+<section id="citations-show-as-in-the-pdf">
+<h2>Citations Show as <code class="docutils literal notranslate"><span class="pre">?</span></code> in the PDF<a class="headerlink" href="#citations-show-as-in-the-pdf" title="Link to this heading">#</a></h2>
+<p><strong>Cause:</strong> bibtex not run, or cite keys mismatch.</p>
+<p><strong>Fix:</strong> Run the compile sequence manually:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>results/&lt;session_id&gt;
+pdflatex<span class="w"> </span>paper.tex
+bibtex<span class="w"> </span>paper
+pdflatex<span class="w"> </span>paper.tex
+pdflatex<span class="w"> </span>paper.tex
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="parsed-zero-lemmas-from-architect-response">
+<h2><code class="docutils literal notranslate"><span class="pre">Parsed</span> <span class="pre">zero</span> <span class="pre">lemmas</span> <span class="pre">from</span> <span class="pre">architect</span> <span class="pre">response</span></code><a class="headerlink" href="#parsed-zero-lemmas-from-architect-response" title="Link to this heading">#</a></h2>
+<p><strong>Cause:</strong> LLM returned an unrecognized proof plan format.</p>
+<p><strong>Fix:</strong> Handled automatically via a 4-pass parser. If it persists, use a more capable model (<code class="docutils literal notranslate"><span class="pre">EUREKACLAW_MODEL</span></code>) and retry.</p>
+</section>
+<hr class="docutils" />
+<section id="proof-status-is-abandoned">
+<h2>Proof Status is <code class="docutils literal notranslate"><span class="pre">abandoned</span></code><a class="headerlink" href="#proof-status-is-abandoned" title="Link to this heading">#</a></h2>
+<p><strong>Cause:</strong> Hit <code class="docutils literal notranslate"><span class="pre">THEORY_MAX_ITERATIONS</span></code> without completing all lemmas.</p>
+<p><strong>Fix options:</strong></p>
+<ol class="arabic simple">
+<li><p>Increase <code class="docutils literal notranslate"><span class="pre">THEORY_MAX_ITERATIONS=20</span></code></p></li>
+<li><p>Simplify the conjecture — split into smaller parts</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">--gate</span> <span class="pre">human</span></code> to provide hints during the run</p></li>
+</ol>
+<p>The partial proof is still saved in <code class="docutils literal notranslate"><span class="pre">theory_state.json</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="proof-was-refuted">
+<h2>Proof was <code class="docutils literal notranslate"><span class="pre">refuted</span></code><a class="headerlink" href="#proof-was-refuted" title="Link to this heading">#</a></h2>
+<p><strong>Cause:</strong> A counterexample was found — the conjecture as stated is false or needs refinement.</p>
+<p><strong>What to do:</strong></p>
+<ol class="arabic simple">
+<li><p>Check <code class="docutils literal notranslate"><span class="pre">theory_state.json</span> <span class="pre">→</span> <span class="pre">counterexamples[]</span></code> for the specific falsifying example</p></li>
+<li><p>Refine your conjecture (tighten conditions, change the bound)</p></li>
+<li><p>Re-run with the updated conjecture</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="rate-limit-api-errors">
+<h2>Rate Limit / API Errors<a class="headerlink" href="#rate-limit-api-errors" title="Link to this heading">#</a></h2>
+<p><strong>Cause:</strong> Anthropic API rate limit hit during a long run.</p>
+<p><strong>Fix:</strong> EurekaClaw retries automatically with exponential backoff (5 attempts, 4–90 second waits). If errors persist:</p>
+<ul class="simple">
+<li><p>Reduce <code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_AGENT</span></code> and <code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_PROVER</span></code></p></li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">CONTEXT_COMPRESS_AFTER_TURNS=4</span></code></p></li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">EXPERIMENT_MODE=false</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="lean4-verification-not-running">
+<h2>Lean4 Verification Not Running<a class="headerlink" href="#lean4-verification-not-running" title="Link to this heading">#</a></h2>
+<p><strong>Cause:</strong> <code class="docutils literal notranslate"><span class="pre">lean</span></code> binary not found in <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.</p>
+<p><strong>Fix:</strong> Install Lean4 and set <code class="docutils literal notranslate"><span class="pre">LEAN4_BIN=/path/to/lean</span></code>. Without Lean4, the verifier falls back to LLM peer review.</p>
+</section>
+<hr class="docutils" />
+<section id="the-output-paper-has-unverified-step-warnings">
+<h2>The Output Paper Has <code class="docutils literal notranslate"><span class="pre">[Unverified</span> <span class="pre">step]</span></code> Warnings<a class="headerlink" href="#the-output-paper-has-unverified-step-warnings" title="Link to this heading">#</a></h2>
+<p><strong>Cause:</strong> One or more lemmas have <code class="docutils literal notranslate"><span class="pre">verified=false</span></code>.</p>
+<p><strong>What to do:</strong></p>
+<ol class="arabic simple">
+<li><p>Check <code class="docutils literal notranslate"><span class="pre">theory_state.json</span> <span class="pre">→</span> <span class="pre">proven_lemmas</span></code> for flagged lemmas</p></li>
+<li><p>Re-run with <code class="docutils literal notranslate"><span class="pre">--gate</span> <span class="pre">human</span></code> and provide hints at the theory gate</p></li>
+<li><p>Increase <code class="docutils literal notranslate"><span class="pre">THEORY_MAX_ITERATIONS</span></code></p></li>
+<li><p>Simplify the conjecture or break it into smaller lemmas</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="consistencychecker-fail-theorem-statement-truncated">
+<h2>ConsistencyChecker: FAIL — Theorem Statement Truncated<a class="headerlink" href="#consistencychecker-fail-theorem-statement-truncated" title="Link to this heading">#</a></h2>
+<p><strong>Cause:</strong> <code class="docutils literal notranslate"><span class="pre">TheoremCrystallizer</span></code> ran out of tokens mid-expression.</p>
+<p><strong>Fix:</strong> Increase <code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_CRYSTALLIZER</span></code> in <code class="docutils literal notranslate"><span class="pre">.env</span></code>:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">MAX_TOKENS_CRYSTALLIZER</span><span class="o">=</span><span class="s">4096</span>
+</pre></div>
+</div>
+<p>If the issue persists, also raise <code class="docutils literal notranslate"><span class="pre">MAX_TOKENS_ASSEMBLER</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="example-workflows">
+<h2>Example Workflows<a class="headerlink" href="#example-workflows" title="Link to this heading">#</a></h2>
+<section id="prove-a-known-result-sanity-check">
+<h3>Prove a Known Result (Sanity Check)<a class="headerlink" href="#prove-a-known-result-sanity-check" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>prove<span class="w"> </span><span class="s2">&quot;The sum of the first n natural numbers equals n(n+1)/2&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--domain<span class="w"> </span><span class="s2">&quot;combinatorics&quot;</span><span class="w"> </span>--output<span class="w"> </span>./results
+</pre></div>
+</div>
+<p>Expected: <code class="docutils literal notranslate"><span class="pre">proved</span></code> with 1–2 simple lemmas in under 5 minutes.</p>
+</section>
+<section id="explore-an-open-research-area">
+<h3>Explore an Open Research Area<a class="headerlink" href="#explore-an-open-research-area" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>explore<span class="w"> </span><span class="s2">&quot;graph neural networks&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--query<span class="w"> </span><span class="s2">&quot;What complexity-theoretic barriers exist for GNN expressiveness?&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--gate<span class="w"> </span>auto<span class="w"> </span>--output<span class="w"> </span>./results
+</pre></div>
+</div>
+</section>
+<section id="reproduce-extend-a-paper">
+<h3>Reproduce + Extend a Paper<a class="headerlink" href="#reproduce-extend-a-paper" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>from-papers<span class="w"> </span><span class="m">1706</span>.03762<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--domain<span class="w"> </span><span class="s2">&quot;transformer theory&quot;</span><span class="w"> </span>--gate<span class="w"> </span>human<span class="w"> </span>--output<span class="w"> </span>./results
+</pre></div>
+</div>
+</section>
+<section id="domain-specific-mab-research">
+<h3>Domain-Specific MAB Research<a class="headerlink" href="#domain-specific-mab-research" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>prove<span class="w"> </span><span class="s2">&quot;UCB1 achieves O(sqrt(KT log K)) regret for K-armed Gaussian bandits&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--domain<span class="w"> </span><span class="s2">&quot;multi-armed bandits&quot;</span><span class="w"> </span>--output<span class="w"> </span>./results
+</pre></div>
+</div>
+<p>The MAB domain plugin activates automatically, providing specialized tools and seed skills.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="skills-learning.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Skills and Continual Learning</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../reference/cli.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">CLI Reference</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#no-skills-available-proof-fails-immediately"><code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">skills</span> <span class="pre">available</span></code> / Proof Fails Immediately</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paper-pdf-not-generated"><code class="docutils literal notranslate"><span class="pre">paper.pdf</span></code> Not Generated</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citations-show-as-in-the-pdf">Citations Show as <code class="docutils literal notranslate"><span class="pre">?</span></code> in the PDF</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parsed-zero-lemmas-from-architect-response"><code class="docutils literal notranslate"><span class="pre">Parsed</span> <span class="pre">zero</span> <span class="pre">lemmas</span> <span class="pre">from</span> <span class="pre">architect</span> <span class="pre">response</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proof-status-is-abandoned">Proof Status is <code class="docutils literal notranslate"><span class="pre">abandoned</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proof-was-refuted">Proof was <code class="docutils literal notranslate"><span class="pre">refuted</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rate-limit-api-errors">Rate Limit / API Errors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lean4-verification-not-running">Lean4 Verification Not Running</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-output-paper-has-unverified-step-warnings">The Output Paper Has <code class="docutils literal notranslate"><span class="pre">[Unverified</span> <span class="pre">step]</span></code> Warnings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consistencychecker-fail-theorem-statement-truncated">ConsistencyChecker: FAIL — Theorem Statement Truncated</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-workflows">Example Workflows</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prove-a-known-result-sanity-check">Prove a Known Result (Sanity Check)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explore-an-open-research-area">Explore an Open Research Area</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduce-extend-a-paper">Reproduce + Extend a Paper</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-specific-mab-research">Domain-Specific MAB Research</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/EurekaClaw/EurekaClaw.github.io/edit/main/source/user-guide/troubleshooting.md">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, EurekaClaw Contributors.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

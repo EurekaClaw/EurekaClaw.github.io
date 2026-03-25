@@ -2,10 +2,6 @@
 
 **支持平台：** macOS, Linux, Windows
 
-```{note}
-Windows installer可用（请参见下文）。如果遇到问题，请安装[WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install)（Ubuntu）并遵循WSL终端内部的macOS/Linux说明。
-```
-
 ## 安装方式（推荐）
 
 **macOS / Linux**
@@ -26,10 +22,21 @@ macOS/Linux安装程序复制项目仓库，创建虚拟环境，安装EurekaCla
 
 **要求：** Python ≥ 3.11, Node.js ≥ 20, Git
 
+### Linux/MacOS
+
 ```bash
 git clone https://github.com/EurekaClaw/EurekaClaw
 cd EurekaClaw
 make install                  # pip install -e "." + npm install (frontend)
+```
+
+### Windows
+
+```bash
+git clone https://github.com/EurekaClaw/EurekaClaw
+cd EurekaClaw
+powershell -ExecutionPolicy Bypass -File install_win.ps1    # pip install -e "." + npm install (frontend)
+cp .env.example .env
 ```
 
 ## 额外功能安装

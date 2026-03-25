@@ -17,12 +17,21 @@ eurekaclaw onboard            # interactive setup wizard (creates .env)
 powershell -c "irm https://eurekaclaw.ai/install_win.ps1 | iex"
 ```
 
-**Manual install (all platforms)**
+**Manual install (Linux/MacOS)**
 
 ```bash
 git clone https://github.com/EurekaClaw/EurekaClaw
 cd EurekaClaw
 make install                  # pip install -e "." + npm install (frontend)
+cp .env.example .env
+```
+
+**Manual install (Windows)**
+
+```bash
+git clone https://github.com/EurekaClaw/EurekaClaw
+cd EurekaClaw
+powershell -ExecutionPolicy Bypass -File install_win.ps1    # pip install -e "." + npm install (frontend)
 cp .env.example .env
 ```
 

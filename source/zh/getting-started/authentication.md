@@ -39,7 +39,7 @@ codex auth login   # first login your own Codex
 eurekaclaw login --provider openai-codex
 ```
 
-## 选项四 — OpenRouter或者本地模型
+## 选项四 — OpenRouter、Novita AI或者本地模型
 
 ### OpenRouter
 
@@ -48,6 +48,15 @@ LLM_BACKEND=openrouter
 OPENAI_COMPAT_BASE_URL=https://openrouter.ai/api/v1
 OPENAI_COMPAT_API_KEY=sk-or-...
 OPENAI_COMPAT_MODEL=anthropic/claude-sonnet-4-6
+```
+
+### Novita AI
+
+```ini
+LLM_BACKEND=novita
+OPENAI_COMPAT_BASE_URL=https://api.novita.ai/openai
+NOVITA_API_KEY=<Your API Key>
+NOVITA_MODEL=deepseek/deepseek-v3.2
 ```
 
 ### 本地 Ollama / vLLM

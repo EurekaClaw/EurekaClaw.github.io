@@ -1,6 +1,10 @@
 # Authentication
 
-EurekaClaw supports three authentication methods.
+EurekaClaw supports 4 authentication methods.
+
+:::{note} 
+Attention: Subscription model providers such as Anthropic may no longer support OAuth. Please be careful when selecting authentication source.
+:::
 
 ## Option A — Anthropic API Key (Most Common)
 

@@ -1,6 +1,10 @@
 # API Key授权
 
-EurekaClaw支持3种认证方式。
+EurekaClaw支持4种认证方式。
+
+:::{note} 
+注意：Anthropic等订阅模型供应商可能不再支持通过OAuth途径使用订阅，请谨慎选择
+:::
 
 ## 选项一 — Anthropic API Key
 

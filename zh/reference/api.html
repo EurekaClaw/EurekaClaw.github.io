@@ -1,0 +1,1020 @@
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Python API &#8212; EurekaClaw</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=74c509de" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=7f76b32a3354e82990f2"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
+
+    <script src="../_static/documentation_options.js?v=7c91f8fd"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=9345eede"></script>
+    <script src="../_static/translations.js?v=540d3cec"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../_static/logo-claw.png"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="系统结构" href="architecture.html" />
+    <link rel="prev" title="配置" href="configuration.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">跳转至主要内容</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>回到顶部</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="版本警告"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="网页导航">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt=""/>
+    <img src="../_static/logo.svg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">EurekaClaw</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/installation.html">
+    安装
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/quickstart.html">
+    快速开始
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/authentication.html">
+    API Key授权
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user-guide/index.html">
+    用户指南
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="cli.html">
+    CLI 参考
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="configuration.html">
+    配置
+  </a>
+</li>
+
+
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="#">
+    Python API
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="architecture.html">
+    系统结构
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="agents.html">
+    智能体
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="tools.html">
+    研究工具
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="memory.html">
+    记忆系统
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="skills.html">
+    技能系统
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="token-limits.html">
+    Token 限制
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="domains.html">
+    领域插件系统
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../changelog/index.html">
+    开发日志
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><div class="lang-switcher">
+  <a class="lang-link" href="/reference/api.html">EN</a>
+  <span class="lang-sep">|</span>
+  <span class="lang-current">中文</span>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/EurekaClaw/EurekaClaw" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="亮色"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="暗色"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="当前页面">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/installation.html">
+    安装
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/quickstart.html">
+    快速开始
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/authentication.html">
+    API Key授权
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user-guide/index.html">
+    用户指南
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="cli.html">
+    CLI 参考
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="configuration.html">
+    配置
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Python API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="architecture.html">
+    系统结构
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="agents.html">
+    智能体
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tools.html">
+    研究工具
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="memory.html">
+    记忆系统
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="skills.html">
+    技能系统
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="token-limits.html">
+    Token 限制
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="domains.html">
+    领域插件系统
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../changelog/index.html">
+    开发日志
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><div class="lang-switcher">
+  <a class="lang-link" href="/reference/api.html">EN</a>
+  <span class="lang-sep">|</span>
+  <span class="lang-current">中文</span>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/EurekaClaw/EurekaClaw" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="亮色"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="暗色"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="章节导航">
+  <p class="bd-links__title" role="heading" aria-level="1">章节导航</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="初始页面">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Python API</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="python-api">
+<h1>Python API<a class="headerlink" href="#python-api" title="链接到此标题。">#</a></h1>
+<section id="eurekasession">
+<h2>EurekaSession<a class="headerlink" href="#eurekasession" title="链接到此标题。">#</a></h2>
+<p><strong>文件：</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/main.py</span></code></p>
+<p>以编程方式运行研究任务的主入口。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">eurekaclaw.main</span><span class="w"> </span><span class="kn">import</span> <span class="n">EurekaSession</span><span class="p">,</span> <span class="n">run_research</span><span class="p">,</span> <span class="n">save_artifacts</span>
+
+<span class="n">session</span> <span class="o">=</span> <span class="n">EurekaSession</span><span class="p">()</span>
+</pre></div>
+</div>
+<section id="id1">
+<h3>构造函数<a class="headerlink" href="#id1" title="链接到此标题。">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">EurekaSession</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">session_id</span></code> — 可选。若不提供，则自动生成 UUID。</p></li>
+<li><p>创建一个 <code class="docutils literal notranslate"><span class="pre">KnowledgeBus</span></code>，并延迟初始化 <code class="docutils literal notranslate"><span class="pre">MetaOrchestrator</span></code>。</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>方法<a class="headerlink" href="#id2" title="链接到此标题。">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_spec</span><span class="p">:</span> <span class="n">InputSpec</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResearchOutput</span>
+</pre></div>
+</div>
+<p>从 <code class="docutils literal notranslate"><span class="pre">InputSpec</span></code> 运行完整的研究会话。这是内部使用的最底层异步入口。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_detailed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conjecture</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResearchOutput</span>
+</pre></div>
+</div>
+<p><strong>级别 1：</strong> 证明特定猜想。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_from_papers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paper_ids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResearchOutput</span>
+</pre></div>
+</div>
+<p><strong>级别 2：</strong> 从参考论文中发现研究空白并生成假设。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_exploration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResearchOutput</span>
+</pre></div>
+</div>
+<p><strong>级别 3：</strong> 对研究领域进行开放式探索。</p>
+</section>
+<section id="id3">
+<h3>属性<a class="headerlink" href="#id3" title="链接到此标题。">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@property</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">orchestrator</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MetaOrchestrator</span>
+</pre></div>
+</div>
+<p>延迟初始化的编排器。根据 <code class="docutils literal notranslate"><span class="pre">InputSpec.domain</span></code> 自动检测领域插件。</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id4">
+<h2>便捷函数<a class="headerlink" href="#id4" title="链接到此标题。">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run_research</span><span class="p">(</span><span class="n">conjecture</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResearchOutput</span>
+</pre></div>
+</div>
+<p>同步入口（封装 <code class="docutils literal notranslate"><span class="pre">asyncio.run()</span></code>）。运行级别 1 证明流水线。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">save_artifacts</span><span class="p">(</span><span class="n">result</span><span class="p">:</span> <span class="n">ResearchOutput</span><span class="p">,</span> <span class="n">out_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span>
+</pre></div>
+</div>
+<p>将所有流水线产物写入磁盘并编译 PDF。</p>
+<p><strong>写入内容：</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">paper.tex</span></code> — LaTeX 源码</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">references.bib</span></code> — BibTeX 参考文献</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">theory_state.json</span></code> — 完整证明状态</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">research_brief.json</span></code> — 规划状态</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">experiment_result.json</span></code> — 数值结果（如有）</p></li>
+</ul>
+<p><strong>LaTeX 编译步骤：</strong></p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pdflatex</span> <span class="pre">paper.tex</span></code>（第 1 遍——生成 <code class="docutils literal notranslate"><span class="pre">.aux</span></code>）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bibtex</span> <span class="pre">paper</span></code>（仅当 <code class="docutils literal notranslate"><span class="pre">references.bib</span></code> 存在且非空时执行）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pdflatex</span> <span class="pre">paper.tex</span></code>（第 2 遍——解析引用）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pdflatex</span> <span class="pre">paper.tex</span></code>（第 3 遍——最终定稿）</p></li>
+</ol>
+<p><strong>引用校验：</strong> 编译前，<code class="docutils literal notranslate"><span class="pre">_fix_missing_citations()</span></code> 会移除 <code class="docutils literal notranslate"><span class="pre">references.bib</span></code> 中没有对应条目的 <code class="docutils literal notranslate"><span class="pre">\cite{}</span></code> 键，防止输出 PDF 出现 <code class="docutils literal notranslate"><span class="pre">?</span></code> 符号。</p>
+<p><strong>返回值：</strong> 输出目录的 <code class="docutils literal notranslate"><span class="pre">Path</span></code>。</p>
+</section>
+<hr class="docutils" />
+<section id="knowledgebus">
+<h2>KnowledgeBus<a class="headerlink" href="#knowledgebus" title="链接到此标题。">#</a></h2>
+<p><strong>文件：</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/knowledge_bus/bus.py</span></code></p>
+<p>会话中所有智能体共享的中央内存产物存储。所有数据通过总线流转——智能体在轮次之间不保留私有状态。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">KnowledgeBus</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<section id="id5">
+<h3>类型化产物访问<a class="headerlink" href="#id5" title="链接到此标题。">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">put_research_brief</span><span class="p">(</span><span class="n">brief</span><span class="p">:</span> <span class="n">ResearchBrief</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_research_brief</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ResearchBrief</span> <span class="o">|</span> <span class="kc">None</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">put_theory_state</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">TheoryState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_theory_state</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">TheoryState</span> <span class="o">|</span> <span class="kc">None</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">put_experiment_result</span><span class="p">(</span><span class="n">result</span><span class="p">:</span> <span class="n">ExperimentResult</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_experiment_result</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ExperimentResult</span> <span class="o">|</span> <span class="kc">None</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">put_bibliography</span><span class="p">(</span><span class="n">bib</span><span class="p">:</span> <span class="n">Bibliography</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_bibliography</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Bibliography</span> <span class="o">|</span> <span class="kc">None</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">append_citations</span><span class="p">(</span><span class="n">papers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Paper</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">put_pipeline</span><span class="p">(</span><span class="n">pipeline</span><span class="p">:</span> <span class="n">TaskPipeline</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_pipeline</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">TaskPipeline</span> <span class="o">|</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3>通用键值存储<a class="headerlink" href="#id6" title="链接到此标题。">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">put</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span>
+</pre></div>
+</div>
+<p>用于智能体之间共享任意数据（例如 <code class="docutils literal notranslate"><span class="pre">numerically_suspect</span></code> 引理 ID）。</p>
+</section>
+<section id="id7">
+<h3>响应式订阅<a class="headerlink" href="#id7" title="链接到此标题。">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">subscribe</span><span class="p">(</span><span class="n">artifact_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>注册一个回调，在总线上指定类型的产物更新时触发。</p>
+</section>
+<section id="id8">
+<h3>持久化<a class="headerlink" href="#id8" title="链接到此标题。">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">persist</span><span class="p">(</span><span class="n">session_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>将所有产物序列化为 JSON 文件并保存到 <code class="docutils literal notranslate"><span class="pre">session_dir</span></code>。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@classmethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">load</span><span class="p">(</span><span class="n">session_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">session_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">KnowledgeBus</span>
+</pre></div>
+</div>
+<p>从之前持久化的会话目录重建总线。</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="inputspec">
+<h2>InputSpec<a class="headerlink" href="#inputspec" title="链接到此标题。">#</a></h2>
+<p><strong>文件：</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/types/tasks.py</span></code></p>
+<p>指定研究内容。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">InputSpec</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">mode</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;detailed&quot;</span><span class="p">,</span> <span class="s2">&quot;reference&quot;</span><span class="p">,</span> <span class="s2">&quot;exploration&quot;</span><span class="p">]</span>
+    <span class="n">conjecture</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>     <span class="c1"># Level 1: specific conjecture</span>
+    <span class="n">paper_ids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>         <span class="c1"># Level 2: reference paper IDs</span>
+    <span class="n">paper_texts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>       <span class="c1"># Level 2: raw paper texts (alternative)</span>
+    <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>                  <span class="c1"># research domain string</span>
+    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>                   <span class="c1"># Level 3: research question</span>
+    <span class="n">additional_context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>      <span class="c1"># extra context for agents</span>
+    <span class="n">selected_skills</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>   <span class="c1"># manually select skill names to inject</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="researchoutput">
+<h2>ResearchOutput<a class="headerlink" href="#researchoutput" title="链接到此标题。">#</a></h2>
+<p><strong>文件：</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/types/tasks.py</span></code></p>
+<p>完整研究会话的结果。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ResearchOutput</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">session_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">latex_paper</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>           <span class="c1"># full LaTeX source</span>
+    <span class="n">pdf_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>     <span class="c1"># path to compiled PDF (if successful)</span>
+    <span class="n">theory_state_json</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>     <span class="c1"># TheoryState serialized as JSON</span>
+    <span class="n">experiment_result_json</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="c1"># ExperimentResult serialized as JSON</span>
+    <span class="n">research_brief_json</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>   <span class="c1"># ResearchBrief serialized as JSON</span>
+    <span class="n">bibliography_json</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>     <span class="c1"># Bibliography serialized as JSON</span>
+    <span class="n">eval_report_json</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>      <span class="c1"># evaluation report (if run)</span>
+    <span class="n">skills_distilled</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># names of new skills written this session</span>
+    <span class="n">completed_at</span><span class="p">:</span> <span class="n">datetime</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="id9">
+<h2>数据模型速查表<a class="headerlink" href="#id9" title="链接到此标题。">#</a></h2>
+<p>所有模型均为 Pydantic <code class="docutils literal notranslate"><span class="pre">BaseModel</span></code> 实例。字段级别的图示请参见 <a class="reference internal" href="architecture.html"><span class="std std-doc">architecture.md</span></a>。</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>模型</p></th>
+<th class="head"><p>文件</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">InputSpec</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/tasks.py</span></code></p></td>
+<td><p>研究输入规范</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ResearchOutput</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/tasks.py</span></code></p></td>
+<td><p>完整会话结果</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Task</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/tasks.py</span></code></p></td>
+<td><p>单个流水线任务</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TaskPipeline</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/tasks.py</span></code></p></td>
+<td><p>有序任务序列</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ResearchBrief</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/artifacts.py</span></code></p></td>
+<td><p>调研结果 + 选定方向</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ResearchDirection</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/artifacts.py</span></code></p></td>
+<td><p>带评分的研究假设</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TheoryState</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/artifacts.py</span></code></p></td>
+<td><p>证明状态机</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LemmaNode</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/artifacts.py</span></code></p></td>
+<td><p>引理依赖 DAG 中的节点</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ProofRecord</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/artifacts.py</span></code></p></td>
+<td><p>单个引理的完整证明</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ProofPlan</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/artifacts.py</span></code></p></td>
+<td><p>带来源标注的计划引理</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KnownResult</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/artifacts.py</span></code></p></td>
+<td><p>从论文中提取的已知结论</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">FailedAttempt</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/artifacts.py</span></code></p></td>
+<td><p>失败的证明尝试记录</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Counterexample</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/artifacts.py</span></code></p></td>
+<td><p>发现的反例</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ExperimentResult</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/artifacts.py</span></code></p></td>
+<td><p>数值验证结果</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NumericalBound</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/artifacts.py</span></code></p></td>
+<td><p>理论界与实验界的对比</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Bibliography</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/artifacts.py</span></code></p></td>
+<td><p>论文集合 + BibTeX</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Paper</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/artifacts.py</span></code></p></td>
+<td><p>单篇论文元数据</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">AgentResult</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/agents.py</span></code></p></td>
+<td><p>单个智能体任务的结果</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SkillRecord</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/skills.py</span></code></p></td>
+<td><p>带元数据的技能</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">EpisodicEntry</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/memory.py</span></code></p></td>
+<td><p>会话级内存事件</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CrossRunRecord</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/memory.py</span></code></p></td>
+<td><p>跨会话持久化内存记录</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">KnowledgeNode</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">types/memory.py</span></code></p></td>
+<td><p>知识图谱中的定理节点</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="id10">
+<h2>示例：运行证明会话<a class="headerlink" href="#id10" title="链接到此标题。">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">eurekaclaw.main</span><span class="w"> </span><span class="kn">import</span> <span class="n">EurekaSession</span><span class="p">,</span> <span class="n">save_artifacts</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">session</span> <span class="o">=</span> <span class="n">EurekaSession</span><span class="p">()</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">run_detailed</span><span class="p">(</span>
+        <span class="n">conjecture</span><span class="o">=</span><span class="s2">&quot;The sample complexity of transformers is O(L·d·log(d)/ε²)&quot;</span><span class="p">,</span>
+        <span class="n">domain</span><span class="o">=</span><span class="s2">&quot;machine learning theory&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">save_artifacts</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="s2">&quot;./results&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Paper saved to: </span><span class="si">{</span><span class="n">out</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="id11">
+<h2>示例：加载会话并重新生成产物<a class="headerlink" href="#id11" title="链接到此标题。">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">eurekaclaw.knowledge_bus.bus</span><span class="w"> </span><span class="kn">import</span> <span class="n">KnowledgeBus</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">eurekaclaw.types.artifacts</span><span class="w"> </span><span class="kn">import</span> <span class="n">TheoryState</span><span class="p">,</span> <span class="n">ResearchBrief</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">eurekaclaw.main</span><span class="w"> </span><span class="kn">import</span> <span class="n">save_artifacts</span><span class="p">,</span> <span class="n">ResearchOutput</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="c1"># Load existing session artifacts</span>
+<span class="n">session_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;results/my-session-id&quot;</span><span class="p">)</span>
+<span class="n">theory_state</span> <span class="o">=</span> <span class="n">TheoryState</span><span class="o">.</span><span class="n">model_validate_json</span><span class="p">((</span><span class="n">session_dir</span> <span class="o">/</span> <span class="s2">&quot;theory_state.json&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">())</span>
+<span class="n">research_brief</span> <span class="o">=</span> <span class="n">ResearchBrief</span><span class="o">.</span><span class="n">model_validate_json</span><span class="p">((</span><span class="n">session_dir</span> <span class="o">/</span> <span class="s2">&quot;research_brief.json&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">())</span>
+
+<span class="c1"># Re-run writer agent</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">eurekaclaw.agents.writer.agent</span><span class="w"> </span><span class="kn">import</span> <span class="n">WriterAgent</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">eurekaclaw.knowledge_bus.bus</span><span class="w"> </span><span class="kn">import</span> <span class="n">KnowledgeBus</span>
+
+<span class="n">bus</span> <span class="o">=</span> <span class="n">KnowledgeBus</span><span class="p">(</span><span class="n">theory_state</span><span class="o">.</span><span class="n">session_id</span><span class="p">)</span>
+<span class="n">bus</span><span class="o">.</span><span class="n">put_theory_state</span><span class="p">(</span><span class="n">theory_state</span><span class="p">)</span>
+<span class="n">bus</span><span class="o">.</span><span class="n">put_research_brief</span><span class="p">(</span><span class="n">research_brief</span><span class="p">)</span>
+<span class="c1"># ... run writer agent and save</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="configuration.html"
+       title="上一页">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title">配置</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="architecture.html"
+       title="下一页">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title">系统结构</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 当前页面
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eurekasession">EurekaSession</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">构造函数</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">方法</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">属性</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">便捷函数</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knowledgebus">KnowledgeBus</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">类型化产物访问</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">通用键值存储</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">响应式订阅</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">持久化</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inputspec">InputSpec</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#researchoutput">ResearchOutput</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">数据模型速查表</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">示例：运行证明会话</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">示例：加载会话并重新生成产物</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/EurekaClaw/EurekaClaw.github.io/edit/main/source/reference/api.md">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          由 GitHub 编辑
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, EurekaClaw Contributors.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4创建。
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

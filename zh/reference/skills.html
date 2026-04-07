@@ -1,0 +1,1064 @@
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>技能系统 &#8212; EurekaClaw</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=74c509de" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=7f76b32a3354e82990f2"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
+
+    <script src="../_static/documentation_options.js?v=7c91f8fd"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=9345eede"></script>
+    <script src="../_static/translations.js?v=540d3cec"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/skills';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../_static/logo-claw.png"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="Token 限制" href="token-limits.html" />
+    <link rel="prev" title="记忆系统" href="memory.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">跳转至主要内容</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>回到顶部</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="版本警告"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="网页导航">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt=""/>
+    <img src="../_static/logo.svg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">EurekaClaw</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/installation.html">
+    安装
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/quickstart.html">
+    快速开始
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/authentication.html">
+    API Key授权
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user-guide/index.html">
+    用户指南
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="cli.html">
+    CLI 参考
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="configuration.html">
+    配置
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="api.html">
+    Python API
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="architecture.html">
+    系统结构
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="agents.html">
+    智能体
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="tools.html">
+    研究工具
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="memory.html">
+    记忆系统
+  </a>
+</li>
+
+
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="#">
+    技能系统
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="token-limits.html">
+    Token 限制
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="domains.html">
+    领域插件系统
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../changelog/index.html">
+    开发日志
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><div class="lang-switcher">
+  <a class="lang-link" href="/reference/skills.html">EN</a>
+  <span class="lang-sep">|</span>
+  <span class="lang-current">中文</span>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/EurekaClaw/EurekaClaw" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="亮色"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="暗色"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="当前页面">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/installation.html">
+    安装
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/quickstart.html">
+    快速开始
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting-started/authentication.html">
+    API Key授权
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user-guide/index.html">
+    用户指南
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="cli.html">
+    CLI 参考
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="configuration.html">
+    配置
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api.html">
+    Python API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="architecture.html">
+    系统结构
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="agents.html">
+    智能体
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tools.html">
+    研究工具
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="memory.html">
+    记忆系统
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    技能系统
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="token-limits.html">
+    Token 限制
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="domains.html">
+    领域插件系统
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../changelog/index.html">
+    开发日志
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><div class="lang-switcher">
+  <a class="lang-link" href="/reference/skills.html">EN</a>
+  <span class="lang-sep">|</span>
+  <span class="lang-current">中文</span>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/EurekaClaw/EurekaClaw" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="亮色"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="暗色"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="章节导航">
+  <p class="bd-links__title" role="heading" aria-level="1">章节导航</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="初始页面">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">技能系统</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="id1">
+<h1>技能系统<a class="headerlink" href="#id1" title="链接到此标题。">#</a></h1>
+<p>技能是在每次任务前注入智能体提示词的可复用、领域特定的知识片段。它们编码了从之前运行中总结出的成功证明策略、领域约定和常见陷阱。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>eurekaclaw/skills/
+├── registry.py      SkillRegistry (load + store skills)
+├── injector.py      SkillInjector (retrieve + format for prompts)
+├── install.py       SkillInstaller (install seed skills or skills from ClawHub)
+└── evolver.py       SkillEvolver (distill skills from proceeded session)
+</pre></div>
+</div>
+<hr class="docutils" />
+<section id="id2">
+<h2>技能文件格式<a class="headerlink" href="#id2" title="链接到此标题。">#</a></h2>
+<p>每个技能是一个带 YAML frontmatter 的 Markdown 文件：</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>---
+name: ucb_regret_analysis
+version: &quot;1.0&quot;
+tags: [bandit, regret, ucb, concentration]
+agent_roles: [theory, survey]
+pipeline_stages: [theory]
+description: How to decompose and bound UCB1 regret using concentration inequalities
+source: seed           # seed | distilled | manual
+created_at: 2026-01-01T00:00:00
+usage_count: 0
+<span class="gu">success_rate: null     # float 0-1, or null if unknown</span>
+<span class="gu">---</span>
+
+<span class="gh"># UCB Regret Analysis</span>
+
+When bounding UCB1 regret, decompose into:
+<span class="k">1.</span> Suboptimal arm pulls where confidence bound held (good event)
+<span class="k">2.</span> Pulls where the bound failed (bad event, controlled by concentration)
+
+Use Hoeffding for sub-Gaussian rewards, Bernstein when variance is known...
+</pre></div>
+</div>
+<p>技能根据其来源存储在三个位置之一（详见下方<a class="reference internal" href="#id11">技能生命周期</a>）。</p>
+</section>
+<hr class="docutils" />
+<section id="skillregistry">
+<h2>SkillRegistry<a class="headerlink" href="#skillregistry" title="链接到此标题。">#</a></h2>
+<p><strong>文件：</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/skills/registry.py</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SkillRegistry</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="n">skills_dir</span><span class="p">:</span> <span class="n">Path</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<section id="id3">
+<h3>加载<a class="headerlink" href="#id3" title="链接到此标题。">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">load_all</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">SkillRecord</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>从已注册目录加载所有技能。加载顺序（后者覆盖前者）：</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">eurekaclaw/skills/seed_skills/</span></code> 中的种子技能</p></li>
+<li><p>领域插件技能（来自 <code class="docutils literal notranslate"><span class="pre">get_skills_dirs()</span></code> 的额外目录）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code> 中的用户技能（最高优先级）</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">add_skills_dir</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>注册额外的技能目录（由领域插件使用）。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">reload</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>从磁盘重新加载所有技能（例如蒸馏写入新文件后）。</p>
+</section>
+<section id="id4">
+<h3>检索<a class="headerlink" href="#id4" title="链接到此标题。">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SkillRecord</span> <span class="o">|</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>按精确名称检索技能。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_by_tags</span><span class="p">(</span><span class="n">tags</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">SkillRecord</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>返回所有包含至少一个给定标签的技能。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_by_role</span><span class="p">(</span><span class="n">role</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">SkillRecord</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>返回所有 <code class="docutils literal notranslate"><span class="pre">agent_roles</span></code> 包含 <code class="docutils literal notranslate"><span class="pre">role</span></code> 的技能。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_by_pipeline_stage</span><span class="p">(</span><span class="n">stage</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">SkillRecord</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>返回指定流水线阶段的所有技能。</p>
+</section>
+<section id="id5">
+<h3>存储<a class="headerlink" href="#id5" title="链接到此标题。">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">upsert</span><span class="p">(</span><span class="n">skill</span><span class="p">:</span> <span class="n">SkillRecord</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>将技能写入磁盘并注册到内存。在 <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code> 中创建或覆盖 <code class="docutils literal notranslate"><span class="pre">.md</span></code> 文件。</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="skillinjector">
+<h2>SkillInjector<a class="headerlink" href="#skillinjector" title="链接到此标题。">#</a></h2>
+<p><strong>文件：</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/skills/injector.py</span></code></p>
+<p>检索与任务最相关的技能并将其格式化，注入智能体系统提示词。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SkillInjector</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="n">registry</span><span class="p">:</span> <span class="n">SkillRegistry</span><span class="p">,</span>
+        <span class="n">selected_skills</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">selected_skills</span></code> — 可选的技能名称列表，用于<strong>固定</strong>技能。固定技能始终排在前 k 个结果的最前面，优先于按使用次数排序的可选技能。若固定技能名称在注册表中未找到，则记录警告并静默跳过。</p>
+<section id="id6">
+<h3>检索<a class="headerlink" href="#id6" title="链接到此标题。">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">top_k</span><span class="p">(</span>
+    <span class="n">task</span><span class="p">:</span> <span class="n">Task</span><span class="p">,</span>
+    <span class="n">role</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">strategy</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;semantic&quot;</span><span class="p">,</span> <span class="s2">&quot;hybrid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;tag&quot;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">SkillRecord</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>检索策略：</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>策略</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tag</span></code></p></td>
+<td><p>按匹配的 <code class="docutils literal notranslate"><span class="pre">agent_roles</span></code> 和 <code class="docutils literal notranslate"><span class="pre">pipeline_stages</span></code> 过滤；固定技能优先，其余按 <code class="docutils literal notranslate"><span class="pre">usage_count</span></code> 排序</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">semantic</span></code></p></td>
+<td><p>基于 <code class="docutils literal notranslate"><span class="pre">sentence-transformers</span></code> 的嵌入相似度（若已安装）</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hybrid</span></code></p></td>
+<td><p>标签过滤（3×k 候选），再按文本相似度排序</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>固定技能优先级：</strong> 当 <code class="docutils literal notranslate"><span class="pre">selected_skills</span></code> 非空时，<code class="docutils literal notranslate"><span class="pre">tag</span></code>（及 <code class="docutils literal notranslate"><span class="pre">hybrid</span></code>）检索将候选分为：</p>
+<ol class="arabic simple">
+<li><p><strong>必须包含</strong> — 同时在 <code class="docutils literal notranslate"><span class="pre">selected_skills</span></code> 和角色/阶段集合中的技能 → 始终排在前面</p></li>
+<li><p><strong>可选</strong> — 剩余候选 → 按 <code class="docutils literal notranslate"><span class="pre">usage_count</span></code> 降序排序</p></li>
+</ol>
+<p>合并后的列表截断为 <code class="docutils literal notranslate"><span class="pre">k</span></code> 个。</p>
+</section>
+<section id="id7">
+<h3>格式化<a class="headerlink" href="#id7" title="链接到此标题。">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">render_for_prompt</span><span class="p">(</span><span class="n">skills</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">SkillRecord</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</pre></div>
+</div>
+<p>返回注入智能体系统提示词的 XML 块：</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;skills&gt;</span>
+<span class="nt">&lt;skill</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ucb_regret_analysis&quot;</span><span class="nt">&gt;</span>
+#<span class="w"> </span>UCB<span class="w"> </span>Regret<span class="w"> </span>Analysis
+...
+<span class="nt">&lt;/skill&gt;</span>
+<span class="nt">&lt;skill</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;concentration_inequalities&quot;</span><span class="nt">&gt;</span>
+...
+<span class="nt">&lt;/skill&gt;</span>
+<span class="nt">&lt;/skills&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id8">
+<h2>数据模型<a class="headerlink" href="#id8" title="链接到此标题。">#</a></h2>
+<p><strong>文件：</strong> <code class="docutils literal notranslate"><span class="pre">eurekaclaw/types/skills.py</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SkillMeta</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;1.0&quot;</span>
+    <span class="n">tags</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">agent_roles</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>       <span class="c1"># e.g., [&quot;theory&quot;, &quot;survey&quot;]</span>
+    <span class="n">pipeline_stages</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>   <span class="c1"># e.g., [&quot;theory&quot;, &quot;experiment&quot;]</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">source</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;seed&quot;</span><span class="p">,</span> <span class="s2">&quot;distilled&quot;</span><span class="p">,</span> <span class="s2">&quot;manual&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;seed&quot;</span>
+    <span class="n">created_at</span><span class="p">:</span> <span class="n">datetime</span>
+    <span class="n">usage_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">success_rate</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SkillRecord</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">meta</span><span class="p">:</span> <span class="n">SkillMeta</span>
+    <span class="n">content</span><span class="p">:</span> <span class="nb">str</span>        <span class="c1"># Markdown body after frontmatter</span>
+    <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="c1"># absolute path to the .md file</span>
+    <span class="n">embedding</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># populated on first semantic retrieval</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">full_markdown</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span> <span class="o">...</span>  <span class="c1"># frontmatter + content</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="id9">
+<h2>技能蒸馏（运行后学习）<a class="headerlink" href="#id9" title="链接到此标题。">#</a></h2>
+<p>每次成功的会话结束后，<code class="docutils literal notranslate"><span class="pre">ContinualLearningLoop.post_run()</span></code> 从会话中蒸馏新技能：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ContinualLearningLoop.post_run()
+    ├── extract failures (FailedAttempt[]) from TheoryState
+    ├── deduplicate — only unique failure patterns (skip low-novelty)
+    ├── compress successes — proof text trimmed to 300 chars
+    ├── SkillEvolver.distill_from_session()
+    │       → new SkillRecord .md files in ~/.eurekaclaw/skills/
+    └── (rl/madmax modes) ProcessRewardModel scoring
+</pre></div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">SkillEvolver.distill_from_session()</span></code></strong> 使用主 LLM：</p>
+<ol class="arabic simple">
+<li><p>从成功的证明中识别可推广的模式</p></li>
+<li><p>编写带有适当标签和角色的新技能 Markdown 文件</p></li>
+<li><p>在 frontmatter 中设置 <code class="docutils literal notranslate"><span class="pre">source:</span> <span class="pre">distilled</span></code></p></li>
+</ol>
+<p>新技能通过 <code class="docutils literal notranslate"><span class="pre">SkillRegistry.reload()</span></code> 在下一次会话中立即可用。</p>
+</section>
+<hr class="docutils" />
+<section id="mab">
+<h2>种子技能（MAB 领域）<a class="headerlink" href="#mab" title="链接到此标题。">#</a></h2>
+<p>MAB 领域插件内置四个种子技能：</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>技能</p></th>
+<th class="head"><p>标签</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ucb_regret_analysis</span></code></p></td>
+<td><p>bandit, regret, ucb</p></td>
+<td><p>通过集中不等式进行 UCB1 遗憾分解</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">thompson_sampling_analysis</span></code></p></td>
+<td><p>bandit, thompson, bayesian</p></td>
+<td><p>Thompson Sampling 遗憾分析</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lower_bound_construction</span></code></p></td>
+<td><p>bandit, lower-bound, information</p></td>
+<td><p>Lai-Robbins 和基于 Fano 的下界</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">bandit_simulation</span></code></p></td>
+<td><p>bandit, simulation, experiment</p></td>
+<td><p>如何运行和解读赌博机模拟</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="id10">
+<h2>安装种子技能<a class="headerlink" href="#id10" title="链接到此标题。">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>install-skills<span class="w">                      </span><span class="c1"># copy seeds to ~/.eurekaclaw/skills/</span>
+eurekaclaw<span class="w"> </span>install-skills<span class="w"> </span>--force<span class="w">              </span><span class="c1"># overwrite existing copies</span>
+eurekaclaw<span class="w"> </span>install-skills<span class="w"> </span>&lt;skillname&gt;<span class="w">          </span><span class="c1"># install a skill from ClawHub</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;skillname&gt;</span></code> 形式通过 <code class="docutils literal notranslate"><span class="pre">clawhub</span></code> CLI（需单独安装）从 <a class="reference external" href="https://clawhub.ai/">ClawHub</a> 注册表获取技能。示例：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>install-skills<span class="w"> </span>steipete/github
+</pre></div>
+</div>
+<p>此命令仅用于检查和手动编辑。智能体<strong>不需要</strong>执行此命令——种子技能始终直接从包中获取。</p>
+</section>
+<hr class="docutils" />
+<section id="id11">
+<h2>技能生命周期<a class="headerlink" href="#id11" title="链接到此标题。">#</a></h2>
+<p>了解技能的物理存储位置，可以避免对 <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code> 中未包含某些技能的困惑。</p>
+<section id="id12">
+<h3>三个存储位置<a class="headerlink" href="#id12" title="链接到此标题。">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>位置</p></th>
+<th class="head"><p>写入者</p></th>
+<th class="head"><p>时机</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">eurekaclaw/skills/seed_skills/</span></code></p></td>
+<td><p>包开发者（您）</p></td>
+<td><p>提交到代码库；随 <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> 打包</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">eurekaclaw/domains/&lt;domain&gt;/skills/</span></code></p></td>
+<td><p>领域插件作者</p></td>
+<td><p>通过 <code class="docutils literal notranslate"><span class="pre">add_skills_dir()</span></code> 在插件加载时注册</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">install-skills</span></code> CLI + <code class="docutils literal notranslate"><span class="pre">SkillEvolver</span></code> + ClawHub</p></td>
+<td><p>按需写入；用户可编辑</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id13">
+<h3>运行时加载顺序<a class="headerlink" href="#id13" title="链接到此标题。">#</a></h3>
+<p>每次 <code class="docutils literal notranslate"><span class="pre">SkillRegistry._load()</span></code> 运行时，按以下顺序读取所有三个来源。同名技能后来者覆盖前者：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1. eurekaclaw/skills/seed_skills/**/*.md        (lowest priority)
+2. domain plugin skill dirs (extra_dirs)        (medium priority)
+3. ~/.eurekaclaw/skills/**/*.md                 (highest priority — overrides seeds)
+</pre></div>
+</div>
+<p><strong>结论：</strong> 向 <code class="docutils literal notranslate"><span class="pre">seed_skills/</span></code> 添加文件后，智能体在下一次运行时即可看到该技能，无需将任何内容复制到 <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code>。<code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code> 中缺少某个种子技能不会降低智能体能力。</p>
+</section>
+<section id="id14">
+<h3>新技能的生成方式<a class="headerlink" href="#id14" title="链接到此标题。">#</a></h3>
+<p>技能通过三条路径进入系统：</p>
+<section id="id15">
+<h4>1. 种子技能（开发者编写）<a class="headerlink" href="#id15" title="链接到此标题。">#</a></h4>
+<p>在 <code class="docutils literal notranslate"><span class="pre">eurekaclaw/skills/seed_skills/&lt;category&gt;/</span></code> 中创建 <code class="docutils literal notranslate"><span class="pre">.md</span></code> 文件：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># e.g. for a new theory skill</span>
+touch<span class="w"> </span>eurekaclaw/skills/seed_skills/theory/my_new_skill.md
+</pre></div>
+</div>
+<p>在 frontmatter 中设置 <code class="docutils literal notranslate"><span class="pre">source:</span> <span class="pre">seed</span></code>。文件保存后，智能体立即可用——无需 CLI 步骤。</p>
+</section>
+<section id="llm">
+<h4>2. LLM 蒸馏（自动，运行后）<a class="headerlink" href="#llm" title="链接到此标题。">#</a></h4>
+<p>每次成功的会话结束后，<code class="docutils literal notranslate"><span class="pre">SkillEvolver.distill_from_session()</span></code> 使用会话中最多 5 条 <code class="docutils literal notranslate"><span class="pre">FailedAttempt</span></code> 记录和 5 条 <code class="docutils literal notranslate"><span class="pre">ProofRecord</span></code> 成功记录进行调用。它使用快速模型发起蒸馏提示，并将响应解析为新的 <code class="docutils literal notranslate"><span class="pre">SkillRecord</span></code>。</p>
+<p>新技能通过 <code class="docutils literal notranslate"><span class="pre">SkillRegistry.upsert()</span></code> 写入 <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/&lt;name&gt;.md</span></code>，带有：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">source:</span> <span class="pre">distilled</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name:</span> <span class="pre">distilled_&lt;session_id[:8]&gt;_&lt;random_hex&gt;</span></code></p></li>
+<li><p>从 LLM 响应中提取的标签、角色和阶段</p></li>
+</ul>
+<p>后续会话无需重启即可立即使用。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Session completes
+    └── SkillEvolver.distill_from_session(failures, successes)
+            └── LLM call (fast model, max_tokens=1024)
+                    └── _parse_skill_response()
+                            └── SkillRegistry.upsert()  →  ~/.eurekaclaw/skills/&lt;name&gt;.md
+</pre></div>
+</div>
+</section>
+<section id="clawhub">
+<h4>3. ClawHub 技能<a class="headerlink" href="#clawhub" title="链接到此标题。">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eurekaclaw<span class="w"> </span>install-skills<span class="w"> </span>&lt;author&gt;/&lt;skillname&gt;
+</pre></div>
+</div>
+<p>通过 <code class="docutils literal notranslate"><span class="pre">clawhub</span></code> CLI 从 <a class="reference external" href="https://clawhub.ai/">ClawHub</a> 注册表下载技能并放置在 <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code> 中。需要安装 <code class="docutils literal notranslate"><span class="pre">clawhub</span></code>（<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">clawhub</span></code> 或等效方式）。</p>
+</section>
+<section id="id16">
+<h4>4. 手动用户技能<a class="headerlink" href="#id16" title="链接到此标题。">#</a></h4>
+<p>将任何带有有效 YAML frontmatter 的 <code class="docutils literal notranslate"><span class="pre">.md</span></code> 文件直接放入 <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code>，下一次会话加载时即可使用。在 frontmatter 中使用 <code class="docutils literal notranslate"><span class="pre">source:</span> <span class="pre">manual</span></code> 与蒸馏技能区分。</p>
+</section>
+</section>
+<section id="id17">
+<h3>技能统计更新<a class="headerlink" href="#id17" title="链接到此标题。">#</a></h3>
+<p>每次会话结束后，<code class="docutils literal notranslate"><span class="pre">SkillRegistry.update_stats(name,</span> <span class="pre">success)</span></code> 会以更新后的 <code class="docutils literal notranslate"><span class="pre">usage_count</span></code> 和 <code class="docutils literal notranslate"><span class="pre">success_rate</span></code>（指数移动平均，α=0.3）重写技能文件。这仅影响 <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code> 中已存在的技能——包内的种子技能不会被运行会话修改。</p>
+</section>
+<section id="eurekaclaw-skills">
+<h3>为何 <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code> 可能看起来是空的<a class="headerlink" href="#eurekaclaw-skills" title="链接到此标题。">#</a></h3>
+<p>全新安装且尚未运行任何会话时，<code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code> 目录将为空。这是正常现象。智能体并未&quot;缺失&quot;任何技能——它们在运行时直接读取种子技能和领域插件技能。<code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code> 会随时间通过以下方式逐渐填充：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">eurekaclaw</span> <span class="pre">install-skills</span></code>（一次性复制，用于检查/编辑）</p></li>
+<li><p>已完成的会话（自动蒸馏）</p></li>
+<li><p>手动放置的自定义 <code class="docutils literal notranslate"><span class="pre">.md</span></code> 文件</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="memory.html"
+       title="上一页">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title">记忆系统</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="token-limits.html"
+       title="下一页">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title">Token 限制</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 当前页面
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">技能文件格式</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skillregistry">SkillRegistry</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">加载</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">检索</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">存储</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skillinjector">SkillInjector</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">检索</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">格式化</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">数据模型</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">技能蒸馏（运行后学习）</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mab">种子技能（MAB 领域）</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">安装种子技能</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">技能生命周期</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">三个存储位置</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">运行时加载顺序</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">新技能的生成方式</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">1. 种子技能（开发者编写）</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llm">2. LLM 蒸馏（自动，运行后）</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#clawhub">3. ClawHub 技能</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">4. 手动用户技能</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">技能统计更新</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eurekaclaw-skills">为何 <code class="docutils literal notranslate"><span class="pre">~/.eurekaclaw/skills/</span></code> 可能看起来是空的</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/EurekaClaw/EurekaClaw.github.io/edit/main/source/reference/skills.md">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          由 GitHub 编辑
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, EurekaClaw Contributors.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4创建。
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
